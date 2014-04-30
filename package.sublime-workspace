@@ -1,0 +1,211 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"$sc",
+				"$scope	AngularJS"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"prop",
+				"propTypes"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 380.0,
+		"selected_items":
+		[
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 472.0
+	},
+	"console":
+	{
+		"height": 552.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/noscan/my-angular-app/app/scripts/controllers/login.js",
+		"/C/noscan/my-angular-app/app/scripts/app.js",
+		"/C/noscan/my-angular-app/app/index.html",
+		"/C/noscan/my-angular-app/app/scripts/services.js",
+		"/C/noscan/my-angular-app/app/scripts/controllers/form.js",
+		"/C/noscan/my-angular-app/app/views/login.html",
+		"/C/noscan/my-angular-app/app/views/form.html",
+		"/C/noscan/my-angular-app/app/scripts/controllers/main.js",
+		"/C/noscan/my-angular-app/app/views/main.html",
+		"/C/noscan/my-angular-app/app/bower_components/angular/angular.js",
+		"/C/noscan/my-angular-app/app/styles/custom.css",
+		"/C/noscan/my-angular-app/app/scripts/custom.js",
+		"/C/noscan/my-angular-app/app/scripts/controllers/signup.js",
+		"/C/noscan/my-angular-app/app/views/about.html",
+		"/C/noscan/my-angular-app/Gruntfile.js",
+		"/C/noscan/my-angular-app/bower.json",
+		"/C/noscan/my-angular-app/package.json",
+		"/C/noscan/my-angular-app/app/scripts/controllers/about.js",
+		"/C/noscan/my-angular-app/.tmp/styles/main.css",
+		"/C/noscan/my-angular-app/app/bower_components/fontawesome/css/font-awesome.css",
+		"/C/noscan/my-angular-app/app/bower_components/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.js",
+		"/C/noscan/subtest",
+		"/C/Users/vbodempu/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/vbodempu/AppData/Roaming/Sublime Text 3/Packages/AngularJS/AngularJS-js-completions.sublime-settings",
+		"/C/Users/vbodempu/AppData/Roaming/Sublime Text 3/Packages/User/AngularJS-js-completions.sublime-settings"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"form-control",
+			"form-group",
+			"selectpicker",
+			"modal",
+			"signin",
+			"contact",
+			"index.html",
+			"run",
+			"angular",
+			"ng",
+			"map"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "package.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 179.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,523 @@
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="lib/html5shiv/html5shiv.js"></script>
+      <script src="lib/respond/respond.min.js"></script>
+    <![endif]-->
+<!--[if lt IE 8]>
+	<link href="lib/fontawesome/font-awesome-ie7.min.css" rel="stylesheet" media="screen">
+    <![endif]-->
+
+
+<div class="container" ng-controller="FormCtrl">
+	<div class="row">
+		<div class="col-sm-12">
+		<h3>Enter your details</h3>
+			<form class="form-horizontal" role="form">
+			<div class="panel panel-default">
+				<div class="panel-heading"><strong>Personal Information</strong></div>
+				<div class="panel-body">
+			  <div class="form-group">
+				<label class="col-sm-2 control-label">I am:</label>
+				<div class="col-sm-10">
+					<div class="radio-inline">
+					  <label>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="Owner" checked ng-model="seller.type" required>
+						Owner
+					  </label>
+					</div>
+					<div class="radio-inline">
+					  <label>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="Agent" checked ng-model="seller.type" required>
+						Agent
+					  </label>
+					</div>
+					<div class="radio-inline">
+					  <label>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="Builder" checked ng-model="seller.type" required>
+						Builder
+					  </label>
+					</div>
+                       
+				</div>
+			  </div>
+			  <div class="form-group">
+				<label class="col-sm-2 control-label">Email:</label>
+				<div class="col-sm-8">
+				  <input type="email" class="form-control input-sm" placeholder="Email" ng-model="seller.email1" required>
+				</div>
+				<div class="col-sm-2">
+				  <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
+				</div>
+			  </div>
+			  <div class="form-group">
+				<label class="col-sm-2 control-label">Phone:</label>
+				<div class="col-sm-8">
+				  <input type="text" class="form-control input-sm" placeholder="Phone" ng-model="seller.phone1" required>
+				</div>
+				<div class="col-sm-2">
+				  <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
+				</div>
+			  </div>
+			  <div class="form-group">
+				<label class="col-sm-2 control-label">City:</label>
+				<div class="col-sm-3">
+				  <input type="text" class="form-control input-sm" placeholder="City" ng-model="seller.city" required>
+				</div>
+				<label class="col-sm-2 control-label">Locality:</label>
+				<div class="col-sm-3">
+				  <input type="text" class="form-control input-sm" placeholder="Locality" ng-model="seller.locality" required>
+				</div>
+			  </div>
+			  <pre>form = {{user | json}}</pre>
+			  <button ng-click="save(seller)">SAVE</button>
+			  </div>
+			  </div>
+			  <div class="panel panel-default">
+				<div class="panel-heading"><strong>Property Details</strong></div>
+				<div class="panel-body">
+			  <div class="form-group">
+				<label class="col-sm-2 control-label">Type:</label>
+				<div class="col-sm-4">
+					<select class="form-control input-sm">
+					  <option>Residential</option>
+					  <option>Commercial</option>
+					</select>
+				</div>
+				<div class="col-sm-4">
+					<select class="form-control input-sm">
+					  <option>Apartment</option>
+					  <option>Individual house/Villa</option>
+					  <option>Residential land/plot</option>
+					  <option>builder floor</option>
+					  <option>pent house</option>
+					  <option>farm house</option>
+					</select>
+				</div>
+			  </div>
+			  <div class="form-group">
+				<label class="col-sm-2 control-label">Purpose:</label>
+				<div class="col-sm-2">
+				  <div class="radio-inline">
+					  <label>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+						Sell
+					  </label>
+					</div>
+					<div class="radio-inline">
+					  <label>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+						Rent
+					  </label>
+					</div>
+				</div>
+				<label class="col-sm-2 control-label">Bedrooms:</label>
+				<div class="col-sm-1">
+					<select class="form-control input-sm">
+					  <option>1</option>
+					  <option>2</option>
+					</select>
+				</div>
+				<label class="col-sm-2 control-label">Bathrooms:</label>
+				<div class="col-sm-1">
+					<select class="form-control input-sm">
+					  <option>1</option>
+					  <option>2</option>
+					</select>
+				</div>
+			  </div>
+			  <div class="form-group">
+				<label class="col-sm-2 control-label">Monthly Rent:</label>
+				<div class="col-sm-3">
+				  <input type="text" class="form-control input-sm" placeholder="Rent">
+				</div>
+				<label class="col-sm-2 control-label">Deposit:</label>
+				<div class="col-sm-3">
+				  <input type="text" class="form-control input-sm" placeholder="Deposit">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label"></label>
+				<div class="col-sm-2">
+				  <div class="checkbox-inline">
+					  <label>
+						<input type="checkbox">
+						Allow Non-veg
+					  </label>
+					</div>
+				</div>
+				<div class="col-sm-2">
+				  <div class="checkbox-inline">
+					  <label>
+						<input type="checkbox">
+						Allow Pets
+					  </label>
+					</div>
+				</div>
+				<label class="col-sm-2 control-label">Preferred Tenant:</label>
+				<div class="col-sm-2">
+				  <select class="form-control input-sm">
+						<option>No Restriction</option>
+					  <option>Family</option>
+					  <option>Bachelor</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Commition in Days:</label>
+				<div class="col-sm-1">
+				  <select class="form-control input-sm">
+						<option>1</option>
+					  <option>2</option>
+					  <option>4</option>
+					</select>
+				</div>
+				<label class="col-sm-1 control-label">OR</label>
+				<label class="col-sm-2 control-label">Fixed Price:</label>
+				<div class="col-sm-2">
+				  <input type="text" class="form-control input-sm" placeholder="Amount">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Total Price:</label>
+				<div class="col-sm-2">
+				  <input type="text" class="form-control input-sm" placeholder="Amount">
+				</div>
+				<div class="col-sm-2">
+				  <div class="checkbox-inline">
+					  <label>
+						<input type="checkbox">
+						Negotiable
+					  </label>
+					</div>
+				</div>
+				<div class="col-sm-3">
+				  <div class="checkbox-inline">
+					  <label>
+						<input type="checkbox">
+						Registration fee Included
+					  </label>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Area:</label>
+				<div class="col-sm-2">
+				  <input type="text" class="form-control input-sm" placeholder="Built-up">
+				</div>
+				<div class="col-sm-2">
+				  <input type="text" class="form-control input-sm" placeholder="Carpet">
+				</div>
+				<div class="col-sm-2">
+				  <input type="text" class="form-control input-sm" placeholder="Plot/Land">
+				</div>
+				<div class="col-sm-2">
+				  <input type="text" class="form-control input-sm" placeholder="Per Unit Price">
+				</div>
+				<label class="col-sm-1 control-label"><i class="fn fn-home"></i></label>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Property Address:</label>
+				<div class="col-sm-8">
+				  <textarea type="text" class="form-control"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label"></label>
+				<div class="col-sm-2">
+				  <div class="radio-inline">
+					  <label>
+						<input type="radio">New
+					  </label>
+					</div>
+				</div>
+				<div class="col-sm-3">
+				  <div class="radio-inline">
+					  <label>
+						<input type="radio">Resale
+					  </label>
+					</div>
+				</div>
+				<div class="col-sm-2">
+				  <div class="checkbox-inline">
+					  <label>
+						<input type="checkbox">Underconstruction
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Availability</label>
+				<div class="col-sm-2">
+				  <div class="radio-inline">
+					  <label>
+						<input type="radio">Ready
+					  </label>
+					</div>
+				</div>
+				<div class="col-sm-2">
+				  <div class="radio-inline">
+					  <label>
+						<input type="radio">for Future
+					  </label>
+					</div>
+				</div>
+				<div class="col-sm-2">
+						<input type="text" class="form-control input-sm" placeholder="Enter Date">
+				</div>
+				<div class="col-sm-2">
+						<input type="text" class="form-control input-sm" placeholder="Age of Property">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">No of Units Available</label>
+				<div class="col-sm-2">
+				  <select class="form-control input-sm">
+						<option>1</option>
+					  <option>2</option>
+					  <option>3</option>
+					</select>
+				</div>
+				<label class="col-sm-2 control-label">Ownership type:</label>
+				<div class="col-sm-2">
+				  <select class="form-control input-sm">
+						<option>Freehold</option>
+					  <option>leasehold</option>
+					  <option>Power of Attorney</option>
+					</select>
+				</div>
+			</div>
+			
+			  </div>
+			  
+			  </div>
+		<div class="panel panel-default">
+			<div class="panel-heading"><strong>Specifications</strong></div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Balconies</label>
+					<div class="col-sm-2">
+					  <select class="form-control input-sm">
+							<option>1</option>
+						  <option>2</option>
+						  <option>3</option>
+						</select>
+					</div>
+					<label class="col-sm-2 control-label">Additional rooms</label>
+					<div class="col-sm-2">
+					  <select class="form-control input-sm">
+							<option>puja</option>
+						  <option>study</option>
+						  <option>Dining</option>
+						</select>
+					</div>
+					<div class="col-sm-2">
+							<input type="text" class="form-control input-sm" placeholder="Other room">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Directional facing</label>
+					<div class="col-sm-2">
+						<select class="form-control input-sm">
+							<option>east</option>
+							<option>west</option>
+							<option>South</option>
+						</select>
+					</div>
+					<label class="col-sm-2 control-label">Fasing</label>
+					<div class="col-sm-2">
+						<select class="form-control input-sm">
+							<option>Pool</option>
+							<option>Main Road</option>
+							<option>Garden</option>
+						</select>
+					</div>
+					<div class="col-sm-2">
+							<input type="text" class="form-control input-sm" placeholder="Other room">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"></label>
+					<div class="col-sm-2">
+					  <div class="radio-inline">
+						  <label>
+							<input type="radio">Furnished
+						  </label>
+						</div>
+					</div>
+					<div class="col-sm-2">
+					  <div class="radio-inline">
+						  <label>
+							<input type="radio">Semi-Furnished
+						  </label>
+						</div>
+					</div>
+					<div class="col-sm-2">
+							<input type="text" class="form-control input-sm" placeholder="Floor Number">
+					</div>
+					<div class="col-sm-2">
+							<input type="text" class="form-control input-sm" placeholder="Total Floors">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Parking</label>
+					<div class="col-sm-4">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">2 wheeler 
+						  </label>
+						</div>
+						<div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">4 wheeler 
+						  </label>
+						</div>
+						<div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Visitors 
+						  </label>
+						</div>
+					</div>
+					<label class="col-sm-2 control-label">Flooring</label>
+					<div class="col-sm-2">
+						<select class="form-control input-sm">
+							<option>Marble</option>
+							<option>Normal Tiles</option>
+							<option>Vitrified Tiles</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Type of electricity</label>
+					<div class="col-sm-2">
+						<select class="form-control input-sm">
+							<option>phase I</option>
+							<option>phase II</option>
+							<option>phase III</option>
+						</select>
+					</div>					
+					<div class="col-sm-2">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Generator Backup
+						  </label>
+						</div>
+					</div>
+					<label class="col-sm-2 control-label">Security Systems</label>
+					<div class="col-sm-2">
+						<select class="form-control input-sm">
+							<option>fire alarm</option>
+							<option>burglar alarm</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Vastu Compliant</label>
+					<div class="col-sm-2">
+						<select class="form-control input-sm">
+							<option>Yes</option>
+							<option>No</option>
+							<option>Not Sure</option>
+						</select>
+					</div>
+					<div class="col-sm-2">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Gated Community
+						  </label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Property Brief Description</label>
+					<div class="col-sm-8">
+						<textarea type="text" class="form-control"></textarea>
+					</div>
+				</div>
+			</div>			
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading"><strong>Amenities</strong></div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="col-sm-3">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Swimming pool
+						  </label>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Play area
+						  </label>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Health Facilities
+						  </label>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Recreation facilities
+						  </label>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Maintenance staff
+						  </label>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Security
+						  </label>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Intercom
+						  </label>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					  <div class="checkbox-inline">
+						  <label>
+							<input type="checkbox">Club house
+						  </label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading"><strong>photos and map</strong></div>
+			<div class="panel-body">
+				photos and map here .... 
+			</div>
+		</div>
+		     
+			</form>
+			 
+  		</div>
+	</div>
+</div>
+<div class="tagline">
+  <p>Aenean placerat libero, tincidunt tempus ut. <a href="#">fathome.com</a></p>
+</div>
+<footer>
+  <p>&copy; 2012-2013 Fathome.com. Toll Free Number: 000-100-100-10000 <a href="#">Terms of Service</a> | <a href="#">Privacy</a> Aenean rutrum placerat libero, eu tincidunt turpis tempus ut</p>
+  <p class="footer-icons"><a href="#"><i class="fa fa-facebook-square"></i></a> <a href="#"><i class="fa fa-linkedin-square"></i></a> <a href="#"><i class="fa fa-google-plus-square"></i></a></p>
+</footer>
+
