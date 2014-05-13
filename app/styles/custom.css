@@ -20,11 +20,13 @@ button::-moz-focus-inner{border: 0;}
 	background-image: -webkit-linear-gradient(bottom, #3e3e3e, #565656); background-image: -moz-linear-gradient(bottom, #3e3e3e, #565656); background-image: -o-linear-gradient(bottom, #3e3e3e, #565656); background-image: linear-gradient(to top, #3e3e3e, #565656); border:none; color:#ffcc00;
 }
 .btn-success{
-	background-image: -webkit-linear-gradient(bottom, #28b779, #2fe294); background-image: -moz-linear-gradient(bottom, #28b779, #2fe294); background-image: -o-linear-gradient(bottom, #28b779, #2fe294); background-image: linear-gradient(to top, #28b779, #2fe294); border-color:#28b779;; color:#ffcc00;
+	background-image: -webkit-linear-gradient(bottom, #28b779, #2fe294); background-image: -moz-linear-gradient(bottom, #28b779, #2fe294); background-image: -o-linear-gradient(bottom, #28b779, #2fe294); background-image: linear-gradient(to top, #28b779, #2fe294); border-color:#28b779; color:#ffcc00;
 }
 .btn-info{
-	background-image: -webkit-linear-gradient(bottom, #159CEB, #2db1ff); background-image: -moz-linear-gradient(bottom, #159CEB, #2db1ff); background-image: -o-linear-gradient(bottom, #159CEB, #2db1ff); background-image: linear-gradient(to top, #159CEB, #2db1ff); border-color:#159CEB;; color:#fff;
+	background-image: -webkit-linear-gradient(bottom, #159CEB, #2db1ff); background-image: -moz-linear-gradient(bottom, #159CEB, #2db1ff); background-image: -o-linear-gradient(bottom, #159CEB, #2db1ff); background-image: linear-gradient(to top, #159CEB, #2db1ff); border-color:#159CEB; color:#fff;
 }
+
+
 
 .home-modal .modal-footer{ margin-top:0; padding-top:0; border-top:none;}
 .home-modal .modal-header{ border-bottom:none; text-align:center; padding-bottom:0;}
@@ -107,14 +109,41 @@ footer{ text-align:center; padding-bottom:100px;}
 .list-view .image{ width:100px; height:120px; margin-right:10px; float:left;}
 .list-view .image img{ width:100%; height:100%;}
 .list-view .content{ margin-left:110px; overflow:hidden}
-.list-view .content h3{ float:left; color:#1885f0; margin:0; }
-.list-view .price{ float:right; color:#28b779; padding-right:0px;}
-.list-view .content .price h4{ float:none; color:#28b779;font-family:arial; margin:0; text-align:right}
+.list-view .content h3{ float:left; color:#1885f0; margin:0; font-size:21px;}
+
+
+/*.list-view .price{ float:right; color:#28b779; padding-right:0px;}*/
+
+/* change the color of 234/sqft under price in results change the color:#444444;*/
+.list-view .price{ float:right; color:#444444; padding-right:0px;}
+/* end */
+
+.list-view .content .price h4{ float:none; color:#444444;font-family:arial; margin:0; }
+
+/* price is in bold format, just remove the below font-weight:bold to font-weight:normal, it looks good */
 .list-view .content .price h4 span{ font-weight:bold}
-.list-view .content .price h5{ margin:0; text-align:right;font-family:arial}
+/* end */
+
+
+/* SQFT space reducing css */
+.input-group-addon_custom {  padding: 6px 6px; }
+/* SQFT space reducing css end*/
+
+.list-view .dateright{ float:right; color:#353535; }
+
+/* increase the size of social media icons in results box main page adjust below padding: 2px 7px; or imply remove below total css and chk too */
+.customsocial .btn-sm { padding: 2px 7px; }
+/* end */
+
+
+.list-view .content .price h5{ margin:0; padding-left:10px;font-family:arial}
 .list-view .content .row{white-space: nowrap; width: 100%; float:left;}
-.list-view .firstRow{ font-weight:bold; margin-top:-8px;}
-.list-view .secondRow{ color:#797979; font-size:12px; margin-top:6px;}
+
+/*.list-view .firstRow{ font-weight:bold; margin-top:5px;}*/
+
+.list-view .firstRow{ margin-top:5px;}
+
+.list-view .secondRow{ color:#797979; font-size:12px; margin-top:15px;}
 .list-view .content .btn-group{ margin-top:6px; visibility:hidden}
 .list-view:hover .content .btn-group{ visibility:visible}
 .lists-view{ overflow:hidden; overflow-y:auto; max-height:452px}
@@ -144,3 +173,52 @@ footer{ text-align:center; padding-bottom:100px;}
 .tab-content{ padding:20px;}
 
 .checkbox-inline label,.radio-inline label{ font-weight:normal}
+.upload-img{ margin-top:5px;}
+.upload-img img{width:150px; height:150px;}
+.navbar-btn{margin-bottom: 0px;
+    margin-top: 0px;}
+	
+
+
+.navbar-inverse .navbar-nav > li > a  > span{
+    color: #333333;
+	text-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+}	
+
+.navbar-inverse .navbar-nav > li > a:hover  span {
+    color: #ffffff;
+}
+.navbar-inverse .navbar-nav > li:last-child{padding-left;0px;}
+.fa-facebook-square:before {
+content: “\f082″;
+font-family: FontAwesome;
+color:#4862a3;
+}
+
+.fa-google-plus-square:before {
+content: “\f0d4″;
+font-family: FontAwesome;
+color:#da4834;
+}
+
+.fa-facebook-square:hover{
+    background-color:#ffffff;
+}
+.fa-google-plus-square:hover{ background-color:#ffffff;}
+
+/* Buy Rent css start....*/
+.switch-light span {
+        color:#fff; }
+		.switch-light span span:last-child{
+        color:#333333; }
+		.switch-light input:checked ~ span span {
+        color:#333333; }
+		.switch-light input:checked ~ span span:last-child {
+        color:#fff; }
+
+.btn-success{
+	background-image: -webkit-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: -moz-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: -o-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: linear-gradient(to top, #159CEB, #2DB1FF); border-color:#28b779;; color:#ffcc00;
+}
+/* Buy Rent css End ....*/
+
+

@@ -22,4 +22,6 @@ angular.module('fatHomesApp')
 
     ];
 
+    $scope.signinText = 'Sign In';
+
   });

@@ -3,29 +3,31 @@
 angular.module('fatHomesApp')
   .controller('LoginCtrl', function ($scope, $log, UserService) {
 
-  $scope.create = function(user) {
+  $scope.create = function(newUser) {
      
      $log.info('Inside create method!');
-     var newUser = new UserService(user);
+     var newNewUser = new UserService(newUser);
 
-         newUser.$save(); 
-  
+         newNewUser.$save(); 
+         $log.info(newNewUser);
     };
 
-  $scope.login = function(email) {
+  $scope.login = function(loginUser) {
      
      $log.info('Inside login method!');
-     UserService.get({id:email}, function(user){
+     UserService.get({id:loginUser.email}, function(user){
      	$log.info(user);
-   		 if($scope.password == user.password)
+   		 if(loginUser.password == user.password)
    		 {
-   		 	$scope.loginPassed = true;
-   		 	$scope.Signin = 'SignOut';
+   		 	loginUser.loginPassed = true;
+        loginUser.loginFailed = false;
+   		 	$scope.signinText = 'Sign Out';
    		 }
    		 else
    		 {
-           $scope.loginPassed = false;
-           $scope.Signin = 'SignIn';
+           loginUser.loginPassed = false;
+           loginUser.loginFailed = true;
+           $scope.signinText = 'Sign In';
    		 }
 
      });

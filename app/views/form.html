@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to FATHOME</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
+<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="lib/bootstrap/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+<link href="lib/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" media="screen">
+<link href="lib/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet" media="screen">
+<link href='http://fonts.googleapis.com/css?family=Puritan:400,400italic' rel='stylesheet' type='text/css'>
+<link href="lib/toggle-switch/toggle-switch.css" rel="stylesheet" media="screen">
+<link href="style/custom.css" rel="stylesheet" media="screen">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="lib/html5shiv/html5shiv.js"></script>
@@ -6,9 +19,31 @@
 <!--[if lt IE 8]>
 	<link href="lib/fontawesome/font-awesome-ie7.min.css" rel="stylesheet" media="screen">
     <![endif]-->
+</head>
+<body class="main">
+<div class="navbar navbar-inverse">
+  <!--  navbar-fixed-top -->
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="fa fa-bars"></span></button>
+      <a class="navbar-brand" href="#">FATHOME</a></div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+        <li><a href="#about">Feedback</a></li>
+        <li><a href="#contact">Contact us</a></li>
+        <li><a href="main.html">My Shortlist</a></li>
+        <li><a href="#contact" data-toggle="modal" data-target="#signin">Sign In</a></li>
+        <li><a href="#list" class="btn btn-info btn-xm navbar-btn"><span>Rent/Sell <i class="fa fa-caret-right"></i></span></a></li>
+        <li><a href="#"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+		<li ><a href="#" style="padding-left:0px;"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</div>
 
-
-<div class="container" ng-controller="FormCtrl">
+<div class="container">
 	<div class="row">
 		<div class="col-sm-12">
 		<h3>Enter your details</h3>
@@ -21,29 +56,28 @@
 				<div class="col-sm-10">
 					<div class="radio-inline">
 					  <label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="Owner" checked ng-model="seller.type" required>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
 						Owner
 					  </label>
 					</div>
 					<div class="radio-inline">
 					  <label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="Agent" checked ng-model="seller.type" required>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
 						Agent
 					  </label>
 					</div>
 					<div class="radio-inline">
 					  <label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="Builder" checked ng-model="seller.type" required>
-						Builder
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+						builder
 					  </label>
 					</div>
-                       
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="col-sm-2 control-label">Email:</label>
-				<div class="col-sm-8">
-				  <input type="email" class="form-control input-sm" placeholder="Email" ng-model="seller.email1" required>
+				<div class="col-sm-2">
+				  <input type="email" class="form-control input-sm" placeholder="Email">
 				</div>
 				<div class="col-sm-2">
 				  <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
@@ -51,8 +85,8 @@
 			  </div>
 			  <div class="form-group">
 				<label class="col-sm-2 control-label">Phone:</label>
-				<div class="col-sm-8">
-				  <input type="text" class="form-control input-sm" placeholder="Phone" ng-model="seller.phone1" required>
+				<div class="col-sm-2">
+				  <input type="text" class="form-control input-sm" placeholder="Phone">
 				</div>
 				<div class="col-sm-2">
 				  <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
@@ -61,15 +95,13 @@
 			  <div class="form-group">
 				<label class="col-sm-2 control-label">City:</label>
 				<div class="col-sm-3">
-				  <input type="text" class="form-control input-sm" placeholder="City" ng-model="seller.city" required>
+				  <input type="text" class="form-control input-sm" placeholder="City">
 				</div>
 				<label class="col-sm-2 control-label">Locality:</label>
 				<div class="col-sm-3">
-				  <input type="text" class="form-control input-sm" placeholder="Locality" ng-model="seller.locality" required>
+				  <input type="text" class="form-control input-sm" placeholder="Locality">
 				</div>
 			  </div>
-			  <pre>form = {{user | json}}</pre>
-			  <button ng-click="save(seller)">SAVE</button>
 			  </div>
 			  </div>
 			  <div class="panel panel-default">
@@ -95,7 +127,7 @@
 				</div>
 			  </div>
 			  <div class="form-group">
-				<label class="col-sm-2 control-label">Purpose:</label>
+				<label class="col-sm-2 control-label"></label>
 				<div class="col-sm-2">
 				  <div class="radio-inline">
 					  <label>
@@ -125,7 +157,7 @@
 					</select>
 				</div>
 			  </div>
-			  <div class="form-group">
+			  <!--<div class="form-group">
 				<label class="col-sm-2 control-label">Monthly Rent:</label>
 				<div class="col-sm-3">
 				  <input type="text" class="form-control input-sm" placeholder="Rent">
@@ -178,21 +210,19 @@
 				  <input type="text" class="form-control input-sm" placeholder="Amount">
 				</div>
 			</div>
-			
+			-->
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Total Price:</label>
 				<div class="col-sm-2">
 				  <input type="text" class="form-control input-sm" placeholder="Amount">
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-6">
 				  <div class="checkbox-inline">
 					  <label>
 						<input type="checkbox">
 						Negotiable
 					  </label>
 					</div>
-				</div>
-				<div class="col-sm-3">
 				  <div class="checkbox-inline">
 					  <label>
 						<input type="checkbox">
@@ -207,14 +237,49 @@
 				<div class="col-sm-2">
 				  <input type="text" class="form-control input-sm" placeholder="Built-up">
 				</div>
+				  
 				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Carpet">
+				  <select class="form-control input-sm">
+						<option>Units Drop Down</option>
+					  <option>1</option>
+					  <option>2</option>
+					</select>
 				</div>
 				<div class="col-sm-2">
 				  <input type="text" class="form-control input-sm" placeholder="Plot/Land">
 				</div>
 				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Per Unit Price">
+				  <select class="form-control input-sm">
+						<option>Units Drop Down</option>
+					  <option>1</option>
+					  <option>2</option>
+					</select>
+				</div>
+				<label class="col-sm-1 control-label"><i class="fn fn-home"></i></label>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label"></label>
+				<div class="col-sm-2">
+				  <input type="text" class="form-control input-sm" placeholder="Carpet">
+				</div>
+				  
+				<div class="col-sm-2">
+				  <select class="form-control input-sm">
+						<option>Units Drop Down</option>
+					  <option>1</option>
+					  <option>2</option>
+					</select>
+				</div>
+				<div class="col-sm-2">
+				  <input type="text" class="form-control input-sm" placeholder="Per unit price">
+				</div>
+				<div class="col-sm-2">
+				  <select class="form-control input-sm">
+						<option>AreaType Drop Down</option>
+					  <option>Carpet</option>
+					  <option>Built-up</option>
+					  <option>Plot/Land</option>
+					</select>
 				</div>
 				<label class="col-sm-1 control-label"><i class="fn fn-home"></i></label>
 			</div>
@@ -226,21 +291,17 @@
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label"></label>
-				<div class="col-sm-2">
+				<div class="col-sm-10">
 				  <div class="radio-inline">
 					  <label>
 						<input type="radio">New
 					  </label>
 					</div>
-				</div>
-				<div class="col-sm-3">
 				  <div class="radio-inline">
 					  <label>
-						<input type="radio">Resale
+						<input type="radio">Resale 
 					  </label>
 					</div>
-				</div>
-				<div class="col-sm-2">
 				  <div class="checkbox-inline">
 					  <label>
 						<input type="checkbox">Underconstruction
@@ -256,16 +317,14 @@
 						<input type="radio">Ready
 					  </label>
 					</div>
-				</div>
-				<div class="col-sm-2">
-				  <div class="radio-inline">
+				  <div class="radio-inline" >
 					  <label>
 						<input type="radio">for Future
 					  </label>
 					</div>
 				</div>
 				<div class="col-sm-2">
-						<input type="text" class="form-control input-sm" placeholder="Enter Date">
+						<input type="text" id="datepicker" class="form-control input-sm" placeholder="Enter Date">
 				</div>
 				<div class="col-sm-2">
 						<input type="text" class="form-control input-sm" placeholder="Age of Property">
@@ -273,7 +332,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">No of Units Available</label>
-				<div class="col-sm-2">
+				<div class="col-sm-1">
 				  <select class="form-control input-sm">
 						<option>1</option>
 					  <option>2</option>
@@ -289,6 +348,60 @@
 					</select>
 				</div>
 			</div>
+            
+            	 <div class="form-group">
+				<label class="col-sm-2 control-label">Monthly Rent:</label>
+				<div class="col-sm-3">
+				  <input type="text" class="form-control input-sm" placeholder="Rent">
+				</div>
+				<label class="col-sm-2 control-label">Deposit:</label>
+				<div class="col-sm-3">
+				  <input type="text" class="form-control input-sm" placeholder="Deposit">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label"></label>
+				<div class="col-sm-2">
+				  <div class="checkbox-inline">
+					  <label>
+						<input type="checkbox">
+						Allow Non-veg
+					  </label>
+					</div>
+				</div>
+				<div class="col-sm-2">
+				  <div class="checkbox-inline">
+					  <label>
+						<input type="checkbox">
+						Allow Pets
+					  </label>
+					</div>
+				</div>
+				<label class="col-sm-2 control-label">Preferred Tenant:</label>
+				<div class="col-sm-2">
+				  <select class="form-control input-sm">
+						<option>No Restriction</option>
+					  <option>Family</option>
+					  <option>Bachelor</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Commition in Days:</label>
+				<div class="col-sm-3">
+				  <select class="form-control input-sm">
+						<option>1/2 Month Rent</option>
+						<option>1 Month Rent</option>
+						<option>1 1/2 Month Rent</option>
+						<option>Others</option>
+					</select>
+				</div>
+				<div class="col-sm-2">
+				  <input type="text" class="form-control input-sm" placeholder="Fixed Price">
+				</div>
+			</div>
+			 
 			
 			  </div>
 			  
@@ -298,7 +411,7 @@
 			<div class="panel-body">
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Balconies</label>
-					<div class="col-sm-2">
+					<div class="col-sm-1">
 					  <select class="form-control input-sm">
 							<option>1</option>
 						  <option>2</option>
@@ -313,7 +426,7 @@
 						  <option>Dining</option>
 						</select>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 							<input type="text" class="form-control input-sm" placeholder="Other room">
 					</div>
 				</div>
@@ -361,25 +474,75 @@
 							<input type="text" class="form-control input-sm" placeholder="Total Floors">
 					</div>
 				</div>
+				
+				
+				
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Parking</label>
-					<div class="col-sm-4">
+					<label class="col-sm-2 control-label">Parking Covered</label>
+					<div class="col-sm-10">
 					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">2 wheeler 
-						  </label>
-						</div>
-						<div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">4 wheeler 
-						  </label>
-						</div>
-						<div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Visitors 
-						  </label>
-						</div>
+                       <label><input type="checkbox" value="">2 wheeler </label>
+                      </div>                      
+                      
+					  <div class="checkbox-inline">
+                      <label>
+                          <input type="radio" name="twowheeler" id="covered1" value="covered" > covered
+                         </label>
+                      </div>
+					  
+                      <div class="checkbox-inline">
+                      <label>
+                          <input type="radio" name="twowheeler" id="uncovered1" value="uncovered" > uncovered
+                         </label>
+                      </div>
+					  
+					  <div class="checkbox-inline">
+                      <label>
+                          <input type="radio" name="twowheeler" id="common1" value="common" checked> common
+                         </label>
+                      </div>				  
+					  
+					</div>		
+
+
+	                <label class="col-sm-2 control-label"></label>
+					<div class="col-sm-10">
+					  <div class="checkbox-inline">
+                       <label><input type="checkbox" value="">4 wheeler </label>
+                      </div>                      
+                      
+					  <div class="checkbox-inline">
+                      <label>
+                          <input type="radio" name="fourwheeler" id="covered2" value="covered" > covered
+                         </label>
+                      </div>
+					  
+                      <div class="checkbox-inline">
+                      <label>
+                          <input type="radio" name="fourwheeler" id="uncovered2" value="uncovered" > uncovered
+                         </label>
+                      </div>
+					  
+					  <div class="checkbox-inline">
+                      <label>
+                          <input type="radio" name="fourwheeler" id="common2" value="common" checked> common
+                         </label>
+                      </div>		  
+				    </div>	
+
+                 <label class="col-sm-2 control-label"></label>
+					<div class="col-sm-10">
+					  <div class="checkbox-inline">
+                       <label><input type="checkbox" value="">4 Wheeler Visitors </label>
+                      </div>    
 					</div>
+				</div>	
+				
+				
+				
+				
+                
+                <div class="form-group">
 					<label class="col-sm-2 control-label">Flooring</label>
 					<div class="col-sm-2">
 						<select class="form-control input-sm">
@@ -388,7 +551,7 @@
 							<option>Vitrified Tiles</option>
 						</select>
 					</div>
-				</div>
+                </div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Type of electricity</label>
 					<div class="col-sm-2">
@@ -504,13 +667,33 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><strong>photos and map</strong></div>
 			<div class="panel-body">
-				photos and map here .... 
+					<div class="col-sm-6">
+					<label for="exampleInputFile">Upload Photos</label>
+					<!--<input type="file" id="exampleInputFile"> -->
+<div style="position:relative;">
+		<a class='btn btn-primary btn-sm' href='javascript:;'>
+			Choose File...
+			<input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
+		</a>
+		&nbsp;
+		<span class='label label-info' id="upload-file-info"></span>
+	</div>					
+<p>You can upload upto 10 photos</p>					
+				  <div class="upload-img">
+				  <img src="images/list1.png" alt="..." class="img-thumbnail">
+				  <img src="images/list1.png" alt="..." class="img-thumbnail">
+				  </div>
+				  </div>
+				  
+					<div class="col-sm-6">
+					<label for="exampleInputFile">Map</label>
+					<div class="map" id="map"> </div>
+					</div>
 			</div>
+			<div class="panel-footer text-right"><button class="btn btn-default">Submit</button></div>
 		</div>
-		     
 			</form>
-			 
-  		</div>
+		</div>
 	</div>
 </div>
 <div class="tagline">
@@ -520,4 +703,13 @@
   <p>&copy; 2012-2013 Fathome.com. Toll Free Number: 000-100-100-10000 <a href="#">Terms of Service</a> | <a href="#">Privacy</a> Aenean rutrum placerat libero, eu tincidunt turpis tempus ut</p>
   <p class="footer-icons"><a href="#"><i class="fa fa-facebook-square"></i></a> <a href="#"><i class="fa fa-linkedin-square"></i></a> <a href="#"><i class="fa fa-google-plus-square"></i></a></p>
 </footer>
-
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="lib/jquery/jquery-1.10.2.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="lib/bootstrap/bootstrap.min.js"></script>
+<script src="lib/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="lib/bootstrapValidation/jqBootstrapValidation.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="script/custom.js"></script>
+</body>
+</html>
