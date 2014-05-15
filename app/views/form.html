@@ -479,18 +479,19 @@
 				
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Parking Covered</label>
-					<div class="col-sm-10">
-					  <div class="checkbox-inline">
+					<div class="col-sm-10 coveredun">
+					
+				    <div class="checkbox-inline">
                        <label><input type="checkbox" value="">2 wheeler </label>
                       </div>                      
                       
-					  <div class="checkbox-inline">
+					  <div class="radio-inline">
                       <label>
                           <input type="radio" name="twowheeler" id="covered1" value="covered" > covered
                          </label>
                       </div>
 					  
-                      <div class="checkbox-inline">
+                      <div class="radio-inline">
                       <label>
                           <input type="radio" name="twowheeler" id="uncovered1" value="uncovered" > uncovered
                          </label>
@@ -498,7 +499,7 @@
 					  
 					  <div class="checkbox-inline">
                       <label>
-                          <input type="radio" name="twowheeler" id="common1" value="common" checked> common
+                          <input type="checkbox" name="twowheeler" id="common1" value="common" checked> common
                          </label>
                       </div>				  
 					  
@@ -506,18 +507,18 @@
 
 
 	                <label class="col-sm-2 control-label"></label>
-					<div class="col-sm-10">
+					<div class="col-sm-10 coveredun">
 					  <div class="checkbox-inline">
                        <label><input type="checkbox" value="">4 wheeler </label>
                       </div>                      
                       
-					  <div class="checkbox-inline">
+					  <div class="radio-inline">
                       <label>
                           <input type="radio" name="fourwheeler" id="covered2" value="covered" > covered
                          </label>
                       </div>
 					  
-                      <div class="checkbox-inline">
+                      <div class="radio-inline">
                       <label>
                           <input type="radio" name="fourwheeler" id="uncovered2" value="uncovered" > uncovered
                          </label>
@@ -525,7 +526,7 @@
 					  
 					  <div class="checkbox-inline">
                       <label>
-                          <input type="radio" name="fourwheeler" id="common2" value="common" checked> common
+                          <input type="checkbox" name="fourwheeler" id="common2" value="common" checked> common
                          </label>
                       </div>		  
 				    </div>	
@@ -542,16 +543,7 @@
 				
 				
                 
-                <div class="form-group">
-					<label class="col-sm-2 control-label">Flooring</label>
-					<div class="col-sm-2">
-						<select class="form-control input-sm">
-							<option>Marble</option>
-							<option>Normal Tiles</option>
-							<option>Vitrified Tiles</option>
-						</select>
-					</div>
-                </div>
+               
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Type of electricity</label>
 					<div class="col-sm-2">
@@ -592,6 +584,16 @@
 						  </label>
 						</div>
 					</div>
+				
+					<label class="col-sm-2 control-label">Flooring</label>
+					<div class="col-sm-2">
+						<select class="form-control input-sm">
+							<option>Marble</option>
+							<option>Normal Tiles</option>
+							<option>Vitrified Tiles</option>
+						</select>
+					</div>
+              
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Property Brief Description</label>

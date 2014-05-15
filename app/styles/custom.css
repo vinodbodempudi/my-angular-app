@@ -22,8 +22,8 @@ button::-moz-focus-inner{border: 0;}
 .btn-success{
 	background-image: -webkit-linear-gradient(bottom, #28b779, #2fe294); background-image: -moz-linear-gradient(bottom, #28b779, #2fe294); background-image: -o-linear-gradient(bottom, #28b779, #2fe294); background-image: linear-gradient(to top, #28b779, #2fe294); border-color:#28b779; color:#ffcc00;
 }
-.btn-info{
-	background-image: -webkit-linear-gradient(bottom, #159CEB, #2db1ff); background-image: -moz-linear-gradient(bottom, #159CEB, #2db1ff); background-image: -o-linear-gradient(bottom, #159CEB, #2db1ff); background-image: linear-gradient(to top, #159CEB, #2db1ff); border-color:#159CEB; color:#fff;
+.headerbutton .btn-info{
+	background-image: -webkit-linear-gradient(bottom, #FFCC00, #FFCC00); background-image: -moz-linear-gradient(bottom, #FFCC00, #FFCC00); background-image: -o-linear-gradient(bottom, #FFCC00, #FFCC00); background-image: linear-gradient(to top, #FFCC00, #FFCC00); border-color:#B19112 !important; color:#fff;
 }
 
 
@@ -127,6 +127,7 @@ footer{ text-align:center; padding-bottom:100px;}
 
 /* SQFT space reducing css */
 .input-group-addon_custom {  padding: 6px 6px; }
+.sqft .input-group.price .form-control{ width:39%;}
 /* SQFT space reducing css end*/
 
 .list-view .dateright{ float:right; color:#353535; }
@@ -176,7 +177,7 @@ footer{ text-align:center; padding-bottom:100px;}
 .upload-img{ margin-top:5px;}
 .upload-img img{width:150px; height:150px;}
 .navbar-btn{margin-bottom: 0px;
-    margin-top: 0px;}
+    margin-top: 0px; padding-top:9px !important;}
 	
 
 
@@ -187,6 +188,7 @@ footer{ text-align:center; padding-bottom:100px;}
 
 .navbar-inverse .navbar-nav > li > a:hover  span {
     color: #ffffff;
+	border-color:#333333;
 }
 .navbar-inverse .navbar-nav > li:last-child{padding-left;0px;}
 .fa-facebook-square:before {
@@ -216,9 +218,12 @@ color:#da4834;
 		.switch-light input:checked ~ span span:last-child {
         color:#fff; }
 
-.btn-success{
-	background-image: -webkit-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: -moz-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: -o-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: linear-gradient(to top, #159CEB, #2DB1FF); border-color:#28b779;; color:#ffcc00;
+.switch-light .btn-success{
+	background-image: -webkit-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: -moz-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: -o-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: linear-gradient(to top, #159CEB, #2DB1FF); border-color:#159CEB; color:#ffcc00;
 }
 /* Buy Rent css End ....*/
 
 
+/* covered uncovered gap */
+.coveredun .radio-inline, .checkbox-inline {padding-left: 41px;}
+/* end /

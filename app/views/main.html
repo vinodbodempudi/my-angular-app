@@ -72,8 +72,8 @@
           <input type="checkbox">
           <span> <span>Buy</span> <span>Rent</span> </span> <a class="btn btn-success"></a> </label>
       </div>
-      <div class="col-md-3">
-        <div class="input-group price"> <span class="input-group-addon input-group-addon_custom">SQFT</span>
+      <div class="col-md-3 sqft">
+        <div class="input-group price "> <span class="input-group-addon input-group-addon_custom">SQFT</span>
           <input type="text" class="form-control" placeholder="Min">
           <input type="text" class="form-control" placeholder="Max">
         </div>
@@ -84,7 +84,7 @@
     </div>
   </div>
 </div>
-<div class="container results">
+<div class="container-liquid results">
   <div class="row maprow">
     <div class="col-md-5 col-md-push-7">
       <div class="list">
@@ -281,16 +281,25 @@
         <h2 class="modal-title" id="myModalLabel">Signin</h2>
         <p>Signin to save and track Homes!</p>
       </div>
-        <form class="form-horizontal" role="form">
-      <div class="modal-body">
+
+       <div class="modal-body">
+        
+        <form class="form-horizontal" role="form" name="loginForm" ng-submit="login(loginUser)" novalidate>
+        
         <!-- form -->
           <div class="form-group">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="loginUser.email" required>
+            <input type="email" class="form-control" id="inputEmail3" name="loginUserEmail" placeholder="Email" ng-model="loginUser.email" required>
              <p class="help-block"></p>
+           <div ng-show="!loginForm.loginUserEmail.$pristine && loginForm.loginUserEmail.$invalid">Invalid:
+               <span ng-show="loginForm.loginUserEmail.$error.required">Tell us your email.</span>
+               <span ng-show="loginForm.loginUserEmail.$error.email">This is not a valid email.</span>
+           </div>
+
           </div>
           <div class="form-group">
             <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="loginUser.password" required>
           </div>
+         
           <span ng-show="loginUser.loginFailed" style="color:red" > The email or password you entered is incorrect.</span>
           <div class="form-group">
             <div class="col-sm-6">
@@ -306,13 +315,18 @@
             </div>
           </div>
         <!-- Form End -->
-      </div>
+           {{loginForm.loginUserEmail.$dirty}}
+           {{loginForm.loginUserEmail.$invalid}}
+          {{loginForm.loginUserEmail.$error.required}}
+          {{loginForm.loginUserEmail.$error.email}}
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" ng-click="login(loginUser)">Signin</button>
+        <button type="submit" class="btn btn-primary">Signin</button>
       </div>
       
         </form>
+        </div>
     </div>
     <!-- /.modal-content -->
   </div>

@@ -34,9 +34,9 @@
         <li><a href="#contact">Contact us</a></li>
         <li class="active"><a href="main.html">My Shortlist</a></li>
         <li><a href="#contact" data-toggle="modal" data-target="#signin">Sign In</a></li>
-        <li><a href="#list">Rent/Sell <i class="fa fa-caret-right"></i></a></li>
-        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-		<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a href="#list" class="btn btn-info btn-xm navbar-btn"><span>Rent/Sell <i class="fa fa-caret-right"></i></span></a></li>
+        <li><a href="#"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+		<li ><a href="#" style="padding-left:0px;"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
       </ul>
     </div>
     <!--/.nav-collapse -->
@@ -64,14 +64,14 @@
 </div>
 <div class="container">
   <div class="searchForm">
-    <div class="row">
-      <div class="col-md-3">
-        <select>
+  <div class="row">
+      <div class="col-md-2">
+        <select class="selectpicker">
           <option>Property type</option>
         </select>
       </div>
       <div class="col-md-1">
-        <select>
+        <select class="selectpicker">
           <option>Beds</option>
         </select>
       </div>
@@ -86,8 +86,8 @@
           <input type="checkbox">
           <span> <span>Buy</span> <span>Rent</span> </span> <a class="btn btn-success"></a> </label>
       </div>
-      <div class="col-md-2">
-        <div class="input-group price"> <span class="input-group-addon">SQFT</span>
+      <div class="col-md-3 sqft">
+        <div class="input-group price "> <span class="input-group-addon input-group-addon_custom">SQFT</span>
           <input type="text" class="form-control" placeholder="Min">
           <input type="text" class="form-control" placeholder="Max">
         </div>
@@ -98,7 +98,7 @@
     </div>
   </div>
 </div>
-<div class="container results detail">
+<div class="container-liquid results detail">
   <div class="hidemap">
     <button type="button" class="btn btn-info btn-xs"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
   </div>
