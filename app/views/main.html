@@ -5,7 +5,7 @@
       <script src="lib/respond/respond.min.js"></script>
     <![endif]-->
 <!--[if lt IE 8]>
-  <link href="lib/fontawesome/font-awesome-ie7.min.css" rel="stylesheet" media="screen">
+	<link href="lib/fontawesome/font-awesome-ie7.min.css" rel="stylesheet" media="screen">
     <![endif]-->
 <div class="navbar navbar-inverse" ng-controller="MainCtrl">
   <!--  navbar-fixed-top -->
@@ -22,7 +22,7 @@
         <li><a href="#login" data-toggle="modal" data-target="#signin">{{signinText}}</a></li>
         <li><a href="#form" class="btn btn-info btn-xm navbar-btn"><span>Rent/Sell <i class="fa fa-caret-right"></i></span></a></li>
         <li><a href="#"><i class="fa fa-facebook-square fa-lg"></i></a></li>
-    <li><a href="#"  style="padding-left:0px;"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
+		<li ><a href="#" style="padding-left:0px;"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
       </ul>
     </div>
     <!--/.nav-collapse -->
@@ -52,18 +52,18 @@
   <div class="searchForm">
   <div class="row">
       <div class="col-md-2">
-        <select class="selectpicker">
+        <select class="form-control selectpicker">
           <option>Property type</option>
         </select>
       </div>
       <div class="col-md-1">
-        <select class="selectpicker">
+        <select class="form-control selectpicker">
           <option>Beds</option>
         </select>
       </div>
       <div class="col-md-3">
         <div class="input-group price"> <span class="input-group-addon"><i class="fa fa-rupee"></i></span>
-          <input type="text" class="form-control" placeholder="Min" ng-model="minPrice" maxlength="999999999">
+          <input type="text" class="form-control pull-left" placeholder="Min" ng-model="minPrice" maxlength="999999999">
           <input type="text" class="form-control" placeholder="Max" ng-model="maxPrice" maxlength="999999999">
         </div>
       </div>
@@ -74,7 +74,7 @@
       </div>
       <div class="col-md-3 sqft">
         <div class="input-group price "> <span class="input-group-addon input-group-addon_custom">SQFT</span>
-          <input type="text" class="form-control" placeholder="Min">
+          <input type="text" class="form-control pull-left" placeholder="Min">
           <input type="text" class="form-control" placeholder="Max">
         </div>
       </div>
@@ -84,15 +84,18 @@
     </div>
   </div>
 </div>
-<div class="container-liquid results">
-  <div class="row maprow">
-    <div class="col-md-5 col-md-push-7">
+<div class="container-fluid results">
+  <div class="row maprow"> 
+    <div class="col-md-4 col-md-push-8 searchresults">
       <div class="list">
-        <div class="input-group filter"> <span class="input-group-addon text-info">205 Results</span> <span class="input-group-addon">Sort by:</span>
-          <select class="selectpicker">
+	  <div class="moveright">
+        <div class="input-group filter "> <span class="input-group-addon text-info">205 Results</span> <span class="input-group-addon">Sort by:</span>
+          <select class="form-control selectpicker selectsort">
             <option>Price</option>
           </select>
         </div>
+		</div>
+		
         <div class="lists-view">
           <div class="row">
             <div>
@@ -130,7 +133,7 @@
                     </div>
                   </div>
                 </div>
-        <div class="clearfix"></div>
+				<div class="clearfix"></div>
               </div>
             </div>
             <div>
@@ -168,7 +171,7 @@
                     </div>
                   </div>
                 </div>
-        <div class="clearfix"></div>
+				<div class="clearfix"></div>
               </div>
             </div>
             <div>
@@ -206,7 +209,7 @@
                     </div>
                   </div>
                 </div>
-        <div class="clearfix"></div>
+				<div class="clearfix"></div>
               </div>
             </div>
             <div>
@@ -251,11 +254,11 @@
         </div>
       </div>
     </div>
-    <div class="col-md-7 col-md-pull-5">
-      <div class="mapContent">    
-      <div class="hidemap">
-      <button type="button" class="btn btn-info btn-xs"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
-      </div>
+    <div class="col-md-8 col-md-pull-4 mapresults">
+      <div class="mapContent">	  
+		  <div class="hidemap">
+			<button type="button" class="btn btn-info btn-xs"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
+		  </div>
         <div class="map" id="map"> </div>
       </div>
     </div>
@@ -291,8 +294,10 @@
             <input type="email" class="form-control" id="inputEmail3" name="loginUserEmail" placeholder="Email" ng-model="loginUser.email" required>
              <p class="help-block" ng-show="loginForm.loginUserEmail.$dirty && loginForm.loginUserEmail.$invalid">Invalid Email</p>
           </div>
-          <div class="form-group">
-            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="loginUser.password" required>
+          <div class="form-group" ng-class="{ 'has-error' : loginForm.loginUserPassword.$error.required && loginForm.loginUserPassword.$dirty}">
+            <input type="password" class="form-control" id="inputPassword3" name="loginUserPassword" placeholder="Password" 
+            ng-model="loginUser.password" required>
+            <p class="help-block" ng-show="loginForm.loginUserPassword.$error.required && loginForm.loginUserPassword.$dirty">Password required</p>
           </div>
          
           <span ng-show="loginUser.loginFailed" style="color:red" > The email or password you entered is incorrect.</span>

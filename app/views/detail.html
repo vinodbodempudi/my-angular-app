@@ -105,13 +105,13 @@
   <div class="row maprow">
     <div class="col-md-6 col-md-push-6">
       <div class="list detail-view">
-        <div class="row">
+        <div class="row" style="height:30px;">
           <div class="col-sm-3">
             <div class="btn-group">
             	<a class="btn btn-sm btn-default" href="#"><i class="fa fa-arrow-circle-o-left"></i> Back to List</a>
             </div>
           </div>
-          <div class="col-sm-9 text-right">
+         <!-- <div class="col-sm-9 text-right">
             <div class="btn-group">
               <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-up"></i> Like</button>
               <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> Comment</button>
@@ -119,16 +119,21 @@
               <button type="button" class="btn btn-default btn-sm contactDetails"><i class="fa fa-user"></i> Contact</button>
               <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-chain-broken"></i> Report</button>
             </div>
-          </div>
-        </div>
-        <h3>Proparty Name ..</h3>        
-        <div class="tabs">
+          </div> -->
+		  <div id="headertabs">
+		  <div class="tabs" style="height:25px;">
           <ul class="nav nav-tabs" id="myTab">
-            <li class="active"><a href="#tab0" data-toggle="tab">Gallary</a></li>
-            <li><a href="#tab1" data-toggle="tab">Overview</a></li>
-            <li><a href="#tab2" data-toggle="tab">Amenities</a></li>
-            <li><a href="#tab3" data-toggle="tab">Floor Plan</a></li>
+            <li class="active"><a href="#tab0" data-toggle="tab">Overview</a></li>
+            <li><a href="#tab1" data-toggle="tab">Amenities</a></li>
+            <li><a href="#tab2" data-toggle="tab">Photos</a></li>
+            <li><a href="#tab3" data-toggle="tab">Contact</a></li>
           </ul>
+		  </div>
+		  </div>
+        </div>
+        <h3>Property Name ..</h3>        
+        <div class="tabs" style="height:355px; overflow-y:visible;">
+         
           <div class="tab-content">
             <div class="tab-pane active" id="tab0">
 				<div class="scroll">
@@ -179,6 +184,21 @@
             </div>
           </div>
         </div>
+		<div class="row" style="height:80px;">
+          <div class="col-sm-4">
+            
+          </div>
+          <div class="col-sm-8 text-left">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-up"></i> Like</button>
+              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> Comment</button>
+              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-star-o"></i> Save</button>
+             <!-- <button type="button" class="btn btn-default btn-sm contactDetails"><i class="fa fa-user"></i> Contact</button> -->
+              <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-chain-broken"></i> Report</button>
+            </div>
+          </div>
+        </div>
+		
       </div>
     </div>
     <div class="col-md-6 col-md-pull-6">
