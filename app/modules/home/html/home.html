@@ -1,0 +1,400 @@
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="lib/html5shiv/html5shiv.js"></script>
+      <script src="lib/respond/respond.min.js"></script>
+    <![endif]-->
+<!--[if lt IE 8]>
+	<link href="lib/fontawesome/font-awesome-ie7.min.css" rel="stylesheet" media="screen">
+    <![endif]-->
+<div class="navbar navbar-inverse" ng-controller="MainCtrl">
+  <!--  navbar-fixed-top -->
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="fa fa-bars"></span></button>
+      <a class="navbar-brand" href="#">FATHOME</a></div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+        <li><a href="#about">Feedback</a></li>
+        <li><a href="#contact">Contact us</a></li>
+        <li class="active"><a href="main.html">My Shortlist</a></li>
+        <li><a href="#login" data-toggle="modal" data-target="#signin">{{signinText}}</a></li>
+        <li><a href="#form" class="btn btn-info btn-xm navbar-btn"><span>Rent/Sell <i class="fa fa-caret-right"></i></span></a></li>
+        <li><a href="#"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+		<li ><a href="#" style="padding-left:0px;"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</div>
+<div class="container addBlock">
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="add"></div>
+        </div>
+        <div class="col-sm-6">
+          <div class="add"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="locationDisplay">
+        <h3><i class="fa fa-caret-down"></i> Hyderabad</h3>
+        <h4>Kukatpally</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="searchForm">
+  <div class="row">
+      <div class="col-md-2">
+        <select class="form-control selectpicker">
+          <option>Property type</option>
+        </select>
+      </div>
+      <div class="col-md-1">
+        <select class="form-control selectpicker">
+          <option>Beds</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group price"> <span class="input-group-addon"><i class="fa fa-rupee"></i></span>
+          <input type="text" class="form-control pull-left" placeholder="Min" ng-model="minPrice" maxlength="999999999">
+          <input type="text" class="form-control" placeholder="Max" ng-model="maxPrice" maxlength="999999999">
+        </div>
+      </div>
+      <div class="col-md-2">
+        <label class="switch-light well" onClick="">
+          <input type="checkbox">
+          <span> <span>Buy</span> <span>Rent</span> </span> <a class="btn btn-success"></a> </label>
+      </div>
+      <div class="col-md-3 sqft">
+        <div class="input-group price "> <span class="input-group-addon input-group-addon_custom">SQFT</span>
+          <input type="text" class="form-control pull-left" placeholder="Min">
+          <input type="text" class="form-control" placeholder="Max">
+        </div>
+      </div>
+      <div class="col-md-1">
+        <button type="button" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid results">
+  <div class="row maprow"> 
+    <div class="col-md-4 col-md-push-8 searchresults">
+      <div class="list">
+	  <div class="moveright">
+        <div class="input-group filter "> <span class="input-group-addon text-info">205 Results</span> <span class="input-group-addon">Sort by:</span>
+          <select class="form-control selectpicker selectsort">
+            <option>Price</option>
+          </select>
+        </div>
+		</div>
+		
+        <div class="lists-view">
+          <div class="row">
+            <div>
+              <div class="list-view">
+                <div class="image"> <img src="images/list1.png" alt="" /> </div>
+                <div class="content">
+                  <div class="row">
+                    <div class="col-xs-9">
+                      <h3><a href="#">Spacious 2 Bedroom Home ..</a></h3>
+                    </div>
+                    <div class="col-xs-3 price">
+                      <h4><i class="fa fa-rupee"></i> <span>57547</span></h4>
+                      <h5><span>234</span>/sqft</h5>
+                    </div>
+                  </div>
+                  <div class="row firstRow">
+                    <div class="col-xs-3"> <span>3</span> Beds </div>
+                    <div class="col-xs-3"> <span>3</span> Baths </div>
+                    <div class="col-xs-3"> <span>1030</span> sqft </div>
+                  </div>
+                  <div class="row secondRow">
+                    <div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>Kukatpally</span> </div>
+                    <div class="col-xs-5"> <span>Residential</span> </div>
+                  </div>
+                  <div class="row customsocial">
+                    <div class="col-xs-8 text-right">
+                     <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-up"></i> Like</button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> Comment</button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-star-o"></i> Save</button>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 dateright">
+                      <div class="text-right">03 Oct, 2013</div>
+                    </div>
+                  </div>
+                </div>
+				<div class="clearfix"></div>
+              </div>
+            </div>
+            <div>
+              <div class="list-view">
+                <div class="image"> <img src="images/list2.png" alt="" /> </div>
+                <div class="content">
+                  <div class="row">
+                    <div class="col-xs-9">
+                      <h3><a href="#">Spacious 2 Bedroom Home ..</a></h3>
+                    </div>
+                    <div class="col-xs-3 price">
+                      <h4><i class="fa fa-rupee"></i> <span>57547</span></h4>
+                      <h5><span>234</span>/sqft</h5>
+                    </div>
+                  </div>
+                  <div class="row firstRow">
+                    <div class="col-xs-3"> <span>3</span> Beds </div>
+                    <div class="col-xs-3"> <span>3</span> Baths </div>
+                    <div class="col-xs-3"> <span>1030</span> sqft </div>
+                  </div>
+                  <div class="row secondRow">
+                    <div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>Kukatpally</span> </div>
+                    <div class="col-xs-5"> <span>Residential</span> </div>
+                  </div>
+                  <div class="row customsocial">
+                    <div class="col-xs-8 text-right">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-up"></i> Like</button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> Comment</button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-star-o"></i> Save</button>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 dateright">
+                      <div class="text-right">03 Oct, 2013</div>
+                    </div>
+                  </div>
+                </div>
+				<div class="clearfix"></div>
+              </div>
+            </div>
+            <div>
+              <div class="list-view">
+                <div class="image"> <img src="images/list3.png" alt="" /> </div>
+                <div class="content">
+                  <div class="row">
+                    <div class="col-xs-9">
+                      <h3><a href="#">Spacious 2 Bedroom Home ..</a></h3>
+                    </div>
+                    <div class="col-xs-3 price">
+                      <h4><i class="fa fa-rupee"></i> <span>57547</span></h4>
+                      <h5><span>234</span>/sqft</h5>
+                    </div>
+                  </div>
+                  <div class="row firstRow">
+                    <div class="col-xs-3"> <span>3</span> Beds </div>
+                    <div class="col-xs-3"> <span>3</span> Baths </div>
+                    <div class="col-xs-3"> <span>1030</span> sqft </div>
+                  </div>
+                  <div class="row secondRow">
+                    <div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>Kukatpally</span> </div>
+                    <div class="col-xs-5"> <span>Residential</span> </div>
+                  </div>
+                  <div class="row customsocial">
+                    <div class="col-xs-8 text-right">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-up"></i> Like</button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> Comment</button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-star-o"></i> Save</button>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 dateright">
+                      <div class="text-right">03 Oct, 2013</div>
+                    </div>
+                  </div>
+                </div>
+				<div class="clearfix"></div>
+              </div>
+            </div>
+            <div>
+              <div class="list-view">
+                <div class="image"> <img src="images/list1.png" alt="" /> </div>
+                <div class="content">
+                  <div class="row">
+                    <div class="col-xs-9">
+                      <h3><a href="#">Spacious 3 Bedroom Home ..</a></h3>
+                    </div>
+                    <div class="col-xs-3 price">
+                      <h4><i class="fa fa-rupee"></i> <span>57547</span></h4>
+                      <h5><span>234</span>/sqft</h5>
+                    </div>
+                  </div>
+                  <div class="row firstRow">
+                    <div class="col-xs-3"> <span>3</span> Beds </div>
+                    <div class="col-xs-3"> <span>3</span> Baths </div>
+                    <div class="col-xs-3"> <span>1030</span> sqft </div>
+                  </div>
+                  <div class="row secondRow">
+                    <div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>Kukatpally</span> </div>
+                    <div class="col-xs-5"> <span>Residential</span> </div>
+                  </div>
+                 <div class="row customsocial">
+                    <div class="col-xs-8 text-right">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-up"></i> Like</button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> Comment</button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-star-o"></i> Save</button>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 dateright">
+                      <div class="text-right">03 Oct, 2013</div>
+                    </div>
+                  </div>
+                </div>
+				<div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 col-md-pull-4 mapresults">
+      <div class="mapContent">	  
+		  <div class="hidemap">
+			<button type="button" class="btn btn-info btn-xs"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
+		  </div>
+        <div class="map" id="map"> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tagline">
+  <p>Aenean placerat libero, tincidunt tempus ut. <a href="#">fathome.com</a></p>
+</div>
+<footer>
+  <p>&copy; 2012-2013 Fathome.com. Toll Free Number: 000-100-100-10000 <a href="#">Terms of Service</a> | <a href="#">Privacy</a> Aenean rutrum placerat libero, eu tincidunt turpis tempus ut</p>
+  <p class="footer-icons"><a href="#"><i class="fa fa-facebook-square"></i></a> <a href="#"><i class="fa fa-linkedin-square"></i></a> <a href="#"><i class="fa fa-google-plus-square"></i></a></p>
+</footer>
+
+
+<!-- ************** Modals ************** -->
+<!-- Signin Modal -->
+<div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" 
+                   ng-hide="loginUser.loginPassed" ng-controller="LoginCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h2 class="modal-title" id="myModalLabel">Signin</h2>
+        <p>Signin to save and track Homes!</p>
+      </div>
+
+       <div class="modal-body">
+        
+        <form class="form-horizontal" role="form" name="loginForm" ng-submit="login(loginUser)" novalidate>
+        
+        <!-- form -->
+          <div class="form-group" ng-class="{ 'has-error' : loginForm.loginUserEmail.$invalid && loginForm.loginUserEmail.$dirty}">
+            <input type="email" class="form-control" id="inputEmail3" name="loginUserEmail" placeholder="Email" ng-model="loginUser.email" required>
+             <p class="help-block" ng-show="loginForm.loginUserEmail.$dirty && loginForm.loginUserEmail.$invalid">Invalid Email</p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-error' : loginForm.loginUserPassword.$error.required && loginForm.loginUserPassword.$dirty}">
+            <input type="password" class="form-control" id="inputPassword3" name="loginUserPassword" placeholder="Password" 
+            ng-model="loginUser.password" required>
+            <p class="help-block" ng-show="loginForm.loginUserPassword.$error.required && loginForm.loginUserPassword.$dirty">Password required</p>
+          </div>
+         
+          <span ng-show="loginUser.loginFailed" style="color:red" > The email or password you entered is incorrect.</span>
+          <div class="form-group">
+            <div class="col-sm-6">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  Remember me </label>
+              </div>
+            </div>
+            <div class="col-sm-6 text-right">
+              <a href="#login" data-dismiss="modal" data-toggle="modal" data-target="#account" class="createAccount">Register</a>
+
+            </div>
+          </div>
+        <!-- Form End -->
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Signin</button>
+      </div>
+      
+        </form>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- Create Account Modal -->
+<div class="modal fade" id="account" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="LoginCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h2 class="modal-title" id="myModalLabel">Registration</h2>
+        <p><strong>Create an Account</strong> to list a property, save searches and track homes.<br /> Already have an account? 
+          <a href="#login" data-dismiss="modal" data-toggle="modal" data-target="#signin" class="signin">Signin</a>
+        </p>
+
+      </div>
+      <form class="form-horizontal" role="form" name="regForm" ng-submit="create(newUser)">
+      <div class="modal-body">
+        <!-- form -->
+        
+            <div class="form-group" ng-class="{ 'has-error' : regForm.regEmail.$invalid && regForm.regEmail.$dirty}">
+              <input type="email" class="form-control" id="inputEmail3" name="regEmail" placeholder="Email" ng-model="newUser.email" 
+              ng-required="true">
+              <p class="help-block" ng-show="regForm.regEmail.$invalid && regForm.regEmail.$dirty">Invalid email</p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : regForm.regPassword.$error.required && regForm.regPassword.$dirty}">
+              <input type="password" class="form-control" id="inputPassword3" name="regPassword" placeholder="Password" ng-model="newUser.password" required>
+              <p class="help-block" ng-show="regForm.regPassword.$error.required && regForm.regPassword.$dirty">Password required</p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : regForm.regConfirmPassword.$error.match}">
+              <input type="password" class="form-control" id="inputPassword3" name="regConfirmPassword" placeholder="Confirm Password" ng-model="newUser.confirmPassword" data-match="newUser.password" required>
+              <p class="help-block" ng-show="regForm.regConfirmPassword.$error.match">These passwords don't match. Try again?</p>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : ((regForm.regPhone.$error.minlength || regForm.regPhone.$error.maxlength) 
+              && regForm.regPhone.$dirty) || (regForm.regPhone.$dirty && regForm.regPhone.$error.required)}">
+              <input type="number" class="form-control" id="inputPassword3" name="regPhone" placeholder="Phone" ng-model="newUser.phone" 
+              ng-minlength="10" ng-maxlength="10" required>
+              <p class="help-block" ng-show="(regForm.regPhone.$error.minlength || regForm.regPhone.$error.maxlength) && regForm.regPhone.$dirty">           Invalid phone number</p>
+               <p class="help-block" ng-show="regForm.regPhone.$error.required && regForm.regPhone.$dirty">Phone number required</p>
+             
+            </div>
+
+             
+            <div class="form-group" ng-class="{ 'has-error' : regForm.regCity.$required}">
+              <select class="selectpicker" data-width="100%" ng-model="newUser.city" name="regCity" required>
+                <option>Select City</option>
+                <option>Hyderabad</option>
+              </select>
+               <p class="help-block" ng-show="regForm.regCity.$required">City is required</p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : regForm.regLocality.$required}">
+              <input type="text" class="form-control" id="inputPassword3" placeholder="Locality" name="regLocality" ng-model="newUser.locality" required>
+               <p class="help-block" ng-show="regForm.regLocality.$required">Locality is required</p>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             <button type="button" class="btn btn-primary" >Create</button>
+          </div>
+        </form>
+        <!-- Form End -->
+      <!--  <pre>form = {{user | json}}</pre>-->
+     <!-- </div>-->
+      
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- ************** End Modals ************** -->
