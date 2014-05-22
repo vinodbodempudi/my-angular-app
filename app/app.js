@@ -6,12 +6,14 @@ var app = angular.module('fatHomesApp', [
   'ngRoute',
   'ngResource',
   'registerProperty',
-  'home'
+  'home',
+  'propertyResults',
+  'propertyDetails'
 ]);
   
 app.config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      /*.when('/', {
         templateUrl: 'views/main.html',
         controller: 'LoginCtrl'
       })
@@ -27,15 +29,19 @@ app.config(function ($routeProvider) {
         templateUrl: 'views/main.html',
         controller: 'LoginCtrl'
       })
+      .when('/detail', {
+        templateUrl: 'views/detail.html',
+        controller: 'LoginCtrl'
+      })*/
 
 
-      .when('/newlogin', {
+      .when('/newLogin', {
         templateUrl: 'modules/login/html/login.html',
         controller: 'LoginCtrl'
       })
-      .when('/home', {
-        templateUrl: 'modules/registerProperty/html/home.html',
-        controller: 'HomeCtrl'
+      .when('/propertyresults', {
+        templateUrl: 'modules/propertyresults/html/property-results.html',
+        controller: 'PropertyResultsCtrl'
       })
       .when('/propertyDetails', {
         templateUrl: 'modules/propertydetails/html/property-details.html',
@@ -45,10 +51,14 @@ app.config(function ($routeProvider) {
         templateUrl: 'modules/registerProperty/html/register-property.html',
         controller: 'RegisterPropertyCtrl'
       })
+      .when('/home', {
+        templateUrl: 'modules/home/html/home.html',
+        controller: 'HomeCtrl'
+      })
 
 
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/home'
       });
   });
 
