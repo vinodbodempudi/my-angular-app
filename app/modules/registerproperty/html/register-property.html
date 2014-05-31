@@ -1,679 +1,638 @@
 <div class="container">
-	<div class="row">
-		<div class="col-sm-12">
-		<h3>Enter your details</h3>
-			<form class="form-horizontal" role="form"> 
-			<div class="panel panel-default">
-				<div class="panel-heading"><strong>Personal Information</strong></div>
-				<div class="panel-body">
-			  <div class="form-group">
-				<label class="col-sm-2 control-label">I am:</label>
-				<div class="col-sm-10">
-					<div class="radio-inline">
-					  <label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-						Owner
-					  </label>
-					</div>
-					<div class="radio-inline">
-					  <label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-						Agent
-					  </label>
-					</div>
-					<div class="radio-inline">
-					  <label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-						builder
-					  </label>
-					</div>
-				</div>
-			  </div>
-			   <div class="form-group">
-				<label class="col-sm-2 control-label">Name:</label>
-				<div class="col-sm-3">
-				  <input type="email" class="form-control input-sm" placeholder="Name">
-				</div>
-				
-			  </div>
-			  <div class="form-group">
-				<label class="col-sm-2 control-label">Email:</label>
-				<div class="col-sm-2">
-				  <input type="email" class="form-control input-sm" placeholder="Email">
-				</div>
-				<div class="col-sm-2">
-				  <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
-				</div>
-			  </div>
-			  <div class="form-group">
-				<label class="col-sm-2 control-label">Phone:</label>
-				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Phone">
-				</div>
-				<div class="col-sm-2">
-				  <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
-				</div>
-			  </div>
-			  <div class="form-group">
-				<label class="col-sm-2 control-label">City:</label>
-				<div class="col-sm-3">
-				  <input type="text" class="form-control input-sm" placeholder="City">
-				</div>
-				<label class="col-sm-2 control-label">Locality:</label>
-				<div class="col-sm-3">
-				  <input type="text" class="form-control input-sm" placeholder="Locality">
-				</div>
-			  </div>
-			  </div>
-			  </div>
-			  <div class="panel panel-default">
-				<div class="panel-heading"><strong>Property Details</strong></div>
-				<div class="panel-body">
-			  <div class="form-group">
-				<label class="col-sm-2 control-label">Type:</label>
-				<div class="col-sm-4">
-					<select class="form-control input-sm">
-					  <option>Residential</option>
-					  <option>Commercial</option>
-					</select>
-				</div>
-				<div class="col-sm-4">
-					<select class="form-control input-sm">
-					  <option>Apartment</option>
-					  <option>Individual house/Villa</option>
-					  <option>Residential land/plot</option>
-					  <option>builder floor</option>
-					  <option>pent house</option>
-					  <option>farm house</option>
-					</select>
-				</div>
-			  </div>
-			  <div class="form-group">
-				<label class="col-sm-2 control-label"></label>
-				<div class="col-sm-2">
-				  <div class="radio-inline">
-					  <label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-						Sell
-					  </label>
-					</div>
-					<div class="radio-inline">
-					  <label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-						Rent
-					  </label>
-					</div>
-				</div>
-				<label class="col-sm-2 control-label">Bedrooms:</label>
-				<div class="col-sm-1">
-					<select class="form-control input-sm">
-					  <option>1</option>
-					  <option>2</option>
-					</select>
-				</div>
-				<label class="col-sm-2 control-label">Bathrooms:</label>
-				<div class="col-sm-1">
-					<select class="form-control input-sm">
-					  <option>1</option>
-					  <option>2</option>
-					</select>
-				</div>
-			  </div>
-			  <!--<div class="form-group">
-				<label class="col-sm-2 control-label">Monthly Rent:</label>
-				<div class="col-sm-3">
-				  <input type="text" class="form-control input-sm" placeholder="Rent">
-				</div>
-				<label class="col-sm-2 control-label">Deposit:</label>
-				<div class="col-sm-3">
-				  <input type="text" class="form-control input-sm" placeholder="Deposit">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label"></label>
-				<div class="col-sm-2">
-				  <div class="checkbox-inline">
-					  <label>
-						<input type="checkbox">
-						Allow Non-veg
-					  </label>
-					</div>
-				</div>
-				<div class="col-sm-2">
-				  <div class="checkbox-inline">
-					  <label>
-						<input type="checkbox">
-						Allow Pets
-					  </label>
-					</div>
-				</div>
-				<label class="col-sm-2 control-label">Preferred Tenant:</label>
-				<div class="col-sm-2">
-				  <select class="form-control input-sm">
-						<option>No Restriction</option>
-					  <option>Family</option>
-					  <option>Bachelor</option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Commition in Days:</label>
-				<div class="col-sm-1">
-				  <select class="form-control input-sm">
-						<option>1</option>
-					  <option>2</option>
-					  <option>4</option>
-					</select>
-				</div>
-				<label class="col-sm-1 control-label">OR</label>
-				<label class="col-sm-2 control-label">Fixed Price:</label>
-				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Amount">
-				</div>
-			</div>
-			-->
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Total Price:</label>
-				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Amount">
-				</div>
-				<div class="col-sm-6">
-				  <div class="checkbox-inline">
-					  <label>
-						<input type="checkbox">
-						Negotiable
-					  </label>
-					</div>
-				  <div class="checkbox-inline">
-					  <label>
-						<input type="checkbox">
-						Registration fee Included
-					  </label>
-					</div>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Area:</label>
-				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Built-up">
-				</div>
-				  
-				<div class="col-sm-2">
-				  <select class="form-control input-sm">
-						<option>Units Drop Down</option>
-					  <option>1</option>
-					  <option>2</option>
-					</select>
-				</div>
-				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Plot/Land">
-				</div>
-				<div class="col-sm-2">
-				  <select class="form-control input-sm">
-						<option>Units Drop Down</option>
-					  <option>1</option>
-					  <option>2</option>
-					</select>
-				</div>
-				<label class="col-sm-1 control-label"><i class="fn fn-home"></i></label>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label"></label>
-				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Carpet">
-				</div>
-				  
-				<div class="col-sm-2">
-				  <select class="form-control input-sm">
-						<option>Units Drop Down</option>
-					  <option>1</option>
-					  <option>2</option>
-					</select>
-				</div>
-				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Per unit price">
-				</div>
-				<div class="col-sm-2">
-				  <select class="form-control input-sm">
-						<option>AreaType Drop Down</option>
-					  <option>Carpet</option>
-					  <option>Built-up</option>
-					  <option>Plot/Land</option>
-					</select>
-				</div>
-				<label class="col-sm-1 control-label"><i class="fn fn-home"></i></label>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Property Address:</label>
-				<div class="col-sm-8">
-				  <textarea type="text" class="form-control"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label"></label>
-				<div class="col-sm-10">
-				  <div class="radio-inline">
-					  <label>
-						<input type="radio">New
-					  </label>
-					</div>
-				  <div class="radio-inline">
-					  <label>
-						<input type="radio">Resale 
-					  </label>
-					</div>
-				  <div class="checkbox-inline">
-					  <label>
-						<input type="checkbox">Underconstruction
-					  </label>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Availability</label>
-				<div class="col-sm-2">
-				  <div class="radio-inline">
-					  <label>
-						<input type="radio">Ready
-					  </label>
-					</div>
-				  <div class="radio-inline" >
-					  <label>
-						<input type="radio">for Future
-					  </label>
-					</div>
-				</div>
-				<div class="col-sm-1">
-						<input type="text" id="datepicker" class="form-control input-sm" placeholder="Enter Date">
-				</div>
-				
-			<label class="col-sm-3 control-label">Age of Property</label>
-				<div class="col-sm-1">
-					<select class="form-control input-sm">
-					<option value="Years">Y</option>
-					    <option value="01">01</option>
-						<option value="02">02</option>
-					</select>
-				</div>
-				<div class="col-sm-1">
-					<select class="form-control input-sm">
-					     <option value="Months">M</option>
-					    <option value="2014">01</option>
-					</select>
-				</div>
-				</div>
-				
-			<div class="form-group">
-				<label class="col-sm-2 control-label">No of Units Available</label>
-				<div class="col-sm-1">
-				  <select class="form-control input-sm">
-						<option>1</option>
-					  <option>2</option>
-					  <option>3</option>
-					</select>
-				</div>
-				<label class="col-sm-2 control-label">Ownership type:</label>
-				<div class="col-sm-2">
-				  <select class="form-control input-sm">
-						<option>Freehold</option>
-					  <option>leasehold</option>
-					  <option>Power of Attorney</option>
-					</select>
-				</div>
-			</div>
-            
-            	 <div class="form-group">
-				<label class="col-sm-2 control-label">Monthly Rent:</label>
-				<div class="col-sm-1">
-				  <input type="text" class="form-control input-sm" placeholder="Rent">
-				</div>
-				<label class="col-sm-2 control-label">Maintenance Fee:</label>
-				<div class="col-sm-1">
-				  <input type="text" class="form-control input-sm" placeholder="Maintenance Fee">
-				</div>
-				<label class="col-sm-2 control-label">Deposit:</label>
-				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Deposit">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label"></label>
-				<div class="col-sm-2">
-				  <div class="checkbox-inline">
-					  <label>
-						<input type="checkbox">
-						Allow Non-veg
-					  </label>
-					</div>
-				</div>
-				<div class="col-sm-2">
-				  <div class="checkbox-inline">
-					  <label>
-						<input type="checkbox">
-						Allow Pets
-					  </label>
-					</div>
-				</div>
-				<label class="col-sm-2 control-label">Preferred Tenant:</label>
-				<div class="col-sm-2">
-				  <select class="form-control input-sm">
-						<option>No Restriction</option>
-					  <option>Family</option>
-					  <option>Bachelor</option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Commition in Days:</label>
-				<div class="col-sm-3">
-				  <select class="form-control input-sm">
-						<option>1/2 Month Rent</option>
-						<option>1 Month Rent</option>
-						<option>1 1/2 Month Rent</option>
-						<option>Others</option>
-					</select>
-				</div>
-				<div class="col-sm-2">
-				  <input type="text" class="form-control input-sm" placeholder="Fixed Price">
-				</div>
-			</div>
-			 
-			
-			  </div>
-			  
-			  </div>
-		<div class="panel panel-default">
-			<div class="panel-heading"><strong>Specifications</strong></div>
-			<div class="panel-body">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Balconies</label>
-					<div class="col-sm-1">
-					  <select class="form-control input-sm">
-							<option>1</option>
-						  <option>2</option>
-						  <option>3</option>
-						</select>
-					</div>
-					<label class="col-sm-2 control-label">Additional rooms</label>
-					<div class="col-sm-2">
-					  <select class="form-control input-sm">
-							<option>puja</option>
-						  <option>study</option>
-						  <option>Dining</option>
-						</select>
-					</div>
-					<div class="col-sm-3">
-							<input type="text" class="form-control input-sm" placeholder="Other room">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Directional facing</label>
-					<div class="col-sm-2">
-						<select class="form-control input-sm">
-							<option>east</option>
-							<option>west</option>
-							<option>South</option>
-						</select>
-					</div>
-					<label class="col-sm-2 control-label">Fasing</label>
-					<div class="col-sm-2">
-						<select class="form-control input-sm">
-							<option>Pool</option>
-							<option>Main Road</option>
-							<option>Garden</option>
-						</select>
-					</div>
-					<div class="col-sm-2">
-							<input type="text" class="form-control input-sm" placeholder="Other room">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label"></label>
-					<div class="col-sm-2">
-					  <div class="radio-inline">
-						  <label>
-							<input type="radio">Furnished
-						  </label>
-						</div>
-					</div>
-					<div class="col-sm-2">
-					  <div class="radio-inline">
-						  <label>
-							<input type="radio">Semi-Furnished
-						  </label>
-						</div>
-					</div>
-					<div class="col-sm-2">
-							<input type="text" class="form-control input-sm" placeholder="Floor Number">
-					</div>
-					<div class="col-sm-2">
-							<input type="text" class="form-control input-sm" placeholder="Total Floors">
-					</div>
-				</div>
-				
-				
-				
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Parking Covered</label>
-					<div class="col-sm-10 coveredun">
-					
-				    <div class="checkbox-inline">
-                       <label><input type="checkbox" value="">2 wheeler </label>
-                      </div>                      
-                      
-					  <div class="radio-inline">
-                      <label>
-                          <input type="radio" name="twowheeler" id="covered1" value="covered" > covered
-                         </label>
-                      </div>
-					  
-                      <div class="radio-inline">
-                      <label>
-                          <input type="radio" name="twowheeler" id="uncovered1" value="uncovered" > uncovered
-                         </label>
-                      </div>
-					  
-					  <div class="checkbox-inline">
-                      <label>
-                          <input type="checkbox" name="twowheeler" id="common1" value="common" checked> common
-                         </label>
-                      </div>				  
-					  
-					</div>		
+    <div class="row" ng-init="showForm1=true;showForm2=false;showForm3=false;">
+        <div class="col-sm-12">
+            <h3>Enter your details</h3>
+            <form class="form-horizontal" ng-show="showForm1" name="form1" role="form" novalidate>
+                <div ng-show="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Personal Information</strong>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group" ng-class="{'has-error':form1.userTypeOptions.$invalid && !form1.userTypeOptions.$pristine}">
+                                <label class="col-sm-2 control-label">I am:</label>
+                                <div class="col-sm-10">
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" ng-model="property.user.type" name="userTypeOptions" required value="Owner" checked>Owner
+                                        </label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" ng-model="property.user.type" name="userTypeOptions" required value="Agent" checked>Agent
+                                        </label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" ng-model="property.user.type" name="userTypeOptions" required value="Builder" checked>Builder
+                                        </label>
+                                    </div>
+                                </div>
+                                <p ng-show="form1.userTypeOptions.$invalid && (!form1.userTypeOptions.$pristine || form1.submitted)" class="label label-warning">Please user type</p>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':form1.userName.$invalid && !form1.userName.$pristine}">
+                                <label class="col-sm-2 control-label">Name:</label>
+                                <div class="col-sm-3">
+                                    <input type="text" ng-model="property.user.name" name="userName" required class="form-control input-sm" placeholder="Name">
+                                    <p ng-show="form1.userName.$invalid && (!form1.userName.$pristine || form1.submitted)" class="label label-warning">Please enter name</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':form1.email.$invalid && !form1.email.$pristine}">
+                                <label class="col-sm-2 control-label">Email:</label>
+                                <div class="col-sm-2">
+                                    <input type="email" ng-model="property.user.email" name="email" required class="form-control input-sm" placeholder="Email">
+                                    <p ng-show="form1.submitted && form1.email.$error.required" class="label label-warning">Please enter email</p>
+                                    <p ng-show="form1.email.$invalid && form1.email.$dirty" class="label label-warning">Please enter valid email</p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':form1.phoneNumber.$invalid && !form1.phoneNumber.$pristine}">
+                                <label class="col-sm-2 control-label">Phone:</label>
+                                <div class="col-sm-2">
+                                    <input type="number" name="phoneNumber" required ng-model="property.user.phoneNumber" class="form-control input-sm" placeholder="Phone">
+                                    <p ng-show="form1.phoneNumber.$invalid && (!form1.phoneNumber.$pristine || form1.submitted)" class="label label-warning">Please enter phone number</p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':form1.locality.$invalid && !form1.locality.$pristine}">
+                                <label class="col-sm-2 control-label">City:</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control input-sm" ng-options="city as city for city in cities" name="city" required ng-model="property.user.city">
+                                    </select>
+                                    <p ng-show="form1.city.$invalid && (!form1.city.$pristine || form1.submitted)" class="label label-warning">Please select city</p>
+                                </div>
+                                <label class="col-sm-2 control-label">Locality:</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control input-sm" ng-options="locality as locality for locality in localities" name="locality" required ng-model="property.user.locality">
+                                    </select>
+                                    <p ng-show="form1.locality.$invalid && (!form1.locality.$pristine || form1.submitted)" class="label label-warning">Please select locality</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Property Details</strong>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Type:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control input-sm" name="propertyType" required ng-model="property.property.type">
+                                        <option>Residential</option>
+                                        <option>Commercial</option>
+                                    </select>
+									<p ng-show="form1.propertyType.$invalid && (!form1.propertyType.$pristine || form1.submitted)" class="label label-warning">Please select property type</p>
+                                </div>
+                                <div class="col-sm-4" >
+                                    <select class="form-control input-sm" name="houseType" required ng-model="property.property.houseType">
+                                        <option>Apartment</option>
+                                        <option>Individual house/Villa</option>
+                                        <option>Residential land/plot</option>
+                                        <option>builder floor</option>
+                                        <option>pent house</option>
+                                        <option>farm house</option>
+                                    </select>
+									<p ng-show="form1.houseType.$invalid && (!form1.houseType.$pristine || form1.submitted)" class="label label-warning">Please select house type</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-2">
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" ng-model="property.property.mode" required name="propertyModeOptions" id="optionsRadios1" value="Sell" checked>Sell
+                                        </label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" ng-model="property.property.mode" required name="propertyModeOptions" id="optionsRadios1" value="Rent" checked>Rent
+                                        </label>
+                                    </div>
+									<p ng-show="form1.propertyModeOptions.$invalid && (!form1.propertyModeOptions.$pristine || form1.submitted)" class="label label-warning">Please select sell/rent</p>
+                                </div>
+                                <label class="col-sm-2 control-label">Bedrooms:</label>
+                                <div class="col-sm-1">
+                                    <select class="form-control input-sm" name="bedRooms" ng-model="property.property.bedRooms" required>
+                                        <option>1</option>
+                                        <option>2</option>
+                                    </select>
+									<p ng-show="form1.bedRooms.$invalid && (!form1.bedRooms.$pristine || form1.submitted)" class="label label-warning">Please select no.of bedrooms</p>
+                                </div>
+                                <label class="col-sm-2 control-label">Bathrooms:</label>
+                                <div class="col-sm-1">
+                                    <select class="form-control input-sm" name="bathRooms" ng-model="property.property.bathRooms" required>
+                                        <option>1</option>
+                                        <option>2</option>
+                                    </select>
+									<p ng-show="form1.bathRooms.$invalid && (!form1.bathRooms.$pristine || form1.submitted)" class="label label-warning">Please select no.of bathRooms</p>
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Total Price:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control input-sm" placeholder="Amount" name="price" ng-model="property.property.price" required>
+									<p ng-show="form1.price.$invalid && (!form1.price.$pristine || form1.submitted)" class="label label-warning">Please enter total price</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.property.price">Negotiable
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.property.registrationFeeIncluded">Registration fee Included
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
 
-	                <label class="col-sm-2 control-label"></label>
-					<div class="col-sm-10 coveredun">
-					  <div class="checkbox-inline">
-                       <label><input type="checkbox" value="">4 wheeler </label>
-                      </div>                      
-                      
-					  <div class="radio-inline">
-                      <label>
-                          <input type="radio" name="fourwheeler" id="covered2" value="covered" > covered
-                         </label>
-                      </div>
-					  
-                      <div class="radio-inline">
-                      <label>
-                          <input type="radio" name="fourwheeler" id="uncovered2" value="uncovered" > uncovered
-                         </label>
-                      </div>
-					  
-					  <div class="checkbox-inline">
-                      <label>
-                          <input type="checkbox" name="fourwheeler" id="common2" value="common" checked> common
-                         </label>
-                      </div>		  
-				    </div>	
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Area:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control input-sm" name="area" ng-model="property.property.area.builtUp" required placeholder="Built-up">
+									<p ng-show="form1.area.$invalid && (!form1.area.$pristine || form1.submitted)" class="label label-warning">Please enter area</p>
+                                </div>
 
-                 <label class="col-sm-2 control-label"></label>
-					<div class="col-sm-10">
-					  <div class="checkbox-inline">
-                       <label><input type="checkbox" value="">4 Wheeler Visitors </label>
-                      </div>    
-					</div>
-				</div>	
-				
-				
-				
-				
-                
-               
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Type of electricity</label>
-					<div class="col-sm-2">
-						<select class="form-control input-sm">
-							<option>phase I</option>
-							<option>phase II</option>
-							<option>phase III</option>
-						</select>
-					</div>					
-					<div class="col-sm-2">
-					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Generator Backup
-						  </label>
-						</div>
-					</div>
-					<label class="col-sm-2 control-label">Security Systems</label>
-					<div class="col-sm-2">
-						<select class="form-control input-sm">
-							<option>fire alarm</option>
-							<option>burglar alarm</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Vastu Compliant</label>
-					<div class="col-sm-2">
-						<select class="form-control input-sm">
-							<option>Yes</option>
-							<option>No</option>
-							<option>Not Sure</option>
-						</select>
-					</div>
-					<div class="col-sm-2">
-					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Gated Community
-						  </label>
-						</div>
-					</div>
-				
-					<label class="col-sm-2 control-label">Flooring</label>
-					<div class="col-sm-2">
-						<select class="form-control input-sm">
-							<option>Marble</option>
-							<option>Normal Tiles</option>
-							<option>Vitrified Tiles</option>
-						</select>
-					</div>
-              
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Property Brief Description</label>
-					<div class="col-sm-8">
-						<textarea type="text" class="form-control"></textarea>
-					</div>
-				</div>
-			</div>			
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading"><strong>Amenities</strong></div>
-			<div class="panel-body">
-				<div class="form-group">
-					<div class="col-sm-3">
-					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Swimming pool
-						  </label>
-						</div>
-					</div>
-					<div class="col-sm-3">
-					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Play area
-						  </label>
-						</div>
-					</div>
-					<div class="col-sm-3">
-					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Health Facilities
-						  </label>
-						</div>
-					</div>
-					<div class="col-sm-3">
-					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Recreation facilities
-						  </label>
-						</div>
-					</div>
-					<div class="col-sm-3">
-					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Maintenance staff
-						  </label>
-						</div>
-					</div>
-					<div class="col-sm-3">
-					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Security
-						  </label>
-						</div>
-					</div>
-					<div class="col-sm-3">
-					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Intercom
-						  </label>
-						</div>
-					</div>
-					<div class="col-sm-3">
-					  <div class="checkbox-inline">
-						  <label>
-							<input type="checkbox">Club house
-						  </label>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading"><strong>photos and map</strong></div>
-			<div class="panel-body">
-					<div class="col-sm-6">
-					<label for="exampleInputFile">Upload Photos</label>
-					<!--<input type="file" id="exampleInputFile"> -->
-<div style="position:relative;">
-		<a class='btn btn-primary btn-sm' href='javascript:;'>
-			Choose File...
-			<input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
-		</a>
-		&nbsp;
-		<span class='label label-info' id="upload-file-info"></span>
-	</div>					
-<p>You can upload upto 10 photos</p>					
-				  <div class="upload-img">
-				  <img src="images/list1.png" alt="..." class="img-thumbnail">
-				  <img src="images/list1.png" alt="..." class="img-thumbnail">
-				  </div>
-				  </div>
-				  
-					<div class="col-sm-6">
-					<label for="exampleInputFile">Map</label>
-					<div class="map" id="map"> </div>
-					</div>
-			</div>
-			<div class="panel-footer text-right"><button class="btn btn-default">Submit</button></div>
-		</div>
-			</form>
-		</div>
-	</div>
-</div>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" name="builtUpUnits" ng-model="property.property.area.units" required>
+                                        <option>Units Drop Down</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                    </select>
+									<p ng-show="form1.builtUpUnits.$invalid && (!form1.builtUpUnits.$pristine || form1.submitted)" class="label label-warning">Please select area units</p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control input-sm" name="price" ng-model="property.property.area.plotOrLand" required placeholder="Plot/Land">
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" name="price" ng-model="property.property.price" required>
+                                        <option>Units Drop Down</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label"><i class="fn fn-home"></i>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control input-sm" name="price" ng-model="property.property.price" required placeholder="Carpet">
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" name="price" ng-model="property.property.price" required>
+                                        <option>Units Drop Down</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control input-sm" name="price" ng-model="property.property.price" required placeholder="Per unit price">
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" name="price" ng-model="property.property.price" required>
+                                        <option>AreaType Drop Down</option>
+                                        <option>Carpet</option>
+                                        <option>Built-up</option>
+                                        <option>Plot/Land</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label"><i class="fn fn-home"></i>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Property Address:</label>
+                                <div class="col-sm-8">
+                                    <textarea type="text" class="form-control" name="address" ng-model="property.property.address" required></textarea>
+									<p ng-show="form1.address.$invalid && (!form1.address.$pristine || form1.submitted)" class="label label-warning">Please enter address</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <div class="radio-inline" name="price" ng-model="property.property.price" required>
+                                        <label>
+                                            <input type="radio" ng-model="property.user.type" name="propertyTypeOptions" required>New
+                                        </label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" ng-model="property.user.type" name="userTypeOptions" required>Resale
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-inline" ng-model="property.user.type" name="userTypeOptions" required>
+                                        <label>
+                                            <input type="checkbox">Underconstruction
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Availability</label>
+                                <div class="col-sm-2">
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio">Ready
+                                        </label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio">for Future
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" id="datepicker" name="date" ng-model="property.property.date" required class="form-control input-sm" placeholder="Enter Date">
+									<p ng-show="form1.date.$invalid && (!form1.date.$pristine || form1.submitted)" class="label label-warning">Please select date</p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control input-sm" name="age" ng-model="property.property.price" required placeholder="Age of Property">
+									<p ng-show="form1.age.$invalid && (!form1.age.$pristine || form1.submitted)" class="label label-warning">Please enter age of Property</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">No of Units Available</label>
+                                <div class="col-sm-1">
+                                    <select class="form-control input-sm" ng-model="property.property.price">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 control-label">Ownership type:</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-model="property.property.price">
+                                        <option>Freehold</option>
+                                        <option>leasehold</option>
+                                        <option>Power of Attorney</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Monthly Rent:</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control input-sm" name="monthlyRent" ng-model="property.property.monthlyRent" required placeholder="Rent">
+									<p ng-show="form1.monthlyRent.$invalid && (!form1.monthlyRent.$pristine || form1.submitted)" class="label label-warning">Please enter monthly rent</p>
+                                </div>
+                                <label class="col-sm-2 control-label">Deposit:</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control input-sm" name="deposit" ng-model="property.property.deposit" required placeholder="Deposit">
+									<p ng-show="form1.deposit.$invalid && (!form1.deposit.$pristine || form1.submitted)" class="label label-warning">Please enter deposit</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-2">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.property.price">Allow Non-veg
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.property.price">Allow Pets
+                                        </label>
+                                    </div>
+                                </div>
+                                <label class="col-sm-2 control-label">Preferred Tenant:</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-model="property.property.price">
+                                        <option>No Restriction</option>
+                                        <option>Family</option>
+                                        <option>Bachelor</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Commition in Days:</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control input-sm" name="commitionInDays" ng-model="property.property.commitionInDays" required>
+                                        <option>1/2 Month Rent</option>
+                                        <option>1 Month Rent</option>
+                                        <option>1 1/2 Month Rent</option>
+                                        <option>Others</option>
+                                    </select>
+									<p ng-show="form1.commitionInDays.$invalid && (!form1.commitionInDays.$pristine || form1.submitted)" class="label label-warning">Please select commition in days</p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control input-sm" ng-model="property.property.price" placeholder="Fixed Price">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-info" ng-click="form1.submitted=true;showForm2=form1.$valid;showForm1=!form1.$valid">Next</button>
+                    </div>
+                </div>
+            </form>
+
+            <form class="form-horizontal" role="form"  ng-show="showForm2">
+                <div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Specifications</strong>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Balconies</label>
+                                <div class="col-sm-1">
+                                    <select class="form-control input-sm" ng-model="property.specifications.balconies">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 control-label">Additional rooms</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-model="property.specifications.additionalRooms">
+                                        <option>puja</option>
+                                        <option>study</option>
+                                        <option>Dining</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control input-sm" ng-model="property.specifications.otherRoom" placeholder="Other room">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Directional facing</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-model="property.specifications.directionalFacing">
+                                        <option>east</option>
+                                        <option>west</option>
+                                        <option>South</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 control-label">Facing</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-model="property.specifications.facing">
+                                        <option>Pool</option>
+                                        <option>Main Road</option>
+                                        <option>Garden</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control input-sm" ng-model="property.specifications.otherRoom" placeholder="Other room">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-2">
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio">Furnished
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio">Semi-Furnished
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control input-sm" ng-model="property.specifications.floorNumber" placeholder="Floor Number">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control input-sm" ng-model="property.specifications.totalFloor" placeholder="Total Floors">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Parking Covered</label>
+                                <div class="col-sm-10 coveredun">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" value="">2 wheeler</label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="twowheeler" ng-model="property.specifications.parking.twoWheeler.covered" id="covered1" value="covered">covered
+                                        </label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="twowheeler" id="uncovered1" ng-model="property.specifications.parking.twoWheeler.uncovered" value="uncovered">uncovered
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" name="twowheeler" id="common1" ng-model="property.specifications.parking.twoWheeler.common" value="common" checked>common
+                                        </label>
+                                    </div>
+                                </div>
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10 coveredun">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" value="">4 wheeler</label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="fourwheeler" id="covered2" ng-model="property.specifications.parking.fourWheeler.covered" value="covered">covered
+                                        </label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="fourwheeler" id="uncovered2" ng-model="property.specifications.parking.fourWheeler.uncovered" value="uncovered">uncovered
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" name="fourwheeler" id="common2" ng-model="property.specifications.parking.fourWheeler.common" value="common" checked>common
+                                        </label>
+                                    </div>
+                                </div>
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.specifications.parking.fourWheelerVisitors" value="true">4 Wheeler Visitors</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Type of electricity</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-model="property.specifications.typeOfElectricity">
+                                        <option>phase I</option>
+                                        <option>phase II</option>
+                                        <option>phase III</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.specifications.generatorBackup">Generator Backup
+                                        </label>
+                                    </div>
+                                </div>
+                                <label class="col-sm-2 control-label">Security Systems</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-model="property.specifications.securitySystem">
+                                        <option>fire alarm</option>
+                                        <option>burglar alarm</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Vastu Compliant</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-model="property.specifications.vastu">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option>Not Sure</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.specifications.gatedCommunity">Gated Community
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <label class="col-sm-2 control-label">Flooring</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-model="property.specifications.flooring">
+                                        <option>Marble</option>
+                                        <option>Normal Tiles</option>
+                                        <option>Vitrified Tiles</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Property Brief Description</label>
+                                <div class="col-sm-8">
+                                    <textarea type="text" class="form-control" ng-model="property.specifications.briefDescription"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Amenities</strong>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.amenities.swimmingPool">Swimming pool
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.amenities.playArea">Play area
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.amenities.healthFacilities">Health Facilities
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.amenities.recreationFacilities">Recreation facilities
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.amenities.maintenanceStaff">Maintenance staff
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.amenities.security">Security
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.amenities.intercom">Intercom
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="checkbox" ng-model="property.amenities.clubHouse">Club house
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-info" ng-click="showForm2=false;showForm1=!showForm2;">Previous</button>
+                        <button type="button" class="btn btn-info" ng-click="showForm2=false;showForm3=!showForm2;">Next</button>
+                    </div>
+                </div>
+            </form>
+
+            <form class="form-horizontal" role="form"  ng-show="showForm3">
+                <div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>photos and map</strong>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-sm-6">
+                                <label for="exampleInputFile">Upload Photos</label>
+                                <!--<input type="file" id="exampleInputFile"> -->
+                                <div style="position:relative;">
+                                    <a class='btn btn-primary btn-sm' href='javascript:;'>
+										Choose File...
+										<input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
+									</a>
+                                    &nbsp;
+                                    <span class='label label-info' id="upload-file-info"></span>
+                                </div>
+                                <p>You can upload upto 10 photos</p>
+                                <div class="upload-img">
+                                    <img src="images/list1.png" alt="..." class="img-thumbnail">
+                                    <img src="images/list1.png" alt="..." class="img-thumbnail">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="exampleInputFile">Map</label>
+                                <div class="map" id="map"></div>
+                            </div>
+                        </div>
+                        <!-- <div class="panel-footer text-right"><button class="btn btn-default">Submit</button></div> -->
+                    </div>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-info" ng-click="showForm3=false;showForm2=true;">Previous</button>
+                        <button class="btn btn-info" ng-click="registerProperty();">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>​

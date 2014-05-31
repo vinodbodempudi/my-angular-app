@@ -4,10 +4,27 @@ angular.module('registerProperty', [])
 
 .controller('RegisterPropertyCtrl',['$scope', 'RegisterPropertyService', function($scope, registerPropertyService) {
     
-    $scope.propertyDetails = {};
+    $scope.property = {};
+	
+	registerPropertyService.getCities()
+		.success(function(data){
+		        $scope.cities = data;
+		    }).error(function(e){
+		    	
+		    });
+	
+	registerPropertyService.getLocalities()
+		.success(function(data){
+		        $scope.localities = data;
+		    }).error(function(e){
+		    	
+		    });
 
     $scope.registerProperty = function () {
-       registerPropertyService.registerProperty(propertyDetails)
+	
+		alert(angular.toJson($scope.property))
+	
+       registerPropertyService.registerProperty(angular.toJson($scope.property))
        	    .success(function(data){
 		        
 		    }).error(function(e){
@@ -18,8 +35,16 @@ angular.module('registerProperty', [])
 
 }])
 .service('RegisterPropertyService',['$http',  function($http) {
-    this.registerProperty = function (propertyDetails) {
-        return $http.post('', propertyDetails);
+    this.registerProperty = function (property) {
+        return $http.post('', property);
+    };
+	
+	this.getCities = function () {
+        return $http.get('data/cities.json');
+    };
+	
+	this.getLocalities = function () {
+        return $http.get('data/localities.json');
     };
 
 }]);
