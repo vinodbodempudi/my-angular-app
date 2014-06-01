@@ -32,7 +32,7 @@
                             <div class="form-group" ng-class="{'has-error':form1.userName.$invalid && !form1.userName.$pristine}">
                                 <label class="col-sm-2 control-label">Name:</label>
                                 <div class="col-sm-3">
-                                    <input type="text" ng-model="property.user.name" name="userName" ng-required="property.details.mode==='Sell'" class="form-control input-sm" placeholder="Name">
+                                    <input type="text" ng-model="property.user.name" name="userName" ng-required="true" class="form-control input-sm" placeholder="Name">
                                     <p ng-show="form1.userName.$invalid && (!form1.userName.$pristine || form1.submitted)" class="label label-warning">Please enter name</p>
                                 </div>
                                 <div class="clearfix"></div>
@@ -54,7 +54,8 @@
                                 <label class="col-sm-2 control-label">Phone:</label>
                                 <div class="col-sm-2">
                                     <input type="number" name="phoneNumber" ng-required='true' ng-model="property.user.phoneNumber" class="form-control input-sm" placeholder="Phone">
-                                    <p ng-show="form1.phoneNumber.$invalid && (!form1.phoneNumber.$pristine || form1.submitted)" class="label label-warning">Please enter phone number</p>
+                                    <p ng-show="form1.submitted && form1.phoneNumber.$error.required && !form1.phoneNumber.$dirty" class="label label-warning">Please enter phone number</p>
+									<p ng-show="form1.phoneNumber.$dirty && form1.phoneNumber.$invalid" class="label label-warning">Please enter valid phone number</p>
                                 </div>
                                 <div class="col-sm-2">
                                     <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i>
@@ -224,7 +225,7 @@
 									<p ng-show="form1.date.$invalid && (!form1.date.$pristine || form1.submitted)" class="label label-warning">Please select date</p>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control input-sm" name="age" ng-model="property.details.ageOfProperty" ng-required='true' placeholder="Age of Property">
+                                    <input type="number" class="form-control input-sm" name="age" ng-model="property.details.ageOfProperty" ng-required='true' placeholder="Age of Property">
 									<p ng-show="form1.age.$invalid && (!form1.age.$pristine || form1.submitted)" class="label label-warning">Please enter age of Property</p>
                                 </div>
                             </div>
@@ -233,7 +234,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">Total Price:</label>
 									<div class="col-sm-2">
-										<input type="text" class="form-control input-sm" placeholder="Amount" name="price" ng-model="property.details.price.price" ng-required="property.details.mode==='Sell'">
+										<input type="number" class="form-control input-sm" placeholder="Amount" name="price" ng-model="property.details.price.price" ng-required="property.details.mode==='Sell'">
 										<p ng-show="form1.price.$invalid && (!form1.price.$pristine || form1.submitted)" class="label label-warning">Please enter total price</p>
 									</div>
 									<div class="col-sm-6">
@@ -264,7 +265,7 @@
 										</div>
 										<div class="radio-inline">
 											<label>
-												<input type="radio" ng-model="property.details.propertyType" value="Resale" name="propertyTypeOptions" ng-required="property.details.mode==='Sell'">Underconstruction
+												<input type="radio" ng-model="property.details.propertyType" value="Underconstruction" name="propertyTypeOptions" ng-required="property.details.mode==='Sell'">Underconstruction
 											</label>
 										</div>
 									</div>
@@ -340,7 +341,7 @@
 										<p ng-show="form1.commitionInDays.$invalid && (!form1.commitionInDays.$pristine || form1.submitted)" class="label label-warning">Please select commition in days</p>
 									</div>
 									<div class="col-sm-2">
-										<input type="text" class="form-control input-sm" ng-model="property.details.fixedPrice" placeholder="Fixed Price">
+										<input type="number" class="form-control input-sm" ng-model="property.details.fixedPrice" placeholder="Fixed Price">
 									</div>
 								</div>
 							</div>
