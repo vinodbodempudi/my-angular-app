@@ -13,17 +13,22 @@ angular.module('registerProperty', [])
 		    	
 		    });
 	
-	registerPropertyService.getLocalities()
+	
+	$scope.getLocalities = function(city) {
+		registerPropertyService.getLocalities()
 		.success(function(data){
 		        $scope.localities = data;
 		    }).error(function(e){
 		    	
 		    });
+	}
+	
+	
 
     $scope.registerProperty = function () {
 	
 		alert(angular.toJson($scope.property))
-	
+		console.log(angular.toJson($scope.property));
        registerPropertyService.registerProperty(angular.toJson($scope.property))
        	    .success(function(data){
 		        
@@ -35,16 +40,23 @@ angular.module('registerProperty', [])
 
 }])
 .service('RegisterPropertyService',['$http',  function($http) {
+
+	var citiesURL ='data/cities.json';
+	var localitiesURL ='data/localities.json';
+	
+	//var citiesURL ='http://localhost:3000/cities';
+	//var localitiesURL ='http://localhost:3000/localities/';
+
     this.registerProperty = function (property) {
         return $http.post('', property);
     };
 	
 	this.getCities = function () {
-        return $http.get('data/cities.json');
+        return $http.get(citiesURL);
     };
 	
 	this.getLocalities = function () {
-        return $http.get('data/localities.json');
+        return $http.get(localitiesURL);
     };
 
 }]);
