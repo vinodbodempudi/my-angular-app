@@ -5,7 +5,16 @@ angular.module('registerProperty', [])
 .controller('RegisterPropertyCtrl',['$scope', 'RegisterPropertyService', function($scope, registerPropertyService) {
     
     $scope.property = {};
+	/*$scope.property.user = {};
+	$scope.property.user.emails = [''];
+	$scope.addEmail = function(){
+    	$scope.property.user.emails.push('');
+    }
 	
+	$scope.removeEmail = function(i){
+    	if(i>0) $scope.property.user.emails.splice(i,1);
+    }
+	*/
 	registerPropertyService.getCities()
 		.success(function(data){
 		        $scope.cities = data;

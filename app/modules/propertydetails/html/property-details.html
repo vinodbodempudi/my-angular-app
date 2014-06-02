@@ -22,12 +22,12 @@
   <div class="searchForm">
   <div class="row">
       <div class="col-md-2">
-        <select class="selectpicker form-control">
+        <select class="selectpicker">
           <option>Property type</option>
         </select>
       </div>
       <div class="col-md-1">
-        <select class="selectpicker form-control">
+        <select class="selectpicker">
           <option>Beds</option>
         </select>
       </div>
@@ -64,7 +64,7 @@
         <div class="row" style="height:30px;">
           <div class="col-sm-3">
             <div class="btn-group">
-              <a class="btn btn-sm btn-default" href="#"><i class="fa fa-arrow-circle-o-left"></i> Back to List</a>
+            	<a class="btn btn-sm btn-default" href="#"><i class="fa fa-arrow-circle-o-left"></i> Back to List</a>
             </div>
           </div>
          <!-- <div class="col-sm-9 text-right">
@@ -76,72 +76,298 @@
               <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-chain-broken"></i> Report</button>
             </div>
           </div> -->
-      <div id="headertabs">
-      <div class="tabs" style="height:25px;">
-          <ul class="nav nav-pills" id="myTab">
-            <li class="active"><a href="#tab0" data-toggle="tab">Overview</a></li>
-      <li><a href="#tab1" data-toggle="tab">Details</a></li>
-            <li><a href="#tab2" data-toggle="tab">Amenities</a></li>
-            <li><a href="#tab3" data-toggle="tab">Photos</a></li>
-            <li><a href="#tab4" data-toggle="tab">Contact</a></li>
+		  <div id="headertabs">
+		  <div class="tabs" style="height:25px;">
+          <ul class="nav nav-pills" id="myTab" ng-init="detailsSubtab='Overview'">
+            <li class="active"><a href="" data-toggle="tab" ng-click="detailsSubtab='Overview'">Overview</a></li>
+			<li><a href="" data-toggle="tab" ng-click="detailsSubtab='Details'">Details</a></li>
+            <li><a href="" data-toggle="tab" ng-click="detailsSubtab='Amenities'">Amenities</a></li>
+            <li><a href="" data-toggle="tab" ng-click="detailsSubtab='Photos'">Photos</a></li>
+            <li><a href="" data-toggle="tab" ng-click="detailsSubtab='Contact'">Contact</a></li>
           </ul>
-      </div>
-      </div>
+		  </div>
+		  </div>
         </div>
-        <h3>Property Name ..</h3>        
-        <div class="tabs" style="height:355px; overflow-y:visible;">
+             
+        <div class="tabs" style="height:400px; overflow-y:visible;">
          
           <div class="tab-content">
-            <div class="tab-pane active" id="tab0">
-        <div class="scroll">
-          <div class="detail-images">
-            <div class="big-img"><img alt="Image" src="images/a3.jpg" /></div>
-            <ul class="list-unstyled">
-            <li><img class="thumbnail" src="images/list3.png" alt="Thumb Image" /></li>
-            <li><img class="thumbnail" src="images/list1.png" alt="Thumb Image" /></li>
-            <li><img class="thumbnail" src="images/list2.png" alt="Thumb Image" /></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-            <div class="tab-pane" id="tab1">
-        <div class="scroll">
-          <h4>Tab Title goes here ..</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <ul class="lists-view">
-            <li>LCurabitur at urna eros, sit</li>
-            <li>amet mattis sem. Curabitur at urna eros,</li>
-            <li>sit amet mattis sem. Lorem ipsum dolor sit</li>
-            <li>amet, consectetur adipiscing elit. amet mattis sem.</li>
-            <li>LCurabitur at urna eros, sit</li>
-            <li>amet mattis sem. Curabitur at urna eros,</li>
-            <li>sit amet mattis sem. Lorem ipsum dolor sit</li>
-            <li>amet, consectetur adipiscing elit. amet mattis sem.</li>
-          </ul>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <ul class="lists-view">
-            <li>LCurabitur at urna eros, sit</li>
-            <li>amet mattis sem. Curabitur at urna eros,</li>
-            <li>sit amet mattis sem. Lorem ipsum dolor sit</li>
-            <li>amet, consectetur adipiscing elit. amet mattis sem.</li>
-            <li>amet mattis sem. Curabitur at urna eros,</li>
-            <li>sit amet mattis sem. Lorem ipsum dolor sit</li>
-            <li>amet, consectetur adipiscing elit. amet mattis sem.</li>
-          </ul>
-        </div>
+            <div class="tab-pane active" id="tab0" ng-show="detailsSubtab==='Overview'">
+			<h4>Overview</h4>
+			<div class="scroll">
+		
+			<div class="wrap-details">
+			<table class="table table-borderless">
+        <tr>
+            <td>Property Type:</td>
+
+            <td><label>Resident - Apartment</label></td>
+
+            <td>is for:</td>
+
+            <td><label>Sell / Rent</label></td>
+        </tr>
+
+        <tr>
+            <td>Beds:</td>
+
+            <td><label>4</label></td>
+
+            <td>Baths:</td>
+
+            <td><label>2</label></td>
+        </tr>
+
+        <tr>
+            <td>Build-up Area:</td>
+
+            <td><label>2456 sqft</label></td>
+
+            <td>Carpet Area:</td>
+
+            <td><label>1234 sqft</label></td>
+        </tr>
+
+        <tr>
+            <td>Per Unit price:</td>
+
+            <td><label>24 sqft<br>
+            Built-up area</label></td>
+
+            <td>plot/land Area:</td>
+
+            <td><label>213422 sqft</label></td>
+        </tr>
+
+        <tr>
+            <td>Availability:</td>
+
+            <td><label>Ready to Move<br>
+            05/04/14</label></td>
+
+            <td>Age of property:</td>
+
+            <td><label>4 years 4 months</label></td>
+        </tr>
+
+        <tr>
+            <td>Total Price:</td>
+
+            <td><label>$12,000</label></td>
+
+            <td>Negotiable</td>
+
+            <td><label>Registration Fee</label></td>
+        </tr>
+
+        <tr>
+            <td>Monthly rent:</td>
+
+            <td><label>$1100</label></td>
+
+            <td>Deposit:</td>
+
+            <td><label>$10000</label></td>
+        </tr>
+
+        <tr>
+            <td>Prefered Tenant:</td>
+
+            <td><label>No Restriction</label></td>
+
+            <td>Allow Non-veg</td>
+
+            <td><label>Allow Pets</label></td>
+        </tr>
+
+        <tr>
+            <td>Maintainance Fee:</td>
+
+            <td><label>$1000</label></td>
+
+            <td>Commision:</td>
+
+            <td><label>2 months Rent<br>
+            $1000</label></td>
+        </tr>
+
+        <tr>
+            <td>Number of Units<br>
+            Available:</td>
+
+            <td><label>2</label></td>
+
+            <td>Ownership Type:</td>
+
+            <td><label>Freehold</label></td>
+        </tr>
+
+        <tr>
+            <td>Address:</td>
+
+            <td><label>1234 Road, jntu</label></td>
+
+            <td>Kukatpally</td>
+
+            <td><label>New /Resale<br>
+            Under construction</label></td>
+        </tr>
+    </table>
+	</div>
+	</div>
+
+			</div>
+            <div class="tab-pane active" id="tab1" ng-show="detailsSubtab==='Details'">
+				
+					<h4>Details</h4>
+	<div class="wrap-details">
+		<table class="table table-borderless" >
+        <tr>
+            <td>Balconies:</td>
+
+            <td><label>1</label></td>
+
+            <td>Additional Rooms:</td>
+
+            <td><label>pooja, Dining</label></td>
+        </tr>
+
+        <tr>
+            <td>Directional Facing:</td>
+
+            <td><label>East</label></td>
+
+            <td>Facing:</td>
+
+            <td><label>Pool, Mian Road</label></td>
+        </tr>
+
+        <tr>
+            <td>Floor Number:</td>
+
+            <td><label>4</label></td>
+
+            <td>Total Floors:</td>
+
+            <td><label>10</label></td>
+        </tr>
+
+        <tr>
+            <td>Type of Electricity:</td>
+
+            <td><label>Phase 1</label></td>
+
+            <td>Security Systems:</td>
+
+            <td><label>Fire Alarm</label></td>
+        </tr>
+
+        <tr>
+            <td>Vastu Complaint:</td>
+
+            <td><label>Yes</label></td>
+
+            <td>Flooring:</td>
+
+            <td><label>Marble</label></td>
+        </tr>
+
+        <tr>
+            <td>parking:</td>
+
+            <td><label>2 wheeler<br>
+            4 wheeler</label></td>
+
+            <td>covered/uncovered:<br>
+            covered/uncovered</td>
+
+            <td><label>common<br>
+            common</label></td>
+        </tr>
+
+        <tr>
+            <td>Furnished/ semi-furnished:</td>
+
+            <td><label>generator Backup</label></td>
+
+            <td>Gated Community:</td>
+
+            <td><label>4 Wheeler Visiting</label></td>
+        </tr>
+    </table>
+				</div>
             </div>
-            <div class="tab-pane" id="tab2">
-              <p>Lorem ipsum dolor sit ametCurabitur at urna eros, sit amet mattis sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. amet mattis sem.</p>
+            <div class="tab-pane active" id="tab2" ng-show="detailsSubtab==='Amenities'">
+			<h4>Amenities</h4>
+             <div class="row aminitieslist">
+    
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Swimming pool </div>
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Play area </div>
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Health Facilities </div>
+    <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Recreation facilities </div>
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Maintenance staff </div>
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Security </div>
+	  <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Intercom </div>
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Club house</div>
+	  <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Swimming pool </div>
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Play area </div>
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Health Facilities </div>
+    <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Recreation facilities </div>
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Maintenance staff </div>
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Security </div>
+	  <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Intercom </div>
+      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Club house</div>
+      
+    </div>
             </div>
-            <div class="tab-pane" id="tab3">
+            <div class="tab-pane active" id="tab3" ng-show="detailsSubtab==='Photos'">
               <p>consectetur adipiscing elit. Curabitur at urna eros, sit amet mattis sem. Curabitur at urna eros, sit amet mattis sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. amet mattis sem.</p>
             </div>
-            <div class="tab-pane" id="tab4">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at urna eros, sit amet mattis sem. Curabitur at urna eros, sit amet mattis sem.</p>
+            <div class="tab-pane active" id="tab4" ng-show="detailsSubtab==='Contact'">
+              
+			  		   <table class="table table-striped table-bordered table-hover" id="contactdetails">
+               <tr >
+            <td style="width:50%;"><label class="move">I am:</label></td>
+
+            <td style="width:50%;">owner</td>       
+        </tr>
+        <tr >
+            <td style="width:50%;"><i class="fa fa-user"></i><label>Name:</label></td>
+
+            <td style="width:50%;">Vinod</td>       
+        </tr>
+
+        <tr>
+            <td><i class="fa fa-envelope"></i><label>Email:</label></td>
+
+            <td><a href="mailto:someone@example.com" target="_top">vinod@vinod.com</a></td>        
+        </tr>
+
+        <tr>
+            <td><i class="fa fa-phone"></i><label>Phone:</label></td>
+
+            <td>+91 9999999999</td>
+          
+        </tr>
+               <tr>
+            <td><i class="fa fa-globe"></i><label>City:</label></td>
+
+            <td>Hyderabad</td>
+          
+        </tr>
+               <tr>
+            <td><i class="fa fa-map-marker"></i><label>Locality:</label></td>
+
+            <td>Kukatpally</td>
+          
+        </tr>
+
+
+    </table>
             </div>
           </div>
         </div>
-    <div class="row" style="height:80px;">
+		<div class="row" style="height:80px;">
           <div class="col-sm-4">
             
           </div>
@@ -155,14 +381,14 @@
             </div>
           </div>
         </div>
-    
+		
       </div>
     </div>
     <div class="col-md-6 col-md-pull-6">
-      <div class="mapContent">    
-      <div class="hidemap">
-      <button type="button" class="btn btn-info btn-xs"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
-      </div>
+      <div class="mapContent">	  
+		  <div class="hidemap">
+			<button type="button" class="btn btn-info btn-xs"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
+		  </div>
         <div class="map" id="map"> </div>
       </div>
     </div>
@@ -171,7 +397,3 @@
     <div class="col-md-12"> </div>
   </div>
 </div>
-<div class="tagline">
-  <p>Aenean placerat libero, tincidunt tempus ut. <a href="#">fathome.com</a></p>
-</div>
-
