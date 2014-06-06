@@ -2,7 +2,7 @@
 
 angular.module('registerProperty', [])
 
-.controller('RegisterPropertyCtrl',['$scope', 'RegisterPropertyService', function($scope, registerPropertyService) {
+.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'RegisterPropertyService', function($scope, locationService, registerPropertyService) {
     
     $scope.property = {};
 	/*$scope.property.user = {};
@@ -15,16 +15,16 @@ angular.module('registerProperty', [])
     	if(i>0) $scope.property.user.emails.splice(i,1);
     }
 	*/
-	registerPropertyService.getCities()
-		.success(function(data){
-		        $scope.cities = data;
-		    }).error(function(e){
-		    	
-		    });
+	locationService.getCities()
+	.success(function(data){
+			$scope.cities = data;
+		}).error(function(e){
+			
+		});
 	
 	
 	$scope.getLocalities = function(city) {
-		registerPropertyService.getLocalities()
+		locationService.getLocalities()
 		.success(function(data){
 		        $scope.localities = data;
 		    }).error(function(e){
@@ -49,23 +49,7 @@ angular.module('registerProperty', [])
 
 }])
 .service('RegisterPropertyService',['$http',  function($http) {
-
-	var citiesURL ='data/cities.json';
-	var localitiesURL ='data/localities.json';
-	
-	//var citiesURL ='http://localhost:3000/cities';
-	//var localitiesURL ='http://localhost:3000/localities/';
-
     this.registerProperty = function (property) {
         return $http.post('', property);
     };
-	
-	this.getCities = function () {
-        return $http.get(citiesURL);
-    };
-	
-	this.getLocalities = function () {
-        return $http.get(localitiesURL);
-    };
-
 }]);

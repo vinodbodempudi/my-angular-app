@@ -22,18 +22,16 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <select class="selectpicker form-control" data-width="100%">
-            <option>Select City</option>
-            <option>Ketchup</option>
-            <option>Relish</option>
-          </select>
+		  <select class="form-control selectpicker input-sm" data-width="100%" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)"  ng-model="city">
+           </select>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="location" placeholder="Location">
+			<select class="form-control input-sm" ng-options="locality as locality for locality in localities" name="locality" ng-model="locality">
+			  </select>
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#/propertyresults"><button type="button" class="btn btn-primary btn-sm btn-block">Start Search</button></a>
+        <a href="#/propertyresults/{{city}}/{{locality}}"><button type="button" class="btn btn-primary btn-sm btn-block">Start Search</button></a>
         
       </div>
     </div>

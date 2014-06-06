@@ -39,7 +39,7 @@ app.config(function ($routeProvider) {
         templateUrl: 'modules/login/html/login.html',
         controller: 'LoginCtrl'
       })
-      .when('/propertyresults', {
+      .when('/propertyresults/:city/:locality', {
         templateUrl: 'modules/propertyresults/html/property-results.html',
         controller: 'PropertyResultsCtrl'
       })
@@ -78,3 +78,23 @@ app.config(function ($routeProvider) {
             }
         };
     });
+
+app.service('LocationService',['$http',  function($http) {
+
+	var citiesURL ='data/cities.json';
+	var localitiesURL ='data/localities.json';
+	
+	//var citiesURL ='http://localhost:3000/cities';
+	//var localitiesURL ='http://localhost:3000/localities/';
+	
+	this.getCities = function () {
+        return $http.get(citiesURL);
+    };
+	
+	this.getLocalities = function () {
+        return $http.get(localitiesURL);
+    };
+
+}]);
+	
+	
