@@ -8,7 +8,8 @@ var app = angular.module('fatHomesApp', [
   'registerProperty',
   'home',
   'propertyResults',
-  'propertyDetails'
+  'propertyDetails',
+  'login'
 ]);
   
 app.config(function ($routeProvider) {
@@ -35,7 +36,7 @@ app.config(function ($routeProvider) {
       })*/
 
 
-      .when('/newLogin', {
+      .when('/login', {
         templateUrl: 'modules/login/html/login.html',
         controller: 'LoginCtrl'
       })
@@ -43,7 +44,7 @@ app.config(function ($routeProvider) {
         templateUrl: 'modules/propertyresults/html/property-results.html',
         controller: 'PropertyResultsCtrl'
       })
-      .when('/propertyDetails', {
+      .when('/propertyDetails/:propertyId', {
         templateUrl: 'modules/propertydetails/html/property-details.html',
         controller: 'PropertyDetailsCtrl'
       })

@@ -1,0 +1,24 @@
+[
+  {
+	"id":"1",
+    "title": "Spacious 2 Bedroom Home ..",
+    "price": "50000",
+    "bedRooms": 3,
+    "bathRooms": 3,
+    "size": "1050",
+    "locality": "KukatPally",
+    "type": "Residentail",
+    "date": "03 Oct, 2013"
+  },
+  {
+	"id":"2",
+    "title": "Spacious 3 Bedroom Home ..",
+    "price": "50000",
+    "bedRooms": 3,
+    "bathRooms": 3,
+    "size": "1050",
+    "locality": "KukatPally",
+    "type": "Residentail",
+    "date": "03 Oct, 2013"
+  }
+]
