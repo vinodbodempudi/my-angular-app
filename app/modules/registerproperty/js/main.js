@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('registerProperty', [])
-
-.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'RegisterPropertyService', function($scope, locationService, registerPropertyService) {
+.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'RegisterPropertyService', 
+	function($scope, locationService, registerPropertyService) {
     
     $scope.property = {};
 	/*$scope.property.user = {};
@@ -21,8 +21,6 @@ angular.module('registerProperty', [])
 		}).error(function(e){
 			
 		});
-	
-	
 	$scope.getLocalities = function(city) {
 		locationService.getLocalities()
 		.success(function(data){
@@ -31,8 +29,6 @@ angular.module('registerProperty', [])
 		    	
 		    });
 	}
-	
-	
 
     $scope.registerProperty = function () {
 	
@@ -40,13 +36,9 @@ angular.module('registerProperty', [])
 		console.log(angular.toJson($scope.property));
        registerPropertyService.registerProperty(angular.toJson($scope.property))
        	    .success(function(data){
-		        
 		    }).error(function(e){
-		    	
 		    });
     };
-
-
 }])
 .service('RegisterPropertyService',['$http',  function($http) {
 	var registerPropertyURL = 'http://localhost:3000/properties';
