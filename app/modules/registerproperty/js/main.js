@@ -49,7 +49,34 @@ angular.module('registerProperty', [])
 
 }])
 .service('RegisterPropertyService',['$http',  function($http) {
+	var registerPropertyURL = 'http://localhost:3000/properties';
     this.registerProperty = function (property) {
-        return $http.post('', property);
+        return $http.post(registerPropertyURL, property);
     };
-}]);
+}])
+.directive('datePicker', function () {
+	return {
+		restrict: 'EA',
+		require : 'ngModel',
+		link : function (scope, element, attrs, ngModelCtrl) {
+			$(function(){
+				element.datepicker({
+					dateFormat:'mm-dd-yy',
+					onSelect:function (date) {
+						ngModelCtrl.$setViewValue(element.datepicker("getDate"));
+						scope.$apply();
+					},
+					onClose: function (dateText, inst) {
+						if(!dateText) {
+							ngModelCtrl.$setViewValue(null);
+						}
+						
+						scope.$apply();
+					},
+					minDate:new Date() 
+				});
+				//element.datepicker("setDate", new Date());
+			});
+		}
+	};
+});

@@ -1,14 +1,27 @@
 [
   {
 	"id":"1",
-    "title": "Spacious 2 Bedroom Home ..",
+    "title": "Very good 5 Bedroom Home ..",
     "price": "50000",
     "bedRooms": 2,
     "bathRooms": 1,
     "size": "1050",
     "locality": "KukatPally",
-    "type": "Residentail",
-    "date": "03 Oct, 2013"
+    "propertySubType": "Residentail",
+    "date": "03 Oct, 2013",
+	"purpose":"BUY"
+  },
+  {
+	"id":"1",
+    "title": "Spacioua 4 Bedroom Home ..",
+    "price": "30000",
+    "bedRooms": 2,
+    "bathRooms": 1,
+    "size": "1050",
+    "locality": "KukatPally",
+    "propertySubType": "Residentail",
+    "date": "03 Oct, 2013",
+	"purpose":"BUY"
   },
   {
 	"id":"2",
@@ -18,7 +31,8 @@
     "bathRooms": 2,
     "size": "1250",
     "locality": "KukatPally",
-    "type": "Residentail",
-    "date": "02 Oct, 2013"
+    "propertySubType": "Apartment",
+    "date": "02 Oct, 2013",
+	"purpose":"BUY"
   }
 ]

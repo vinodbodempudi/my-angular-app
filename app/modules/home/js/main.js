@@ -32,5 +32,18 @@ angular.module('home', [])
 }]).service('HomeService',['$http',  function($http) {
 
 	
-}]);
+}])
+.service('FatHomeUtil',function() {
+
+	this.propertySortOptions = function () {
+        return [
+			{lable:"Date", dataField:"date", reverseOrder:false},
+			{lable:"Price(low to high)", dataField:"price", reverseOrder:false},
+			{lable:"Price(high to low)", dataField:"price", reverseOrder:true},
+			{lable:"Sqft(low to high)", dataField:"size", reverseOrder:false},
+			{lable:"Sqft(high to low)", dataField:"size", reverseOrder:true},
+		];
+    };
+
+});
 
