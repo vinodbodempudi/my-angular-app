@@ -43,7 +43,7 @@
     <link href="lib/fontawesome/font-awesome-ie7.min.css" rel="stylesheet" media="screen">
     <![endif]-->
   </head>
-  <body ng-app="fatHomesApp" class="main">
+  <body ng-app="fatHomesApp" ng-controller="fatHomeController" class="main">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -60,7 +60,7 @@
             <li><a href="#about">Feedback</a></li>
             <li><a href="#contact">Contact us</a></li>
             <li class="active"><a href="main.html">My Shortlist</a></li>
-            <li><a href="#login" data-toggle="modal" data-target="#signin">signin</a></li>
+			<li><a href="" data-toggle="modal" ng-init="loginLabel='Sign In'" data-target="#signin">{{loginLabel}}</a></li>
             <li><a href="#/registerProperty" class="btn btn-info btn-xm navbar-btn"><span>Rent/Sell <i class="fa fa-caret-right"></i></span></a></li>
             <li><a href="#"><i class="fa fa-facebook-square fa-lg"></i></a></li>
             <li ><a href="#" style="padding-left:0px;"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
@@ -89,6 +89,111 @@
        ga('send', 'pageview');
     </script>
 
+	<!-- ************** Modals ************** -->
+<!-- Signin Modal -->
+<div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" 
+                   ng-hide="loginUser.loginPassed" ng-controller="LoginCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h2 class="modal-title" id="myModalLabel">Signin</h2>
+        <p>Signin to save and track Homes!</p>
+      </div>
+
+       <div class="modal-body">
+        
+        <form class="form-horizontal" role="form" name="loginForm" ng-submit="login(loginUser)" novalidate>
+        
+        <!-- form -->
+          <div class="form-group" ng-class="{ 'has-error' : loginForm.loginUserEmail.$invalid && loginForm.loginUserEmail.$dirty}">
+            <input type="email" class="form-control" id="inputEmail3" name="loginUserEmail" placeholder="Email" ng-model="loginUser.email" required>
+             <p class="help-block" ng-show="loginForm.loginUserEmail.$dirty && loginForm.loginUserEmail.$invalid">Invalid Email</p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-error' : loginForm.loginUserPassword.$error.required && loginForm.loginUserPassword.$dirty}">
+            <input type="password" class="form-control" id="inputPassword3" name="loginUserPassword" placeholder="Password" 
+            ng-model="loginUser.password" required>
+            <p class="help-block" ng-show="loginForm.loginUserPassword.$error.required && loginForm.loginUserPassword.$dirty">Password required</p>
+          </div>
+         
+          <span ng-show="loginUser.loginFailed" style="color:red" > The email or password you entered is incorrect.</span>
+          <div class="form-group">
+            <div class="col-sm-6">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  Remember me </label>
+              </div>
+            </div>
+            <div class="col-sm-6 text-right">
+              <a href="#login" data-dismiss="modal" data-toggle="modal" data-target="#account" class="createAccount">Register</a>
+
+            </div>
+          </div>
+        <!-- Form End -->
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Signin</button>
+      </div>
+      
+        </form>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- Create Account Modal -->
+<div class="modal fade" id="account" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h2 class="modal-title" id="myModalLabel">Registration</h2>
+        <p><strong>Create an Account</strong> to list a property, save searches and track homes.<br />
+          Already have an account? <a href="#" data-dismiss="modal" class="signin">Signin</a></p>
+      </div>
+      <div class="modal-body">
+        <!-- form -->
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="inputPassword3" placeholder="Confirm Password">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="inputPassword3" placeholder="Phone">
+          </div>
+          <div class="form-group">
+            <select class="selectpicker" data-width="100%">
+              <option>Select City</option>
+              <option>Ketchup</option>
+              <option>Relish</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="inputPassword3" placeholder="Locality">
+          </div>
+        </form>
+        <!-- Form End -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+		
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>

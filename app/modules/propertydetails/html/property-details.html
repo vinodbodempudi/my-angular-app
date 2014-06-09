@@ -1,23 +1,3 @@
-<div class="container addBlock">
-  <div class="row">
-    <div class="col-sm-10">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="add"></div>
-        </div>
-        <div class="col-sm-6">
-          <div class="add"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="locationDisplay">
-        <h3><i class="fa fa-caret-down"></i> Hyderabad</h3>
-        <h4>Kukatpally</h4>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="container">
   <div class="searchForm">
   <div class="row">
@@ -94,7 +74,7 @@
           <div class="tab-content">
             <div class="tab-pane active" id="tab0" ng-show="detailsSubtab==='Overview'">
 			<h4>Overview</h4>
-			<div class="scroll">
+		
 		
 			<div class="wrap-details">
 			<table class="table table-borderless">
@@ -155,9 +135,9 @@
 
             <td><label>$12,000</label></td>
 
-            <td>Negotiable</td>
+            <td><i class="fa fa-check-circle"></i> <label>Negotiable</label></td>
 
-            <td><label>Registration Fee</label></td>
+            <td><i class="fa fa-check-circle"></i> <label>Registration Fee</label></td>
         </tr>
 
         <tr>
@@ -175,9 +155,9 @@
 
             <td><label>No Restriction</label></td>
 
-            <td>Allow Non-veg</td>
+            <td><i class="fa fa-check-circle"></i><label>Allow Non-veg</label></td>
 
-            <td><label>Allow Pets</label></td>
+            <td><i class="fa fa-check-circle"></i><label>Allow Pets</label></td>
         </tr>
 
         <tr>
@@ -214,9 +194,12 @@
         </tr>
     </table>
 	</div>
-	</div>
+
 
 			</div>
+			
+		
+			
             <div class="tab-pane active" id="tab1" ng-show="detailsSubtab==='Details'">
 				
 					<h4>Details</h4>
@@ -278,27 +261,28 @@
             <td><label>2 wheeler<br>
             4 wheeler</label></td>
 
-            <td>covered/uncovered:<br>
-            covered/uncovered</td>
+            <td><i class="fa fa-check-circle"></i><label>covered/uncovered</label><br>
+            <i class="fa fa-check-circle"></i><label>covered/uncovered</label></td>
 
-            <td><label>common<br>
-            common</label></td>
+            <td><i class="fa fa-check-circle"></i><label>common</label><br>
+                <i class="fa fa-check-circle"></i>common</label></td>
         </tr>
 
         <tr>
-            <td>Furnished/ semi-furnished:</td>
+            <td><i class="fa fa-check-circle"></i><label>Furnished/ semi-furnished</label></td>
 
-            <td><label>generator Backup</label></td>
+            <td><i class="fa fa-check-circle"></i><label>generator Backup</label></td>
 
-            <td>Gated Community:</td>
+            <td><i class="fa fa-check-circle"></i><label>Gated Community</label></td>
 
-            <td><label>4 Wheeler Visiting</label></td>
+            <td><i class="fa fa-check-circle"></i><label>4 Wheeler Visiting</label></td>
         </tr>
     </table>
 				</div>
             </div>
             <div class="tab-pane active" id="tab2" ng-show="detailsSubtab==='Amenities'">
 			<h4>Amenities</h4>
+			<div class="wrap-details">
              <div class="row aminitieslist">
     
       <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Swimming pool </div>
@@ -319,51 +303,56 @@
       <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Club house</div>
       
     </div>
+	</div>
             </div>
             <div class="tab-pane active" id="tab3" ng-show="detailsSubtab==='Photos'">
+			<h4>Photos</h4>
               <p>consectetur adipiscing elit. Curabitur at urna eros, sit amet mattis sem. Curabitur at urna eros, sit amet mattis sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. amet mattis sem.</p>
             </div>
             <div class="tab-pane active" id="tab4" ng-show="detailsSubtab==='Contact'">
-              
-			  		   <table class="table table-striped table-bordered table-hover" id="contactdetails">
-               <tr >
-            <td style="width:50%;"><label class="move">I am:</label></td>
+              <h4>Contact</h4>
+<div class="wrap-details">
+	<div class="row" id="contactdetails">
+	
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+	   
+	   </div>
+	
+       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 contactimage">
+	   <img src="anil.jpg" width="150px" height="150px" />
+	   </div>
+	   
+	  <!-- <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">  
+	   </div> -->
+        
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" > 
+		
+		  <p>
+				<i class="fa fa-user"></i>Name: <label class="contact-label">Vinod</label>
+			</p>
+		   <p>
+				<i class="fa fa-envelope"></i>E-mail: <label class="contact-label"><a href="mailto:contact@giftsear.ch">contact@fathome.ch</a></label>
+			</p>
+			
+			<p>
+				<i class="fa fa-phone"></i> Phone No: <label class="contact-label">+91 9999999999</label>
+			</p>
+			 <p>
+				<i class="fa fa-user"></i> <label class="contact-label">Owner, Agent, Builder</label>:</p>
+		  
+			<p>
+				<i class="fa  fa-clock-o"></i> Best time to call: <label class="contact-label">[9 to 5]</label>
+			</p>
+			<p>
+				<i class="fa  fa-road"></i> Best way to reach: <label class="contact-label">[P (9999999999) or E (vnod@vinod.com)]</label>
+			</p>
+		
+		</div>
+    
+		</div>
+				</div>
+		  
 
-            <td style="width:50%;">owner</td>       
-        </tr>
-        <tr >
-            <td style="width:50%;"><i class="fa fa-user"></i><label>Name:</label></td>
-
-            <td style="width:50%;">Vinod</td>       
-        </tr>
-
-        <tr>
-            <td><i class="fa fa-envelope"></i><label>Email:</label></td>
-
-            <td><a href="mailto:someone@example.com" target="_top">vinod@vinod.com</a></td>        
-        </tr>
-
-        <tr>
-            <td><i class="fa fa-phone"></i><label>Phone:</label></td>
-
-            <td>+91 9999999999</td>
-          
-        </tr>
-               <tr>
-            <td><i class="fa fa-globe"></i><label>City:</label></td>
-
-            <td>Hyderabad</td>
-          
-        </tr>
-               <tr>
-            <td><i class="fa fa-map-marker"></i><label>Locality:</label></td>
-
-            <td>Kukatpally</td>
-          
-        </tr>
-
-
-    </table>
             </div>
           </div>
         </div>
@@ -377,7 +366,7 @@
               <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> Comment</button>
               <button type="button" class="btn btn-default btn-sm"><i class="fa fa-star-o"></i> Save</button>
              <!-- <button type="button" class="btn btn-default btn-sm contactDetails"><i class="fa fa-user"></i> Contact</button> -->
-              <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-chain-broken"></i> Report</button>
+              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-warning"></i> Report</button>
             </div>
           </div>
         </div>

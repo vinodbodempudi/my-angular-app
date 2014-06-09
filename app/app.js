@@ -97,5 +97,39 @@ app.service('LocationService',['$http',  function($http) {
     };
 
 }]);
+
+app.controller('fatHomeController', ['$scope', 'LoginService', function($scope, loginService) {
+
+	$scope.login = function (loginUser) {
+		loginService.authenticate(loginUser)
+			.success(function(data){
+				$scope.loginLabel = "Sign Out";
+				$('#signin').hide();
+				$('.modal-backdrop').remove();
+			}).error(function(e){
+				
+			});
+	
+	};
+}]);
+
+app.service('LoginService',['$http',  function($http) {
+
+	this.authenticate = function (loginUser) {
+        return $http.get('data/cities.json', loginUser);
+    };
+}])
+
+/*app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'data', function ($scope, $modalInstance, data) {
+	$scope.data = data;
+
+	$scope.ok = function () {
+		$modalInstance.close();
+	};
+
+	$scope.cancel = function () {
+		$modalInstance.dismiss('cancel');
+	};
+}]);*/
 	
 	

@@ -91,14 +91,14 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Type:</label>
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <select class="form-control input-sm" name="propertyType" ng-required='true' ng-model="property.details.propertyType">
                                         <option>Residential</option>
                                         <option>Commercial</option>
                                     </select>
 									<p ng-show="form1.propertyType.$invalid && (!form1.propertyType.$pristine || form1.submitted)" class="label errorText">select property type</p>
                                 </div>
-                                <div class="col-sm-4" >
+                                <div class="col-sm-2" >
                                     <select class="form-control input-sm" name="houseType" ng-required='true' ng-model="property.details.propertySubType">
                                         <option>Apartment</option>
                                         <option>Individual house/Villa</option>
@@ -108,6 +108,11 @@
                                         <option>farm house</option>
                                     </select>
 									<p ng-show="form1.houseType.$invalid && (!form1.houseType.$pristine || form1.submitted)" class="label errorText">select house type</p>
+                                </div>
+								<label class="col-sm-1 control-label">Title:</label>
+                                <div class="col-sm-3">
+                                    <input type="text" ng-pattern=/[0-9]/ class="form-control input-sm" name="title" ng-model="property.details.title" ng-required='true' placeholder="Title">
+									<p ng-show="form1.submitted && form1.title.$error.required" class="label errorText">Enter title</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -557,56 +562,32 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Type of electricity</label>
-                                <div class="col-sm-2">
-                                    <select class="form-control input-sm" ng-model="property.specifications.typeOfElectricity">
-                                        <option>phase I</option>
-                                        <option>phase II</option>
-                                        <option>phase III</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="checkbox-inline">
-                                        <label>
-                                            <input type="checkbox" ng-model="property.specifications.generatorBackup">Generator Backup
-                                        </label>
-                                    </div>
-                                </div>
-                                <label class="col-sm-2 control-label">Security Systems</label>
-                                <div class="col-sm-2">
-                                    <select class="form-control input-sm" ng-model="property.specifications.securitySystem">
-                                        <option>fire alarm</option>
-                                        <option>burglar alarm</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Vastu Compliant</label>
-                                <div class="col-sm-2">
-                                    <select class="form-control input-sm" ng-model="property.specifications.vastu">
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                        <option>Not Sure</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="checkbox-inline">
-                                        <label>
-                                            <input type="checkbox" ng-model="property.specifications.gatedCommunity">Gated Community
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <label class="col-sm-2 control-label">Flooring</label>
-                                <div class="col-sm-2">
-                                    <select class="form-control input-sm" ng-model="property.specifications.flooring">
-                                        <option>Marble</option>
-                                        <option>Normal Tiles</option>
-                                        <option>Vitrified Tiles</option>
-                                    </select>
-                                </div>
-
-                            </div>
+								<label class="col-sm-2 control-label">Type of electricity</label>
+								<div class="col-sm-2">
+									<select class="form-control input-sm">
+										<option>phase I</option>
+										<option>phase II</option>
+										<option>phase III</option>
+									</select>
+								</div>					
+												
+								<label class="col-sm-1 control-label">Flooring</label>
+								<div class="col-sm-2">
+									<select class="form-control input-sm">
+										<option>Marble</option>
+										<option>Normal Tiles</option>
+										<option>Vitrified Tiles</option>
+									</select>
+								</div>
+							
+								<label class="col-sm-2 control-label">Security Systems</label>
+								<div class="col-sm-2">
+									<select class="form-control input-sm">
+										<option>fire alarm</option>
+										<option>burglar alarm</option>
+									</select>
+								</div>
+							</div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Property Brief Description</label>
                                 <div class="col-sm-8">
