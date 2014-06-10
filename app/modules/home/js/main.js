@@ -7,8 +7,6 @@ angular.module('home', [])
 	locationService.getCities()
 		.success(function(data){
 		        $scope.cities = data;
-				$scope.cities.unshift("Select City");
-				$scope.city = $scope.cities[0];
 		    }).error(function(e){
 		    	
 		    });
@@ -18,8 +16,6 @@ angular.module('home', [])
 		locationService.getLocalities()
 		.success(function(data){
 		        $scope.localities = data;
-				$scope.localities.unshift("Select Locality");
-				$scope.locality = $scope.localities[0];
 		    }).error(function(e){
 		    	
 		    });
@@ -43,6 +39,13 @@ angular.module('home', [])
 			{lable:"Sqft(low to high)", dataField:"size", reverseOrder:false},
 			{lable:"Sqft(high to low)", dataField:"size", reverseOrder:true},
 		];
+    };
+	
+	this.unitOptions = function () {
+        return ["Sq. Feet", "Sq. Meter", "Sq. Yards", "Aankadam", "Acres", "Ares",
+				"Bigha", "Biswa", "Chataks", "Cents", "Chataks", "Guntha",
+				"Grounds", "Hectares", "Kanal", "Kottah", "Marla", "Perch", "Rood"];
+		
     };
 
 });

@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('registerProperty', [])
-.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'RegisterPropertyService', 
-	function($scope, locationService, registerPropertyService) {
+.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', 'RegisterPropertyService', 
+	function($scope, locationService, fatHomeUtil, registerPropertyService) {
     
     $scope.property = {};
+	$scope.unitOptions = fatHomeUtil.unitOptions();
 	/*$scope.property.user = {};
 	$scope.property.user.emails = [''];
 	$scope.addEmail = function(){

@@ -14,32 +14,7 @@ var app = angular.module('fatHomesApp', [
   
 app.config(function ($routeProvider) {
     $routeProvider
-      /*.when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'LoginCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .when('/form', {
-        templateUrl: 'views/form.html',
-        controller: 'LoginCtrl'
-      })
-      .when('/login', {
-        templateUrl: 'views/main.html',
-        controller: 'LoginCtrl'
-      })
-      .when('/detail', {
-        templateUrl: 'views/detail.html',
-        controller: 'LoginCtrl'
-      })*/
-
-
-      .when('/login', {
-        templateUrl: 'modules/login/html/login.html',
-        controller: 'LoginCtrl'
-      })
+      
       .when('/propertyresults/:city/:locality', {
         templateUrl: 'modules/propertyresults/html/property-results.html',
         controller: 'PropertyResultsCtrl'
@@ -98,14 +73,71 @@ app.service('LocationService',['$http',  function($http) {
 
 }]);
 
-app.controller('fatHomeController', ['$scope', 'LoginService', function($scope, loginService) {
-
+app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'LoginService', 'LocationService', function($scope, $rootScope, $location, loginService, locationService) {
+	
+	$scope.showLoginModal = function (loginUser) {
+		if($rootScope.isUserLoggedin) {
+			$rootScope.userDetails = null;
+			$rootScope.isUserLoggedin = false;
+			$scope.loginLabel = "Sign In";
+			//$location.path('/home');
+			return;
+		}
+	
+		$scope.showLoginmodal = true;
+		$scope.showRegistermodal = false;
+	}
+	
+	$scope.showRegisterModal = function () {
+		$scope.showLoginmodal = false;
+		$scope.showRegistermodal = true;
+		
+		if(!$scope.cities) {
+			$scope.getCities();
+		}
+	}
+	
+	$scope.getCities = function() {
+		locationService.getCities()
+		.success(function(data){
+				$scope.cities = data;
+			}).error(function(e){
+				
+			});
+	}
+	
+	
+	$scope.getLocalities = function(city) {
+		locationService.getLocalities()
+		.success(function(data){
+		        $scope.localities = data;
+		    }).error(function(e){
+		    	
+		    });
+	};
+	
 	$scope.login = function (loginUser) {
 		loginService.authenticate(loginUser)
 			.success(function(data){
+				$rootScope.userDetails = data;
+				$rootScope.isUserLoggedin = true;
 				$scope.loginLabel = "Sign Out";
-				$('#signin').hide();
-				$('.modal-backdrop').remove();
+				$scope.loginUser = {};
+				$scope.showLoginmodal = false;
+			}).error(function(e){
+				
+			});
+	
+	};
+	
+	$scope.register = function (newUser) {
+		loginService.register(newUser)
+			.success(function(data){
+				$rootScope.userDetails = data;
+				$rootScope.isUserLoggedin = true;
+				$scope.loginLabel = "Sign Out";
+				$scope.loginUser = {};
+				$scope.showRegistermodal = false;
 			}).error(function(e){
 				
 			});
@@ -118,7 +150,62 @@ app.service('LoginService',['$http',  function($http) {
 	this.authenticate = function (loginUser) {
         return $http.get('data/cities.json', loginUser);
     };
+	
+	this.register = function (newUser) {
+        return $http.get('data/cities.json', newUser);
+    };
 }])
+
+
+app.directive("modalShow", function () {
+    return {
+        restrict: "A",
+        scope: {
+            modalVisible: "="
+        },
+        link: function (scope, element, attrs) {
+
+            //Hide or show the modal
+            scope.showModal = function (visible) {
+                if (visible)
+                {
+                    element.modal("show");
+                }
+                else
+                {
+                    element.modal("hide");
+                }
+            }
+
+            //Check to see if the modal-visible attribute exists
+            if (!attrs.modalVisible)
+            {
+
+                //The attribute isn't defined, show the modal by default
+                scope.showModal(true);
+
+            }
+            else
+            {
+
+                //Watch for changes to the modal-visible attribute
+                scope.$watch("modalVisible", function (newValue, oldValue) {
+                    scope.showModal(newValue);
+                });
+
+                //Update the visible value when the dialog is closed through UI actions (Ok, cancel, etc.)
+                element.bind("hide.bs.modal", function () {
+                    scope.modalVisible = false;
+                    if (!scope.$$phase && !scope.$root.$$phase)
+                        scope.$apply();
+                });
+
+            }
+
+        }
+    };
+
+});
 
 /*app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'data', function ($scope, $modalInstance, data) {
 	$scope.data = data;

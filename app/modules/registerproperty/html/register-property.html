@@ -73,13 +73,15 @@
                                 <label class="col-sm-2 control-label">City:</label>
                                 <div class="col-sm-3">
                                     <select class="form-control input-sm" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)" ng-required='true' ng-model="property.user.city">
-                                    </select>
+										<option value="">Select City</option>
+									</select>
                                     <p ng-show="form1.city.$invalid && (!form1.city.$pristine || form1.submitted)" class="label errorText">select city</p>
                                 </div>
                                 <label class="col-sm-2 control-label">Locality:</label>
                                 <div class="col-sm-3">
                                     <select class="form-control input-sm" ng-options="locality as locality for locality in localities" name="locality" ng-required='true' ng-model="property.user.locality">
-                                    </select>
+										<option value="">Select Locality</option>
+									</select>
                                     <p ng-show="form1.locality.$invalid && (!form1.locality.$pristine || form1.submitted)" class="label errorText">select locality</p>
                                 </div>
                             </div>
@@ -92,14 +94,14 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Type:</label>
                                 <div class="col-sm-2">
-                                    <select class="form-control input-sm" name="propertyType" ng-required='true' ng-model="property.details.propertyType">
+                                    <select class="selectpicker form-control input-sm" name="propertyType" ng-required='true' ng-model="property.details.propertyType">
                                         <option>Residential</option>
                                         <option>Commercial</option>
                                     </select>
 									<p ng-show="form1.propertyType.$invalid && (!form1.propertyType.$pristine || form1.submitted)" class="label errorText">select property type</p>
                                 </div>
                                 <div class="col-sm-2" >
-                                    <select class="form-control input-sm" name="houseType" ng-required='true' ng-model="property.details.propertySubType">
+                                    <select class="selectpicker form-control input-sm" name="houseType" ng-required='true' ng-model="property.details.propertySubType">
                                         <option>Apartment</option>
                                         <option>Individual house/Villa</option>
                                         <option>Residential land/plot</option>
@@ -173,27 +175,8 @@
                                 </div>
 
                                 <div class="col-sm-2">
-                                    <select class="form-control input-sm" ng-init="property.details.area.builtUp.units='Units Drop Down'" name="builtUpUnits" ng-model="property.details.area.builtUp.units" ng-required='true'>
-                                        <option>Units Drop Down</option>
-										<option>Sq. Feet</option>
-										<option>Sq. Meter</option>
-										<option>Sq. Yards</option>
-										<option>Aankadam</option>
-										<option>Acres</option>
-										<option>Ares</option>
-										<option>Bigha</option>
-										<option>Biswa</option>
-										<option>Chataks</option>
-										<option>Cents</option>
-										<option>Chataks</option>
-										<option>Guntha</option>
-										<option>Grounds</option>
-										<option>Hectares</option>
-										<option>Kanal</option>
-                                        <option>Kottah</option>
-                                        <option>Marla</option>
-										<option>Perch</option>
-										<option>Rood</option>
+                                    <select class="form-control input-sm" ng-options="unit as unit for unit in unitOptions" name="builtUpUnits" ng-model="property.details.area.builtUp.units" ng-required='true'>
+                                        <option value="" selected>Units Drop Down</option>
                                     </select>
 									<p ng-show="form1.builtUpUnits.$invalid && (!form1.builtUpUnits.$pristine || form1.submitted)" class="label errorText">select Built-up units</p>
                                 </div>
@@ -203,27 +186,8 @@
 									<p ng-show="form1.plotOrLand.$error.pattern" class="label errorText">Enter valid Plot/Land</p>
                                 </div>
                                 <div class="col-sm-2">
-                                    <select class="form-control input-sm" ng-init="property.details.area.plotOrLand.units='Units Drop Down'" name="plotOrLandUnits" ng-model="property.details.area.plotOrLand.units" ng-required='true'>
-                                        <option>Units Drop Down</option>
-										<option>Sq. Feet</option>
-										<option>Sq. Meter</option>
-										<option>Sq. Yards</option>
-										<option>Aankadam</option>
-										<option>Acres</option>
-										<option>Ares</option>
-										<option>Bigha</option>
-										<option>Biswa</option>
-										<option>Chataks</option>
-										<option>Cents</option>
-										<option>Chataks</option>
-										<option>Guntha</option>
-										<option>Grounds</option>
-										<option>Hectares</option>
-										<option>Kanal</option>
-                                        <option>Kottah</option>
-                                        <option>Marla</option>
-										<option>Perch</option>
-										<option>Rood</option>
+                                    <select class="form-control input-sm" ng-options="unit as unit for unit in unitOptions" name="plotOrLandUnits" ng-model="property.details.area.plotOrLand.units" ng-required='true'>
+                                        <option value="">Units Drop Down</option>
                                     </select>
 									<p ng-show="form1.plotOrLandUnits.$invalid && (!form1.plotOrLandUnits.$pristine || form1.submitted)" class="label errorText">select Plot/Land units</p>
                                 </div>
@@ -239,27 +203,8 @@
                                 </div>
 
                                 <div class="col-sm-2">
-                                    <select class="form-control input-sm" ng-init="property.details.area.carpet.units='Units Drop Down'" name="carpetUnits" ng-model="property.details.area.carpet.units" ng-required='false'>
-                                        <option>Units Drop Down</option>
-										<option>Sq. Feet</option>
-										<option>Sq. Meter</option>
-										<option>Sq. Yards</option>
-										<option>Aankadam</option>
-										<option>Acres</option>
-										<option>Ares</option>
-										<option>Bigha</option>
-										<option>Biswa</option>
-										<option>Chataks</option>
-										<option>Cents</option>
-										<option>Chataks</option>
-										<option>Guntha</option>
-										<option>Grounds</option>
-										<option>Hectares</option>
-										<option>Kanal</option>
-                                        <option>Kottah</option>
-                                        <option>Marla</option>
-										<option>Perch</option>
-										<option>Rood</option>
+                                    <select class="form-control input-sm" ng-options="unit as unit for unit in unitOptions" name="carpetUnits" ng-model="property.details.area.carpet.units" ng-required='false'>
+                                        <option value="">Units Drop Down</option>
                                     </select>
 									<p ng-show="form1.carpetUnits.$invalid && (!form1.carpetUnits.$pristine || form1.submitted)" class="label errorText">select Carpet units</p>
                                 </div>
@@ -269,8 +214,8 @@
 									<p ng-show="form1.perUnitPrice.$error.pattern" class="label errorText">Enter valid unit price</p>
                                 </div>
                                 <div class="col-sm-2">
-                                    <select class="form-control input-sm" ng-init="property.details.area.type='AreaType Drop Down'" name="areaType" ng-model="property.details.area.type" ng-required='true'>
-                                        <option>AreaType Drop Down</option>
+                                    <select class="form-control input-sm" name="areaType" ng-model="property.details.area.type" ng-required='true'>
+                                        <option value="" selected>AreaType Drop Down</option>
                                         <option>Carpet</option>
                                         <option>Built-up</option>
                                         <option>Plot/Land</option>

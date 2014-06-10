@@ -23,11 +23,13 @@
       <div class="modal-body">
         <div class="form-group">
 		  <select class="form-control selectpicker input-sm" data-width="100%" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)"  ng-model="city">
-           </select>
+			<option value="">Select City</option>
+		   </select>
         </div>
         <div class="form-group">
 			<select class="form-control input-sm" ng-options="locality as locality for locality in localities" name="locality" ng-model="locality">
-			  </select>
+				<option value="">Select Locality</option>
+			</select>
         </div>
       </div>
       <div class="modal-footer">
