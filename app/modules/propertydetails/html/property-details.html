@@ -1,3 +1,23 @@
+<div class="container addBlock">
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="add"></div>
+        </div>
+        <div class="col-sm-6">
+          <div class="add"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="locationDisplay">
+        <h3><i class="fa fa-caret-down"></i>{{city}}</h3>
+        <h4>{{locality}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
   <div class="searchForm">
   <div class="row">
@@ -111,8 +131,8 @@
         <tr>
             <td>Per Unit price:</td>
 
-            <td><label>24 sqft<br>
-            Built-up area</label></td>
+            <td><label>245/sqft (Built-up area)
+            </label></td>
 
             <td>plot/land Area:</td>
 
@@ -130,16 +150,7 @@
             <td><label>4 years 4 months</label></td>
         </tr>
 
-        <tr>
-            <td>Total Price:</td>
-
-            <td><label>$12,000</label></td>
-
-            <td><i class="fa fa-check-circle"></i> <label>Negotiable</label></td>
-
-            <td><i class="fa fa-check-circle"></i> <label>Registration Fee</label></td>
-        </tr>
-
+        
         <tr>
             <td>Monthly rent:</td>
 
@@ -183,15 +194,28 @@
         </tr>
 
         <tr>
-            <td>Address:</td>
+            <td class="overvie-address">Address:</td>
 
-            <td><label>1234 Road, jntu</label></td>
+            <td class="overvie-address"><label>1234 Road, jntu<br/>Kukatpally</label></td>
 
-            <td>Kukatpally</td>
+            <td class="overvie-address">&nbsp;</td>
 
-            <td><label>New /Resale<br>
+            <td><i class="fa fa-check-circle"></i><label>New /Resale<br>
             Under construction</label></td>
         </tr>
+		 </table>
+		 
+		 	<table class="table table-borderless">
+		<tr>
+            <td>Total Price:</td>
+
+            <td><label>$12,000</label></td>
+
+            <td><i class="fa fa-check-circle"></i> <label>Negotiable</label></td>
+
+            <td><i class="fa fa-check-circle"></i> <label>Registration Fee included</label></td>
+        </tr>
+
     </table>
 	</div>
 
@@ -246,13 +270,15 @@
         </tr>
 
         <tr>
-            <td>Vastu Complaint:</td>
-
-            <td><label>Yes</label></td>
-
-            <td>Flooring:</td>
+		     <td>Flooring:</td>
 
             <td><label>Marble</label></td>
+			
+            <td><i class="fa fa-check-circle"></i><label>Furnished/ semi-furnished</label></td>
+
+            <td><i class="fa fa-check-circle"></i><label>4 Wheeler Visiting</label></td>
+
+            
         </tr>
 
         <tr>
@@ -265,18 +291,10 @@
             <i class="fa fa-check-circle"></i><label>covered/uncovered</label></td>
 
             <td><i class="fa fa-check-circle"></i><label>common</label><br>
-                <i class="fa fa-check-circle"></i>common</label></td>
+                <i class="fa fa-check-circle"></i><label>common</label></td>
         </tr>
 
-        <tr>
-            <td><i class="fa fa-check-circle"></i><label>Furnished/ semi-furnished</label></td>
-
-            <td><i class="fa fa-check-circle"></i><label>generator Backup</label></td>
-
-            <td><i class="fa fa-check-circle"></i><label>Gated Community</label></td>
-
-            <td><i class="fa fa-check-circle"></i><label>4 Wheeler Visiting</label></td>
-        </tr>
+        
     </table>
 				</div>
             </div>
@@ -311,10 +329,9 @@
             </div>
             <div class="tab-pane active" id="tab4" ng-show="detailsSubtab==='Contact'">
               <h4>Contact</h4>
-<div class="wrap-details">
 	<div class="row" id="contactdetails">
 	
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
 	   
 	   </div>
 	
@@ -322,35 +339,53 @@
 	   <img src="anil.jpg" width="150px" height="150px" />
 	   </div>
 	   
-	  <!-- <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">  
-	   </div> -->
+	  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">  
+	   </div> 
         
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" > 
+<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" > 
 		
 		  <p>
-				<i class="fa fa-user"></i>Name: <label class="contact-label">Vinod</label>
+				<i class="fa fa-user"></i>Name : <label class="contact-label">Vinod</label>
 			</p>
 		   <p>
-				<i class="fa fa-envelope"></i>E-mail: <label class="contact-label"><a href="mailto:contact@giftsear.ch">contact@fathome.ch</a></label>
+				<i class="fa fa-envelope"></i>E-mail : <label class="contact-label"><a href="mailto:contact@giftsear.ch">contact@fathome.ch</a>,
+				<a href="mailto:contact@giftsear.ch">contact@fathome.ch</a></label>
 			</p>
 			
 			<p>
-				<i class="fa fa-phone"></i> Phone No: <label class="contact-label">+91 9999999999</label>
+				<i class="fa fa-phone"></i> Phone No : <label class="contact-label">+91 9999999999, 9988776644</label>
 			</p>
 			 <p>
 				<i class="fa fa-user"></i> <label class="contact-label">Owner, Agent, Builder</label>:</p>
 		  
 			<p>
-				<i class="fa  fa-clock-o"></i> Best time to call: <label class="contact-label">[9 to 5]</label>
+				<i class="fa  fa-clock-o"></i> Best time to call : <label class="contact-label">[9 to 5]</label>
 			</p>
 			<p>
-				<i class="fa  fa-road"></i> Best way to reach: <label class="contact-label">[P (9999999999) or E (vnod@vinod.com)]</label>
+				<i class="fa  fa-road"></i> Best way to reach : <label class="contact-label">[P (9999999999) or E (vnod@vinod.com)]</label>
+			</p>
+			
+			<p>
+				<i class="fa fa-user"></i> Agent Company Name : <label class="contact-label">FatHome</label>
+			</p>
+			
+			<p>
+				<i class="fa fa-envelope"></i> Agent Company Address : <label class="contact-label">kukatpally, Hyderabad</label>
+			</p>
+			
+			
+			<p>
+				<i class="fa fa-user"></i> Builder Company Name : <label class="contact-label">FatHome</label>
+			</p>
+			
+			<p>
+				<i class="fa fa-envelope"></i> Builder Company Address : <label class="contact-label">kukatpally, Hyderabad</label>
 			</p>
 		
 		</div>
     
 		</div>
-				</div>
+				
 		  
 
             </div>

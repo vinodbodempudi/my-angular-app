@@ -149,7 +149,7 @@ footer{ text-align:center; padding-bottom:100px;}
 .list-view:hover .content .btn-group{ visibility:visible}
 .lists-view{ overflow:hidden; overflow-y:auto; max-height:452px}
 
-#signin,#account,#contacts{ z-index:99999;}
+#signin,#account,#contact,#feedback{ z-index:99999;}
 #signin .modal-dialog,#account .modal-dialog{ width:500px;}
 #signin .form-group,#account .form-group{margin-left:-5px; margin-right:-5px;}
 #signin .modal-body,#account .modal-body{ margin-bottom:0; padding-bottom:0; border-bottom:none}
@@ -213,16 +213,19 @@ color:#da4834;
 
 /* Buy Rent css start....*/
 .switch-light span {
-        color:#fff; }
+        color:#FFCC00; }
 		.switch-light span span:last-child{
         color:#333333; }
 		.switch-light input:checked ~ span span {
         color:#333333; }
 		.switch-light input:checked ~ span span:last-child {
-        color:#fff; }
+        color:#FFCC00; }
 
 .switch-light .btn-success{
-	background-image: -webkit-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: -moz-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: -o-linear-gradient(bottom, #159CEB, #2DB1FF); background-image: linear-gradient(to top, #159CEB, #2DB1FF); border-color:#159CEB; color:#ffcc00;
+	background-image: -webkit-linear-gradient(bottom, #525252, #404040); 
+	background-image: -moz-linear-gradient(bottom, #525252, #404040); 
+	background-image: -o-linear-gradient(bottom, #525252, #404040);
+	background-image: linear-gradient(to top, #525252, #404040); border-color:#000000;  color:#FFCC15 !important;
 }
 /* Buy Rent css End ....*/
 
@@ -252,8 +255,10 @@ color:#da4834;
 
 
 /* Details page*/
-/* table.table-borderless tbody tr td:nth-child(odd){text-align:right;} */
 
+ table.table-borderless tbody tr td:nth-child(odd){text-align:right;} 
+ 
+ table.table-borderless tbody tr td:nth-child(even){padding-left:3%;} 
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     background-color: #404040;
@@ -441,4 +446,51 @@ color: #a94442;
   border-color: #a94442;
   outline-color: #a94442;
 }
+
+/*Register start*/
+.agentphoto{position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;}
+
+#contactdetails label.move{padding-left:18px;}
+
+.panellabel label{font-size:13px;}
+.from{text-align: left !important; }
+.frommain{text-align: left !important; width: 13%;}
+.fromto{text-align:left !important; width:4.2% !important;}
+input.from{text-align:left !important;}
+.ampm{text-align:right !important; width:2.2% !important; padding-left:0px;}
+.bcompanyadd{text-align:left !important; width:18%;}
+/*Register end*/
+
+/*Contact page start*/
+.iconDetails {
+ margin-right:2%;
+
+float:left; 
+height:40px;
+width:40px;	
+clear:right;
+} 
+.flag label{padding-top:3%; font-size:15px;}
+
+/*Contact page end*/
+
+/*Feedback page start*/
+.optional{ color: #333333;
+    font-size: 11px;
+    font-weight: bold;
+    opacity: 0.5;
+    padding-left: 3.5%; 
+}
+.thankyou{color:#a94442;font-weight:bold;}
+.feedbackformgap{margin-bottom:20px;}
+/*Feedback page end*/
+
+/*Select city page start*/
+
+.selectCityModal{width:400px;}
+.selectCityModalContent{margin-top:0px; margin-bottom:0px;}
+.selectCityModalFooter{margin-top:0px; padding-top:0px;}
+
+/*Select city page end*/
 

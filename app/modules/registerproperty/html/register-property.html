@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container panellabel">
     <div class="row" ng-init="showForm1=true;showForm2=false;showForm3=false;">
         <div class="col-sm-12">
             <h3>Enter your details</h3>
@@ -41,7 +41,16 @@
                                     <input type="text" ng-model="property.user.name" name="userName" ng-required="true" class="form-control input-sm" placeholder="Name">
                                     <p ng-show="form1.userName.$invalid && (!form1.userName.$pristine || form1.submitted)" class="label errorText">enter name</p>
                                 </div>
-                                <div class="clearfix"></div>
+								<label class="col-sm-2 control-label" ng-show="property.user.type==='Agent'">Agent Photo:</label>
+								<label class="col-sm-2 control-label" ng-show="property.user.type==='Builder'">Builder Company Logo:</label>
+								<div class="col-sm-2" style="position:relative;" ng-show="property.user.type==='Agent' || property.user.type==='Builder'">
+									<a class='btn btn-primary btn-sm' href='javascript:;'>
+										Choose File...
+										<input type="file" class="agentphoto" name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
+									</a>&nbsp;
+									<span class='label label-info' id="upload-file-info"></span>
+								</div>
+                               
                             </div>
                             <div class="form-group" ng-class="{'has-error':form1.email.$invalid && !form1.email.$pristine}">
                                 <label class="col-sm-2 control-label">Email:</label>
@@ -85,6 +94,44 @@
                                     <p ng-show="form1.locality.$invalid && (!form1.locality.$pristine || form1.submitted)" class="label errorText">select locality</p>
                                 </div>
                             </div>
+							<div class="form-group">
+						  <label class="col-sm-2 control-label">Best time to call:</label>
+							<label class="col-sm-1 control-label fromto">From</label>
+							<div class="col-sm-1">
+							  <select class="form-control input-sm" ng-model="property.user.besTimeToCall.from">					
+								  <option>01</option>
+								  <option>02</option>
+								</select>					
+							</div>
+							<label class="col-sm-1 control-label fromto">To</label>
+							<div class="col-sm-1">
+							  <select class="form-control input-sm" ng-model="property.user.besTimeToCall.to">
+									<option>01</option>
+								  <option>02</option>
+								</select>
+							</div>
+							<label class="col-sm-2 control-label">Best way to reach:</label>
+							<div class="col-sm-2">
+							  <select class="form-control input-sm" ng-model="property.user.besWayToReach">
+									<option>select option</option>
+								  <option>email</option>
+								  <option>phone</option>
+								</select>
+							</div>
+						  </div>
+						  
+						   <div class="form-group" ng-show="property.user.type==='Agent' || property.user.type==='Builder'">
+							<label class="col-sm-2 control-label" ng-show="property.user.type==='Agent'">Agent Company Name:</label>
+							<label class="col-sm-2 control-label" ng-show="property.user.type==='Builder'">Builder Company Name:</label>
+							<div class="col-sm-3">
+							  <input type="text" class="form-control input-sm" ng-model="property.user.companyName" placeholder="Company Name">
+							</div>
+							<label class="col-sm-2 control-label bcompanyadd" ng-show="property.user.type==='Agent'">Agent Company address:</label>
+							<label class="col-sm-2 control-label bcompanyadd" ng-show="property.user.type==='Builder'">Builder Company address:</label>
+							<div class="col-sm-3">
+							  <input type="text" class="form-control input-sm" ng-model="property.user.companyAddress" placeholder="Company address">
+							</div>
+						  </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
@@ -251,10 +298,20 @@
 									<input type="text" date-picker ng-model="property.details.date"  readonly="" style="cursor:text" ng-required="false" class="form-control input-sm" placeholder="Enter Date"/>
 									<p ng-show="form1.date.$invalid && (!form1.date.$pristine || form1.submitted)" class="label errorText">select date</p>
                                 </div>
-                                <div class="col-sm-2">
-                                    <input type="number" class="form-control input-sm" name="age" ng-model="property.details.ageOfProperty" ng-required='false' placeholder="Age of Property">
-									<p ng-show="form1.age.$invalid && (!form1.age.$pristine || form1.submitted)" class="label errorText">Enter age of Property</p>
-                                </div>
+                                <label class="col-sm-2 control-label">Age of Property</label>
+								<div class="col-sm-1">
+									<select class="form-control input-sm">
+									<option value="Years">Y</option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+									</select>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control input-sm">
+										 <option value="Months">M</option>
+										<option value="2014">01</option>
+									</select>
+								</div>
                             </div>
 							
 							<div ng-show="property.details.mode==='Sell'">
@@ -321,13 +378,17 @@
 							<div ng-show="property.details.mode==='Rent'">
 								<div class="form-group">
 									<label class="col-sm-2 control-label">Monthly Rent:</label>
-									<div class="col-sm-3">
+									<div class="col-sm-2">
 										<input type="text" ng-pattern=/[0-9]/ class="form-control input-sm" name="monthlyRent" ng-model="property.details.monthlyRent" ng-required="property.details.mode==='Rent'" placeholder="Rent">
 										<p ng-show="form1.submitted && form1.monthlyRent.$error.required" class="label errorText">Enter monthly rent</p>
 										<p ng-show="form1.monthlyRent.$error.pattern" class="label errorText">Enter valid monthly rent</p>
 									</div>
-									<label class="col-sm-2 control-label">Deposit:</label>
-									<div class="col-sm-3">
+									<label class="col-sm-1 control-label frommain">Maintenance Fee:</label>
+									<div class="col-sm-2">
+									  <input type="text" class="form-control input-sm" placeholder="Maintenance Fee">
+									</div>
+									<label class="col-sm-1 control-label from">Deposit:</label>
+									<div class="col-sm-2">
 										<input type="text" class="form-control input-sm" name="deposit" ng-model="property.details.deposit" ng-required="false" placeholder="Deposit">
 										<p ng-show="form1.deposit.$invalid && (!form1.deposit.$pristine || form1.submitted)" class="label errorText">Enter deposit</p>
 									</div>
@@ -525,7 +586,7 @@
 									</select>
 								</div>
 							
-								<label class="col-sm-2 control-label">Security Systems</label>
+								<label class="col-sm-2 control-label from">Security Systems</label>
 								<div class="col-sm-2">
 									<select class="form-control input-sm">
 										<option>fire alarm</option>

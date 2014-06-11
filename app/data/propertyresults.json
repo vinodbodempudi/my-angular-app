@@ -9,7 +9,8 @@
     "locality": "KukatPally",
     "propertySubType": "Residentail",
     "date": "03 Oct, 2013",
-	"purpose":"BUY"
+	"purpose":"BUY",
+	"type":"Sell"
   },
   {
 	"id":"1",
@@ -21,7 +22,8 @@
     "locality": "KukatPally",
     "propertySubType": "Residentail",
     "date": "03 Oct, 2013",
-	"purpose":"BUY"
+	"purpose":"BUY",
+	"type":"Rent"
   },
   {
 	"id":"2",
@@ -33,6 +35,7 @@
     "locality": "KukatPally",
     "propertySubType": "Apartment",
     "date": "02 Oct, 2013",
-	"purpose":"BUY"
+	"purpose":"BUY",
+	"type":"Rent"
   }
 ]
