@@ -460,6 +460,10 @@ color: #a94442;
 input.from{text-align:left !important;}
 .ampm{text-align:right !important; width:2.2% !important; padding-left:0px;}
 .bcompanyadd{text-align:left !important; width:18%;}
+
+.flooring, .maintenancefee {text-align:left !important; width:4.2% !important; padding-left:0px;}
+.security, .deposit{text-align:left !important; width:12.2% !important; }
+.bcompanyadd{text-align:left !important; width:18%;}
 /*Register end*/
 
 /*Contact page start*/

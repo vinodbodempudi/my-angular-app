@@ -17,7 +17,7 @@ angular.module('propertyDetails', [])
 	
     propertyDetailsService.getPropertyDetails({'id':$routeParams.propertyId})
 		.success(function(data){
-			$scope.propertyDetails = data;
+			$scope.property = data;
 		}).error(function(e){
 			
 		});
@@ -25,8 +25,10 @@ angular.module('propertyDetails', [])
 
 }]).service('PropertyDetailsService',['$http',  function($http) {
 
+	var getDetailsURL = 'http://localhost:3000/properties'
+
     this.getPropertyDetails = function (request) {
-        return $http.get('data/propertydetails.json', request);
+        return $http.get(getDetailsURL+'/'+request.id);
     };
 
 }]);

@@ -101,70 +101,70 @@
         <tr>
             <td>Property Type:</td>
 
-            <td><label>Resident - Apartment</label></td>
+            <td><label>{{property.details.propertyType}} - {{property.details.propertySubType}}</label></td>
 
             <td>is for:</td>
 
-            <td><label>Sell / Rent</label></td>
+            <td><label>{{property.details.mode}}</label></td>
         </tr>
 
         <tr>
             <td>Beds:</td>
 
-            <td><label>4</label></td>
+            <td><label>{{property.details.bedRooms}}</label></td>
 
             <td>Baths:</td>
 
-            <td><label>2</label></td>
+            <td><label>{{property.details.bathRooms}}</label></td>
         </tr>
 
         <tr>
             <td>Build-up Area:</td>
 
-            <td><label>2456 sqft</label></td>
+            <td><label>{{property.details.area.builtUp.builtUp}} {{property.details.area.builtUp.units}}</label></td>
 
             <td>Carpet Area:</td>
 
-            <td><label>1234 sqft</label></td>
+            <td><label>{{property.details.area.carpet.carpet}} {{property.details.area.carpet.units}}</label></td>
         </tr>
 
         <tr>
             <td>Per Unit price:</td>
 
-            <td><label>245/sqft (Built-up area)
+            <td><label>{{property.details.area.perUnitPrice}}/sqft ({{property.details.area.type}})
             </label></td>
 
             <td>plot/land Area:</td>
 
-            <td><label>213422 sqft</label></td>
+            <td><label>{{property.details.area.plotOrLand.plotOrLand}} {{property.details.area.plotOrLand.units}}</label></td>
         </tr>
 
         <tr>
             <td>Availability:</td>
 
-            <td><label>Ready to Move<br>
-            05/04/14</label></td>
+            <td><label>{{property.details.availability}}<br>
+            {{property.details.date}}</label></td>
 
             <td>Age of property:</td>
 
-            <td><label>4 years 4 months</label></td>
+            <td><label>{{property.details.ageOfProperty.years}} years {{property.details.ageOfProperty.months}} months</label></td>
         </tr>
 
         
         <tr>
             <td>Monthly rent:</td>
 
-            <td><label>$1100</label></td>
+            <td><label>${{property.details.monthlyRent}}</label></td>
 
             <td>Deposit:</td>
 
-            <td><label>$10000</label></td>
+            <td><label>${{property.details.deposit}}</label></td>
         </tr>
 
         <tr>
             <td>Prefered Tenant:</td>
 
-            <td><label>No Restriction</label></td>
+            <td><label>{{property.details.preferredTenant}}</label></td>
 
             <td><i class="fa fa-check-circle"></i><label>Allow Non-veg</label></td>
 
@@ -174,22 +174,21 @@
         <tr>
             <td>Maintainance Fee:</td>
 
-            <td><label>$1000</label></td>
+            <td><label>${{property.details.maintenanceFee}}</label></td>
 
             <td>Commision:</td>
 
-            <td><label>2 months Rent<br>
-            $1000</label></td>
+            <td><label>{{property.details.commitionInDays}}<br>
+            ${{property.details.fixedPrice}}</label></td>
         </tr>
         <tr>
             <td class="overvie-address">Address:</td>
 
-            <td class="overvie-address"><label>1234 Road, jntu<br/>Kukatpally</label></td>
+            <td class="overvie-address"><label>{{property.details.address}}</label></td>
 
             <td class="overvie-address">&nbsp;</td>
 
-            <td><i class="fa fa-check-circle"></i><label>New /Resale<br>
-            Under construction</label></td>
+            <td><i class="fa fa-check-circle"></i><label>{{property.details.propertyType}}</label></td>
         </tr>
 		 </table>
 		 
@@ -197,11 +196,11 @@
 		<tr>
             <td>Total Price:</td>
 
-            <td><label>$12,000</label></td>
+            <td><label>${{property.details.price.price}}</label></td>
 
-            <td><i class="fa fa-check-circle"></i> <label>Negotiable</label></td>
+            <td><i class="fa fa-check-circle"></i> <label ng-show="property.details.price.negotiable">Negotiable</label></td>
 
-            <td><i class="fa fa-check-circle"></i> <label>Registration Fee included</label></td>
+            <td><i class="fa fa-check-circle"></i> <label ng-show="property.details.price.registrationFeeIncluded">Registration Fee included</label></td>
         </tr>
 
     </table>
@@ -220,75 +219,83 @@
         <tr>
             <td>Balconies:</td>
 
-            <td><label>1</label></td>
+            <td><label>{{property.specifications.balconies}}</label></td>
 
             <td>Additional Rooms:</td>
 
-            <td><label>pooja, Dining</label></td>
+            <td><label>{{property.specifications.additionalRooms}}</label></td>
         </tr>
 
         <tr>
             <td>Directional Facing:</td>
 
-            <td><label>East</label></td>
+            <td><label>{{property.specifications.directionalFacing}}</label></td>
 
             <td>Facing:</td>
 
-            <td><label>Pool, Mian Road</label></td>
+            <td><label>{{property.specifications.facing}}</label></td>
         </tr>
 
         <tr>
             <td>Floor Number:</td>
 
-            <td><label>4</label></td>
+            <td><label>{{property.specifications.floorNumber}}</label></td>
 
             <td>Total Floors:</td>
 
-            <td><label>10</label></td>
+            <td><label>{{property.specifications.totalFloor}}</label></td>
         </tr>
 		<tr>
             <td>No of Units<br>
             Available:</td>
 
-            <td><label>2</label></td>
+            <td><label>{{property.specifications.unitsAvailable}}</label></td>
 
             <td>Ownership Type:</td>
 
-            <td><label>Freehold</label></td>
+            <td><label>{{property.specifications.ownershipType}}</label></td>
         </tr>
         <tr>
             <td>Type of Electricity:</td>
 
-            <td><label>Phase 1</label></td>
+            <td><label>{{property.specifications.typeOfElectricity}}</label></td>
 
             <td>Security Systems:</td>
 
-            <td><label>Fire Alarm</label></td>
+            <td><label>{{property.specifications.securitySystem}}</label></td>
         </tr>
 
         <tr>
 		     <td>Flooring:</td>
 
-            <td><label>Marble</label></td>
+            <td><label>{{property.specifications.flooring}}</label></td>
 			
-            <td><i class="fa fa-check-circle"></i><label>Furnished/ semi-furnished</label></td>
+            <td><i class="fa fa-check-circle"></i><label>{{property.specifications.houseWith}}</label></td>
 
-            <td><i class="fa fa-check-circle"></i><label>4 Wheeler Visiting</label></td>
+            <td><i class="fa fa-check-circle"></i><label ng-show="property.specifications.parking.fourWheelerVisitors">4 Wheeler Visiting</label></td>
 
             
         </tr>
 
-        <tr>
+        <tr ng-show="property.specifications.parking.twoWheeler">
             <td>parking:</td>
 
             <td><label>2 wheeler<br>
             4 wheeler</label></td>
 
-            <td><i class="fa fa-check-circle"></i><label>covered/uncovered</label><br>
-            <i class="fa fa-check-circle"></i><label>covered/uncovered</label></td>
+            <td><i class="fa fa-check-circle"></i><label>{{property.specifications.parking.twoWheeler.type}}</label></td>
 
-            <td><i class="fa fa-check-circle"></i><label>common</label><br>
-                <i class="fa fa-check-circle"></i><label>common</label></td>
+            <td ng-show="property.specifications.parking.twoWheeler.common"><i class="fa fa-check-circle"></i><label>common</label></td>
+        </tr>
+		<tr ng-shoe="property.specifications.parking.fourWheeler">
+            <td></td>
+
+            <td><label>2 wheeler<br>
+            4 wheeler</label></td>
+
+            <td><i class="fa fa-check-circle"></i><label>{{property.specifications.parking.fourWheeler.type}}</label></td>
+
+            <td ng-show="property.specifications.parking.fourWheeler.common"><i class="fa fa-check-circle"></i><label>common</label></td>
         </tr>
 
         
@@ -300,22 +307,22 @@
 			<div class="wrap-details">
              <div class="row aminitieslist">
     
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Swimming pool </div>
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Play area </div>
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Health Facilities </div>
-    <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Recreation facilities </div>
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Maintenance staff </div>
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Security </div>
-	  <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Intercom </div>
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Club house</div>
-	  <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Swimming pool </div>
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Play area </div>
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Health Facilities </div>
-    <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Recreation facilities </div>
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Maintenance staff </div>
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Security </div>
-	  <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Intercom </div>
-      <div class="col-sm-4 col-4"><i class="fa fa-check-circle"></i>Club house</div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.swimmingPool"><i class="fa fa-check-circle"></i>Swimming pool </div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Play area </div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.healthFacilities"><i class="fa fa-check-circle"></i>Health Facilities </div>
+	  <div class="col-sm-4 col-4" ng-show="property.amenities.recreationFacilities"><i class="fa fa-check-circle"></i>Recreation facilities </div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.maintenanceStaff"><i class="fa fa-check-circle"></i>Maintenance staff </div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.security"><i class="fa fa-check-circle"></i>Security </div>
+	  <div class="col-sm-4 col-4" ng-show="property.amenities.intercom"><i class="fa fa-check-circle"></i>Intercom </div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.clubHouse"><i class="fa fa-check-circle"></i>Club house</div>
+	  <!--<div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Swimming pool </div>-->
+      <div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Play area </div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Health Facilities </div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Recreation facilities </div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Maintenance staff </div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Security </div>
+	  <div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Intercom </div>
+      <div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Club house</div>
       
     </div>
 	</div>
@@ -332,8 +339,8 @@
 	   
 	   </div>
 	
-       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 contactimage">
-	   <img src="anil.jpg" width="150px" height="150px" />
+       <div ng-show="property.user.image" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 contactimage">
+	   <img src="{{property.user.image}}" width="150px" height="150px" />
 	   </div>
 	   
 	  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">  
@@ -342,40 +349,39 @@
 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" > 
 		
 		  <p>
-				<i class="fa fa-user"></i>Name : <label class="contact-label">Vinod</label>
+				<i class="fa fa-user"></i>Name : <label class="contact-label">{{property.user.name}}</label>
 			</p>
 		   <p>
-				<i class="fa fa-envelope"></i>E-mail : <label class="contact-label"><a href="mailto:contact@giftsear.ch">contact@fathome.ch</a>,
-				<a href="mailto:contact@giftsear.ch">contact@fathome.ch</a></label>
+				<i class="fa fa-envelope"></i>E-mail : <label class="contact-label"><a href="{{property.user.email}}">{{property.user.email}}</a></label>
 			</p>
 			
 			<p>
-				<i class="fa fa-phone"></i> Phone No : <label class="contact-label">+91 9999999999, 9988776644</label>
+				<i class="fa fa-phone"></i> Phone No : <label class="contact-label">{{property.user.phoneNumber}}</label>
 			</p>
 			 <p>
-				<i class="fa fa-user"></i> <label class="contact-label">Owner, Agent, Builder</label>:</p>
+				<i class="fa fa-user"></i> <label class="contact-label">{{property.user.type}}</label>:</p>
 		  
 			<p>
-				<i class="fa  fa-clock-o"></i> Best time to call : <label class="contact-label">[9 to 5]</label>
+				<i class="fa  fa-clock-o"></i> Best time to call : <label class="contact-label">[{{property.user.besTimeToCall.from}} to {{property.user.besTimeToCall.to}}]</label>
 			</p>
 			<p>
-				<i class="fa  fa-road"></i> Best way to reach : <label class="contact-label">[P (9999999999) or E (vnod@vinod.com)]</label>
+				<i class="fa  fa-road"></i> Best way to reach : <label class="contact-label">property.user.besWayToReach</label>
 			</p>
 			
-			<p>
-				<i class="fa fa-user"></i> Agent Company Name : <label class="contact-label">FatHome</label>
+			<p ng-show="property.user.type==='Agent' && property.user.companyName">
+				<i class="fa fa-user"></i> Agent Company Name : <label class="contact-label">{{property.user.companyName}}</label>
 			</p>
 			
-			<p>
-				<i class="fa fa-envelope"></i> Agent Company Address : <label class="contact-label">kukatpally, Hyderabad</label>
+			<p ng-show="property.user.type==='Agent' && property.user.companyAddress">
+				<i class="fa fa-envelope"></i> Agent Company Address : <label class="contact-label">{{property.user.companyAddress}}</label>
 			</p>
 			
 			
-			<p>
+			<p ng-show="property.user.type==='Builder' && property.user.companyName">
 				<i class="fa fa-user"></i> Builder Company Name : <label class="contact-label">FatHome</label>
 			</p>
 			
-			<p>
+			<p ng-show="property.user.type==='Builder' && property.user.companyAddress">
 				<i class="fa fa-envelope"></i> Builder Company Address : <label class="contact-label">kukatpally, Hyderabad</label>
 			</p>
 		

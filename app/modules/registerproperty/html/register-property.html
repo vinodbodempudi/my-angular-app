@@ -162,7 +162,7 @@
                                 </div>
 								<label class="col-sm-1 control-label">Title:</label>
                                 <div class="col-sm-3">
-                                    <input type="text" ng-pattern=/[0-9]/ class="form-control input-sm" name="title" ng-model="property.details.title" ng-required='true' placeholder="Title">
+                                    <input type="text" class="form-control input-sm" name="title" ng-model="property.details.title" ng-required='true' placeholder="Title">
 									<p ng-show="form1.submitted && form1.title.$error.required" class="label errorText">Enter title</p>
                                 </div>
                             </div>
@@ -287,31 +287,33 @@
                                 <div class="col-sm-2">
                                     <div class="radio-inline">
                                         <label>
-                                            <input type="radio" value="Ready" name="availabilityOptions" ng-model="property.details.availability">Ready
+                                            <input type="radio" value="Ready to Move" name="availabilityOptions" ng-model="property.details.availability">Ready
                                         </label>
                                     </div>
                                     <div class="radio-inline" >
                                         <label>
-                                            <input type="radio" value="for Future" name="availabilityOptions" ng-model="property.details.availability">for Future
+                                            <input type="radio" value="Future" name="availabilityOptions" ng-model="property.details.availability">for Future
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-sm-2" ng-show="property.details.availability==='for Future'">
+                                <div class="col-sm-2" ng-show="property.details.availability==='Future'">
 									<input type="text" date-picker ng-model="property.details.date"  readonly="" style="cursor:text" ng-required="false" class="form-control input-sm" placeholder="Enter Date"/>
 									<p ng-show="form1.date.$invalid && (!form1.date.$pristine || form1.submitted)" class="label errorText">select date</p>
                                 </div>
                                 <label class="col-sm-2 control-label">Age of Property</label>
 								<div class="col-sm-1">
-									<select class="form-control input-sm">
-									<option value="Years">Y</option>
+									<select class="form-control input-sm" ng-model="property.details.ageOfProperty.years">
+										<option value="">Y</option>
+										<option value="00">00</option>
 										<option value="01">01</option>
 										<option value="02">02</option>
 									</select>
 								</div>
 								<div class="col-sm-1">
-									<select class="form-control input-sm">
-										 <option value="Months">M</option>
-										<option value="2014">01</option>
+									<select class="form-control input-sm" ng-model="property.details.ageOfProperty.months">
+										<option value="">M</option>
+										<option value="00">00</option>
+										<option value="01">01</option>
 									</select>
 								</div>
                             </div>
@@ -367,11 +369,12 @@
 										<p ng-show="form1.submitted && form1.monthlyRent.$error.required" class="label errorText">Enter monthly rent</p>
 										<p ng-show="form1.monthlyRent.$error.pattern" class="label errorText">Enter valid monthly rent</p>
 									</div>
-									<label class="col-sm-1 control-label frommain">Maintenance Fee:</label>
+									<label class="col-sm-1 control-label maintenancefee">Maintenance Fee:</label>
 									<div class="col-sm-2">
-									  <input type="text" class="form-control input-sm" placeholder="Maintenance Fee">
+									  <input type="text" ng-pattern=/[0-9]/ class="form-control input-sm" ng-model="property.details.maintenanceFee" placeholder="Maintenance Fee">
+									  <p ng-show="form1.monthlyRent.$error.pattern" class="label errorText">Enter valid Maintenance Fee</p>
 									</div>
-									<label class="col-sm-1 control-label from">Deposit:</label>
+									<label class="col-sm-1 control-label deposit">Deposit:</label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control input-sm" name="deposit" ng-model="property.details.deposit" ng-required="false" placeholder="Deposit">
 										<p ng-show="form1.deposit.$invalid && (!form1.deposit.$pristine || form1.submitted)" class="label errorText">Enter deposit</p>
@@ -480,14 +483,14 @@
                                 <div class="col-sm-2">
                                     <div class="radio-inline">
                                         <label>
-                                            <input type="radio">Furnished
+                                            <input type="radio" ng-model="property.specifications.houseWith" name="futnishedOrSemiFurnishedOptions" value="Furnished">Furnished
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="radio-inline">
                                         <label>
-                                            <input type="radio">Semi-Furnished
+                                            <input type="radio" ng-model="property.specifications.houseWith" name="futnishedOrSemiFurnishedOptions" value="Semi-Furnished">Semi-Furnished
                                         </label>
                                     </div>
                                 </div>
@@ -507,12 +510,12 @@
                                     </div>
                                     <div class="radio-inline">
                                         <label>
-                                            <input type="radio" name="twowheeler" ng-model="property.specifications.parking.twoWheeler.covered" id="covered1" value="covered">covered
+                                            <input type="radio" name="twowheeler" ng-model="property.specifications.parking.twoWheeler.type" id="covered1" value="covered">covered
                                         </label>
                                     </div>
                                     <div class="radio-inline">
                                         <label>
-                                            <input type="radio" name="twowheeler" id="uncovered1" ng-model="property.specifications.parking.twoWheeler.uncovered" value="uncovered">uncovered
+                                            <input type="radio" name="twowheeler" id="uncovered1" ng-model="property.specifications.parking.twoWheeler.type" value="uncovered">uncovered
                                         </label>
                                     </div>
                                     <div class="checkbox-inline">
@@ -529,12 +532,12 @@
                                     </div>
                                     <div class="radio-inline">
                                         <label>
-                                            <input type="radio" name="fourwheeler" id="covered2" ng-model="property.specifications.parking.fourWheeler.covered" value="covered">covered
+                                            <input type="radio" name="fourwheeler" id="covered2" ng-model="property.specifications.parking.fourWheeler.type" value="covered">covered
                                         </label>
                                     </div>
                                     <div class="radio-inline">
                                         <label>
-                                            <input type="radio" name="fourwheeler" id="uncovered2" ng-model="property.specifications.parking.fourWheeler.uncovered" value="uncovered">uncovered
+                                            <input type="radio" name="fourwheeler" id="uncovered2" ng-model="property.specifications.parking.fourWheeler.type" value="uncovered">uncovered
                                         </label>
                                     </div>
                                     <div class="checkbox-inline">
@@ -554,25 +557,25 @@
                             <div class="form-group">
 								<label class="col-sm-2 control-label">Type of electricity</label>
 								<div class="col-sm-2">
-									<select class="form-control input-sm">
+									<select class="form-control input-sm" ng-model="property.specifications.typeOfElectricity">
 										<option>phase I</option>
 										<option>phase II</option>
 										<option>phase III</option>
 									</select>
 								</div>					
 												
-								<label class="col-sm-1 control-label">Flooring</label>
+								<label class="col-sm-1 control-label flooring">Flooring</label>
 								<div class="col-sm-2">
-									<select class="form-control input-sm">
+									<select class="form-control input-sm" ng-model="property.specifications.flooring">
 										<option>Marble</option>
 										<option>Normal Tiles</option>
 										<option>Vitrified Tiles</option>
 									</select>
 								</div>
 							
-								<label class="col-sm-2 control-label from">Security Systems</label>
+								<label class="col-sm-1 control-label security">Security Systems</label>
 								<div class="col-sm-2">
-									<select class="form-control input-sm">
+									<select class="form-control input-sm" ng-model="property.specifications.securitySystem">
 										<option>fire alarm</option>
 										<option>burglar alarm</option>
 									</select>

@@ -1,6 +1,6 @@
 [
   {
-	"id":"1",
+	"_id":"1",
     "title": "Very good 5 Bedroom Home ..",
     "price": "50000",
     "bedRooms": 2,
@@ -13,7 +13,7 @@
 	"type":"Sell"
   },
   {
-	"id":"1",
+	"_id":"1",
     "title": "Spacioua 4 Bedroom Home ..",
     "price": "30000",
     "bedRooms": 2,
@@ -26,7 +26,7 @@
 	"type":"Rent"
   },
   {
-	"id":"2",
+	"_id":"2",
     "title": "Spacious 3 Bedroom Home ..",
     "price": "40000",
     "bedRooms": 3,
