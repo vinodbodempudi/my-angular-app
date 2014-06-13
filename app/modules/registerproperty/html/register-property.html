@@ -46,9 +46,11 @@
 								<div class="col-sm-2" style="position:relative;" ng-show="property.user.type==='Agent' || property.user.type==='Builder'">
 									<a class='btn btn-primary btn-sm' href='javascript:;'>
 										Choose File...
-										<input type="file" class="agentphoto" name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
+										<!--<input type="file" class="agentphoto" name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>-->
+										<input id="inputImage" type="file"  class="agentphoto" name="file_source" size="40" accept="image/*" image="property.user.image" />
 									</a>&nbsp;
 									<span class='label label-info' id="upload-file-info"></span>
+									<img ng-show="property.user.image" ng-src="{{property.user.image}}" width="100" height="100"/> 
 								</div>
                                
                             </div>
@@ -356,24 +358,6 @@
 									</div>
 									<p ng-show="form1.propertyTypeOptions.$invalid && (!form1.propertyTypeOptions.$pristine || form1.submitted)" class="label errorText">select property state</p>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">No of Units Available</label>
-									<div class="col-sm-1">
-										<select class="form-control input-sm" ng-model="property.details.unitsAvailable">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-										</select>
-									</div>
-									<label class="col-sm-2 control-label">Ownership type:</label>
-									<div class="col-sm-2">
-										<select class="form-control input-sm" ng-model="property.details.ownershipType">
-											<option>Freehold</option>
-											<option>leasehold</option>
-											<option>Power of Attorney</option>
-										</select>
-									</div>
-								</div>
 							</div>
 							<div ng-show="property.details.mode==='Rent'">
 								<div class="form-group">
@@ -591,6 +575,24 @@
 									<select class="form-control input-sm">
 										<option>fire alarm</option>
 										<option>burglar alarm</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">No of Units Available</label>
+								<div class="col-sm-1">
+									<select class="form-control input-sm" ng-model="property.specifications.unitsAvailable">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+									</select>
+								</div>
+								<label class="col-sm-2 control-label">Ownership type:</label>
+								<div class="col-sm-2">
+									<select class="form-control input-sm" ng-model="property.specifications.ownershipType">
+										<option>Freehold</option>
+										<option>leasehold</option>
+										<option>Power of Attorney</option>
 									</select>
 								</div>
 							</div>

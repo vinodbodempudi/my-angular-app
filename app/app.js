@@ -9,7 +9,8 @@ var app = angular.module('fatHomesApp', [
   'home',
   'propertyResults',
   'propertyDetails',
-  'login'
+  'login',
+  'imageupload'
 ]);
   
 app.config(function ($routeProvider) {
