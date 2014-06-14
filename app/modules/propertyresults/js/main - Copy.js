@@ -9,7 +9,7 @@ angular.module('propertyResults', [])
 	$scope.sortOptions = fatHomeUtil.propertySortOptions();
 	
 	
-	/*var initializeMap = function () {
+	var initializeMap = function () {
 	  var mapOptions = {
 							zoom: 8,
 							center: new google.maps.LatLng(17.4833, 78.4167),
@@ -18,46 +18,25 @@ angular.module('propertyResults', [])
 	  map = new google.maps.Map(document.getElementById('map'), mapOptions);
 	}
 	
-	initializeMap();*/
+	initializeMap();
 	
     var getPropertiesRequest = {city:$routeParams.city, locality:$routeParams.locality};
 
 	propertyResultsService.getProperties(getPropertiesRequest)
 		.success(function(data){
-			$scope.properties = data;
+			$scope.propertyResults = data;
 		}).error(function(e){
 			
 		});
 	
-	
-	$scope.getPropertyDetails = function(propertyId) {
-	
-		propertyResultsService.getPropertyDetails(propertyId)
-		.success(function(data){
-			$scope.showPage = 'propertyDetails';
-			$scope.property = data;
-		}).error(function(e){
-			
-		});
-	
-	};
-	$scope.showPropertyResults = function() {
-		$scope.showPage = 'propertyResults';
-	}
+
 }]).service('PropertyResultsService',['$http',  function($http) {
 	//var getPropertiesURL = 'http://localhost:3000/properties';
-	//var getPropertyDetailsURL = 'http://localhost:3000/properties';
 	
 	var getPropertiesURL = 'data/propertyresults.json';
-	var getPropertyDetailsURL = 'data/propertyresults.json';
 	
     this.getProperties = function (getPropertiesRequest) {
         return $http.get(getPropertiesURL, getPropertiesRequest);
-    };
-	
-	this.getPropertyDetails = function (propertyId) {
-        //return $http.get(getPropertyDetailsURL+'/'+propertyId);
-		return $http.get(getPropertyDetailsURL);
     };
 
 }]).filter('filterPropertiesResults', [function () {
@@ -114,55 +93,6 @@ angular.module('propertyResults', [])
     if(reverse) filtered.reverse();
     return filtered;
   };
-}).directive('propertyResults', function() {
-	return {
-		replace:true,
-		restrict: 'EA',
-		/*scope : {
-			properties:"=",
-			filter:"="
-		},*/
-		templateUrl: 'modules/propertyresults/html/property-results-partial.html',
-		link:function(scope) {
-		
-			var initializeMap = function () {
-			var mapOptions = {
-									zoom: 8,
-									center: new google.maps.LatLng(17.4833, 78.4167),
-									mapTypeId: google.maps.MapTypeId.ROADMAP
-								};
-			  map = new google.maps.Map(document.getElementById('map'), mapOptions);
-			}
-			
-			initializeMap();
-		
-		
-		}
-	};
-}).directive('propertyDetails', function() {
-	return {
-		replace:true,
-		restrict: 'EA',
-		/*scope : {
-			property:"="
-		},*/
-		templateUrl: 'modules/propertydetails/html/property-details.html',
-		link:function(scope) {
-		
-			var initializeMap = function () {
-			var mapOptions = {
-									zoom: 8,
-									center: new google.maps.LatLng(17.4833, 78.4167),
-									mapTypeId: google.maps.MapTypeId.ROADMAP
-								};
-			  map = new google.maps.Map(document.getElementById('map'), mapOptions);
-			}
-			
-			initializeMap();
-		
-		
-		}
-	};
 });
 
 

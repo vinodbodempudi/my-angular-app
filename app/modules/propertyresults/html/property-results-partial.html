@@ -1,0 +1,66 @@
+<div class="container-fluid results">
+  <div class="row maprow"> 
+    <div class="col-md-4 col-md-push-8 searchresults">
+      <div class="list">
+    <div class="moveright">
+        <div class="input-group filter "> <span class="input-group-addon text-info">{{properties.length}} Results</span> <span class="input-group-addon">Sort by:</span>
+          <select ng-options="sortOption.lable for sortOption in sortOptions" class="form-control selectpicker selectsort" ng-model="predicate">
+          </select>
+        </div>
+    </div>
+    
+        <div class="lists-view">
+          <div class="row">
+            <div ng-repeat="property in properties | orderBy:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search">
+              <div class="list-view">
+                <div class="image"> <img src="images/list1.png" alt="" /> </div>
+                <div class="content">
+                  <div class="row">
+                    <div class="col-xs-9">
+                      <h3><a href="" ng-click="getPropertyDetails(property._id);">{{property.title}}</a></h3>
+                    </div>
+                    <div class="col-xs-3 price">
+                      <h4><i class="fa fa-rupee"></i> <span>{{property.price}}</span></h4>
+                      <h5><span>{{property._size}}</span>/sqft</h5>
+                    </div>
+                  </div>
+                  <div class="row firstRow">
+                    <div class="col-xs-3"> <span>{{property.bedRooms}}</span> Beds </div>
+                    <div class="col-xs-3"> <span>{{property.bathRooms}}</span> Baths </div>
+                    <div class="col-xs-3"> <span>{{property._size}}</span> sqft </div>
+                  </div>
+                  <div class="row secondRow">
+                    <div class="col-xs-5"> <span>{{property.type}}</span> </div>
+                    <div class="col-xs-5"> <span>{{property.propertySubType}}</span> </div>
+                  </div>
+                  <div class="row customsocial">
+                    <div class="col-xs-8 text-right">
+                     <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-up"></i> Like</button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> Comment</button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-star-o"></i> Save</button>
+                      </div>
+                    </div>
+                    <div class="col-xs-4 dateright">
+                      <div class="text-right">{{property.date}}</div>
+                    </div>
+                  </div>
+                </div>
+        <div class="clearfix"></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 col-md-pull-4 mapresults">
+      <div class="mapContent">    
+      <div class="hidemap">
+      <button type="button" class="btn btn-info btn-xs"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
+      </div>
+        <div class="map" id="map"> </div>
+      </div>
+    </div>
+  </div>
+</div>

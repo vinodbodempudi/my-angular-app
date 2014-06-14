@@ -1,3 +1,59 @@
+<div class="container addBlock">
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="add"></div>
+        </div>
+        <div class="col-sm-6">
+          <div class="add"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="locationDisplay">
+        <h3><i class="fa fa-caret-down" ng-click="showSelectCitymodal=!showSelectCitymodal"></i>{{city}}</h3>
+        <h4>{{locality}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="searchForm">
+  <div class="row">
+	  <div class="col-md-1">
+        <label class="control-label">Filter By:</label>
+      </div>
+      <div class="col-md-2">
+        <select class="form-control selectpicker" ng-model="search.propertType">
+          <option>Property type</option>
+        </select>
+      </div>
+      <div class="col-md-1">
+        <select class="form-control selectpicker"  ng-model="search.beds">
+          <option>Beds</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group price"> <span class="input-group-addon"><i class="fa fa-rupee"></i></span>
+          <input type="text" class="form-control pull-left" placeholder="Min" ng-model="search.minPrice" maxlength="999999999">
+          <input type="text" class="form-control" placeholder="Max" ng-model="search.maxPrice" maxlength="999999999">
+        </div>
+      </div>
+      <div class="col-md-2">
+        <label class="switch-light well" onClick="">
+          <input type="checkbox" ng-model="search.purpose">
+          <span> <span>Buy</span> <span>Rent</span> </span> <a class="btn btn-success"></a> </label>
+      </div>
+      <div class="col-md-3 sqft">
+        <div class="input-group price "> <span class="input-group-addon input-group-addon_custom">SQFT</span>
+          <input type="text" class="form-control pull-left" placeholder="Min" ng-model="search.minSft">
+          <input type="text" class="form-control" placeholder="Max" ng-model="search.maxSft">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container-liquid results detail">
   <div class="hidemap">
     <button type="button" class="btn btn-info btn-xs"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
@@ -8,7 +64,7 @@
         <div class="row" style="height:30px;">
           <div class="col-sm-3">
             <div class="btn-group">
-            	<a class="btn btn-sm btn-default" href="" ng-click="showPropertyResults();"><i class="fa fa-arrow-circle-o-left"></i> Back to List</a>
+            	<a class="btn btn-sm btn-default" href="#"><i class="fa fa-arrow-circle-o-left"></i> Back to List</a>
             </div>
           </div>
          <!-- <div class="col-sm-9 text-right">
