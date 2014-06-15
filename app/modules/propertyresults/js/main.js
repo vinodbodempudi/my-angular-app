@@ -45,19 +45,19 @@ angular.module('propertyResults', [])
 		$scope.showPage = 'propertyResults';
 	}
 }]).service('PropertyResultsService',['$http',  function($http) {
-	//var getPropertiesURL = 'http://localhost:3000/properties';
-	//var getPropertyDetailsURL = 'http://localhost:3000/properties';
+	var getPropertiesURL = 'http://localhost:3000/properties';
+	var getPropertyDetailsURL = 'http://localhost:3000/properties';
 	
-	var getPropertiesURL = 'data/propertyresults.json';
-	var getPropertyDetailsURL = 'data/propertyresults.json';
+	//var getPropertiesURL = 'data/propertyresults.json';
+	//var getPropertyDetailsURL = 'data/propertyresults.json';
 	
     this.getProperties = function (getPropertiesRequest) {
-        return $http.get(getPropertiesURL, getPropertiesRequest);
+        return $http.get(getPropertiesURL+'/'+getPropertiesRequest.city+'/'+getPropertiesRequest.locality);
     };
 	
 	this.getPropertyDetails = function (propertyId) {
-        //return $http.get(getPropertyDetailsURL+'/'+propertyId);
-		return $http.get(getPropertyDetailsURL);
+        return $http.get(getPropertyDetailsURL+'/'+propertyId);
+		//return $http.get(getPropertyDetailsURL);
     };
 
 }]).filter('filterPropertiesResults', [function () {

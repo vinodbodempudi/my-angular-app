@@ -44,8 +44,8 @@ angular.module('registerProperty', [])
 
     $scope.registerProperty = function () {
 	
-		alert(angular.toJson($scope.property))
-		console.log(angular.toJson($scope.property));
+	   $scope.property.createdDate = new Date();
+	   console.log(angular.toJson($scope.property));
        registerPropertyService.registerProperty(angular.toJson($scope.property))
        	    .success(function(data){
 		    }).error(function(e){

@@ -2,13 +2,12 @@
   <div class="row maprow"> 
     <div class="col-md-4 col-md-push-8 searchresults">
       <div class="list">
-    <div class="moveright">
-        <div class="input-group filter "> <span class="input-group-addon text-info">{{properties.length}} Results</span> <span class="input-group-addon">Sort by:</span>
-          <select ng-options="sortOption.lable for sortOption in sortOptions" class="form-control selectpicker selectsort" ng-model="predicate">
-          </select>
-        </div>
-    </div>
-    
+		<div class="moveright">
+			<div class="input-group filter "> <span class="input-group-addon text-info">{{properties.length}} Results</span> <span class="input-group-addon">Sort by:</span>
+			  <select ng-options="sortOption.lable for sortOption in sortOptions" class="form-control selectpicker selectsort" ng-model="predicate">
+			  </select>
+			</div>
+		</div>
         <div class="lists-view">
           <div class="row">
             <div ng-repeat="property in properties | orderBy:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search">
@@ -30,7 +29,7 @@
                     <div class="col-xs-3" ng-show="property._size"> <span>{{property._size}}</span> sqft </div>
                   </div>
                   <div class="row secondRow">
-                    <div class="col-xs-5"> <span>{{property.type}}</span> </div>
+                    <div class="col-xs-5"> <span>{{property.mode}}</span> </div>
 					<div class="col-xs-4"> <i class="fa fa-map-marker"></i> <span>{{property.locality}}</span> </div>
                     <div class="col-xs-5"> <span>{{property.propertySubType}}</span> </div>
                   </div>
@@ -43,13 +42,12 @@
                       </div>
                     </div>
                     <div class="col-xs-4 dateright">
-                      <div class="text-right">{{property.date}}</div>
+                      <div class="text-right">{{property.createdDate}}</div>
                     </div>
                   </div>
                 </div>
-        <div class="clearfix"></div>
+				<div class="clearfix"></div>
               </div>
-
             </div>
           </div>
         </div>
