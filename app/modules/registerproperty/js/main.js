@@ -6,6 +6,17 @@ angular.module('registerProperty', [])
     
     $scope.property = {};
 	$scope.unitOptions = fatHomeUtil.unitOptions();
+	$scope.hours = fatHomeUtil.hoursDropDownValues();
+	$scope.ageOfPropertyOptions = fatHomeUtil.ageOfPropertyOptions();
+	$scope.noOfUnits = fatHomeUtil.noOfUnitsDropDownValues();
+	$scope.balconiesDropDownValues = fatHomeUtil.balconiesDropDownValues();
+	$scope.bedRoomsDropDownValues = fatHomeUtil.bedRoomsDropDownValues();
+	$scope.bathRoomsDropDownValues = fatHomeUtil.bathRoomsDropDownValues();
+	$scope.flooringDropDownValues = fatHomeUtil.flooringDropDownValues();
+	$scope.propertyTypes = fatHomeUtil.propertyTypes();
+	$scope.propertySubTypeMapper = fatHomeUtil.propertySubTypeMapper();
+	
+	
 	/*$scope.property.user = {};
 	$scope.property.user.emails = [''];
 	$scope.addEmail = function(){

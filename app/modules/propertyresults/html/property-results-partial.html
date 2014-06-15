@@ -21,16 +21,17 @@
                     </div>
                     <div class="col-xs-3 price">
                       <h4><i class="fa fa-rupee"></i> <span>{{property.price}}</span></h4>
-                      <h5><span>{{property._size}}</span>/sqft</h5>
+                      <h5 ng-show="property._size"><span>{{property._size}}</span>/sqft</h5>
                     </div>
                   </div>
                   <div class="row firstRow">
                     <div class="col-xs-3"> <span>{{property.bedRooms}}</span> Beds </div>
                     <div class="col-xs-3"> <span>{{property.bathRooms}}</span> Baths </div>
-                    <div class="col-xs-3"> <span>{{property._size}}</span> sqft </div>
+                    <div class="col-xs-3" ng-show="property._size"> <span>{{property._size}}</span> sqft </div>
                   </div>
                   <div class="row secondRow">
                     <div class="col-xs-5"> <span>{{property.type}}</span> </div>
+					<div class="col-xs-4"> <i class="fa fa-map-marker"></i> <span>{{property.locality}}</span> </div>
                     <div class="col-xs-5"> <span>{{property.propertySubType}}</span> </div>
                   </div>
                   <div class="row customsocial">

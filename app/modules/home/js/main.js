@@ -42,10 +42,148 @@ angular.module('home', [])
     };
 	
 	this.unitOptions = function () {
-        return ["Sq. Feet", "Sq. Meter", "Sq. Yards", "Aankadam", "Acres", "Ares",
-				"Bigha", "Biswa", "Chataks", "Cents", "Chataks", "Guntha",
-				"Grounds", "Hectares", "Kanal", "Kottah", "Marla", "Perch", "Rood"];
+        return ["Sq. Feet",
+				"Sq. Meter",
+				"Sq. Yards",
+				"Aankadam",
+				"Acres",
+				"Ares",
+				"Bigha",
+				"Biswa",
+				"Chataks",
+				"Cents",
+				"Chataks",
+				"Guntha",
+				"Grounds",
+				"Hectares",
+				"Kanal",
+				"Kottah",
+				"Marla",
+				"Perch",
+				"Rood"];
+    };
+	
+	this.getDropDownValues = function (maxValue) {
+		var hours = [];
+		for (var i = 0; i <= maxValue; i++) { 
+			if(i < 10) {
+				hours[i] = '0'+i;
+				continue;
+			}
+			hours[i] = i;
+		}
+        return hours;
+    };
+	
+	this.hoursDropDownValues = function () {
+        return this.getDropDownValues(23);
+    };
+	
+	this.noOfUnitsDropDownValues = function () {
+		var vales = [];
+		for (var i = 1; i <= 30; i++) { 
+			if(i < 10) {
+				vales[i] = '0'+i;
+				continue;
+			}
+			vales[i] = i;
+		}
+        return vales;
+    };
+	
+	this.bedRoomsDropDownValues = function () {
+        return this.getDropDownValues(9);
+    };
+	
+	this.bathRoomsDropDownValues = function () {
+        return this.getDropDownValues(9);
+    };
+	
+	this.flooringDropDownValues = function () {
+        return [
+			"Granite",
+			"Marble Flooring",
+			"Marbonite",
+			"Mosaic Tiles",
+			"Normal Tiles",
+			"Spartex Tiles",
+			"Virtified Tiles",
+			"Wooden, Ceramic"
+		];
+    };
+	
+	this.propertyTypes = function () {
+		return [
+			"Residential",
+			"Commercial"
+		];
+    };
+	
+	this.propertySubTypeMapper = function (){
+	
+		return {
+			"Residential": [
+				"Apartment",
+				"Individual House/Villa",
+				"Residential Land/Plot",
+				"Builder Floor",
+				"Pent House",
+				"Farm House",
+				"Service Apartment",
+				"Studio Apartment"
+			],
+			
+			"Commercial":[
+				"Office space/complex",
+				"Office in IT Park/SEZ",
+				"Commercial shops/showrooms",
+				"Shopping mall Space",
+				"Showrooms",
+				"Business Center",
+				"Commercial land/plots",
+				"Warehouse/Godown",
+				"Banquet Hall/Guest House",
+				"Hotel/Restaurant",
+				"Institutional land",
+				"Clinic/Hospital Building",
+				"Hotel Sites",
+				"Industrial Land/Plots",
+				"Industrial Building",
+				"Industrial Shed",
+				"Agricultural Land"
+			]
+		};
+	};
+	this.balconiesDropDownValues = function () {
+        var vales = [];
+		for (var i = 1; i <= 9; i++) { 
+			vales[i] = i;
+		}
+        return vales;
+    };
+	
+	
+	this.ageOfPropertyOptions = function () {
+		var years = [], months = [];
+		for (var i = 0; i <= 30; i++) { 
+			if(i < 10) {
+				years[i] = '0'+i;
+				continue;
+			}
+			years[i] = i;
+		}
 		
+		for (var i = 0; i <= 11; i++) { 
+			if(i < 10) {
+				months[i] = '0'+i;
+				continue;
+			}
+			months[i] = i;
+		}
+        return {
+			years:years,
+			months:months			
+		};
     };
 
 });

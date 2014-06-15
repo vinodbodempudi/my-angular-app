@@ -461,9 +461,14 @@ input.from{text-align:left !important;}
 .ampm{text-align:right !important; width:2.2% !important; padding-left:0px;}
 .bcompanyadd{text-align:left !important; width:18%;}
 
-.flooring, .maintenancefee {text-align:left !important; width:4.2% !important; padding-left:0px;}
-.security, .deposit{text-align:left !important; width:12.2% !important; }
+.flooring {text-align:left !important; width:4.2% !important; padding-left:0px;}
+.security{text-align:left !important; width:12.2% !important; }
 .bcompanyadd{text-align:left !important; width:18%;}
+
+.maintenancefee{text-align:left !important; width:12.2% !important; padding-left:0px;}
+.deposit{text-align:left !important; width:6.2% !important; }
+.mainfee{padding-left:0px !important; width:15%;}
+
 /*Register end*/
 
 /*Contact page start*/
@@ -498,3 +503,12 @@ clear:right;
 
 /*Select city page end*/
 
+.changelocal {
+background: url(p4.png) no-repeat no-repeat;
+width: 159px;
+height: 70px;
+position: absolute;
+right: -52px;
+z-index: 999999;
+top: 42px;
+}
