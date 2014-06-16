@@ -381,7 +381,8 @@
 										<p ng-show="form1.commitionInDays.$invalid && (!form1.commitionInDays.$pristine || form1.submitted)" class="label errorText">select commition in days</p>
 									</div>
 									<div class="col-sm-2" ng-show="property.details.commitionInDays==='Others'">
-										<input type="number" class="form-control input-sm" ng-model="property.details.fixedPrice" placeholder="Fixed Price">
+										<input type="text" ng-pattern=/^[0-9]+$/ name="fixedPrice" class="form-control input-sm" ng-model="property.details.fixedPrice" placeholder="Fixed Price">
+										<p ng-show="form1.fixedPrice.$error.pattern" class="label errorText">Enter valid fixed price</p>
 									</div>
 								</div>
 							</div>
@@ -393,7 +394,7 @@
                 </div>
             </form>
 
-            <form class="form-horizontal" role="form"  ng-show="showForm2">
+            <form class="form-horizontal" role="form" name="form2" ng-show="showForm2">
                 <div>
                     <div class="panel panel-default">
                         <div class="panel-heading"><strong>Specifications</strong>
@@ -456,11 +457,11 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <input type="text" ng-pattern=/^[0-9]+$/ name="floorNumber" class="form-control input-sm" ng-model="property.specifications.floorNumber" placeholder="Floor Number">
-									<p ng-show="form1.floorNumber.$error.pattern" class="label errorText">Enter valid floor number</p>
+									<p ng-show="form2.floorNumber.$error.pattern" class="label errorText">Enter valid floor number</p>
 								</div>
                                 <div class="col-sm-2">
                                     <input type="text" ng-pattern=/^[0-9]+$/ name="totalFloors" class="form-control input-sm" ng-model="property.specifications.totalFloor" placeholder="Total Floors">
-									<p ng-show="form1.totalFloors.$error.pattern" class="label errorText">Enter valid total floor</p>
+									<p ng-show="form2.totalFloors.$error.pattern" class="label errorText">Enter valid total floor</p>
 								</div>
                             </div>
                             <div class="form-group">

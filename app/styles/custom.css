@@ -512,3 +512,18 @@ right: -52px;
 z-index: 999999;
 top: 42px;
 }
+
+.searchForm .filtersdiv {
+width: 5%;
+}
+
+
+.searchForm .bedsfilter {
+width: 10.333333%;
+}
+
+
+.searchForm .filtersLabel {
+line-height: 2.3 !important;
+}
+

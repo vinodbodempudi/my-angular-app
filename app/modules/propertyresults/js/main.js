@@ -5,8 +5,10 @@ angular.module('propertyResults', [])
 .controller('PropertyResultsCtrl',['$scope', '$routeParams', 'PropertyResultsService', 'FatHomeUtil', function($scope, $routeParams, propertyResultsService, fatHomeUtil) {
     $scope.city = $routeParams.city;
 	$scope.locality = $routeParams.locality;
-	
+	$scope.properties = [];
 	$scope.sortOptions = fatHomeUtil.propertySortOptions();
+	$scope.bedRoomsDropDownValues = fatHomeUtil.bedRoomsDropDownValues();
+	$scope.propertyTypes = fatHomeUtil.propertyTypes();
 	
 	
 	/*var initializeMap = function () {
@@ -53,6 +55,7 @@ angular.module('propertyResults', [])
 	
     this.getProperties = function (getPropertiesRequest) {
         return $http.get(getPropertiesURL+'/'+getPropertiesRequest.city+'/'+getPropertiesRequest.locality);
+		//return $http.get(getPropertiesURL);
     };
 	
 	this.getPropertyDetails = function (propertyId) {
@@ -70,7 +73,7 @@ angular.module('propertyResults', [])
 					continue;
 				}
 				
-				if(filterOption.beds && filterOption.beds !== property.bedRooms) {
+				if(filterOption.beds && Number(filterOption.beds) !== Number(property.bedRooms)) {
 					continue;
 				}
 				
@@ -82,7 +85,7 @@ angular.module('propertyResults', [])
 					continue;
 				}
 				
-				if(filterOption.purpose && filterOption.purpose !== property.purpose) {
+				if(filterOption.purpose && "Rent" !== property.purpose) {
 					continue;
 				}
 								

@@ -12,7 +12,8 @@
     <div class="item"> <img src="images/a3.jpg" alt="Third slide"> </div>
   </div>
   <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"> <span class="fa fa-prev"></span> </a> <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"> <span class="fa fa-next"></span> </a> </div>
+  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"> <span class="fa fa-prev"></span> </a> <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"> <span class="fa fa-next"></span> </a> 
+  </div>
 <div class="modal home-modal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -21,19 +22,25 @@
         <div class="clearfix"></div>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-		  <select class="form-control selectpicker input-sm" data-width="100%" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)"  ng-model="city">
-			<option value="">Select City</option>
-		   </select>
-        </div>
-        <div class="form-group">
-			<select class="form-control input-sm" ng-options="locality as locality for locality in localities" name="locality" ng-model="locality">
-				<option value="">Select Locality</option>
-			</select>
-        </div>
+		<form name="form1" role="form" novalidate>
+			<div class="form-group">
+			  <select class="form-control selectpicker input-sm" name="city" ng-required='true' data-width="100%" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)"  ng-model="city">
+				<option value="">Select City</option>
+			   </select>
+			   <p ng-show="form1.city.$invalid && (!form1.city.$pristine || form1.submitted)" class="label errorText">select city</p>
+			</div>
+			<div class="form-group">
+				<select class="form-control input-sm" name="locality" ng-required='true' ng-options="locality as locality for locality in localities" name="locality" ng-model="locality">
+					<option value="">Select Locality</option>
+				</select>
+				<p ng-show="form1.locality.$invalid && (!form1.locality.$pristine || form1.submitted)" class="label errorText">select locality</p>
+			</div>
+			<div class="text-right">
+				<button type="submit" class="btn btn-primary btn-sm btn-block" ng-click="showProperties(city, locality);">Start Search</button>
+			</div>
+		</form>
       </div>
       <div class="modal-footer">
-        <a href="#/propertyresults/{{city}}/{{locality}}"><button type="button" class="btn btn-primary btn-sm btn-block">Start Search</button></a>
         
       </div>
     </div>
@@ -42,30 +49,6 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-<section class="services">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="circle"> <i class="fa fa-windows"></i> </div>
-        <h2>Windows ipsum dolors</h2>
-        <p>Not only does Zillow have for sale listings, but we also show you for sale by owner (FSBO) homes, foreclosures, new construction, and rentals.</p>
-        <p>More than a million listings you won’t find on an MLS.</p>
-      </div>
-      <div class="col-sm-4">
-        <div class="circle"> <i class="fa fa-android"></i> </div>
-        <h2>Android Lorem ipsum dolors</h2>
-        <p>Not only does Zillow have for sale listings, but we also show you for sale by owner (FSBO) homes, foreclosures, new construction, and rentals.</p>
-        <p>More than a million listings you won’t find on an MLS.</p>
-      </div>
-      <div class="col-sm-4">
-        <div class="circle"> <i class="fa fa-apple"></i> </div>
-        <h2>iPhone dolors</h2>
-        <p>Not only does Zillow have for sale listings, but we also show you for sale by owner (FSBO) homes, foreclosures, new construction, and rentals.</p>
-        <p>More than a million listings you won’t find on an MLS.</p>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- ************** Modals ************** -->
 <!-- Signin Modal -->
 

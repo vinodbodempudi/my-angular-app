@@ -2,8 +2,16 @@
 
 angular.module('home', [])
 
-.controller('HomeCtrl',['$scope', 'LocationService', function($scope, locationService) {
+.controller('HomeCtrl',['$scope', 'LocationService', '$location', function($scope, locationService, $location) {
     
+	$scope.showProperties = function(city, locality) {
+		$scope.form1.submitted=true;
+		
+		if($scope.form1.$valid) {
+			$location.path('/propertyresults/' + city + '/' + locality);
+		}
+	}
+
 	locationService.getCities()
 		.success(function(data){
 		        $scope.cities = data;
@@ -101,21 +109,27 @@ angular.module('home', [])
 	
 	this.flooringDropDownValues = function () {
         return [
-			"Granite",
-			"Marble Flooring",
-			"Marbonite",
-			"Mosaic Tiles",
+			"Marble",
 			"Normal Tiles",
+			"Vitrified Tiles",
+			"Wooden",
+			"Ceramic",
+			"Mosaic Tiles",
+			"Granite",
 			"Spartex Tiles",
-			"Virtified Tiles",
-			"Wooden, Ceramic"
+			"Marbonite",
+			"Stone",
+			"IPSFinish",
+			"Cement",
+			"Vinyl",
+			"Other"
 		];
     };
 	
 	this.propertyTypes = function () {
 		return [
-			"Residential",
-			"Commercial"
+			"Residential"
+			//"Commercial"
 		];
     };
 	
@@ -125,7 +139,7 @@ angular.module('home', [])
 			"Residential": [
 				"Apartment",
 				"Individual House/Villa",
-				"Residential Land/Plot",
+				//"Residential Land/Plot",
 				"Builder Floor",
 				"Pent House",
 				"Farm House",
