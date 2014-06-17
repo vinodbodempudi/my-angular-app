@@ -197,7 +197,19 @@
                                     </select>
 									<p ng-show="form1.builtUpUnits.$invalid && (!form1.builtUpUnits.$pristine || form1.submitted)" class="label errorText">select Built-up units</p>
                                 </div>
+								<div class="col-sm-2">
+                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required='true' placeholder="Per Sq. Feet price">
+									<p ng-show="form1.submitted && form1.perUnitPrice.$error.required" class="label errorText">Enter per unit price</p>
+									<p ng-show="form1.perUnitPrice.$error.pattern" class="label errorText">Enter valid unit price</p>
+                                </div>
                                 <div class="col-sm-2">
+									<select class="form-control input-sm" ng-options="unit as unit for unit in unitOptions" name="areaType" ng-model="property.details.area.priceUnit" ng-required='true'>
+                                        <option value="" selected>Units Drop Down</option>
+                                    </select>
+									<p ng-show="form1.areaType.$invalid && (!form1.areaType.$pristine || form1.submitted)" class="label errorText">select area type</p>
+                                </div>
+							</div>
+                                <!--<div class="col-sm-2">
                                     <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required='true' placeholder="Plot/Land">
 									<p ng-show="form1.submitted && form1.plotOrLand.$error.required" class="label errorText">Enter Plot/Land</p>
 									<p ng-show="form1.plotOrLand.$error.pattern" class="label errorText">Enter valid Plot/Land</p>
@@ -241,7 +253,7 @@
                                 </div>
                                 <label class="col-sm-1 control-label"><i class="fn fn-home"></i>
                                 </label>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Property Address:</label>
                                 <div class="col-sm-8">

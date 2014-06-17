@@ -76,7 +76,7 @@
         <tr>
             <td>Per Unit price:</td>
 
-            <td><label>{{property.details.area.perUnitPrice}}/sqft ({{property.details.area.type}})
+            <td><label>{{property.details.area.perUnitPrice}}/sqft ({{property.details.area.priceUnit}})
             </label></td>
 
             <td>plot/land Area:</td>
@@ -92,18 +92,18 @@
 
             <td>Age of property:</td>
 
-            <td><label>{{property.details.ageOfProperty.years}} years {{property.details.ageOfProperty.months}} months</label></td>
+            <td ng-show="property.details.ageOfProperty"><label>{{property.details.ageOfProperty.years}} years {{property.details.ageOfProperty.months}} months</label></td>
         </tr>
 
         
         <tr>
             <td>Monthly rent:</td>
 
-            <td><label>${{property.details.monthlyRent}}</label></td>
+            <td ng-show="property.details.monthlyRent"><label>${{property.details.monthlyRent}}</label></td>
 
             <td>Deposit:</td>
 
-            <td><label>${{property.details.deposit}}</label></td>
+            <td ng-show="property.details.deposit"><label>${{property.details.deposit}}</label></td>
         </tr>
 
         <tr>
@@ -111,19 +111,19 @@
 
             <td><label>{{property.details.preferredTenant}}</label></td>
 
-            <td><i class="fa fa-check-circle"></i><label>Allow Non-veg</label></td>
+            <td ng-show="property.details.allowNonVeg"><i class="fa fa-check-circle"></i><label>Allow Non-veg</label></td>
 
-            <td><i class="fa fa-check-circle"></i><label>Allow Pets</label></td>
+            <td ng-show="property.details.allowPets"><i class="fa fa-check-circle"></i><label>Allow Pets</label></td>
         </tr>
 
         <tr>
             <td>Maintainance Fee:</td>
 
-            <td><label>${{property.details.maintenanceFee}}</label></td>
+            <td ng-show="property.details.maintenanceFee"><label>${{property.details.maintenanceFee}}</label></td>
 
             <td>Commision:</td>
 
-            <td><label>{{property.details.commitionInDays}}<br>
+            <td ng-show="property.details.commitionInDays"><label>{{property.details.commitionInDays}}<br>
             ${{property.details.fixedPrice}}</label></td>
         </tr>
         <tr>
@@ -138,10 +138,10 @@
 		 </table>
 		 
 		 	<table class="table table-borderless">
-		<tr>
+		<tr ng-show="property.details.price">
             <td>Total Price:</td>
 
-            <td><label>${{property.details.price.price}}</label></td>
+            <td ng-show="property.details.price.price"><label>${{property.details.price.price}}</label></td>
 
             <td><i class="fa fa-check-circle"></i> <label ng-show="property.details.price.negotiable">Negotiable</label></td>
 
@@ -213,30 +213,28 @@
 
             <td><label>{{property.specifications.flooring}}</label></td>
 			
-            <td><i class="fa fa-check-circle"></i><label>{{property.specifications.houseWith}}</label></td>
+            <td ng-show="property.specifications.houseWith"><i class="fa fa-check-circle"></i><label>{{property.specifications.houseWith}}</label></td>
 
-            <td><i class="fa fa-check-circle"></i><label ng-show="property.specifications.parking.fourWheelerVisitors">4 Wheeler Visiting</label></td>
+            <td ng-show="property.specifications.parking.fourWheelerVisitors"><i class="fa fa-check-circle"></i><label ng-show="property.specifications.parking.fourWheelerVisitors">4 Wheeler Visiting</label></td>
 
             
         </tr>
 
-        <tr ng-show="property.specifications.parking.twoWheeler">
+        <tr>
             <td>parking:</td>
 
-            <td><label>2 wheeler<br>
-            4 wheeler</label></td>
+            <td ng-show="property.specifications.parking.twoWheeler"><label>2 wheeler</label></td>
 
-            <td><i class="fa fa-check-circle"></i><label>{{property.specifications.parking.twoWheeler.type}}</label></td>
+            <td ng-show="property.specifications.parking.twoWheeler.type"><i class="fa fa-check-circle"></i><label>{{property.specifications.parking.twoWheeler.type}}</label></td>
 
             <td ng-show="property.specifications.parking.twoWheeler.common"><i class="fa fa-check-circle"></i><label>common</label></td>
         </tr>
-		<tr ng-shoe="property.specifications.parking.fourWheeler">
+		<tr>
             <td></td>
 
-            <td><label>2 wheeler<br>
-            4 wheeler</label></td>
+            <td ng-show="property.specifications.parking.fourWheeler"><label>4 wheeler</label></td>
 
-            <td><i class="fa fa-check-circle"></i><label>{{property.specifications.parking.fourWheeler.type}}</label></td>
+            <td ng-show="property.specifications.parking.fourWheeler.type"><i class="fa fa-check-circle"></i><label>{{property.specifications.parking.fourWheeler.type}}</label></td>
 
             <td ng-show="property.specifications.parking.fourWheeler.common"><i class="fa fa-check-circle"></i><label>common</label></td>
         </tr>
@@ -246,7 +244,7 @@
 				</div>
             </div>
             <div class="tab-pane active" id="tab2" ng-show="detailsSubtab==='Amenities'">
-			<div class="wrap-details">
+			<div class="wrap-details" ng-show="property.amenities">
              <div class="row aminitieslist">
     
       <div class="col-sm-4 col-4" ng-show="property.amenities.swimmingPool"><i class="fa fa-check-circle"></i>Swimming pool </div>
@@ -299,13 +297,13 @@
 				<i class="fa fa-phone"></i> Phone No : <label class="contact-label">{{property.user.phoneNumber}}</label>
 			</p>
 			 <p>
-				<i class="fa fa-user"></i> <label class="contact-label">{{property.user.type}}</label>:</p>
+				<i class="fa fa-user"></i> <label class="contact-label">{{property.user.type}}</label></p>
 		  
 			<p>
 				<i class="fa  fa-clock-o"></i> Best time to call : <label class="contact-label">[{{property.user.besTimeToCall.from}} to {{property.user.besTimeToCall.to}}]</label>
 			</p>
 			<p>
-				<i class="fa  fa-road"></i> Best way to reach : <label class="contact-label">property.user.besWayToReach</label>
+				<i class="fa  fa-road"></i> Best way to reach : <label class="contact-label">{{property.user.besWayToReach}}</label>
 			</p>
 			
 			<p ng-show="property.user.type==='Agent' && property.user.companyName">
