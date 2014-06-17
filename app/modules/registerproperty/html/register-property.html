@@ -90,7 +90,7 @@
                                 </div>
                                 <label class="col-sm-2 control-label">Locality:</label>
                                 <div class="col-sm-3">
-                                    <select class="form-control input-sm" ng-options="locality as locality for locality in localities" name="locality" ng-required='true' ng-model="property.user.locality">
+                                    <select class="form-control input-sm" ng-options="locality.locality as locality.locality for locality in localities" name="locality" ng-required='true' ng-model="property.user.locality">
 										<option value="">Select Locality</option>
 									</select>
                                     <p ng-show="form1.locality.$invalid && (!form1.locality.$pristine || form1.submitted)" class="label errorText">select locality</p>

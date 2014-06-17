@@ -34,7 +34,7 @@ angular.module('registerProperty', [])
 			
 		});
 	$scope.getLocalities = function(city) {
-		locationService.getLocalities()
+		locationService.getLocalities(city)
 		.success(function(data){
 		        $scope.localities = data;
 		    }).error(function(e){

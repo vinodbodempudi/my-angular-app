@@ -20,11 +20,11 @@ app.config(function ($routeProvider) {
         templateUrl: 'modules/propertyresults/html/property-results.html',
         controller: 'PropertyResultsCtrl'
       })
-      .when('/propertyDetails/:propertyId', {
+      .when('/propertydetails/:propertyId', {
         templateUrl: 'modules/propertydetails/html/property-details.html',
         controller: 'PropertyDetailsCtrl'
       })
-      .when('/registerProperty', {
+      .when('/registerproperty', {
         templateUrl: 'modules/registerProperty/html/register-property.html',
         controller: 'RegisterPropertyCtrl'
       })
@@ -58,18 +58,20 @@ app.config(function ($routeProvider) {
 
 app.service('LocationService',['$http',  function($http) {
 
-	var citiesURL ='data/cities.json';
-	var localitiesURL ='data/localities.json';
+	//var citiesURL ='data/cities.json';
+	//var localitiesURL ='data/localities.json';
 	
-	//var citiesURL ='http://localhost:3000/cities';
-	//var localitiesURL ='http://localhost:3000/localities/';
+	/localities/
+	
+	var citiesURL ='http://localhost:3000/cities';
+	var localitiesURL ='http://localhost:3000/localities/';
 	
 	this.getCities = function () {
         return $http.get(citiesURL);
     };
 	
-	this.getLocalities = function () {
-        return $http.get(localitiesURL);
+	this.getLocalities = function (city) {
+        return $http.get(localitiesURL+city);
     };
 
 }]);
@@ -109,7 +111,7 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Login
 	
 	
 	$scope.getLocalities = function(city) {
-		locationService.getLocalities()
+		locationService.getLocalities(city)
 		.success(function(data){
 		        $scope.localities = data;
 		    }).error(function(e){

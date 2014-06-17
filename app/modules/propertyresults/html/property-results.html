@@ -26,7 +26,7 @@
         <span class="filtersLabel">Filters</span>
       </div>
       <div class="col-md-2">
-        <select class="form-control selectpicker" ng-options="property as property for property in propertyTypes" ng-model="search.propertType">
+	    <select class="form-control selectpicker" ng-options="subType as subType for subType in propertySubTypeMapper['Residential']" ng-model="search.propertType">
           <option value="">Property type</option>
         </select>
       </div>

@@ -24,13 +24,13 @@
       <div class="modal-body">
 		<form name="form1" role="form" novalidate>
 			<div class="form-group">
-			  <select class="form-control selectpicker input-sm" name="city" ng-required='true' data-width="100%" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)"  ng-model="city">
+			  <select class="form-control selectpicker input-sm" name="city" ng-required='true' data-width="100%" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(city)"  ng-model="city">
 				<option value="">Select City</option>
 			   </select>
 			   <p ng-show="form1.city.$invalid && (!form1.city.$pristine || form1.submitted)" class="label errorText">select city</p>
 			</div>
 			<div class="form-group">
-				<select class="form-control input-sm" name="locality" ng-required='true' ng-options="locality as locality for locality in localities" name="locality" ng-model="locality">
+				<select class="form-control input-sm" name="locality" ng-required='true' ng-options="locality.locality as locality.locality for locality in localities" name="locality" ng-model="locality">
 					<option value="">Select Locality</option>
 				</select>
 				<p ng-show="form1.locality.$invalid && (!form1.locality.$pristine || form1.submitted)" class="label errorText">select locality</p>

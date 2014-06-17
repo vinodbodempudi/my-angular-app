@@ -9,6 +9,7 @@ angular.module('home', [])
 		
 		if($scope.form1.$valid) {
 			$location.path('/propertyresults/' + city + '/' + locality);
+			$scope.showTabs.showTabs = true;
 		}
 	}
 
@@ -21,7 +22,13 @@ angular.module('home', [])
 	
 	
 	$scope.getLocalities = function(city) {
-		locationService.getLocalities()
+	
+		if(!city) {
+			$scope.localities = [];
+			return;
+		}
+	
+		locationService.getLocalities(city)
 		.success(function(data){
 		        $scope.localities = data;
 		    }).error(function(e){

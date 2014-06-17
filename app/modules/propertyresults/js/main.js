@@ -9,7 +9,7 @@ angular.module('propertyResults', [])
 	$scope.sortOptions = fatHomeUtil.propertySortOptions();
 	$scope.bedRoomsDropDownValues = fatHomeUtil.bedRoomsDropDownValues();
 	$scope.propertyTypes = fatHomeUtil.propertyTypes();
-	
+	$scope.propertySubTypeMapper = fatHomeUtil.propertySubTypeMapper();
 	
 	/*var initializeMap = function () {
 	  var mapOptions = {
