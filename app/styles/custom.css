@@ -438,8 +438,9 @@ table.table-borderless td i {padding-right:5px;}
 
 
 .errorText {
-color: #a94442;
 
+	color: #a94442;
+	margin: 18px;
 }
 
 .ng-invalid.ng-dirty {
@@ -526,4 +527,28 @@ width: 10.333333%;
 .searchForm .filtersLabel {
 line-height: 2.3 !important;
 }
+
+.mandatory:after {
+	color: #f00;
+    content: ' *';
+    display:inline;
+	font-size: 11px;
+}
+
+.errorText:before {
+	background: url('/images/warning.png');
+	content: '';
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: relative;
+	margin-left: -22px;
+	margin-right: 7px;
+	margin-top: -3px;
+	top: 4px;
+}
+
+
+
+
 

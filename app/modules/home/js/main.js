@@ -2,12 +2,14 @@
 
 angular.module('home', [])
 
-.controller('HomeCtrl',['$scope', 'LocationService', '$location', function($scope, locationService, $location) {
+.controller('HomeCtrl',['$scope', 'LocationService', '$location', '$rootScope', function($scope, locationService, $location, $rootScope) {
     
 	$scope.showProperties = function(city, locality) {
 		$scope.form1.submitted=true;
 		
 		if($scope.form1.$valid) {
+			$rootScope.selectedCity = city;
+			$rootScope.selectedLocality = locality;
 			$location.path('/propertyresults/' + city + '/' + locality);
 			$scope.showTabs.showTabs = true;
 		}
@@ -16,6 +18,7 @@ angular.module('home', [])
 	locationService.getCities()
 		.success(function(data){
 		        $scope.cities = data;
+				$rootScope.cities = data;
 		    }).error(function(e){
 		    	
 		    });
@@ -31,6 +34,7 @@ angular.module('home', [])
 		locationService.getLocalities(city)
 		.success(function(data){
 		        $scope.localities = data;
+				$rootScope.localities = data;
 		    }).error(function(e){
 		    	
 		    });
