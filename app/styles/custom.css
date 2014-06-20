@@ -149,7 +149,7 @@ footer{ text-align:center; padding-bottom:100px;}
 .list-view:hover .content .btn-group{ visibility:visible}
 .lists-view{ overflow:hidden; overflow-y:auto; max-height:452px}
 
-#signin,#account,#contact,#feedback{ z-index:99999;}
+#signin,#account,#contact,#feedback,#changeLocality{ z-index:99999;}
 #signin .modal-dialog,#account .modal-dialog{ width:500px;}
 #signin .form-group,#account .form-group{margin-left:-5px; margin-right:-5px;}
 #signin .modal-body,#account .modal-body{ margin-bottom:0; padding-bottom:0; border-bottom:none}

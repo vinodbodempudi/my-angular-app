@@ -177,6 +177,8 @@ app.directive("modalShow", function () {
                 else
                 {
                     element.modal("hide");
+					$('body').removeClass('modal-open');
+					$('.modal-backdrop').remove();
                 }
             }
 
