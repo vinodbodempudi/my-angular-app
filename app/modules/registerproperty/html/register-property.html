@@ -1,5 +1,5 @@
 <div class="container panellabel">
-    <div class="row" ng-show="!registerPropertySuccess" ng-init="showForm1=true;showForm2=false;showForm3=false;">
+    <div class="row" ng-init="showForm1=true;showForm2=false;showForm3=false;">
         <div class="col-sm-12">
             <h3>Enter your details</h3>
             <form class="form-horizontal" ng-show="showForm1" name="form1" role="form" novalidate>
@@ -341,17 +341,17 @@
 									<div class="col-sm-10">
 										<div class="radio-inline" >
 											<label>
-												<input type="radio" ng-model="property.details.propertyType" value="New" name="propertyTypeOptions" ng-required="false">New
+												<input type="radio" ng-model="property.details.propertyStatus" value="New" name="propertyTypeOptions" ng-required="false">New
 											</label>
 										</div>
 										<div class="radio-inline">
 											<label>
-												<input type="radio" ng-model="property.details.propertyType" value="Resale" name="propertyTypeOptions" ng-required="false">Resale
+												<input type="radio" ng-model="property.details.propertyStatus" value="Resale" name="propertyTypeOptions" ng-required="false">Resale
 											</label>
 										</div>
 										<div class="radio-inline">
 											<label>
-												<input type="radio" ng-model="property.details.propertyType" value="Underconstruction" name="propertyTypeOptions" ng-required="false">Underconstruction
+												<input type="radio" ng-model="property.details.propertyStatus" value="Underconstruction" name="propertyTypeOptions" ng-required="false">Underconstruction
 											</label>
 										</div>
 									</div>
@@ -917,8 +917,23 @@
             </form>
         </div>
     </div>
-	<div class="content text-center" ng-show="registerPropertySuccess">
-		<div class="alert alert-success ">Property details saved successfully.</div>
-		<a href="#/propertyresults/{{selectedCity}}/{{selectedLocality}}"><button class="btn btn-info" ng-click="registerProperty();">Back to Results</button></a>
-	</div>
 </div>​
+<div class="modal" modal-visible="registerPropertySuccess" modal-show data-backdrop="false" id="registerPropertySuccessModal" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+		</div>
+      <div class="modal-body">
+		<div class="text-center">
+			<div class="alert alert-success ">Property details saved successfully.</div>
+			<a href="#/propertyresults/{{selectedCity}}/{{selectedLocality}}"><button class="btn btn-info" ng-click="registerProperty();">Back to Results</button></a>
+		</div>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

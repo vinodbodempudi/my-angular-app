@@ -119,7 +119,8 @@ angular.module('propertyResults', [])
 					continue;
 				}
 				
-				if(filterOption.purpose && "Rent" !== property.purpose) {
+				if((filterOption.purpose && "Rent" !== property.mode) 
+					|| (filterOption.hasOwnProperty("purpose") && !filterOption.purpose && "Sell" !== property.mode)) {
 					continue;
 				}
 								
