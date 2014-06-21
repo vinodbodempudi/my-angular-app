@@ -52,7 +52,7 @@ footer{ text-align:center; padding-bottom:0px;}
 
 .add{ height:100px; background:#CCC}
 .addBlock{ margin:8px auto;max-width:98%}
-.locationDisplay{ text-align:right}
+
 .locationDisplay h3{margin-bottom:0;}
 .locationDisplay h4{margin-top:0px;}
 
@@ -507,14 +507,37 @@ clear:right;
 
 /*Select city page end*/
 
-.changelocal {
-background: url(p4.png) no-repeat no-repeat;
-width: 159px;
-height: 70px;
-position: absolute;
-z-index: 999999;
-top: 42px;
+.changeLocalityDiv
+{
+text-align: center;
+height: 100%;
+position: relative;
+top: 22px;
+left: -16px;
 }
+
+.locationDisplay{ 
+	text-align: left;
+	position: relative;
+	left: -47px;
+	top: 1px;
+}
+
+.changeLocalityImage {
+	width: 32px;
+	height: 32px;
+	margin-right: -22px;
+	margin-bottom: -6px;
+}
+
+.changeLocalityLabel {
+display: block;
+color: #489cdf;
+font-size: 16px;
+font-style: italic;
+font-weight: bold;
+}
+
 
 .searchForm .filtersdiv {
 width: 5%;
