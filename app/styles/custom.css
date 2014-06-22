@@ -145,6 +145,7 @@ footer{ text-align:center; padding-bottom:0px;}
 .list-view .firstRow{ margin-top:5px;}
 
 .list-view .secondRow{ color:#797979; font-size:12px; margin-top:15px;}
+.list-view .thirdRow{margin-top:7px;}
 .list-view .content .btn-group{ margin-top:6px; visibility:hidden}
 .list-view:hover .content .btn-group{ visibility:visible}
 .lists-view{ overflow:hidden; overflow-y:auto; max-height:452px}
@@ -598,6 +599,7 @@ line-height: 2.3 !important;
 	white-space: nowrap;
 	width: 205px;
 	font-weight:100;
+	cursor: pointer;
 }
 
 .vis-hidden{

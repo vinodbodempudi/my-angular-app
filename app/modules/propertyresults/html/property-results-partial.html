@@ -38,6 +38,10 @@
 					<div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>{{property.locality}}</span> </div>
                     
                   </div>
+				  
+				  <div class="row thirdRow dateright">
+					<div class="text-right">{{property.createdDate | date:'MMM d, y'}}</div>
+				  </div>
                   <div class="row customsocial" ng-show="false">
                     <div class="col-xs-8 text-right">
                      <div class="btn-group">
