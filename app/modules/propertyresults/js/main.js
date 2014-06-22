@@ -47,8 +47,12 @@ angular.module('propertyResults', [])
 		$scope.showPage = 'propertyResults';
 	}
 }]).service('PropertyResultsService',['$http',  function($http) {
-	var getPropertiesURL = 'http://localhost:3000/properties';
-	var getPropertyDetailsURL = 'http://localhost:3000/properties';
+
+       //var getPropertiesURL = 'http://localhost:3000/properties';
+       //var getPropertyDetailsURL = 'http://localhost:3000/properties';
+
+	var getPropertiesURL = 'http://54.88.7.125:3000/properties';
+	var getPropertyDetailsURL = 'http://54.88.7.125:3000/properties';
 	
 	//var getPropertiesURL = 'data/propertyresults.json';
 	//var getPropertyDetailsURL = 'data/propertyresults.json';

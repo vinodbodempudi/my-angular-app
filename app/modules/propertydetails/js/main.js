@@ -24,8 +24,8 @@ angular.module('propertyDetails', [])
 
 
 }]).service('PropertyDetailsService',['$http',  function($http) {
-
-	var getDetailsURL = 'http://localhost:3000/properties'
+        //var getDetailsURL = 'http://localhost:3000/properties'
+	var getDetailsURL = 'http://54.88.7.125:3000/properties'
 
     this.getPropertyDetails = function (request) {
         return $http.get(getDetailsURL+'/'+request.id);

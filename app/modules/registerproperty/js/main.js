@@ -53,7 +53,8 @@ angular.module('registerProperty', [])
     };
 }])
 .service('RegisterPropertyService',['$http',  function($http) {
-	var registerPropertyURL = 'http://localhost:3000/properties';
+        // var registerPropertyURL = 'http://localhost:3000/properties';
+   	var registerPropertyURL = 'http://54.88.7.125:3000/properties';
     this.registerProperty = function (property) {
         return $http.post(registerPropertyURL, property);
     };

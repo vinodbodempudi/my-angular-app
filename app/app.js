@@ -25,7 +25,7 @@ app.config(function ($routeProvider) {
         controller: 'PropertyDetailsCtrl'
       })
       .when('/registerproperty', {
-        templateUrl: 'modules/registerProperty/html/register-property.html',
+        templateUrl: 'modules/registerproperty/html/register-property.html',
         controller: 'RegisterPropertyCtrl'
       })
       .when('/home', {
@@ -63,8 +63,10 @@ app.service('LocationService',['$http',  function($http) {
 	
 	/localities/
 	
-	var citiesURL ='http://localhost:3000/cities';
-	var localitiesURL ='http://localhost:3000/localities/';
+       // var citiesURL ='http://localhost:3000/cities';
+       // var localitiesURL ='http://localhost:3000/localities/';
+        var citiesURL ='http://54.88.7.125:3000/cities';
+	var localitiesURL ='http://54.88.7.125:3000/localities/';
 	
 	this.getCities = function () {
         return $http.get(citiesURL);
