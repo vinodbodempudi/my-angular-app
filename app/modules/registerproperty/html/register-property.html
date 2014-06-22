@@ -878,7 +878,7 @@
                 </div>
             </form>
 
-            <form class="form-horizontal" role="form"  ng-show="showForm3">
+            <form class="form-horizontal" role="form"  ng-show="true">
                 <div>
                     <div class="panel panel-default">
                         <div class="panel-heading"><strong>photos and map</strong>
@@ -897,8 +897,10 @@
                                 </div>
                                 <p>You can upload upto 10 photos</p>
                                 <div class="upload-img">
-                                    <img src="{{photo.dataURL}}" ng-repeat="photo in property.photos" alt="..." class="img-thumbnail">
-                                   
+									<div class="wrap-details" style="width:150px;display:inline-block;margin:5px;text-align:center;" ng-repeat="photo in property.photos">
+										<img src="{{photo.dataURL}}"  alt="..." class="img-thumbnail">
+										<input type="checkbox" ng-checked="photo.coverPhoto" name="coverPhototOptions" ng-model="photo.coverPhoto" >Cover photo</label>
+									</div>
                                 </div>
                             </div>
 
