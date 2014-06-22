@@ -9,7 +9,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group" ng-class="{'has-error':form1.userTypeOptions.$invalid && !form1.userTypeOptions.$pristine}">
-                                <label class="col-sm-2 control-label">I am:</label>
+                                <label class="col-sm-2 control-label mandatory">I am:</label>
                                 <div class="col-sm-10">
                                     <div class="radio-inline">
                                         <label>
@@ -36,7 +36,7 @@
                                 
                             </div>
                             <div class="form-group" ng-class="{'has-error':form1.userName.$invalid && !form1.userName.$pristine}">
-                                <label class="col-sm-2 control-label">Name:</label>
+                                <label class="col-sm-2 control-label mandatory">Name:</label>
                                 <div class="col-sm-3">
                                     <input type="text" ng-model="property.user.name" name="userName" ng-required="true" class="form-control input-sm" placeholder="Name">
                                     <p ng-show="form1.userName.$invalid && (!form1.userName.$pristine || form1.submitted)" class="label errorText">enter name</p>
@@ -55,7 +55,7 @@
                                
                             </div>
                             <div class="form-group" ng-class="{'has-error':form1.email.$invalid && !form1.email.$pristine}">
-                                <label class="col-sm-2 control-label">Email:</label>
+                                <label class="col-sm-2 control-label mandatory">Email:</label>
                                 <div class="col-sm-2">
                                     <input type="email" ng-model="property.user.email" name="email" ng-required='true' class="form-control input-sm" placeholder="Email">
                                     <p class="label errorText" ng-show="form1.submitted && form1.email.$error.required">Enter email</p>
@@ -68,11 +68,11 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="form-group" ng-class="{'has-error':form1.phoneNumber.$invalid && !form1.phoneNumber.$pristine}">
-                                <label class="col-sm-2 control-label">Phone:</label>
+                                <label class="col-sm-2 control-label mandatory">Phone:</label>
                                 <div class="col-sm-2">
                                     <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" ng-required='true' ng-model="property.user.phoneNumber" class="form-control input-sm" placeholder="Phone">
                                     <p ng-show="form1.submitted && form1.phoneNumber.$error.required" class="label errorText">Enter phone number</p>
-									<p ng-show="form1.phoneNumber.$error.pattern" class="label errorText">Enter valid phone number</p>
+									<p ng-show="form1.phoneNumber.$error.pattern" class="errorText label">Enter valid phone number</p>
                                 </div>
                                 <div class="col-sm-2" ng-show="false">
                                     <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i>
@@ -81,14 +81,14 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="form-group" ng-class="{'has-error':form1.locality.$invalid && !form1.locality.$pristine}">
-                                <label class="col-sm-2 control-label">City:</label>
+                                <label class="col-sm-2 control-label mandatory">City:</label>
                                 <div class="col-sm-3">
                                     <select class="form-control input-sm" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)" ng-required='true' ng-model="property.user.city">
 										<option value="">Select City</option>
 									</select>
                                     <p ng-show="form1.city.$invalid && (!form1.city.$pristine || form1.submitted)" class="label errorText">select city</p>
                                 </div>
-                                <label class="col-sm-2 control-label">Locality:</label>
+                                <label class="col-sm-2 control-label mandatory">Locality:</label>
                                 <div class="col-sm-3">
                                     <select class="form-control input-sm" ng-options="locality.locality as locality.locality for locality in localities" name="locality" ng-required='true' ng-model="property.user.locality">
 										<option value="">Select Locality</option>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Type:</label>
+                                <label class="col-sm-2 control-label mandatory">Type:</label>
                                 <div class="col-sm-2">
                                     <select class="selectpicker form-control input-sm" ng-change="propertySubTypes=propertySubTypeMapper[property.details.propertyType]" ng-options="property as property for property in propertyTypes" ng-init="property.details.propertyType='Residential'" name="propertyType" ng-required='true' ng-model="property.details.propertyType">
                                     </select>
@@ -148,7 +148,7 @@
                                     </select>
 									<p ng-show="form1.houseType.$invalid && (!form1.houseType.$pristine || form1.submitted)" class="label errorText">select house type</p>
                                 </div>
-								<label class="col-sm-1 control-label">Title:</label>
+								<label class="col-sm-1 control-label mandatory">Title:</label>
                                 <div class="col-sm-3">
                                     <input type="text" class="form-control input-sm" name="title" ng-model="property.details.title" ng-required='true' placeholder="Title">
 									<p ng-show="form1.submitted && form1.title.$error.required" class="label errorText">Enter title</p>
@@ -169,13 +169,13 @@
                                     </div>
 									<p ng-show="form1.propertyModeOptions.$invalid && (!form1.propertyModeOptions.$pristine || form1.submitted)" class="label errorText">select sell/rent</p>
                                 </div>
-                                <label class="col-sm-2 control-label">Bedrooms:</label>
+                                <label class="col-sm-2 control-label mandatory">Bedrooms:</label>
                                 <div class="col-sm-1">
                                     <select class="form-control input-sm" ng-options="value as value for value in bedRoomsDropDownValues" name="bedRooms" ng-model="property.details.bedRooms" ng-required='true'>
                                     </select>
 									<p ng-show="form1.bedRooms.$invalid && (!form1.bedRooms.$pristine || form1.submitted)" class="label errorText">select no.of bedrooms</p>
                                 </div>
-                                <label class="col-sm-2 control-label">Bathrooms:</label>
+                                <label class="col-sm-2 control-label mandatory">Bathrooms:</label>
                                 <div class="col-sm-1">
                                     <select class="form-control input-sm" name="bathRooms" ng-options="value as value for value in bathRoomsDropDownValues" ng-model="property.details.bathRooms" ng-required='true'>
                                     </select>
@@ -184,7 +184,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Area:</label>
+                                <label class="col-sm-2 control-label mandatory">Area:</label>
                                 <div class="col-sm-2">
                                     <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="builtUp" ng-model="property.details.area.builtUp.builtUp" ng-required='true' placeholder="Built-up">
 									<p ng-show="form1.submitted && form1.builtUp.$error.required" class="label errorText">Enter Built-up</p>
@@ -197,17 +197,39 @@
                                     </select>
 									<p ng-show="form1.builtUpUnits.$invalid && (!form1.builtUpUnits.$pristine || form1.submitted)" class="label errorText">select Built-up units</p>
                                 </div>
-								<div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required='true' placeholder="Per Sq. Feet price">
+								<div class="col-sm-2" ng-show="property.details.mode==='Sell'">
+                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required="property.details.mode==='Sell'" placeholder="Per Sq.ft price">
 									<p ng-show="form1.submitted && form1.perUnitPrice.$error.required" class="label errorText">Enter per unit price</p>
 									<p ng-show="form1.perUnitPrice.$error.pattern" class="label errorText">Enter valid unit price</p>
                                 </div>
+                                
+							</div>
+							<div class="form-group" ng-show="property.details.mode==='Sell'">
+								<label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-2">
-									<select class="form-control input-sm" ng-options="unit as unit for unit in unitOptions" name="areaType" ng-model="property.details.area.priceUnit" ng-required='true'>
-                                        <option value="" selected>Units Drop Down</option>
-                                    </select>
-									<p ng-show="form1.areaType.$invalid && (!form1.areaType.$pristine || form1.submitted)" class="label errorText">select area type</p>
+                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="carpet" ng-model="property.details.area.carpet.carpet" ng-required='false' placeholder="Carpet">
+									<p ng-show="form1.submitted && form1.carpet.$error.required" class="label errorText">Enter Carpet</p>
+									<p ng-show="form1.carpet.$error.pattern" class="label errorText">Enter valid Carpet</p>
                                 </div>
+
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-options="unit as unit for unit in unitOptions" name="carpetUnits" ng-model="property.details.area.carpet.units" ng-required='false'>
+                                        <option value="">Units Drop Down</option>
+                                    </select>
+									<p ng-show="form1.carpetUnits.$invalid && (!form1.carpetUnits.$pristine || form1.submitted)" class="label errorText">select Carpet units</p>
+                                </div>
+								<div class="col-sm-2">
+                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required='false' placeholder="Plot/Land">
+									<p ng-show="form1.submitted && form1.plotOrLand.$error.required" class="label errorText">Enter Plot/Land</p>
+									<p ng-show="form1.plotOrLand.$error.pattern" class="label errorText">Enter valid Plot/Land</p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="form-control input-sm" ng-options="unit as unit for unit in unitOptions" name="plotOrLandUnits" ng-model="property.details.area.plotOrLand.units" ng-required='false'>
+                                        <option value="">Units Drop Down</option>
+                                    </select>
+									<p ng-show="form1.plotOrLandUnits.$invalid && (!form1.plotOrLandUnits.$pristine || form1.submitted)" class="label errorText">select Plot/Land units</p>
+                                </div>
+							
 							</div>
                                 <!--<div class="col-sm-2">
                                     <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required='true' placeholder="Plot/Land">
@@ -295,7 +317,7 @@
 							
 							<div ng-show="property.details.mode==='Sell'">
 								<div class="form-group">
-									<label class="col-sm-2 control-label">Total Price:</label>
+									<label class="col-sm-2 control-label mandatory">Total Price:</label>
 									<div class="col-sm-2">
 										<input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" placeholder="Amount" name="price" ng-model="property.details.price.price" ng-required="property.details.mode==='Sell'">
 										<p ng-show="form1.submitted && form1.price.$error.required" class="label errorText">Enter total price</p>
@@ -319,17 +341,17 @@
 									<div class="col-sm-10">
 										<div class="radio-inline" >
 											<label>
-												<input type="radio" ng-model="property.details.propertyType" value="New" name="propertyTypeOptions" ng-required="false">New
+												<input type="radio" ng-model="property.details.propertyStatus" value="New" name="propertyTypeOptions" ng-required="false">New
 											</label>
 										</div>
 										<div class="radio-inline">
 											<label>
-												<input type="radio" ng-model="property.details.propertyType" value="Resale" name="propertyTypeOptions" ng-required="false">Resale
+												<input type="radio" ng-model="property.details.propertyStatus" value="Resale" name="propertyTypeOptions" ng-required="false">Resale
 											</label>
 										</div>
 										<div class="radio-inline">
 											<label>
-												<input type="radio" ng-model="property.details.propertyType" value="Underconstruction" name="propertyTypeOptions" ng-required="false">Underconstruction
+												<input type="radio" ng-model="property.details.propertyStatus" value="Underconstruction" name="propertyTypeOptions" ng-required="false">Underconstruction
 											</label>
 										</div>
 									</div>
@@ -338,7 +360,7 @@
 							</div>
 							<div ng-show="property.details.mode==='Rent'">
 								<div class="form-group">
-									<label class="col-sm-2 control-label">Monthly Rent:</label>
+									<label class="col-sm-2 control-label mandatory">Monthly Rent:</label>
 									<div class="col-sm-2">
 										<input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="monthlyRent" ng-model="property.details.monthlyRent" ng-required="property.details.mode==='Rent'" placeholder="Rent">
 										<p ng-show="form1.submitted && form1.monthlyRent.$error.required" class="label errorText">Enter monthly rent</p>
@@ -882,7 +904,7 @@
 
                             <div class="col-sm-6">
                                 <label for="exampleInputFile">Map</label>
-                                <div class="map" id="map"></div>
+                                <div class="map" map id="map"></div>
                             </div>
                         </div>
                         <!-- <div class="panel-footer text-right"><button class="btn btn-default">Submit</button></div> -->
@@ -896,3 +918,22 @@
         </div>
     </div>
 </div>​
+<div class="modal" modal-visible="registerPropertySuccess" modal-show data-backdrop="false" id="registerPropertySuccessModal" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+		</div>
+      <div class="modal-body">
+		<div class="text-center">
+			<div class="alert alert-success ">Property details saved successfully.</div>
+			<a href="#/propertyresults/{{selectedCity}}/{{selectedLocality}}"><button class="btn btn-info">Back to Results</button></a>
+		</div>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

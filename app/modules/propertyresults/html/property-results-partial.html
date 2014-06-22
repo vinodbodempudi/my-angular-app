@@ -18,13 +18,13 @@
                     <div class="col-xs-8">
                       <h3><a href="" ng-click="getPropertyDetails(property._id);">{{property.title}}</a></h3>
                     </div>
-                    <div class="col-xs-4 price">
+                    <div class="col-xs-4 price" style="textAlign:Right;">
                       <h4><i class="fa fa-rupee"></i> <span>{{property.price}}</span></h4>
                     </div>
                   </div>
 				  <div class="row">
                     <div class="col-xs-12 price" style="textAlign:Right;">
-                      <h5 style="text-align: right;" ng-show="property.perUnitPrice"><span>{{property.perUnitPrice}}/{{property.priceUnit}}</span></h5>
+                      <h5 style="text-align: right;" ng-show="property.perUnitPrice"><span>{{property.perUnitPrice}}/Sq.ft</span></h5>
                     </div>
                   </div>
                   <div class="row firstRow">
@@ -33,9 +33,10 @@
                     <div class="col-xs-3" ng-show="property.builtUpSize"> <span>{{property.builtUpSize}}</span> {{property.builtUpUnits}} </div>
                   </div>
                   <div class="row secondRow">
-                    <div class="col-xs-5"> <span>{{property.mode}}</span> </div>
-					<div class="col-xs-4"> <i class="fa fa-map-marker"></i> <span>{{property.locality}}</span> </div>
-                    <div class="col-xs-5"> <span>{{property.propertySubType}}</span> </div>
+                    <div class="col-xs-2"> <span>{{property.mode}}</span> </div>
+					<div class="col-xs-5"> <span>{{property.propertySubType}}</span> </div>
+					<div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>{{property.locality}}</span> </div>
+                    
                   </div>
                   <div class="row customsocial">
                     <div class="col-xs-8 text-right">
@@ -46,7 +47,7 @@
                       </div>
                     </div>
                     <div class="col-xs-4 dateright">
-                      <div class="text-right">{{property.createdDate}}</div>
+                      <div class="text-right">{{property.createdDate | date:'MMM d, y'}}</div>
                     </div>
                   </div>
                 </div>

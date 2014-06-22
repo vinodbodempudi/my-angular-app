@@ -2,7 +2,9 @@
 
 angular.module('propertyResults', [])
 
-.controller('PropertyResultsCtrl',['$scope', '$routeParams', 'PropertyResultsService', 'FatHomeUtil', function($scope, $routeParams, propertyResultsService, fatHomeUtil) {
+.controller('PropertyResultsCtrl',['$scope', '$routeParams', 'PropertyResultsService', 'FatHomeUtil', 'LocationService', '$rootScope', '$location',
+	function($scope, $routeParams, propertyResultsService, fatHomeUtil, locationService, $rootScope, $location) {
+	
     $scope.city = $routeParams.city;
 	$scope.locality = $routeParams.locality;
 	$scope.properties = [];
@@ -11,17 +13,49 @@ angular.module('propertyResults', [])
 	$scope.propertyTypes = fatHomeUtil.propertyTypes();
 	$scope.propertySubTypeMapper = fatHomeUtil.propertySubTypeMapper();
 	
-	/*var initializeMap = function () {
-	  var mapOptions = {
-							zoom: 8,
-							center: new google.maps.LatLng(17.4833, 78.4167),
-							mapTypeId: google.maps.MapTypeId.ROADMAP
-						};
-	  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	
+	$scope.openChangeLocationModal = function() {
+	
+		if(!$scope.cities) {
+			locationService.getCities()
+				.success(function(data){
+					$scope.cities = data;
+				}).error(function(e){
+					
+				});
+		}
+		$scope.newCity='';
+		$scope.newLocality='';
+		$scope.form1.submitted=false;
+		$scope.showChangeLocationModal=true;
 	}
 	
-	initializeMap();*/
+	$scope.showProperties = function(city, locality) {
+		$scope.form1.submitted=true;
+		
+		if($scope.form1.$valid) {
+			$scope.showChangeLocationModal = false;
+			$rootScope.selectedCity = city;
+			$rootScope.selectedLocality = locality;
+			$location.path('/propertyresults/' + city + '/' + locality);
+		}
+	}
 	
+	$scope.getLocalities = function(city) {
+	
+		if(!city) {
+			$scope.localities = [];
+			return;
+		}
+	
+		locationService.getLocalities(city)
+		.success(function(data){
+		        $scope.localities = data;
+		}).error(function(e){
+			
+		});
+	}
+		
     var getPropertiesRequest = {city:$routeParams.city, locality:$routeParams.locality};
 
 	propertyResultsService.getProperties(getPropertiesRequest)
@@ -89,7 +123,8 @@ angular.module('propertyResults', [])
 					continue;
 				}
 				
-				if(filterOption.purpose && "Rent" !== property.purpose) {
+				if((filterOption.purpose && "Rent" !== property.mode) 
+					|| (filterOption.hasOwnProperty("purpose") && !filterOption.purpose && "Sell" !== property.mode)) {
 					continue;
 				}
 								

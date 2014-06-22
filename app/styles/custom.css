@@ -45,14 +45,14 @@ button::-moz-focus-inner{border: 0;}
 
 .tagline{ padding:30px; font-size:30px; text-align:center; background:#404040; color:#FFF; margin-bottom:30px;}
 .tagline a{ background: #fc0; color:#fff;}
-footer{ text-align:center; padding-bottom:100px;}
+footer{ text-align:center; padding-bottom:0px;}
 .footer-icons{ font-size:30px; margin-top:20px;}
 .footer-icons a{color:#404040;}
 .footer-icons a:hover{ text-decoration:none}
 
 .add{ height:100px; background:#CCC}
-.addBlock{ margin:8px auto;}
-.locationDisplay{ text-align:right}
+.addBlock{ margin:8px auto;max-width:98%}
+
 .locationDisplay h3{margin-bottom:0;}
 .locationDisplay h4{margin-top:0px;}
 
@@ -149,7 +149,7 @@ footer{ text-align:center; padding-bottom:100px;}
 .list-view:hover .content .btn-group{ visibility:visible}
 .lists-view{ overflow:hidden; overflow-y:auto; max-height:452px}
 
-#signin,#account,#contact,#feedback{ z-index:99999;}
+#signin,#account,#contact,#feedback,#changeLocality,#registerPropertySuccessModal{ z-index:99999;}
 #signin .modal-dialog,#account .modal-dialog{ width:500px;}
 #signin .form-group,#account .form-group{margin-left:-5px; margin-right:-5px;}
 #signin .modal-body,#account .modal-body{ margin-bottom:0; padding-bottom:0; border-bottom:none}
@@ -438,8 +438,9 @@ table.table-borderless td i {padding-right:5px;}
 
 
 .errorText {
-color: #a94442;
 
+	color: #a94442;
+	margin: 18px;
 }
 
 .ng-invalid.ng-dirty {
@@ -468,6 +469,9 @@ input.from{text-align:left !important;}
 .maintenancefee{text-align:left !important; width:12.2% !important; padding-left:0px;}
 .deposit{text-align:left !important; width:6.2% !important; }
 .mainfee{padding-left:0px !important; width:15%;}
+
+
+.register-success-modal{ margin-top:100px; width: 438px; height: auto;}
 
 /*Register end*/
 
@@ -503,15 +507,37 @@ clear:right;
 
 /*Select city page end*/
 
-.changelocal {
-background: url(p4.png) no-repeat no-repeat;
-width: 159px;
-height: 70px;
-position: absolute;
-right: -52px;
-z-index: 999999;
-top: 42px;
+.changeLocalityDiv
+{
+text-align: center;
+height: 100%;
+position: relative;
+top: 22px;
+left: -16px;
 }
+
+.locationDisplay{ 
+	text-align: left;
+	position: relative;
+	left: -47px;
+	top: 1px;
+}
+
+.changeLocalityImage {
+	width: 32px;
+	height: 32px;
+	margin-right: -22px;
+	margin-bottom: -6px;
+}
+
+.changeLocalityLabel {
+display: block;
+color: #489cdf;
+font-size: 16px;
+font-style: italic;
+font-weight: bold;
+}
+
 
 .searchForm .filtersdiv {
 width: 5%;
@@ -526,4 +552,28 @@ width: 10.333333%;
 .searchForm .filtersLabel {
 line-height: 2.3 !important;
 }
+
+.mandatory:after {
+	color: #f00;
+    content: ' *';
+    display:inline;
+	font-size: 11px;
+}
+
+.errorText:before {
+	background: url('/images/warning.png');
+	content: '';
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: relative;
+	margin-left: -22px;
+	margin-right: 7px;
+	margin-top: -3px;
+	top: 4px;
+}
+
+
+
+
 

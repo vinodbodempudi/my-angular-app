@@ -1,10 +1,17 @@
 'use strict';
 
 angular.module('registerProperty', [])
-.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', 'RegisterPropertyService', 
-	function($scope, locationService, fatHomeUtil, registerPropertyService) {
+.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', 'RegisterPropertyService', '$rootScope',
+	function($scope, locationService, fatHomeUtil, registerPropertyService, $rootScope) {
     
-    $scope.property = {};
+	$scope.registerPropertySuccess = false;
+    $scope.property = {user:{}};
+	$scope.property.user.city = $rootScope.selectedCity;
+	$scope.property.user.locality = $rootScope.selectedLocality;
+	$scope.cities = $rootScope.cities;
+	$scope.localities = $rootScope.localities;
+	
+	
 	$scope.unitOptions = fatHomeUtil.unitOptions();
 	$scope.hours = fatHomeUtil.hoursDropDownValues();
 	$scope.ageOfPropertyOptions = fatHomeUtil.ageOfPropertyOptions();
@@ -48,6 +55,7 @@ angular.module('registerProperty', [])
 	   console.log(angular.toJson($scope.property));
        registerPropertyService.registerProperty(angular.toJson($scope.property))
        	    .success(function(data){
+				$scope.registerPropertySuccess = true;
 		    }).error(function(e){
 		    });
     };
@@ -85,6 +93,28 @@ angular.module('registerProperty', [])
 		}
 	};
 })
+.directive('map', function() {
+	return {
+		restrict: 'EA',
+		link:function(scope, el) {
+		
+			var initializeMap = function () {
+			var mapOptions = {
+									zoom: 8,
+									center: new google.maps.LatLng(17.4833, 78.4167),
+									mapTypeId: google.maps.MapTypeId.ROADMAP
+								};
+			  map = new google.maps.Map(el[0], mapOptions);
+			}
+			
+			initializeMap();
+		
+		
+		}
+	};
+});
+
+
 
 /*
 .directive('imageReader',function(){
