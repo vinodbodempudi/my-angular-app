@@ -12,10 +12,10 @@ var app = angular.module('fatHomesApp', [
   'login',
   'imageupload'
 ]);
-  
-app.config(function ($routeProvider) {
+//app.constant('servicesBaseUrl', 'http://54.88.7.125:3000');
+app.constant('servicesBaseUrl', 'http://localhost:3000');
+app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
-      
       .when('/propertyresults/:city/:locality', {
         templateUrl: 'modules/propertyresults/html/property-results.html',
         controller: 'PropertyResultsCtrl'
@@ -32,13 +32,25 @@ app.config(function ($routeProvider) {
         templateUrl: 'modules/home/html/home.html',
         controller: 'HomeCtrl'
       })
-
-
       .otherwise({
         redirectTo: '/home'
       });
+	  
+	 $httpProvider.defaults.cache = false; // disable http caching    
+    /*if (!$httpProvider.defaults.headers.get) {//initialize get if not there
+        $httpProvider.defaults.headers.get = {};    
+    }    
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';//disable IE ajax request caching*/
   });
-
+app.run(['$rootScope', '$location',function($rootScope, $location){
+	$rootScope.showTabs = {};
+	if($location.path().match('propertydetails') != null
+		||  $location.path().match('propertyresults') != null
+		||  $location.path().match('registerproperty') != null) {
+			$rootScope.showTabs = {};
+			$rootScope.showTabs.showTabs = true;
+		}
+}]);
  app.directive('match', function () {
         return {
             require: 'ngModel',
@@ -56,24 +68,16 @@ app.config(function ($routeProvider) {
         };
     });
 
-app.service('LocationService',['$http',  function($http) {
+app.service('LocationService', ['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
 
-	//var citiesURL ='data/cities.json';
-	//var localitiesURL ='data/localities.json';
-	
-	/localities/
-	
-       // var citiesURL ='http://localhost:3000/cities';
-       // var localitiesURL ='http://localhost:3000/localities/';
-        var citiesURL ='http://54.88.7.125:3000/cities';
-	var localitiesURL ='http://54.88.7.125:3000/localities/';
-	
 	this.getCities = function () {
-        return $http.get(citiesURL);
+        return $http.get(servicesBaseUrl+'/cities');
+		//return $http.get('data/cities.json');
     };
 	
 	this.getLocalities = function (city) {
-        return $http.get(localitiesURL+city);
+        return $http.get(servicesBaseUrl+'/localities/'+city);
+		//return $http.get('data/localities.json');
     };
 
 }]);

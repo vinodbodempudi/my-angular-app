@@ -23,12 +23,10 @@ angular.module('propertyDetails', [])
 		});
 
 
-}]).service('PropertyDetailsService',['$http',  function($http) {
-        //var getDetailsURL = 'http://localhost:3000/properties'
-	var getDetailsURL = 'http://54.88.7.125:3000/properties'
+}]).service('PropertyDetailsService',['$http',  'servicesBaseUrl', function($http, servicesBaseUrl) {
 
     this.getPropertyDetails = function (request) {
-        return $http.get(getDetailsURL+'/'+request.id);
+        return $http.get(servicesBaseUrl+'/properties/'+request.id);
     };
 
 }]);

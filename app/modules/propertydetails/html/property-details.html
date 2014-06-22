@@ -11,16 +11,16 @@
             	<a class="btn btn-sm btn-default" href="" ng-click="showPropertyResults();"><i class="fa fa-arrow-circle-o-left"></i> Back to List</a>
             </div>
           </div>
-		  <div id="headertabs">
-		  <div class="tabs" style="height:25px;">
-          <ul class="nav nav-pills" id="myTab" ng-init="detailsSubtab='Overview'">
-            <li class="active"><a href="" data-toggle="tab" ng-click="detailsSubtab='Overview'">OVERVIEW</a></li>
-			<li><a href="" data-toggle="tab" ng-click="detailsSubtab='Details'">DETAILS</a></li>
-            <li><a href="" data-toggle="tab" ng-click="detailsSubtab='Amenities'">AMENITIES</a></li>
-            <li><a href="" data-toggle="tab" ng-click="detailsSubtab='Photos'">PHOTOS</a></li>
-            <li><a href="" data-toggle="tab" ng-click="detailsSubtab='Contact'">CONTACT</a></li>
-          </ul>
-		  </div>
+		  <div id="headertabs col-sm-9">
+			  <div class="tabs" style="height:25px;">
+				  <ul class="nav nav-pills" id="myTab" ng-init="detailsSubtab='Overview'">
+					<li class="active"><a href="" data-toggle="tab" ng-click="detailsSubtab='Overview'">OVERVIEW</a></li>
+					<li><a href="" data-toggle="tab" ng-click="detailsSubtab='Details'">DETAILS</a></li>
+					<li><a href="" data-toggle="tab" ng-click="detailsSubtab='Amenities'">AMENITIES</a></li>
+					<li><a href="" data-toggle="tab" ng-click="detailsSubtab='Photos'">PHOTOS</a></li>
+					<li><a href="" data-toggle="tab" ng-click="detailsSubtab='Contact'">CONTACT</a></li>
+				  </ul>
+			  </div>
 		  </div>
         </div>
              
@@ -35,90 +35,90 @@
 			<div class="wrap-details">
 			<table class="table table-borderless">
         <tr>
-            <td>Property Type:</td>
+            <td class="detailstd">Property Type:</td>
 
-            <td><label>{{property.details.propertyType}} - {{property.details.propertySubType}}</label></td>
+            <td class="detailstd"><label>{{property.details.propertyType}} - {{property.details.propertySubType}}</label></td>
 
-            <td>is for:</td>
+            <td class="detailstd">is for:</td>
 
-            <td><label>{{property.details.mode}}</label></td>
+            <td class="detailstd"><label>{{property.details.mode}}</label></td>
         </tr>
 
         <tr>
-            <td>Beds:</td>
+            <td class="detailstd">Beds:</td>
 
-            <td><label>{{property.details.bedRooms}}</label></td>
+            <td class="detailstd"><label>{{property.details.bedRooms}}</label></td>
 
-            <td>Baths:</td>
+            <td class="detailstd">Baths:</td>
 
-            <td><label>{{property.details.bathRooms}}</label></td>
+            <td class="detailstd"><label>{{property.details.bathRooms}}</label></td>
         </tr>
 
         <tr>
-            <td>Build-up Area:</td>
+            <td class="detailstd">Build-up Area:</td>
 
-            <td><label>{{property.details.area.builtUp.builtUp}} {{property.details.area.builtUp.units}}</label></td>
+            <td class="detailstd"><label>{{property.details.area.builtUp.builtUp}} {{property.details.area.builtUp.units}}</label></td>
 
             <td ng-show="property.details.mode==='Sell'">Carpet Area:</td>
 
-            <td><label>{{property.details.area.carpet.carpet}} {{property.details.area.carpet.units}}</label></td>
+            <td class="detailstd"><label>{{property.details.area.carpet.carpet}} {{property.details.area.carpet.units}}</label></td>
         </tr>
 
         <tr ng-show="property.details.mode=='Sell'">
-            <td>Per Unit price:</td>
+            <td class="detailstd">Per Unit price:</td>
 
-            <td><label>{{property.details.area.perUnitPrice}}/Sq.ft
+            <td class="detailstd"><label>{{property.details.area.perUnitPrice}}/Sq.ft
             </label></td>
 
-            <td>plot/land Area:</td>
+            <td class="detailstd">plot/land Area:</td>
 
-            <td><label>{{property.details.area.plotOrLand.plotOrLand}} {{property.details.area.plotOrLand.units}}</label></td>
+            <td class="detailstd"><label>{{property.details.area.plotOrLand.plotOrLand}} {{property.details.area.plotOrLand.units}}</label></td>
         </tr>
 
         <tr>
-            <td>Availability:</td>
+            <td class="detailstd">Availability:</td>
 
-            <td>
+            <td class="detailstd">
 				<label ng-show="!property.details.date">{{property.details.availability}}</label>
 				<label ng-show="property.details.date">{{property.details.date | date:'MM/dd/yy'}}</label>
 			</td>
 
-            <td>Age of property:</td>
+            <td class="detailstd">Age of property:</td>
 
-            <td ng-show="property.details.ageOfProperty"><label>{{property.details.ageOfProperty.years}} years {{property.details.ageOfProperty.months}} months</label></td>
+            <td  class="detailstd" ng-show="property.details.ageOfProperty"><label>{{property.details.ageOfProperty.years}} years {{property.details.ageOfProperty.months}} months</label></td>
         </tr>
 
         
         <tr ng-show="property.details.mode=='Rent'">
-            <td>Monthly rent:</td>
+            <td class="detailstd">Monthly rent:</td>
 
-            <td><label>Rs. {{property.details.monthlyRent}}</label></td>
+            <td class="detailstd"><label class="fa fa-rupee"> {{property.details.monthlyRent}}</label></td>
 
-            <td>Deposit:</td>
+            <td class="detailstd">Deposit:</td>
 
-            <td ng-show="property.details.deposit"><label>Rs. {{property.details.deposit}}</label></td>
+            <td  class="detailstd" ng-show="property.details.deposit"><label class="fa fa-rupee"> {{property.details.deposit}}</label></td>
         </tr>
 
         <tr ng-show="property.details.mode=='Rent'">
-            <td>Prefered Tenant:</td>
+            <td class="detailstd">Prefered Tenant:</td>
 
-            <td><label>{{property.details.preferredTenant}}</label></td>
+            <td class="detailstd"><label>{{property.details.preferredTenant}}</label></td>
 
-            <td ng-show="property.details.allowNonVeg"><i class="fa fa-check-circle"></i><label>Allow Non-veg</label></td>
+            <td  class="detailstd" ng-show="property.details.allowNonVeg"><i class="fa fa-check-circle"></i><label>Allow Non-veg</label></td>
 
-            <td ng-show="property.details.allowPets"><i class="fa fa-check-circle"></i><label>Allow Pets</label></td>
+            <td  class="detailstd" ng-show="property.details.allowPets"><i class="fa fa-check-circle"></i><label>Allow Pets</label></td>
         </tr>
 
         <tr ng-show="property.details.mode=='Rent'">
             <td>Maintainance Fee:</td>
 
-            <td><label>Rs. {{property.details.maintenanceFee}}</label></td>
+            <td><label class="fa fa-rupee"> {{property.details.maintenanceFee}}</label></td>
 
-            <td>Commision:</td>
+            <td class="detailstd" ng-show="property.details.mode=='Rent' && property.user.type === 'Agent'">Commision:</td>
 
-            <td ng-show="property.details.commitionInDays">
+            <td class="detailstd" ng-show="property.details.mode=='Rent' && property.user.type === 'Agent' && property.details.commitionInDays">
 				<label ng-show="!property.details.fixedPrice">{{property.details.commitionInDays}}</label>
-				<label ng-show="property.details.fixedPrice">Rs. {{property.details.fixedPrice}}</label>
+				<label ng-show="property.details.fixedPrice" class="fa fa-rupee"> {{property.details.fixedPrice}}</label>
             </td>
         </tr>
         <tr>
@@ -128,18 +128,16 @@
 
             <td class="overvie-address">&nbsp;</td>
 
-            <td><i class="fa fa-check-circle" ng-show="property.details.propertyStatus"></i><label>{{property.details.propertyStatus}}</label></td>
+            <td class="detailstd"><i class="fa fa-check-circle" ng-show="property.details.propertyStatus"></i><label>{{property.details.propertyStatus}}</label></td>
         </tr>
 		 </table>
 		 
 		 <table class="table table-borderless" ng-show="property.details.mode=='Sell'">
 			<tr ng-show="property.details.price">
 				<td style="padding-left: 14px;">Total Price:</td>
-				<td><label>Rs. {{property.details.price.price}}</label></td>
-
-				<td><i class="fa fa-check-circle"></i> <label ng-show="property.details.price.negotiable">Negotiable</label></td>
-
-				<td><i class="fa fa-check-circle"></i> <label ng-show="property.details.price.registrationFeeIncluded">Registration Fee included</label></td>
+				<td class="detailstd"><label class="fa fa-rupee"> {{property.details.price.price}}</label></td>
+				<td class="detailstd" ng-class="{vis-hidden :property.details.price.negotiable}"><i class="fa fa-check-circle"></i> <label>Negotiable</label></td>
+				<td class="detailstd" ng-class="{vis-hidden :property.details.price.negotiable}"><i class="fa fa-check-circle"></i> <label>Registration Fee included</label></td>
 			</tr>
 		</table>
 	</div>
@@ -153,77 +151,85 @@
 	<div class="wrap-details">
 		<table class="table table-borderless" >
         <tr>
-            <td>Balconies:</td>
+            <td class="detailstd">Balconies:</td>
 
-            <td><label>{{property.specifications.balconies}}</label></td>
+            <td class="detailstd"><label>{{property.specifications.balconies}}</label></td>
 
-            <td>Additional Rooms:</td>
+            <td class="detailstd">Additional Rooms:</td>
 
-            <td><label>{{property.specifications.additionalRooms}}</label></td>
+            <td class="detailstd">
+				<label>{{property.specifications.additionalRooms}}</label>
+				<label ng-show="property.specifications.otherRoom">,</label>
+				<label ng-show="property.specifications.additionalRooms">{{property.specifications.otherRoom}}</label>
+			</td>
         </tr>
 
         <tr>
-            <td>Directional Facing:</td>
+            <td class="detailstd">Directional Facing:</td>
 
-            <td><label>{{property.specifications.directionalFacing}}</label></td>
+            <td class="detailstd"><label>{{property.specifications.directionalFacing}}</label></td>
 
-            <td>Facing:</td>
+            <td class="detailstd">Facing:</td>
 
-            <td><label>{{property.specifications.facing}}</label></td>
+            <td class="detailstd">
+				<label>{{property.specifications.facing}}</label>
+				<label ng-show="property.specifications.otherfacing">,</label>
+				<label ng-show="property.specifications.otherfacing">{{property.specifications.otherfacing}}</label>
+			</td>
         </tr>
 
         <tr>
-            <td>Floor Number:</td>
+            <td class="detailstd">Floor Number:</td>
 
-            <td><label>{{property.specifications.floorNumber}}</label></td>
+            <td class="detailstd"><label>{{property.specifications.floorNumber}}</label></td>
 
-            <td>Total Floors:</td>
+            <td class="detailstd">Total Floors:</td>
 
-            <td><label>{{property.specifications.totalFloor}}</label></td>
+            <td class="detailstd"><label>{{property.specifications.totalFloor}}</label></td>
         </tr>
-		<tr>
-            <td>No of Units Available:</td>
+		<tr ng-show="property.details.mode=='Sell'">
+            <td class="detailstd">No of Units Available:</td>
 
-            <td><label>{{property.specifications.unitsAvailable}}</label></td>
+            <td class="detailstd"><label>{{property.specifications.unitsAvailable}}</label></td>
 
-            <td>Ownership Type:</td>
+            <td class="detailstd">Ownership Type:</td>
 
-            <td><label>{{property.specifications.ownershipType}}</label></td>
+            <td class="detailstd"><label>{{property.specifications.ownershipType}}</label></td>
         </tr>
         <tr>
-            <td>Type of Electricity:</td>
+            <td class="detailstd">Type of Electricity:</td>
 
-            <td><label>{{property.specifications.typeOfElectricity}}</label></td>
+            <td class="detailstd"><label>{{property.specifications.typeOfElectricity}}</label></td>
 
-            <td>Security Systems:</td>
+            <td class="detailstd">Security Systems:</td>
 
-            <td><label>{{property.specifications.securitySystem}}</label></td>
+            <td class="detailstd"><label>{{property.specifications.securitySystem}}</label></td>
         </tr>
 
         <tr>
-		     <td>Flooring:</td>
+		     <td class="detailstd">Flooring:</td>
 
-            <td><label>{{property.specifications.flooring}}</label></td>
+            <td class="detailstd"><label>{{property.specifications.flooring}}</label></td>
 			
-            <td ng-show="property.specifications.houseWith"><i class="fa fa-check-circle"></i><label>{{property.specifications.houseWith}}</label></td>
+            <td class="detailstd" ng-show="property.specifications.houseWith"><i class="fa fa-check-circle"></i><label>{{property.specifications.houseWith}}</label></td>
 
-            <td ng-show="property.specifications.parking.fourWheelerVisitors"><i class="fa fa-check-circle"></i><label ng-show="property.specifications.parking.fourWheelerVisitors">4 Wheeler Visiting</label></td>
+            <td class="detailstd" ng-show="property.specifications.parking.fourWheelerVisitors"><i class="fa fa-check-circle"></i><label ng-show="property.specifications.parking.fourWheelerVisitors">4 Wheeler Visiting</label></td>
 
             
         </tr>
 
         <tr>
-            <td>parking:</td>
+            <td class="detailstd">parking:</td>
 
-            <td ng-show="property.specifications.parking.twoWheeler">
+            <td class="detailstd" ng-show="property.specifications.parking.twoWheeler">
 				<label>2 wheeler</label>
 				<span style="padding-left:20px;" ng-show="property.specifications.parking.twoWheeler.type"><i class="fa fa-check-circle"></i><label>{{property.specifications.parking.twoWheeler.type}}</label></span>
 				<span style="padding-left:20px;" ng-show="property.specifications.parking.twoWheeler.common"><i class="fa fa-check-circle"></i><label>common</label></span>
 			</td>
         </tr>
 		<tr>
-            <td></td>
-            <td ng-show="property.specifications.parking.fourWheeler">
+            <td class="detailstd"></td>
+            <td class="detailstd" ng-show="property.specifications.parking.fourWheeler">
 				<label>4 wheeler</label>
 				<span style="padding-left:20px;" ng-show="property.specifications.parking.fourWheeler.type"><i class="fa fa-check-circle"></i><label>{{property.specifications.parking.fourWheeler.type}}</label></span>
 				<span style="padding-left:20px;" ng-show="property.specifications.parking.fourWheeler.common"><i class="fa fa-check-circle"></i><label>common</label></span>
@@ -238,14 +244,6 @@
 			<div class="wrap-details" ng-show="property.amenities">
              <div class="row aminitieslist">
     
-      <div class="col-sm-4 col-4" ng-show="property.amenities.swimmingPool"><i class="fa fa-check-circle"></i>Swimming pool </div>
-      <div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Play area </div>
-      <div class="col-sm-4 col-4" ng-show="property.amenities.healthFacilities"><i class="fa fa-check-circle"></i>Health Facilities </div>
-	  <div class="col-sm-4 col-4" ng-show="property.amenities.recreationFacilities"><i class="fa fa-check-circle"></i>Recreation facilities </div>
-      <div class="col-sm-4 col-4" ng-show="property.amenities.maintenanceStaff"><i class="fa fa-check-circle"></i>Maintenance staff </div>
-      <div class="col-sm-4 col-4" ng-show="property.amenities.security"><i class="fa fa-check-circle"></i>Security </div>
-	  <div class="col-sm-4 col-4" ng-show="property.amenities.intercom"><i class="fa fa-check-circle"></i>Intercom </div>
-      <div class="col-sm-4 col-4" ng-show="property.amenities.clubHouse"><i class="fa fa-check-circle"></i>Club house</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.24HRBackup"><i class="fa fa-check-circle"></i>24Hr backup</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.airConditioned"><i class="fa fa-check-circle"></i>Air conditioned</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.badmintonCourt"><i class="fa fa-check-circle"></i>Badminton court</div>
@@ -254,24 +252,31 @@
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.barLounge"><i class="fa fa-check-circle"></i>Bar/Lounge</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.basketballCourt"><i class="fa fa-check-circle"></i>Basketball court</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.cafetariaFoodCourt"><i class="fa fa-check-circle"></i>Cafeteria/Food Court</div>
+	  <div class="col-sm-4 col-4" ng-show="property.amenities.clubHouse"><i class="fa fa-check-circle"></i>Club house</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.communityHall"><i class="fa fa-check-circle"></i>Community Hall</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.conferenceRoom"><i class="fa fa-check-circle"></i>Conference Room</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.DTHTelevisionFacility"><i class="fa fa-check-circle"></i>DTH Television Facility</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.gatedCommunity"><i class="fa fa-check-circle"></i>Gated Community</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.generatorBackup"><i class="fa fa-check-circle"></i>Generator Backup</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.gym"><i class="fa fa-check-circle"></i>Gym</div>
+	  <div class="col-sm-4 col-4" ng-show="property.amenities.healthFacilities"><i class="fa fa-check-circle"></i>Health Facilities </div>
+	  <div class="col-sm-4 col-4" ng-show="property.amenities.intercom"><i class="fa fa-check-circle"></i>Intercom </div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.internetWifi"><i class="fa fa-check-circle"></i>Internet/wifi</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.laundryService"><i class="fa fa-check-circle"></i>Laundry service</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.library"><i class="fa fa-check-circle"></i>Library</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.lift"><i class="fa fa-check-circle"></i>Lift</div>
+	  <div class="col-sm-4 col-4" ng-show="property.amenities.maintenanceStaff"><i class="fa fa-check-circle"></i>Maintenance staff </div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.park"><i class="fa fa-check-circle"></i>Park</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.pipedGas"><i class="fa fa-check-circle"></i>Piped Gas</div>
+	  <div class="col-sm-4 col-4" ng-show="property.amenities.playArea"><i class="fa fa-check-circle"></i>Play area </div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.powerBackup"><i class="fa fa-check-circle"></i>Power backup</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.privateTerraceGarden"><i class="fa fa-check-circle"></i>Private Terrace/Garden</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.rainWaterHarvesting"><i class="fa fa-check-circle"></i>Rain water harvesting</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.recreationFacilities"><i class="fa fa-check-circle"></i>Recreation facilities</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.ROWaterSystem"><i class="fa fa-check-circle"></i>RO water system</div>
+	  <div class="col-sm-4 col-4" ng-show="property.amenities.security"><i class="fa fa-check-circle"></i>Security </div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.serviceGoodsLift"><i class="fa fa-check-circle"></i>Service/Goods lift</div>
+	  <div class="col-sm-4 col-4" ng-show="property.amenities.swimmingPool"><i class="fa fa-check-circle"></i>Swimming pool </div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.temple"><i class="fa fa-check-circle"></i>Temple</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.tennisCourt"><i class="fa fa-check-circle"></i>Tennis Court</div>
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.vaastuCompliant"><i class="fa fa-check-circle"></i>Vaastu compliant</div>
@@ -330,11 +335,11 @@
 			
 			
 			<p ng-show="property.user.type==='Builder' && property.user.companyName">
-				<i class="fa fa-user"></i> Builder Company Name : <label class="contact-label">FatHome</label>
+				<i class="fa fa-user"></i> Builder Company Name : <label class="contact-label">{{property.user.companyName}}</label>
 			</p>
 			
 			<p ng-show="property.user.type==='Builder' && property.user.companyAddress">
-				<i class="fa fa-envelope"></i> Builder Company Address : <label class="contact-label">kukatpally, Hyderabad</label>
+				<i class="fa fa-envelope"></i> Builder Company Address : <label class="contact-label">{{property.user.companyAddress}}</label>
 			</p>
 		
 		</div>

@@ -100,17 +100,17 @@
 						  <label class="col-sm-2 control-label">Best time to call:</label>
 							<label class="col-sm-1 control-label fromto">From</label>
 							<div class="col-sm-1">
-							  <select class="form-control input-sm" ng-options="hour as hour for hour in hours" ng-model="property.user.besTimeToCall.from">					
+							  <select class="form-control input-sm" ng-options="hour as hour for hour in hours" ng-init="property.user.besTimeToCall.from='08'" ng-model="property.user.besTimeToCall.from">					
 							  </select>					
 							</div>
 							<label class="col-sm-1 control-label fromto">To</label>
 							<div class="col-sm-1">
-							  <select class="form-control input-sm" ng-options="hour as hour for hour in hours" ng-model="property.user.besTimeToCall.to">
+							  <select class="form-control input-sm" ng-options="hour as hour for hour in hours" ng-init="property.user.besTimeToCall.to='20'" ng-model="property.user.besTimeToCall.to">
 							  </select>
 							</div>
 							<label class="col-sm-2 control-label">Best way to reach:</label>
 							<div class="col-sm-2">
-							  <select class="form-control input-sm" ng-model="property.user.besWayToReach">
+							  <select class="form-control input-sm" ng-init="property.user.besWayToReach='Phone'" ng-model="property.user.besWayToReach">
 								  <option value="" selected>Select Option</option>
 								  <option>Email</option>
 								  <option>Phone</option>
@@ -304,12 +304,12 @@
                                 </div>
                                 <label class="col-sm-2 control-label">Age of Property</label>
 								<div class="col-sm-1">
-									<select class="form-control input-sm" ng-options="year as year for year in ageOfPropertyOptions.years"  ng-model="property.details.ageOfProperty.years">
+									<select class="form-control input-sm" ng-change="property.details.propertyStatus='Resale'" ng-options="year as year for year in ageOfPropertyOptions.years"  ng-model="property.details.ageOfProperty.years">
 										<option value="">Y</option>
 									</select>
 								</div>
 								<div class="col-sm-1">
-									<select class="form-control input-sm" ng-options="month as month for month in ageOfPropertyOptions.months" ng-model="property.details.ageOfProperty.months">
+									<select class="form-control input-sm" ng-change="property.details.propertyStatus='Resale'" ng-options="month as month for month in ageOfPropertyOptions.months" ng-model="property.details.ageOfProperty.months">
 										<option value="">M</option>
 									</select>
 								</div>
@@ -575,7 +575,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" ng-show="property.details.mode==='Sell'">
 								<label class="col-sm-2 control-label">No of Units Available</label>
 								<div class="col-sm-1">
 									<select class="form-control input-sm" ng-options="unit as unit for unit in noOfUnits" ng-model="property.specifications.unitsAvailable">
@@ -925,12 +925,12 @@
 		</div>
       <div class="modal-body">
 		<div class="text-center">
-			<div class="alert alert-success ">Property details saved successfully.</div>
-			<a href="#/propertyresults/{{selectedCity}}/{{selectedLocality}}"><button class="btn btn-info">Back to Results</button></a>
+			<img ng-src="images/success.gif"/> 
+			<div class="resgisterPropertySuccessLabel" style="display:inline;">Property details saved successfully.</div>
 		</div>
       </div>
       <div class="modal-footer">
-        
+        <a href="#/propertyresults/{{selectedCity}}/{{selectedLocality}}"><button class="btn btn-info">Back to Results</button></a>
       </div>
     </div>
     <!-- /.modal-content -->

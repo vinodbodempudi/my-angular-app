@@ -11,7 +11,7 @@ angular.module('home', [])
 			$rootScope.selectedCity = city;
 			$rootScope.selectedLocality = locality;
 			$location.path('/propertyresults/' + city + '/' + locality);
-			$scope.showTabs.showTabs = true;
+			$rootScope.showTabs.showTabs = true;
 		}
 	}
 
@@ -52,7 +52,7 @@ angular.module('home', [])
 
 	this.propertySortOptions = function () {
         return [
-			{lable:"Date", dataField:"date", reverseOrder:false},
+			{lable:"Date", dataField:"createdDate", reverseOrder:true},
 			{lable:"Price(low to high)", dataField:"price", reverseOrder:false},
 			{lable:"Price(high to low)", dataField:"price", reverseOrder:true},
 			{lable:"Sqft(low to high)", dataField:"size", reverseOrder:false},
@@ -89,7 +89,7 @@ angular.module('home', [])
 				hours[i] = '0'+i;
 				continue;
 			}
-			hours[i] = i;
+			hours[i] = ''+i;
 		}
         return hours;
     };
@@ -105,17 +105,25 @@ angular.module('home', [])
 				vales[i] = '0'+i;
 				continue;
 			}
-			vales[i] = i;
+			vales[i] = ''+i;
 		}
         return vales;
     };
 	
 	this.bedRoomsDropDownValues = function () {
-        return this.getDropDownValues(9);
+        var vales = [];
+		for (var i = 0; i <= 9; i++) { 
+			vales[i] = ''+i;
+		}
+        return vales;
     };
 	
 	this.bathRoomsDropDownValues = function () {
-        return this.getDropDownValues(9);
+		var vales = [];
+		for (var i = 0; i <= 9; i++) { 
+			vales[i] = ''+i;
+		}
+        return vales;
     };
 	
 	this.flooringDropDownValues = function () {

@@ -170,7 +170,7 @@ footer{ text-align:center; padding-bottom:0px;}
 .detail-view h3{ color:#159CEB;  padding:5px 10px 0px; margin-top:10px;}
 .detail-images i{ color:#39F;}
 #headertabs .tabs{ margin:0px; padding-left:247px;}
-.tabs{ margin:10px 0px;}
+.tabs{ margin:0px 0px;}
 .tabs .nav>li>a{ padding-top:5px; padding-bottom:5px;}
 .tab-content{ padding:5px 10px;}
 
@@ -433,6 +433,14 @@ table.table-borderless td{font-size:12px;}
 
 table.table-borderless td i {padding-right:5px;}
 
+
+.detailstd {
+width:25%;
+
+
+}
+
+
 /* Details page end*/
 
 
@@ -473,6 +481,17 @@ input.from{text-align:left !important;}
 
 .register-success-modal{ margin-top:100px; width: 438px; height: auto;}
 
+
+.resgisterPropertySuccessLabel {
+color: #468847;
+padding: 15px;
+font-size: 16px;
+border-color: #d6e9c6;
+top: 2px;
+position: relative;
+}
+
+
 /*Register end*/
 
 /*Contact page start*/
@@ -512,8 +531,8 @@ clear:right;
 text-align: center;
 height: 100%;
 position: relative;
-top: 22px;
-left: -16px;
+top: 26px;
+left: -15px;
 }
 
 .locationDisplay{ 
@@ -524,18 +543,18 @@ left: -16px;
 }
 
 .changeLocalityImage {
-	width: 32px;
-	height: 32px;
+	width: 24px;
+	height: 24px;
 	margin-right: -22px;
 	margin-bottom: -6px;
 }
 
 .changeLocalityLabel {
-display: block;
-color: #489cdf;
-font-size: 16px;
-font-style: italic;
-font-weight: bold;
+	display: block;
+	color: #489cdf;
+	font-size: 14px;
+	font-style: italic;
+	font-weight: bold;
 }
 
 
@@ -573,7 +592,16 @@ line-height: 2.3 !important;
 	top: 4px;
 }
 
+.propertyresultsLabel {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 205px;
+	font-weight:100;
+}
 
-
+.vis-hidden{
+    visibility: hidden;
+}
 
 

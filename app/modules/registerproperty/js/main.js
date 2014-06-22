@@ -60,11 +60,9 @@ angular.module('registerProperty', [])
 		    });
     };
 }])
-.service('RegisterPropertyService',['$http',  function($http) {
-        // var registerPropertyURL = 'http://localhost:3000/properties';
-   	var registerPropertyURL = 'http://54.88.7.125:3000/properties';
+.service('RegisterPropertyService',['$http',  'servicesBaseUrl', function($http, servicesBaseUrl) {
     this.registerProperty = function (property) {
-        return $http.post(registerPropertyURL, property);
+        return $http.post(servicesBaseUrl+'/properties', property);
     };
 }])
 .directive('datePicker', function () {

@@ -5,14 +5,14 @@ angular.module('propertyResults', [])
 .controller('PropertyResultsCtrl',['$scope', '$routeParams', 'PropertyResultsService', 'FatHomeUtil', 'LocationService', '$rootScope', '$location',
 	function($scope, $routeParams, propertyResultsService, fatHomeUtil, locationService, $rootScope, $location) {
 	
-    $scope.city = $routeParams.city;
-	$scope.locality = $routeParams.locality;
+    $scope.city = $scope.newCity = $routeParams.city;
+	$scope.locality = $scope.newLocality = $routeParams.locality;
 	$scope.properties = [];
 	$scope.sortOptions = fatHomeUtil.propertySortOptions();
 	$scope.bedRoomsDropDownValues = fatHomeUtil.bedRoomsDropDownValues();
 	$scope.propertyTypes = fatHomeUtil.propertyTypes();
 	$scope.propertySubTypeMapper = fatHomeUtil.propertySubTypeMapper();
-	
+	$scope.predicate = {};
 	
 	$scope.openChangeLocationModal = function() {
 	
@@ -20,12 +20,13 @@ angular.module('propertyResults', [])
 			locationService.getCities()
 				.success(function(data){
 					$scope.cities = data;
+					$scope.getLocalities($scope.city);
 				}).error(function(e){
 					
 				});
 		}
-		$scope.newCity='';
-		$scope.newLocality='';
+		$scope.newCity = $scope.city;
+		$scope.newLocality = $scope.locality;
 		$scope.form1.submitted=false;
 		$scope.showChangeLocationModal=true;
 	}
@@ -61,6 +62,8 @@ angular.module('propertyResults', [])
 	propertyResultsService.getProperties(getPropertiesRequest)
 		.success(function(data){
 			$scope.properties = data;
+			$scope.predicate.dataField = 'createdDate';
+			$scope.predicate.reverseOrder = true;
 		}).error(function(e){
 			
 		});
@@ -80,25 +83,14 @@ angular.module('propertyResults', [])
 	$scope.showPropertyResults = function() {
 		$scope.showPage = 'propertyResults';
 	}
-}]).service('PropertyResultsService',['$http',  function($http) {
+}]).service('PropertyResultsService',['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
 
-       //var getPropertiesURL = 'http://localhost:3000/properties';
-       //var getPropertyDetailsURL = 'http://localhost:3000/properties';
-
-	var getPropertiesURL = 'http://54.88.7.125:3000/properties';
-	var getPropertyDetailsURL = 'http://54.88.7.125:3000/properties';
-	
-	//var getPropertiesURL = 'data/propertyresults.json';
-	//var getPropertyDetailsURL = 'data/propertyresults.json';
-	
     this.getProperties = function (getPropertiesRequest) {
-        return $http.get(getPropertiesURL+'/'+getPropertiesRequest.city+'/'+getPropertiesRequest.locality);
-		//return $http.get(getPropertiesURL);
+        return $http.get(servicesBaseUrl+'/properties/'+getPropertiesRequest.city+'/'+getPropertiesRequest.locality);
     };
 	
 	this.getPropertyDetails = function (propertyId) {
-        return $http.get(getPropertyDetailsURL+'/'+propertyId);
-		//return $http.get(getPropertyDetailsURL);
+        return $http.get(servicesBaseUrl+'/properties/'+propertyId);
     };
 
 }]).filter('filterPropertiesResults', [function () {
