@@ -50,7 +50,7 @@
 										<input id="inputImage" type="file"  class="agentphoto" name="file_source" size="40" accept="image/*" image="property.user.image" />
 									</a>&nbsp;
 									<span class='label label-info' id="upload-file-info"></span>
-									<img ng-show="property.user.image" ng-src="{{property.user.image}}" width="100" height="100"/> 
+									<img ng-show="property.user.image" ng-src="{{property.user.image.dataURL}}" width="100" height="100"/> 
 								</div>
                                
                             </div>
@@ -890,15 +890,15 @@
                                 <div style="position:relative;">
                                     <a class='btn btn-primary btn-sm' href='javascript:;'>
 										Choose File...
-										<input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
+										<input type="file" accept="image/*" image="property.photos" multiple style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
 									</a>
                                     &nbsp;
                                     <span class='label label-info' id="upload-file-info"></span>
                                 </div>
                                 <p>You can upload upto 10 photos</p>
                                 <div class="upload-img">
-                                    <img src="images/list1.png" alt="..." class="img-thumbnail">
-                                    <img src="images/list1.png" alt="..." class="img-thumbnail">
+                                    <img src="{{photo.dataURL}}" ng-repeat="photo in property.photos" alt="..." class="img-thumbnail">
+                                   
                                 </div>
                             </div>
 

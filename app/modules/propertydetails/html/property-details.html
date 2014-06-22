@@ -112,7 +112,7 @@
         <tr ng-show="property.details.mode=='Rent'">
             <td>Maintainance Fee:</td>
 
-            <td><label class="fa fa-rupee"> {{property.details.maintenanceFee}}</label></td>
+            <td><label class="fa fa-rupee" ng-show="property.details.maintenanceFee"> {{property.details.maintenanceFee}}</label></td>
 
             <td class="detailstd" ng-show="property.details.mode=='Rent' && property.user.type === 'Agent'">Commision:</td>
 

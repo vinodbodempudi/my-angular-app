@@ -99,16 +99,16 @@ angular.module('imageupload', [])
                     //scope.$apply(function() {
                         //console.log(imageResult);
                         if(attrs.multiple)
-                            scope.image.push(imageResult.dataURL);
+                            scope.image.push(imageResult);
                         else
-                            scope.image = imageResult.dataURL; 
+                            scope.image = imageResult; 
                    // });
                 };
 
 
                 element.bind('change', function (evt) {
                     //when multiple always return an array of images
-                    if(attrs.multiple)
+                    if(attrs.multiple && !scope.image)
                         scope.image = [];
 
                     var files = evt.target.files;
