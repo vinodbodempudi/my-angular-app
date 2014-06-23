@@ -1,7 +1,7 @@
 <div class="container panellabel">
     <div class="row" ng-init="showForm1=true;showForm2=false;showForm3=false;">
         <div class="col-sm-12">
-            <h3>Enter your details</h3>
+            <h3 class="resgisterPropertyHeaderLabel">Enter your details</h3><label class="text-info" style="padding-right:20px;">Share more details to get quality inquiries</label>
             <form class="form-horizontal" ng-show="showForm1" name="form1" role="form" novalidate>
                 <div ng-show="true">
                     <div class="panel panel-default">
@@ -96,42 +96,42 @@
                                     <p ng-show="form1.locality.$invalid && (!form1.locality.$pristine || form1.submitted)" class="label errorText">select locality</p>
                                 </div>
                             </div>
-							<div class="form-group">
-						  <label class="col-sm-2 control-label">Best time to call:</label>
-							<label class="col-sm-1 control-label fromto">From</label>
-							<div class="col-sm-1">
-							  <select class="form-control input-sm" ng-options="hour as hour for hour in hours" ng-init="property.user.besTimeToCall.from='08'" ng-model="property.user.besTimeToCall.from">					
-							  </select>					
-							</div>
-							<label class="col-sm-1 control-label fromto">To</label>
-							<div class="col-sm-1">
-							  <select class="form-control input-sm" ng-options="hour as hour for hour in hours" ng-init="property.user.besTimeToCall.to='20'" ng-model="property.user.besTimeToCall.to">
-							  </select>
-							</div>
-							<label class="col-sm-2 control-label">Best way to reach:</label>
-							<div class="col-sm-2">
-							  <select class="form-control input-sm" ng-init="property.user.besWayToReach='Phone'" ng-model="property.user.besWayToReach">
-								  <option value="" selected>Select Option</option>
-								  <option>Email</option>
-								  <option>Phone</option>
-								</select>
-							</div>
+							<div class="form-group" ng-show="false">
+								<label class="col-sm-2 control-label">Best time to call:</label>
+								<label class="col-sm-1 control-label fromto">From</label>
+								<div class="col-sm-1">
+								  <select class="form-control input-sm" ng-options="hour as hour for hour in hours" ng-init="property.user.besTimeToCall.from='08'" ng-model="property.user.besTimeToCall.from">					
+								  </select>					
+								</div>
+								<label class="col-sm-1 control-label fromto">To</label>
+								<div class="col-sm-1">
+								  <select class="form-control input-sm" ng-options="hour as hour for hour in hours" ng-init="property.user.besTimeToCall.to='20'" ng-model="property.user.besTimeToCall.to">
+								  </select>
+								</div>
+								<label class="col-sm-2 control-label">Best way to reach:</label>
+								<div class="col-sm-2">
+								  <select class="form-control input-sm" ng-init="property.user.besWayToReach='Phone'" ng-model="property.user.besWayToReach">
+									  <option value="" selected>Select Option</option>
+									  <option>Email</option>
+									  <option>Phone</option>
+									</select>
+								</div>
 						  </div>
 						  
-						   <div class="form-group" ng-show="property.user.type==='Agent' || property.user.type==='Builder'">
-							<label class="col-sm-2 control-label" ng-show="property.user.type==='Agent'">Agent Company Name:</label>
-							<label class="col-sm-2 control-label" ng-show="property.user.type==='Builder'">Builder Company Name:</label>
-							<div class="col-sm-3">
-							  <input type="text" class="form-control input-sm" ng-model="property.user.companyName" placeholder="Company Name">
+						   <div class="form-group" ng-show="false">
+								<label class="col-sm-2 control-label" ng-show="property.user.type==='Agent'">Agent Company Name:</label>
+								<label class="col-sm-2 control-label" ng-show="property.user.type==='Builder'">Builder Company Name:</label>
+								<div class="col-sm-3">
+								  <input type="text" class="form-control input-sm" ng-model="property.user.companyName" placeholder="Company Name">
+								</div>
+								<label class="col-sm-2 control-label bcompanyadd" ng-show="property.user.type==='Agent'">Agent Company address:</label>
+								<label class="col-sm-2 control-label bcompanyadd" ng-show="property.user.type==='Builder'">Builder Company address:</label>
+								<div class="col-sm-3">
+								  <input type="text" class="form-control input-sm" ng-model="property.user.companyAddress" placeholder="Company address">
+								</div>
 							</div>
-							<label class="col-sm-2 control-label bcompanyadd" ng-show="property.user.type==='Agent'">Agent Company address:</label>
-							<label class="col-sm-2 control-label bcompanyadd" ng-show="property.user.type==='Builder'">Builder Company address:</label>
-							<div class="col-sm-3">
-							  <input type="text" class="form-control input-sm" ng-model="property.user.companyAddress" placeholder="Company address">
-							</div>
-						  </div>
-                        </div>
-                    </div>
+						</div>
+					</div>
                     <div class="panel panel-default">
                         <div class="panel-heading"><strong>Property Details</strong>
                         </div>
@@ -423,6 +423,7 @@
                         </div>
                     </div>
                     <div class="text-right">
+						<label class="text-info" style="padding-right:20px;">Share more details to get quality inquiries</label>
                         <button type="submit" class="btn btn-info" ng-click="form1.submitted=true;showForm2=form1.$valid;showForm1=!form1.$valid">Next</button>
                     </div>
                 </div>
@@ -872,13 +873,14 @@
                         </div>
                     </div>
                     <div class="text-right">
+						<label class="text-info" style="padding-right:20px;">Share more details to get quality inquiries</label>
                         <button type="button" class="btn btn-info" ng-click="showForm2=false;showForm1=!showForm2;">Previous</button>
                         <button type="button" class="btn btn-info" ng-click="showForm2=false;showForm3=!showForm2;">Next</button>
                     </div>
                 </div>
             </form>
 
-            <form class="form-horizontal" role="form"  ng-show="true">
+            <form class="form-horizontal" role="form"  ng-show="showForm3">
                 <div>
                     <div class="panel panel-default">
                         <div class="panel-heading"><strong>photos and map</strong>
@@ -912,6 +914,7 @@
                         <!-- <div class="panel-footer text-right"><button class="btn btn-default">Submit</button></div> -->
                     </div>
                     <div class="text-right">
+						<label class="text-info" style="padding-right:20px;">Upload property photos and property map to get quality inquiries</label>
                         <button type="button" class="btn btn-info" ng-click="showForm3=false;showForm2=true;">Previous</button>
                         <button class="btn btn-info" ng-click="registerProperty();">Submit</button>
                     </div>
@@ -928,7 +931,7 @@
       <div class="modal-body">
 		<div class="text-center">
 			<img ng-src="images/success.gif"/> 
-			<div class="resgisterPropertySuccessLabel" style="display:inline;">Property details saved successfully.</div>
+			<span class="resgisterPropertySuccessLabel">Property details saved successfully.</span>
 		</div>
       </div>
       <div class="modal-footer">
