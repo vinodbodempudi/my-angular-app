@@ -1,7 +1,7 @@
 <div class="container panellabel">
     <div class="row" ng-init="showForm1=true;showForm2=false;showForm3=false;">
         <div class="col-sm-12">
-            <h3 class="resgisterPropertyHeaderLabel">Enter your details</h3><label class="text-info" style="padding-right:20px;">Share more details to get quality inquiries</label>
+            <h3 class="resgisterPropertyHeaderLabel">Enter property details</h3><label class="text-info" style="padding-right:20px;">Share more details to get quality inquiries</label>
             <form class="form-horizontal" ng-show="showForm1" name="form1" role="form" novalidate>
                 <div ng-show="true">
                     <div class="panel panel-default">
@@ -404,7 +404,7 @@
 								</div>
 
 								<div class="form-group" ng-show="property.user.type==='Agent'">
-									<label class="col-sm-2 control-label">Commition in Days:</label>
+									<label class="col-sm-2 control-label">Agent Commision:</label>
 									<div class="col-sm-3">
 										<select class="form-control input-sm" name="commitionInDays" ng-model="property.details.commitionInDays" ng-required="false">
 											<option>1/2 Month Rent</option>
