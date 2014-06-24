@@ -51,7 +51,7 @@ angular.module('registerProperty', [])
 	
 	$scope.updatePropertyStatus = function() {
 		if($scope.property.details.mode==='Sell') {
-			$scope.property.details.propertyStatus='Resale'
+			$scope.property.details.propertyStatus='Resale';
 		}
 	}
 	
