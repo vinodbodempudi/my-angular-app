@@ -48,7 +48,13 @@ angular.module('registerProperty', [])
 		    	
 		    });
 	}
-
+	
+	$scope.updatePropertyStatus = function() {
+		if($scope.property.details.mode==='Sell') {
+			$scope.property.details.propertyStatus='Resale'
+		}
+	}
+	
     $scope.registerProperty = function () {
 	
 	   $scope.property.createdDate = new Date();

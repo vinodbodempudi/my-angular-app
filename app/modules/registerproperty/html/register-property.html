@@ -1,7 +1,7 @@
 <div class="container panellabel">
     <div class="row" ng-init="showForm1=true;showForm2=false;showForm3=false;">
         <div class="col-sm-12">
-            <h3 class="resgisterPropertyHeaderLabel">Enter property details</h3><label class="text-info" style="padding-right:20px;">Share more details to get quality inquiries</label>
+            <h3 class="resgisterPropertyHeaderLabel">Enter property details</h3><label class="register-property-info-text">Share more details to get quality inquiries</label>
             <form class="form-horizontal" ng-show="showForm1" name="form1" role="form" novalidate>
                 <div ng-show="true">
                     <div class="panel panel-default">
@@ -58,7 +58,7 @@
                                 <label class="col-sm-2 control-label mandatory">Email:</label>
                                 <div class="col-sm-2">
                                     <input type="email" ng-model="property.user.email" name="email" ng-required='true' class="form-control input-sm" placeholder="Email">
-                                    <p class="label errorText" ng-show="form1.submitted && form1.email.$error.required">Enter email</p>
+                                    <p class="label errorText" ng-show="form1.submitted && form1.email.$error.required && !form1.email.$dirty">Enter email</p>
                                     <p ng-show="form1.email.$invalid && form1.email.$dirty" class="label errorText">Enter valid email</p>
                                 </div>
                                 <div class="col-sm-2" ng-show="false">
@@ -304,12 +304,12 @@
                                 </div>
                                 <label class="col-sm-2 control-label">Age of Property</label>
 								<div class="col-sm-1">
-									<select class="form-control input-sm" ng-change="property.details.propertyStatus='Resale'" ng-options="year as year for year in ageOfPropertyOptions.years"  ng-model="property.details.ageOfProperty.years">
+									<select class="form-control input-sm" ng-change="updatePropertyStatus();" ng-options="year as year for year in ageOfPropertyOptions.years"  ng-model="property.details.ageOfProperty.years">
 										<option value="">Y</option>
 									</select>
 								</div>
 								<div class="col-sm-1">
-									<select class="form-control input-sm" ng-change="property.details.propertyStatus='Resale'" ng-options="month as month for month in ageOfPropertyOptions.months" ng-model="property.details.ageOfProperty.months">
+									<select class="form-control input-sm" ng-change="updatePropertyStatus();" ng-options="month as month for month in ageOfPropertyOptions.months" ng-model="property.details.ageOfProperty.months">
 										<option value="">M</option>
 									</select>
 								</div>
@@ -423,7 +423,7 @@
                         </div>
                     </div>
                     <div class="text-right">
-						<label class="text-info" style="padding-right:20px;">Share more details to get quality inquiries</label>
+						<label class="register-property-info-text">Share more details to get quality inquiries</label>
                         <button type="submit" class="btn btn-info" ng-click="form1.submitted=true;showForm2=form1.$valid;showForm1=!form1.$valid">Next</button>
                     </div>
                 </div>
@@ -873,7 +873,7 @@
                         </div>
                     </div>
                     <div class="text-right">
-						<label class="text-info" style="padding-right:20px;">Share more details to get quality inquiries</label>
+						<label class="register-property-info-text">Share more details to get quality inquiries</label>
                         <button type="button" class="btn btn-info" ng-click="showForm2=false;showForm1=!showForm2;">Previous</button>
                         <button type="button" class="btn btn-info" ng-click="showForm2=false;showForm3=!showForm2;">Next</button>
                     </div>
@@ -914,7 +914,7 @@
                         <!-- <div class="panel-footer text-right"><button class="btn btn-default">Submit</button></div> -->
                     </div>
                     <div class="text-right">
-						<label class="text-info" style="padding-right:20px;">Upload property photos and property map to get quality inquiries</label>
+						<label class="register-property-info-text">Upload property photos and property map to get quality inquiries</label>
                         <button type="button" class="btn btn-info" ng-click="showForm3=false;showForm2=true;">Previous</button>
                         <button class="btn btn-info" ng-click="registerProperty();">Submit</button>
                     </div>
@@ -926,18 +926,16 @@
 <div class="modal" modal-visible="registerPropertySuccess" modal-show data-backdrop="false" id="registerPropertySuccessModal" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-		</div>
       <div class="modal-body">
-		<div class="text-center">
+		<div class="text-center" style="padding: 20px;">
 			<img ng-src="images/success.gif"/> 
 			<span class="resgisterPropertySuccessLabel">Property details saved successfully.</span>
 		</div>
-      </div>
-      <div class="modal-footer">
-        <a href="#/propertyresults/{{selectedCity}}/{{selectedLocality}}"><button class="btn btn-info">Back to Results</button></a>
-      </div>
-    </div>
+		<div class="text-center">
+			<a href="#/propertyresults/{{selectedCity}}/{{selectedLocality}}"><button class="btn btn-info">Back to Results</button></a>
+		</div>
+	  </div>
+     </div>
     <!-- /.modal-content -->
   </div>
   <!-- /.modal-dialog -->

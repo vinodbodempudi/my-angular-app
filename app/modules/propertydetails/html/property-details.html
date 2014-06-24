@@ -34,16 +34,17 @@
 		
 			<div class="wrap-details">
 			<table class="table table-borderless">
-        <tr>
-            <td class="detailstd">Property Type:</td>
+			<tr>
+				<td class="detailstd">Property Type:</td>
 
-            <td class="detailstd"><label>{{property.details.propertyType}} - {{property.details.propertySubType}}</label></td>
+				<td width="40%"><label>{{property.details.propertyType}} - {{property.details.propertySubType}}</label></td>
 
-            <td class="detailstd">is for:</td>
+				<td width="10%">is for:</td>
 
-            <td class="detailstd"><label>{{property.details.mode}}</label></td>
-        </tr>
-
+				<td class="detailstd"><label>{{property.details.mode}}</label></td>
+			</tr>
+			</table>
+		<table class="table table-borderless">
         <tr>
             <td class="detailstd">Beds:</td>
 
@@ -85,18 +86,21 @@
 
             <td class="detailstd">Age of property:</td>
 
-            <td  class="detailstd" ng-show="property.details.ageOfProperty"><label>{{property.details.ageOfProperty.years}} years {{property.details.ageOfProperty.months}} months</label></td>
+            <td  class="detailstd" ng-show="property.details.ageOfProperty">
+				<label ng-show="property.details.ageOfProperty.years">{{property.details.ageOfProperty.years}} years</label>
+				<label ng-show="property.details.ageOfProperty.months">{{property.details.ageOfProperty.months}} months</label>
+			</td>
         </tr>
 
         
         <tr ng-show="property.details.mode=='Rent'">
             <td class="detailstd">Monthly rent:</td>
 
-            <td class="detailstd"><label class="fa fa-rupee"> {{property.details.monthlyRent}}</label></td>
+            <td class="detailstd"><label class="fa fa-rupee"> {{property.details.monthlyRent | currency:""}}</label></td>
 
             <td class="detailstd">Deposit:</td>
 
-            <td  class="detailstd" ng-show="property.details.deposit"><label class="fa fa-rupee"> {{property.details.deposit}}</label></td>
+            <td  class="detailstd" ng-show="property.details.deposit"><label class="fa fa-rupee"> {{property.details.deposit | currency:""}}</label></td>
         </tr>
 
         <tr ng-show="property.details.mode=='Rent'">
@@ -112,13 +116,13 @@
         <tr ng-show="property.details.mode=='Rent'">
             <td>Maintainance Fee:</td>
 
-            <td><label class="fa fa-rupee" ng-show="property.details.maintenanceFee"> {{property.details.maintenanceFee}}</label></td>
+            <td><label class="fa fa-rupee" ng-show="property.details.maintenanceFee"> {{property.details.maintenanceFee | currency:""}}</label></td>
 
             <td class="detailstd" ng-show="property.details.mode=='Rent' && property.user.type === 'Agent'">Agent Commision:</td>
 
             <td class="detailstd" ng-show="property.details.mode=='Rent' && property.user.type === 'Agent' && property.details.commitionInDays">
 				<label ng-show="!property.details.fixedPrice">{{property.details.commitionInDays}}</label>
-				<label ng-show="property.details.fixedPrice" class="fa fa-rupee"> {{property.details.fixedPrice}}</label>
+				<label ng-show="property.details.fixedPrice" class="fa fa-rupee"> {{property.details.fixedPrice | currency:""}}</label>
             </td>
         </tr>
         <tr>
@@ -135,9 +139,9 @@
 		 <table class="table table-borderless" ng-show="property.details.mode=='Sell'">
 			<tr ng-show="property.details.price">
 				<td class="detailstd">Total Price:</td>
-				<td width="20%"><label class="fa fa-rupee"></label><label> {{property.details.price.price}}</label></td>
+				<td width="15%"><label class="fa fa-rupee"></label><label> {{property.details.price.price | currency:""}}</label></td>
 				<td width="18%" ng-class="{vis-hidden :property.details.price.negotiable}"><i class="fa fa-check-circle"></i> <label>Negotiable</label></td>
-				<td width="37%" ng-class="{vis-hidden :property.details.price.negotiable}"><i class="fa fa-check-circle"></i> <label>Registration Fee included</label></td>
+				<td width="42%" ng-class="{vis-hidden :property.details.price.negotiable}"><i class="fa fa-check-circle"></i> <label>Registration Fee included</label></td>
 			</tr>
 		</table>
 	</div>
@@ -153,11 +157,11 @@
         <tr>
             <td class="detailstd">Balconies:</td>
 
-            <td class="detailstd"><label>{{property.specifications.balconies}}</label></td>
+            <td width="12%"><label>{{property.specifications.balconies}}</label></td>
 
             <td class="detailstd">Additional Rooms:</td>
 
-            <td class="detailstd">
+            <td width="38%">
 				<label>{{property.specifications.additionalRooms}}</label>
 				<label ng-show="property.specifications.otherRoom">,</label>
 				<label ng-show="property.specifications.additionalRooms">{{property.specifications.otherRoom}}</label>
@@ -167,11 +171,11 @@
         <tr>
             <td class="detailstd">Directional Facing:</td>
 
-            <td class="detailstd"><label>{{property.specifications.directionalFacing}}</label></td>
+            <td width="12%"><label>{{property.specifications.directionalFacing}}</label></td>
 
             <td class="detailstd">Facing:</td>
 
-            <td class="detailstd">
+            <td width="38%">
 				<label>{{property.specifications.facing}}</label>
 				<label ng-show="property.specifications.otherfacing">,</label>
 				<label ng-show="property.specifications.otherfacing">{{property.specifications.otherfacing}}</label>
@@ -181,40 +185,40 @@
         <tr>
             <td class="detailstd">Floor Number:</td>
 
-            <td class="detailstd"><label>{{property.specifications.floorNumber}}</label></td>
+            <td width="12%"><label>{{property.specifications.floorNumber}}</label></td>
 
             <td class="detailstd">Total Floors:</td>
 
-            <td class="detailstd"><label>{{property.specifications.totalFloor}}</label></td>
+            <td width="38%"><label>{{property.specifications.totalFloor}}</label></td>
         </tr>
 		<tr ng-show="property.details.mode=='Sell'">
             <td class="detailstd">No of Units Available:</td>
 
-            <td class="detailstd"><label>{{property.specifications.unitsAvailable}}</label></td>
+            <td width="12%"><label>{{property.specifications.unitsAvailable}}</label></td>
 
             <td class="detailstd">Ownership Type:</td>
 
-            <td class="detailstd"><label>{{property.specifications.ownershipType}}</label></td>
+            <td width="38%"><label>{{property.specifications.ownershipType}}</label></td>
         </tr>
         <tr>
             <td class="detailstd">Type of Electricity:</td>
 
-            <td class="detailstd"><label>{{property.specifications.typeOfElectricity}}</label></td>
+            <td width="12%"><label>{{property.specifications.typeOfElectricity}}</label></td>
 
             <td class="detailstd">Security Systems:</td>
 
-            <td class="detailstd"><label>{{property.specifications.securitySystem}}</label></td>
+            <td width="38%"><label>{{property.specifications.securitySystem}}</label></td>
         </tr>
     </table>
 	<table class="table table-borderless" >
 		<tr>
 		     <td class="detailstd">Flooring:</td>
 
-            <td class="detailstd"><label>{{property.specifications.flooring}}</label></td>
+            <td width="20%"><label>{{property.specifications.flooring}}</label></td>
 			
-            <td width="18%" ng-show="property.specifications.houseWith"><i class="fa fa-check-circle"></i><label>{{property.specifications.houseWith}}</label></td>
+            <td width="18%"><i class="fa fa-check-circle" ng-show="property.specifications.houseWith"></i><label ng-show="property.specifications.houseWith">{{property.specifications.houseWith}}</label></td>
 
-            <td width="32%" ng-show="property.specifications.parking.fourWheelerVisitors"><i class="fa fa-check-circle"></i><label ng-show="property.specifications.parking.fourWheelerVisitors">4 Wheeler Visiting</label></td>
+            <td width="37%"><i class="fa fa-check-circle" ng-show="property.specifications.parking.fourWheelerVisitors"></i><label ng-show="property.specifications.parking.fourWheelerVisitors">4 Wheeler Visiting</label></td>
         </tr>
 	</table>
 	<table class="table table-borderless" >
@@ -287,14 +291,15 @@
               <p>consectetur adipiscing elit. Curabitur at urna eros, sit amet mattis sem. Curabitur at urna eros, sit amet mattis sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. amet mattis sem.</p>
             </div>
             <div class="tab-pane active" id="tab4" ng-show="detailsSubtab==='Contact'">
-	<div class="row">
+	<div class="row " id="contactdetails">
 	
 	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
 	   
 	   </div>
 	
        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 contactimage">
-	   <img src="{{property.user.image}}" width="150px" height="150px" />
+		<img ng-if="property.user.image" src="{{property.user.image}}" width="150px" height="150px" />
+		<img ng-if="!property.user.image" src="images/blank_person.jpg" width="150px" height="150px" />
 	   </div>
 	   
 	  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">  
@@ -302,8 +307,22 @@
         
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" > 
 		
-
-		  <table class="table table-borderless">
+			<p>
+				<i class="fa fa-user"></i>Name : <label class="contact-label">{{property.user.name}}</label>
+			</p>
+		   <p>
+				<i class="fa fa-envelope"></i>E-mail : <label class="contact-label">{{property.user.email}}</label>
+			</p>
+			
+			<p>
+				<i class="fa fa-phone"></i> Phone No : <label class="contact-label">+91 {{property.user.phoneNumber}}</label>
+			</p>
+			 <p>
+				<i class="fa fa-user"></i> <label class="contact-label">{{property.user.type}}</label></p>
+		  
+			<p>
+			
+		  <!--<table class="table table-borderless">
 			<tr>
 				<td width="20%">Name : </td>
 				<td><label>{{property.user.name}}</label></td>
@@ -344,7 +363,7 @@
 				<td>Builder Company Address : </td>
 				<td><label>{{property.user.companyAddress}}</label></td>
 			<tr>
-		</table>
+		</table>-->
 		
 		</div>
     
