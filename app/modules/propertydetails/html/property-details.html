@@ -32,7 +32,7 @@
 			
 		
 		
-			<div class="wrap-details">
+			<div>
 			<table class="table table-borderless">
 			<tr>
 				<td class="detailstd">Property Type:</td>
@@ -152,7 +152,7 @@
 		
 			
             <div class="tab-pane active" id="tab1" ng-show="detailsSubtab==='Details'">
-	<div class="wrap-details">
+	<div>
 		<table class="table table-borderless" >
         <tr>
             <td class="detailstd">Balconies:</td>
@@ -242,7 +242,7 @@
 				</div>
             </div>
             <div class="tab-pane active" id="tab2" ng-show="detailsSubtab==='Amenities'">
-			<div class="wrap-details" ng-show="property.amenities">
+			<div ng-show="property.amenities">
              <div class="row aminitieslist">
     
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.24HRBackup"><i class="fa fa-check-circle"></i>24Hr backup</div>
