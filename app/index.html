@@ -57,7 +57,7 @@
         <div class="collapse navbar-collapse" >
           <ul class="nav navbar-nav navbar-right" ng-show="showTabs.showTabs">
             <li><a href="#/propertyresults/{{selectedCity}}/{{selectedLocality}}"><i class="fa fa-home"></i></a></li>
-            <li><a href="" ng-click="showFeedbackmodal=!showFeedbackmodal">FEEDBACK</a></li>
+            <li><a href="" ng-click="showFeedbackmodal=!showFeedbackmodal;">FEEDBACK</a></li>
             <li><a href="" ng-click="showContactmodal=!showContactmodal">CONTACT US</a></li>
             <!--
             <li class="active" ng-show="false"><a href="main.html">My Shortlist</a></li>
@@ -293,7 +293,7 @@
 					<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 						<input type="email" class="form-control" ng-model="feedback.email" id="email" name="email" ng-required="feedbackform.email.$dirty" placeholder="Email">
-						<p ng-show="feedback.email.$invalid && form1.email.$dirty" class="label errorText">Enter valid email</p>
+						<p ng-show="feedbackform.email.$invalid && feedbackform.email.$dirty" class="label errorText">Enter valid email</p>
 					</div>
 					<span class="optional">optional</span>
 				</div>	
@@ -305,8 +305,8 @@
 				<div class="controls">
 					<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-						<textarea name="message" class="form-control" ng-model="feedback.message" rows="4" ng-required="true" cols="78" placeholder="Enter your message here"></textarea>
-						<p ng-show="feedbackform.message.$invalid && !feedbackform.message.$pristine || feedbackform.messa.submitted)" class="label errorText">enter name</p>
+						<textarea name="message" class="form-control" ng-model="feedback.message" rows="4" ng-required='true' cols="78" placeholder="Enter your message here"></textarea>
+						<p ng-show="feedbackform.message.$invalid && !feedbackform.message.$pristine && feedbackform.submitted" class="label errorText">enter message</p>
 					</div>
 				</div>
 			</div>
@@ -315,7 +315,7 @@
 			   <label class="thankyou">Thank you for your feedback</label>	        
 			  </div>
 			  <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6" >		  
-			   <button type="submit" id="mybtn" class="btn btn-primary pull-right">Send Feedback</button>	        
+			   <button type="submit" id="mybtn" class="btn btn-primary pull-right" ng-click="sendFeedback(feedback);">Send Feedback</button>	        
 			  </div>
 			  </div>
 		</form>

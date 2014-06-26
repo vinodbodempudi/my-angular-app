@@ -32,7 +32,7 @@
 			
 		
 		
-			<div>
+			<div class="wrap-details">
 			<table class="table table-borderless">
 			<tr>
 				<td class="detailstd">Property Type:</td>
@@ -152,7 +152,7 @@
 		
 			
             <div class="tab-pane active" id="tab1" ng-show="detailsSubtab==='Details'">
-	<div>
+	<div class="wrap-details">
 		<table class="table table-borderless" >
         <tr>
             <td class="detailstd">Balconies:</td>
@@ -242,7 +242,7 @@
 				</div>
             </div>
             <div class="tab-pane active" id="tab2" ng-show="detailsSubtab==='Amenities'">
-			<div ng-show="property.amenities">
+			<div class="wrap-details" ng-show="property.amenities">
              <div class="row aminitieslist">
     
 	  <div class="col-sm-4 col-4" ng-show="property.amenities.24HRBackup"><i class="fa fa-check-circle"></i>24Hr backup</div>
@@ -291,21 +291,18 @@
               <p>consectetur adipiscing elit. Curabitur at urna eros, sit amet mattis sem. Curabitur at urna eros, sit amet mattis sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. amet mattis sem.</p>
             </div>
             <div class="tab-pane active" id="tab4" ng-show="detailsSubtab==='Contact'">
-	<div class="row " id="contactdetails">
+	<div class="row " id="contactdetails" style="margin-top: 30px;">
 	
-	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
 	   
 	   </div>
 	
-       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 contactimage">
+       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 		<img ng-if="property.user.image" src="{{property.user.image}}" width="150px" height="150px" />
 		<img ng-if="!property.user.image" src="images/blank_person.jpg" width="150px" height="150px" />
 	   </div>
-	   
-	  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">  
-	   </div> 
         
-		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" > 
+		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" style="padding-top: 13px;padding-left: 35px;"> 
 		
 			<p>
 				<i class="fa fa-user"></i>Name : <label class="contact-label">{{property.user.name}}</label>

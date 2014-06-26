@@ -310,7 +310,7 @@ table.table-borderless td{font-size:12px;}
     margin-bottom: 1.42857em;    
     padding: 5px 15px 0px;
 	margin-right:5px;
-	border:2px solid #8BC54D;
+	/*border:2px solid #8BC54D;*/
 }
 
 .details-border {
@@ -432,8 +432,6 @@ table.table-borderless td{font-size:12px;}
 }
 
 #contactdetails img{border-radius:5px; }
-
-#contactdetails .contactimage{ margin-top:1.5%;}
 
 #contactdetails label {color: #000;  font-size: 12px;}
 

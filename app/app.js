@@ -152,6 +152,25 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Login
 			});
 	
 	};
+	
+	
+	$scope.sendFeedback = function (feedback) {
+	
+		$scope.feedbackform.submitted=true;
+		
+		if($scope.feedbackform.$valid) {
+			
+			loginService.sendFeedback(feedback)
+			.success(function(data){
+				$scope.showFeedbackmodal = false;
+				$scope.feedback = {};
+				$scope.feedbackform.submitted = false;
+			}).error(function(e){
+				
+			});
+	
+		}
+	};
 }]);
 
 app.service('LoginService',['$http',  function($http) {
@@ -162,6 +181,10 @@ app.service('LoginService',['$http',  function($http) {
 	
 	this.register = function (newUser) {
         return $http.get('data/cities.json', newUser);
+    };
+	
+	this.sendFeedback = function (feedBack) {
+        return $http.get('data/cities.json', feedBack);
     };
 }])
 

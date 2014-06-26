@@ -424,7 +424,7 @@
                     </div>
                     <div class="text-right">
 						<label class="register-property-info-text">Share more details to get quality inquiries</label>
-                        <button type="submit" class="btn btn-info" ng-click="form1.submitted=true;showForm2=form1.$valid;showForm1=!form1.$valid">Next</button>
+                        <button type="submit" class="btn btn-info" ng-click="form1.submitted=true;showForm2=form1.$valid;showForm1=!form1.$valid;window.scrollTo(0, 0);">Next</button>
                     </div>
                 </div>
             </form>
@@ -508,18 +508,15 @@
                                     </div>
                                     <div class="radio-inline" ng-show="property.specifications.parking.twoWheeler.covered">
                                         <label>
-                                            <input type="radio" name="twowheeler" ng-model="property.specifications.parking.twoWheeler.type" id="covered1" value="covered">covered
-                                        </label>
+                                            <input type="radio" name="twowheeler" ng-model="property.specifications.parking.twoWheeler.type" id="covered1" value="covered">covered</label>
                                     </div>
                                     <div class="radio-inline" ng-show="property.specifications.parking.twoWheeler.covered">
                                         <label>
-                                            <input type="radio" name="twowheeler" id="uncovered1" ng-model="property.specifications.parking.twoWheeler.type" value="uncovered">uncovered
-                                        </label>
+                                            <input type="radio" name="twowheeler" id="uncovered1" ng-model="property.specifications.parking.twoWheeler.type" value="uncovered">uncovered</label>
                                     </div>
                                     <div class="checkbox-inline" ng-show="property.specifications.parking.twoWheeler.covered">
                                         <label>
-                                            <input type="checkbox" name="twowheeler" id="common1" ng-model="property.specifications.parking.twoWheeler.common" value="common" checked>common
-                                        </label>
+                                            <input type="checkbox" name="twowheeler" id="common1" ng-model="property.specifications.parking.twoWheeler.common" value="common" checked>common</label>
                                     </div>
                                 </div>
                                 <label class="col-sm-2 control-label"></label>
@@ -530,18 +527,15 @@
                                     </div>
                                     <div class="radio-inline" ng-show="property.specifications.parking.fourWheeler.covered">
                                         <label>
-                                            <input type="radio" name="fourwheeler" id="covered2" ng-model="property.specifications.parking.fourWheeler.type" value="covered">covered
-                                        </label>
+                                            <input type="radio" name="fourwheeler" id="covered2" ng-model="property.specifications.parking.fourWheeler.type" value="covered">covered</label>
                                     </div>
                                     <div class="radio-inline" ng-show="property.specifications.parking.fourWheeler.covered">
                                         <label>
-                                            <input type="radio" name="fourwheeler" id="uncovered2" ng-model="property.specifications.parking.fourWheeler.type" value="uncovered">uncovered
-                                        </label>
+                                            <input type="radio" name="fourwheeler" id="uncovered2" ng-model="property.specifications.parking.fourWheeler.type" value="uncovered">uncovered</label>
                                     </div>
                                     <div class="checkbox-inline" ng-show="property.specifications.parking.fourWheeler.covered">
                                         <label>
-                                            <input type="checkbox" name="fourwheeler" id="common2" ng-model="property.specifications.parking.fourWheeler.common" value="common" checked>common
-                                        </label>
+                                            <input type="checkbox" name="fourwheeler" id="common2" ng-model="property.specifications.parking.fourWheeler.common" value="common" checked>common</label>
                                     </div>
                                 </div>
                                 <label class="col-sm-2 control-label"></label>
