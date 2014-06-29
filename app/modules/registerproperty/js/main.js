@@ -55,6 +55,21 @@ angular.module('registerProperty', [])
 		}
 	}
 	
+	$scope.updateCoverPhotoIndex = function(index) {
+	
+		angular.forEach($scope.property.photos, function (image, i) {
+			if(i===index) {
+				image.coverPhoto = true;
+			} else {
+				image.coverPhoto = false;
+			}
+		
+		});
+		
+	}
+	
+	
+	
     $scope.registerProperty = function () {
 	
 	   $scope.property.createdDate = new Date();
