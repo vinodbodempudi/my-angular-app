@@ -282,7 +282,43 @@ app.directive("modalShow", function () {
 						scope.position.longitude = event.latLng.lng();
 						scope.$apply();
 					}); //end addListener
+
+
+                    var marker = new google.maps.Marker({
+                        position: map.getCenter(),
+                        map: map,
+                        animation: google.maps.Animation.BOUNCE,
+                        draggable:true
+
+                    });
+
+                    var info = new google.maps.InfoWindow({
+                        content:''
+
+                    })
+
+                    info.open(map, marker);
+                    google.maps.event.addListener(marker, 'dragend', function(e)
+                    {
+                        info.setContent('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
+                        scope.property.myLat= e.latLng.lat();
+                        scope.property.myLong= e.latLng.lng();
+                        console.log('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
+                    });
+
+
+
+
+
 				}
+
+
+
+
+
+
+
+
 				
 				
 			}
