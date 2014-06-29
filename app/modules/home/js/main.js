@@ -8,19 +8,21 @@ angular.module('home', [])
 		$scope.form1.submitted=true;
 		
 		if($scope.form1.$valid) {
-			$rootScope.userLocation = locality;
-			$location.path('/propertyresults/' + locality.city + '/' + locality.locality);
+			$rootScope.user.city = city;
+			$rootScope.user.locality = locality;
+			
+			$location.path('/propertyresults/' + city + '/' + locality);
 			$rootScope.showTabs.showTabs = true;
 		}
 	}
 
 	locationService.getCities()
 		.success(function(data){
-		        $scope.cities = data;
-				$rootScope.cities = data;
-		    }).error(function(e){
-		    	
-		    });
+			$scope.cities = data;
+			$scope.fatHome.cities = data;
+		}).error(function(e){
+			
+		});
 	
 	
 	$scope.getLocalities = function(city) {
@@ -32,22 +34,26 @@ angular.module('home', [])
 	
 		locationService.getLocalities(city)
 		.success(function(data){
-		        $scope.localities = data;
-				$rootScope.localities = data;
-		    }).error(function(e){
-		    	
-		    });
+				$scope.localities = data;
+				$scope.fatHome.localities = data;
+			}).error(function(e){
+				
+			});
 	}
-	
-	
-    
-
-
 }]).service('HomeService',['$http',  function($http) {
 
 	
 }])
 .service('FatHomeUtil',function() {
+
+	this.getLocationDetails = function (localities, localityName) {
+        for (var i = 0; i <localities.length; i++) { 
+			if(localities[i].locality ===  localityName) {
+				return localities[i];
+			}
+		}
+		return {};
+    };
 
 	this.propertySortOptions = function () {
         return [

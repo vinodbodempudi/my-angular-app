@@ -56,14 +56,14 @@
           <a class="navbar-brand" href="#">FATHOME</a></div>
         <div class="collapse navbar-collapse" >
           <ul class="nav navbar-nav navbar-right" ng-show="showTabs.showTabs">
-            <li><a href="#/propertyresults/{{userLocation.city}}/{{userLocation.locality}}"><i class="fa fa-home"></i></a></li>
+            <li><a href="#/propertyresults/{{user.city}}/{{user.locality}}"><i class="fa fa-home"></i></a></li>
             <li><a href="" ng-click="showFeedbackmodal=!showFeedbackmodal;feedback={};feedbackform.submitted=false;">FEEDBACK</a></li>
             <li><a href="" ng-click="showContactmodal=!showContactmodal">CONTACT US</a></li>
             <!--
             <li class="active" ng-show="false"><a href="main.html">My Shortlist</a></li>
 			<li><a href="" ng-show="false" ng-init="loginLabel='Sign In'" ng-click="showLoginModal();">{{loginLabel}}</a></li>
              -->
-            <li><a href="#/registerproperty/{{userLocation.city}}/{{userLocation.locality}}" class="btn btn-info btn-xm navbar-btn"><span>POST PROPERTY
+            <li><a href="#/registerproperty/{{user.city}}/{{user.locality}}" class="btn btn-info btn-xm navbar-btn"><span>POST PROPERTY
            <!-- <i class="fa fa-caret-right"></i>-->
             </span></a></li>
             <li><a href="#"><i class="fa fa-facebook-square fa-lg"></i></a></li>
@@ -180,7 +180,7 @@
 			</select>
           </div>
           <div class="form-group">
-			<select class="form-control input-sm" ng-options="locality as locality for locality in localities" name="locality" ng-required='true' ng-model="newUser.locality">
+			<select class="form-control input-sm" ng-options="locality.locality as locality for locality in localities" name="locality" ng-required='true' ng-model="newUser.locality">
 				<option value="">Select Locality</option>
 			</select>
           </div>

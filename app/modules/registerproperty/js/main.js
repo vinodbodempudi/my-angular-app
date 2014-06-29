@@ -1,17 +1,16 @@
 'use strict';
 
 angular.module('registerProperty', [])
-.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', 'RegisterPropertyService', '$rootScope',
-	function($scope, locationService, fatHomeUtil, registerPropertyService, $rootScope) {
-    
+.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', '$routeParams', 'RegisterPropertyService',
+	function($scope, locationService, fatHomeUtil, $routeParams, registerPropertyService) {
+	
+	$scope.user.city = $scope.city = $routeParams.city;
+	$scope.user.locality = $scope.locality = $routeParams.locality;
+	
 	$scope.registerPropertySuccess = false;
     $scope.property = {user:{}};
-	$scope.property.user.city = $rootScope.selectedCity;
-	$scope.property.user.locality = $rootScope.selectedLocality;
-	$scope.cities = $rootScope.cities;
-	$scope.localities = $rootScope.localities;
-	
-	
+	$scope.property.user.city = $scope.city;
+	$scope.property.user.locality = $scope.locality;
 	$scope.unitOptions = fatHomeUtil.unitOptions();
 	$scope.hours = fatHomeUtil.hoursDropDownValues();
 	$scope.ageOfPropertyOptions = fatHomeUtil.ageOfPropertyOptions();
@@ -23,38 +22,38 @@ angular.module('registerProperty', [])
 	$scope.propertyTypes = fatHomeUtil.propertyTypes();
 	$scope.propertySubTypeMapper = fatHomeUtil.propertySubTypeMapper();
 	
-	
-	/*$scope.property.user = {};
-	$scope.property.user.emails = [''];
-	$scope.addEmail = function(){
-    	$scope.property.user.emails.push('');
-    }
-	
-	$scope.removeEmail = function(i){
-    	if(i>0) $scope.property.user.emails.splice(i,1);
-    }
-	*/
-	locationService.getCities()
-	.success(function(data){
-			$scope.cities = data;
-		}).error(function(e){
-			
-		});
-	$scope.getLocalities = function(city) {
-		locationService.getLocalities(city)
-		.success(function(data){
-		        $scope.localities = data;
-		    }).error(function(e){
-		    	
-		    });
+	$scope.city = $scope.newCity = $routeParams.city;
+	$scope.locality = $scope.newLocality = $routeParams.locality;
+	if(!$scope.fatHome.cities) {
+		locationService.getCities()
+			.success(function(data){
+				$scope.fatHome.cities = data;
+				$scope.getLocalities($scope.city);
+			}).error(function(e){
+				
+			});
 	}
 	
+	$scope.getLocalities = function(city) {
+		locationService.getLocalities(city)
+			.success(function(data){
+				$scope.fatHome.localities = data;
+				$scope.currentLocationDetails = fatHomeUtil.getLocationDetails(data, $scope.locality);
+			}).error(function(e){
+				
+			});
+	}
+
+	if($scope.fatHome.localities) {
+		$scope.currentLocationDetails = fatHomeUtil.getLocationDetails($scope.fatHome.localities, $scope.locality);
+	}
+
 	$scope.updatePropertyStatus = function() {
 		if($scope.property.details.mode==='Sell') {
 			$scope.property.details.propertyStatus='Resale';
 		}
 	}
-	
+
 	$scope.updateCoverPhotoIndex = function(index) {
 	
 		angular.forEach($scope.property.photos, function (image, i) {
@@ -112,37 +111,6 @@ angular.module('registerProperty', [])
 		}
 	};
 })
-.directive('map', function() {
-	return {
-		restrict: 'EA',
-		scope:{
-			position:"="
-		},
-		link:function(scope, el) {
-		
-			var initializeMap = function () {	
-				var mapOptions = {
-									zoom: 8,
-									center: new google.maps.LatLng(17.4833, 78.4167),
-									mapTypeId: google.maps.MapTypeId.ROADMAP
-								};
-				map = new google.maps.Map(el[0], mapOptions);
-				google.maps.event.addListener(map, "mousemove", function (event) {
-				
-					scope.position.latitude = event.latLng.lat();
-					scope.position.longitude = event.latLng.lng();
-					scope.$apply();
-				}); //end addListener
-			}
-			
-			initializeMap();
-		
-		
-		}
-	};
-});
-
-
 
 /*
 .directive('imageReader',function(){

@@ -2,8 +2,31 @@
 
 angular.module('propertyDetails', [])
 
-.controller('PropertyDetailsCtrl',['$scope', '$routeParams', 'PropertyDetailsService', function($scope, $routeParams, propertyDetailsService) {
+.controller('PropertyDetailsCtrl',['$scope', 'LocationService', '$routeParams', 'PropertyDetailsService', function($scope, locationService, $routeParams, propertyDetailsService) {
     
+	$scope.user.city = $scope.city = $routeParams.city;
+	$scope.user.locality = $scope.locality = $routeParams.locality;
+	
+	if(!$scope.fatHome.cities) {
+		locationService.getCities()
+			.success(function(data){
+				$scope.fatHome.cities = data;
+				$scope.getLocalities($scope.city);
+			}).error(function(e){
+				
+			});
+	}
+	
+	$scope.getLocalities = function(city) {
+
+		locationService.getLocalities(city)
+			.success(function(data){
+				$scope.fatHome.localities = data;
+			}).error(function(e){
+				
+			});
+	}
+	
 	var initializeMap = function () {
 	  var mapOptions = {
 							zoom: 8,

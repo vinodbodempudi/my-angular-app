@@ -2,11 +2,12 @@
 
 angular.module('propertyResults', [])
 
-.controller('PropertyResultsCtrl',['$scope', '$routeParams', 'PropertyResultsService', 'FatHomeUtil', 'LocationService', '$rootScope', '$location',
-	function($scope, $routeParams, propertyResultsService, fatHomeUtil, locationService, $rootScope, $location) {
+.controller('PropertyResultsCtrl',['$scope', '$routeParams', 'PropertyResultsService', 'FatHomeUtil', 'LocationService', '$location',
+	function($scope, $routeParams, propertyResultsService, fatHomeUtil, locationService, $location) {
 	
-    $scope.city = $scope.newCity = $routeParams.city;
-	$scope.locality = $scope.newLocality = $routeParams.locality;
+    $scope.user.city = $scope.city = $scope.newCity = $routeParams.city;
+	$scope.user.locality = $scope.locality = $scope.newLocality = $routeParams.locality;
+	
 	$scope.properties = [];
 	$scope.sortOptions = fatHomeUtil.propertySortOptions();
 	$scope.bedRoomsDropDownValues = fatHomeUtil.bedRoomsDropDownValues();
@@ -14,17 +15,18 @@ angular.module('propertyResults', [])
 	$scope.propertySubTypeMapper = fatHomeUtil.propertySubTypeMapper();
 	$scope.predicate = {};
 	
-	$scope.openChangeLocationModal = function() {
+	if(!$scope.fatHome.cities) {
+		locationService.getCities()
+			.success(function(data){
+				$scope.fatHome.cities = data;
+				$scope.getLocalities($scope.city);
+			}).error(function(e){
+				
+			});
+	}
 	
-		if(!$scope.cities) {
-			locationService.getCities()
-				.success(function(data){
-					$scope.cities = data;
-					$scope.getLocalities($scope.city);
-				}).error(function(e){
-					
-				});
-		}
+	
+	$scope.openChangeLocationModal = function() {
 		$scope.newCity = $scope.city;
 		$scope.newLocality = $scope.locality;
 		$scope.form1.submitted=false;
@@ -36,8 +38,7 @@ angular.module('propertyResults', [])
 		
 		if($scope.form1.$valid) {
 			$scope.showChangeLocationModal = false;
-			$rootScope.userLocation = locality;
-			$location.path('/propertyresults/' + locality.city + '/' + locality.locality);
+			$location.path('/propertyresults/' + city + '/' + locality);
 		}
 	}
 	
@@ -49,11 +50,17 @@ angular.module('propertyResults', [])
 		}
 	
 		locationService.getLocalities(city)
-		.success(function(data){
-		        $scope.localities = data;
-		}).error(function(e){
-			
-		});
+			.success(function(data){
+				$scope.localities = data;
+				$scope.fatHome.localities = data;
+				$scope.currentLocationDetails = fatHomeUtil.getLocationDetails(data, $scope.locality);
+			}).error(function(e){
+				
+			});
+	}
+		
+	if($scope.fatHome.localities) {
+		$scope.currentLocationDetails = fatHomeUtil.getLocationDetails($scope.fatHome.localities, $scope.locality);
 	}
 		
     var getPropertiesRequest = {city:$routeParams.city, locality:$routeParams.locality};
@@ -171,50 +178,13 @@ angular.module('propertyResults', [])
 	return {
 		replace:true,
 		restrict: 'EA',
-		/*scope : {
-			properties:"=",
-			filter:"="
-		},*/
 		templateUrl: 'modules/propertyresults/html/property-results-partial.html',
-		link:function(scope) {
-		
-			var initializeMap = function () {
-			var mapOptions = {
-									zoom: 15,
-									center: new google.maps.LatLng(17.3918335, 78.4732169),
-									mapTypeId: google.maps.MapTypeId.ROADMAP
-								};
-			  map = new google.maps.Map(document.getElementById('map'), mapOptions);
-			}
-			
-			initializeMap();
-		
-		
-		}
 	};
 }).directive('propertyDetails', function() {
 	return {
 		replace:true,
 		restrict: 'EA',
-		/*scope : {
-			property:"="
-		},*/
 		templateUrl: 'modules/propertydetails/html/property-details.html',
-		link:function(scope) {
-		
-			var initializeMap = function () {
-			var mapOptions = {
-									zoom: 8,
-									center: new google.maps.LatLng(17.4833, 78.4167),
-									mapTypeId: google.maps.MapTypeId.ROADMAP
-								};
-			  map = new google.maps.Map(document.getElementById('map'), mapOptions);
-			}
-			
-			initializeMap();
-		
-		
-		}
 	};
 });
 

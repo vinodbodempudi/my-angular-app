@@ -83,14 +83,14 @@
                             <div class="form-group" ng-class="{'has-error':form1.locality.$invalid && !form1.locality.$pristine}">
                                 <label class="col-sm-2 control-label mandatory">City:</label>
                                 <div class="col-sm-3">
-                                    <select class="form-control input-sm" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)" ng-required='true' ng-model="property.user.city">
+                                    <select class="form-control input-sm" ng-options="city as city for city in fatHome.cities" name="city" ng-change="getLocalities(property.user.city)" ng-required='true' ng-model="property.user.city">
 										<option value="">Select City</option>
 									</select>
                                     <p ng-show="form1.city.$invalid && (!form1.city.$pristine || form1.submitted)" class="label errorText">select city</p>
                                 </div>
                                 <label class="col-sm-2 control-label mandatory">Locality:</label>
                                 <div class="col-sm-3">
-                                    <select class="form-control input-sm" ng-options="locality.locality as locality.locality for locality in localities" name="locality" ng-required='true' ng-model="property.user.locality">
+                                    <select class="form-control input-sm" ng-options="locality.locality as locality.locality for locality in fatHome.localities" name="locality" ng-required='true' ng-model="property.user.locality">
 										<option value="">Select Locality</option>
 									</select>
                                     <p ng-show="form1.locality.$invalid && (!form1.locality.$pristine || form1.submitted)" class="label errorText">select locality</p>
@@ -909,7 +909,7 @@
 									<label class="col-sm-6">Latitude: {{mapPosition.latitude}}</label>
 									<label class="col-sm-6">Longitude: {{mapPosition.longitude}}</label>
 								</div>
-                                <div class="map" map position="mapPosition" id="map"></div>
+                                <div class="map" map position="mapPosition" location="currentLocationDetails" id="map"></div>
                             </div>
                         </div>
                         <!-- <div class="panel-footer text-right"><button class="btn btn-default">Submit</button></div> -->
