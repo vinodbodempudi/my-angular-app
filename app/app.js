@@ -24,7 +24,7 @@ app.config(function ($routeProvider, $httpProvider) {
         templateUrl: 'modules/propertydetails/html/property-details.html',
         controller: 'PropertyDetailsCtrl'
       })
-      .when('/registerproperty', {
+      .when('/registerproperty/:city/:locality', {
         templateUrl: 'modules/registerproperty/html/register-property.html',
         controller: 'RegisterPropertyCtrl'
       })
@@ -84,6 +84,9 @@ app.service('LocationService', ['$http', 'servicesBaseUrl', function($http, serv
 
 app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'LoginService', 'LocationService', function($scope, $rootScope, $location, loginService, locationService) {
 	
+	$rootScope.fatHome={};
+	$rootScope.user={};
+		
 	$scope.showLoginModal = function (loginUser) {
 		if($rootScope.isUserLoggedin) {
 			$rootScope.userDetails = null;

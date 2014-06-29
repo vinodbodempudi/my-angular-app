@@ -3,23 +3,23 @@
     <div class="col-md-4 col-md-push-8 searchresults">
       <div class="list">
 		<div class="moveright">
-			<div class="input-group filter "> <span class="input-group-addon text-info">{{properties.length}} Results</span> <span class="input-group-addon">Sort by:</span>
+			<div class="input-group filter "> <span class="input-group-addon text-info">{{showProperties.length}} Results</span> <span class="input-group-addon">Sort by:</span>
 			  <select ng-options="sortOption.lable for sortOption in sortOptions" class="form-control selectpicker selectsort" ng-model="predicate">
 			  </select>
 			</div>
 		</div>
         <div class="lists-view">
           <div class="row">
-            <div ng-repeat="property in properties | orderBy:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search">
-              <div class="list-view">
+            <div ng-repeat="property in showProperties = (properties | orderBy:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search)">
+              <div class="list-view" style="cursor:pointer;" ng-click="getPropertyDetails(property._id);">
                 <div class="image"> <img src="images/list1.png" alt="" /> </div>
                 <div class="content">
                   <div class="row ">
-                    <div class="col-xs-8">
-                      <h3><a href="" ng-click="getPropertyDetails(property._id);"><label title="{{property.title}}" class="propertyresultsLabel">{{property.title}}</label></a></h3>
+                    <div class="col-xs-7">
+                      <h3><a href=""><label title="{{property.title}}" class="propertyresultsLabel">{{property.title | ordinal}}</label></a></h3>
                     </div>
-                    <div class="col-xs-4 price" style="text-align:Right;">
-                      <h4><i class="fa fa-rupee"></i> <span>{{property.price}}</span></h4>
+                    <div class="col-xs-5 price" style="text-align:Right;">
+                      <h4><i class="fa fa-rupee"></i> <span>{{property.price | currencyFormatter}}</span></h4>
                     </div>
                   </div>
 				  <div class="row properresultssqftlabel">

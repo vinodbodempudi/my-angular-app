@@ -115,15 +115,24 @@ angular.module('registerProperty', [])
 .directive('map', function() {
 	return {
 		restrict: 'EA',
+		scope:{
+			position:"="
+		},
 		link:function(scope, el) {
 		
-			var initializeMap = function () {
-			var mapOptions = {
+			var initializeMap = function () {	
+				var mapOptions = {
 									zoom: 8,
 									center: new google.maps.LatLng(17.4833, 78.4167),
 									mapTypeId: google.maps.MapTypeId.ROADMAP
 								};
-			  map = new google.maps.Map(el[0], mapOptions);
+				map = new google.maps.Map(el[0], mapOptions);
+				google.maps.event.addListener(map, "mousemove", function (event) {
+				
+					scope.position.latitude = event.latLng.lat();
+					scope.position.longitude = event.latLng.lng();
+					scope.$apply();
+				}); //end addListener
 			}
 			
 			initializeMap();

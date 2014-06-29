@@ -8,9 +8,8 @@ angular.module('home', [])
 		$scope.form1.submitted=true;
 		
 		if($scope.form1.$valid) {
-			$rootScope.selectedCity = city;
-			$rootScope.selectedLocality = locality;
-			$location.path('/propertyresults/' + city + '/' + locality);
+			$rootScope.userLocation = locality;
+			$location.path('/propertyresults/' + locality.city + '/' + locality.locality);
 			$rootScope.showTabs.showTabs = true;
 		}
 	}

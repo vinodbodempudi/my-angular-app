@@ -262,6 +262,17 @@ color:#da4834;
 
 /* Details page*/
 
+.propertyDetails td {
+font-family: "Open Sans",Helvetica,Arial,sans-serif;
+font-size: 14px !important;
+color:#484848 !important;
+}
+
+.propertyDetails td label{
+font-size: 13px !important;
+color:#484848 !important;
+}
+
  table.table-borderless tbody tr td:nth-child(odd){text-align:right;} 
  
  table.table-borderless tbody tr td:nth-child(even){padding-left:3%;} 
@@ -395,7 +406,11 @@ table.table-borderless td{font-size:12px;}
 
 .aminitieslist i{padding-right:5px;}
 
-.aminitieslist div{padding-bottom:10px;}
+.aminitieslist div{
+	padding-bottom:10px;
+	font-size: 13px !important;
+	font-weight:bold;
+	color:#484848 !important;}
 
 .fa-check-circle:before {
     content: "\f058";
@@ -502,6 +517,13 @@ position: relative;
 }
 
 .register-property-info-text{color:#F87217;font-weight:bold;font-style:italic;font-size:32px;padding-right:20px;}
+
+.hint-text {
+	font-size: 10px !important;
+	color: #484848;
+	font-weight:normal;
+}
+
 
 /*Register end*/
 

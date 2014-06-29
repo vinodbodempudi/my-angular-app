@@ -2,7 +2,7 @@
     <div class="row" ng-init="showForm1=true;showForm2=false;showForm3=false;">
         <div class="col-sm-12">
             <h3 class="resgisterPropertyHeaderLabel">Enter property details</h3><label class="register-property-info-text">Share more details to get quality inquiries</label>
-            <form class="form-horizontal" ng-show="showForm1" name="form1" role="form" novalidate>
+            <form class="form-horizontal" ng-show="showForm1" name="form1" role="form" novalidate autocomplete="on">
                 <div ng-show="true">
                     <div class="panel panel-default">
                         <div class="panel-heading"><strong>Personal Information</strong>
@@ -429,7 +429,7 @@
                 </div>
             </form>
 
-            <form class="form-horizontal" role="form" name="form2" ng-show="showForm2">
+            <form class="form-horizontal" role="form" name="form2" ng-show="showForm2" autocomplete="on">
                 <div>
                     <div class="panel panel-default">
                         <div class="panel-heading"><strong>Specifications</strong>
@@ -451,14 +451,16 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <input type="text" class="form-control input-sm" ng-model="property.specifications.otherRoom" placeholder="Other room">
+									<label class="hint-text">Eg. Children room, Children room</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Directional facing</label>
                                 <div class="col-sm-2">
                                     <select class="form-control input-sm" ng-model="property.specifications.directionalFacing">
-                                        <option>east</option>
-                                        <option>west</option>
+                                        <option>East</option>
+                                        <option>West</option>
+										<option>North</option>
                                         <option>South</option>
                                     </select>
                                 </div>
@@ -472,6 +474,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <input type="text" class="form-control input-sm" ng-model="property.specifications.otherfacing" placeholder="Other facing">
+									<label class="hint-text">Eg. North-East, North-West</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -588,7 +591,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Property Brief Description</label>
                                 <div class="col-sm-8">
-                                    <textarea type="text" class="form-control" ng-model="property.specifications.briefDescription"></textarea>
+                                    <textarea type="text" placeholder="Special about this property" class="form-control" ng-model="property.specifications.briefDescription"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -874,7 +877,7 @@
                 </div>
             </form>
 
-            <form class="form-horizontal" role="form"  ng-show="showForm3">
+            <form class="form-horizontal" role="form"  ng-show="showForm3" autocomplete="on">
                 <div>
                     <div class="panel panel-default">
                         <div class="panel-heading"><strong>photos and map</strong>
@@ -901,8 +904,12 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="exampleInputFile">Pin your property on map by simply draging pin on map</label>
-                                <div class="map" map id="map"></div>
+                                <label class="register-property-info-text">Pin your property on map by simply draging pin on map</label>
+								<div class="row text-right" ng-init="mapPosition={};">
+									<label class="col-sm-6">Latitude: {{mapPosition.latitude}}</label>
+									<label class="col-sm-6">Longitude: {{mapPosition.longitude}}</label>
+								</div>
+                                <div class="map" map position="mapPosition" id="map"></div>
                             </div>
                         </div>
                         <!-- <div class="panel-footer text-right"><button class="btn btn-default">Submit</button></div> -->

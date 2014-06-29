@@ -36,9 +36,8 @@ angular.module('propertyResults', [])
 		
 		if($scope.form1.$valid) {
 			$scope.showChangeLocationModal = false;
-			$rootScope.selectedCity = city;
-			$rootScope.selectedLocality = locality;
-			$location.path('/propertyresults/' + city + '/' + locality);
+			$rootScope.userLocation = locality;
+			$location.path('/propertyresults/' + locality.city + '/' + locality.locality);
 		}
 	}
 	
@@ -148,6 +147,26 @@ angular.module('propertyResults', [])
     if(reverse) filtered.reverse();
     return filtered;
   };
+})
+.filter('ordinal', function() {
+  return function(input) {
+    return input.charAt(0).toUpperCase() + input.substr(1).replace(/[A-Z]/g, ' $&');
+  }
+})
+.filter('currencyFormatter', function() {
+  return function(value) {
+	var temp=value.toString(), index = temp.indexOf(".");
+	
+	if(index > -1) {
+		temp = str.substring(0, index);
+	}
+
+	var lastThree = temp.substring(temp.length-3);
+	var otherNumbers = temp.substring(0,temp.length-3);
+	if(otherNumbers != '')
+		lastThree = ',' + lastThree;
+	return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+  }
 }).directive('propertyResults', function() {
 	return {
 		replace:true,
@@ -161,8 +180,8 @@ angular.module('propertyResults', [])
 		
 			var initializeMap = function () {
 			var mapOptions = {
-									zoom: 8,
-									center: new google.maps.LatLng(17.4833, 78.4167),
+									zoom: 15,
+									center: new google.maps.LatLng(17.3918335, 78.4732169),
 									mapTypeId: google.maps.MapTypeId.ROADMAP
 								};
 			  map = new google.maps.Map(document.getElementById('map'), mapOptions);
