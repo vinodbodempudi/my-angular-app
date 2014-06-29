@@ -33,12 +33,12 @@
         <span class="filtersLabel">Filters</span>
       </div>
       <div class="col-md-2">
-	    <select class="form-control selectpicker" ng-options="subType as subType for subType in propertySubTypeMapper['Residential']" ng-model="search.propertType">
+	    <select class="form-control selectpicker" selectpicker ng-options="subType as subType for subType in propertySubTypeMapper['Residential']" ng-model="search.propertType">
           <option value="">Property type</option>
         </select>
       </div>
       <div class="col-md-1 bedsfilter">
-        <select class="form-control selectpicker" ng-options="value as value for value in bedRoomsDropDownValues" ng-model="search.beds">
+        <select class="form-control selectpicker" selectpicker ng-options="value as value for value in bedRoomsDropDownValues" ng-model="search.beds">
           <option value="" selected>Beds</option>
         </select>
       </div>
@@ -78,13 +78,13 @@
 		<div class="modal-body selectCityModalContent">
 			<form name="form1" role="form" novalidate>
 				<div class="form-group">
-				  <select class="form-control selectpicker input-sm" name="city" ng-required='true' data-width="100%" ng-options="city as city for city in fatHome.cities" name="city" ng-change="getLocalities(city)"  ng-model="newCity">
+				  <select class="form-control selectpicker input-sm" selectpicker name="city" ng-required='true' data-width="100%" ng-options="city as city for city in fatHome.cities" name="city" ng-change="getLocalities(city)"  ng-model="newCity">
 					<option value="">Select City</option>
 				   </select>
 				   <p ng-show="form1.city.$invalid && form1.submitted" class="label errorText">select city</p>
 				</div>
 				<div class="form-group">
-					<select class="form-control input-sm" name="locality" ng-required='true' ng-options="locality.locality as locality.locality for locality in fatHome.localities" name="locality" ng-model="newLocality">
+					<select class="form-control input-sm" selectpicker name="locality" ng-required='true' ng-options="locality.locality as locality.locality for locality in fatHome.localities" name="locality" ng-model="newLocality">
 						<option value="">Select Locality</option>
 					</select>
 					<p ng-show="form1.locality.$invalid && form1.submitted" class="label errorText">select locality</p>

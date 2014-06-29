@@ -20,7 +20,7 @@ app.config(function ($routeProvider, $httpProvider) {
         templateUrl: 'modules/propertyresults/html/property-results.html',
         controller: 'PropertyResultsCtrl'
       })
-      .when('/propertydetails/:propertyId', {
+      .when('/propertydetails/:city/:locality/:propertyId', {
         templateUrl: 'modules/propertydetails/html/property-details.html',
         controller: 'PropertyDetailsCtrl'
       })
@@ -67,7 +67,18 @@ app.run(['$rootScope', '$location',function($rootScope, $location){
             }
         };
     });
-
+app.directive('selectpicker', ['$timeout',
+    function($timeout){
+        return {
+            restrict: 'A',
+            link: function(scope, element, iAttrs, controller){
+                var initSelectpicker = function(){
+                    element.selectpicker();
+                }
+                $timeout(initSelectpicker, 0, false);
+            }
+        };
+    }]);
 app.service('LocationService', ['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
 
 	this.getCities = function () {
