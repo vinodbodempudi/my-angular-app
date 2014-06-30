@@ -262,13 +262,18 @@ color:#da4834;
 
 /* Details page*/
 
-.propertyDetails td {
+.propertyDetails td, .propertyDetails p span{
 font-family: "Open Sans",Helvetica,Arial,sans-serif;
 font-size: 14px !important;
 color:#484848 !important;
 }
 
-.propertyDetails td label{
+.propertyDetails td label, .contactDetails{
+font-size: 13px !important;
+color:#484848 !important;
+}
+
+.propertyDetails p label{
 font-size: 13px !important;
 color:#484848 !important;
 }
