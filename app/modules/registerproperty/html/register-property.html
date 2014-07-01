@@ -877,7 +877,7 @@
                 </div>
             </form>
 
-            <form class="form-horizontal" role="form"  ng-show="showForm3" autocomplete="on">
+            <form class="form-horizontal" role="form"  ng-show="true" autocomplete="on">
                 <div>
                     <div class="panel panel-default">
                         <div class="panel-heading"><strong>photos and map</strong>
@@ -905,11 +905,7 @@
 
                             <div class="col-sm-6">
                                 <label class="register-property-info-text">Pin your property on map by simply draging pin on map</label>
-								<div class="row text-right" ng-init="mapPosition={};">
-									<label class="col-sm-6">Latitude: {{mapPosition.latitude}}</label>
-									<label class="col-sm-6">Longitude: {{mapPosition.longitude}}</label>
-								</div>
-                                <div class="map" map position="mapPosition" location="currentLocationDetails" id="map"></div>
+                                <div class="map" pin-property property="property" location="currentLocationDetails" id="map"></div>
                             </div>
                         </div>
                         <!-- <div class="panel-footer text-right"><button class="btn btn-default">Submit</button></div> -->

@@ -111,7 +111,64 @@ angular.module('registerProperty', [])
 		}
 	};
 })
+.directive('pinProperty', function() {
+	return {
+		restrict: 'EA',
+		scope:{
+			location:"=",
+			property:"="
+		},
+		link:function(scope, el) {
+		
+			var initializeMap = function () {	
+			
+				if(!scope.location) {
+					return;
+				}
+			
+				var mapOptions = {
+									zoom: 15,
+									center: new google.maps.LatLng(scope.location.lat, scope.location.long),
+									mapTypeId: google.maps.MapTypeId.ROADMAP
+								};
+				map = new google.maps.Map(el[0], mapOptions);
+				google.maps.event.trigger(map, 'resize');
+				var marker = new google.maps.Marker({
+					position: map.getCenter(),
+					map: map,
+					animation: google.maps.Animation.BOUNCE,
+					draggable:true
 
+				});
+
+				var info = new google.maps.InfoWindow({
+					content:''
+
+				})
+
+				info.open(map, marker);
+				google.maps.event.addListener(marker, 'dragend', function(e)
+				{
+					if(!scope.property.location) {
+						scope.property.location = {};
+					}
+					
+					scope.property.location.lat= e.latLng.lat();
+					scope.property.location.lng= e.latLng.lng();
+				});
+			}
+
+			var previousLocation;
+			scope.$watch(function() {
+				if(scope.location && previousLocation !== scope.location) {
+					previousLocation = scope.location;
+					initializeMap();
+				}
+			});
+		
+		}
+	};
+});
 /*
 .directive('imageReader',function(){
 

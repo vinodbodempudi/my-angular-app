@@ -275,52 +275,28 @@ app.directive("modalShow", function () {
 									mapTypeId: google.maps.MapTypeId.ROADMAP
 								};
 				map = new google.maps.Map(el[0], mapOptions);
-				
-				if(scope.position) {
-					google.maps.event.addListener(map, "mousemove", function (event) {
-						scope.position.latitude = event.latLng.lat();
-						scope.position.longitude = event.latLng.lng();
-						scope.$apply();
-					}); //end addListener
+				google.maps.event.trigger(map, 'resize');
+				var marker = new google.maps.Marker({
+					position: map.getCenter(),
+					map: map,
+					animation: google.maps.Animation.BOUNCE,
+					draggable:true
 
+				});
 
-                    var marker = new google.maps.Marker({
-                        position: map.getCenter(),
-                        map: map,
-                        animation: google.maps.Animation.BOUNCE,
-                        draggable:true
+				var info = new google.maps.InfoWindow({
+					content:''
 
-                    });
+				})
 
-                    var info = new google.maps.InfoWindow({
-                        content:''
-
-                    })
-
-                    info.open(map, marker);
-                    google.maps.event.addListener(marker, 'dragend', function(e)
-                    {
-                        info.setContent('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
-                        scope.property.myLat= e.latLng.lat();
-                        scope.property.myLong= e.latLng.lng();
-                        console.log('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
-                    });
-
-
-
-
-
-				}
-
-
-
-
-
-
-
-
-				
-				
+				info.open(map, marker);
+				google.maps.event.addListener(marker, 'dragend', function(e)
+				{
+					info.setContent('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
+					scope.property.myLat= e.latLng.lat();
+					scope.property.myLong= e.latLng.lng();
+					console.log('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
+				});
 			}
 
 			var previousLocation;
