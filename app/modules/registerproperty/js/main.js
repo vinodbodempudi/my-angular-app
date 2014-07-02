@@ -152,7 +152,7 @@ angular.module('registerProperty', [])
 					if(!scope.property.location) {
 						scope.property.location = {};
 					}
-					
+					info.setContent('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
 					scope.property.location.lat= e.latLng.lat();
 					scope.property.location.lng= e.latLng.lng();
 				});

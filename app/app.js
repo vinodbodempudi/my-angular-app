@@ -10,7 +10,8 @@ var app = angular.module('fatHomesApp', [
   'propertyResults',
   'propertyDetails',
   'login',
-  'imageupload'
+  'imageupload',
+  'nya.bootstrap.select'
 ]);
 //app.constant('servicesBaseUrl', 'http://54.88.7.125:3000');
 app.constant('servicesBaseUrl', 'http://localhost:3000');
@@ -76,6 +77,11 @@ app.directive('selectpicker', ['$timeout',
                     element.selectpicker();
                 }
                 $timeout(initSelectpicker, 0, false);
+				
+				/*scope.$watch(function() {
+					console.log(scope);
+					element.selectpicker('refresh');
+				});*/
             }
         };
     }]);
@@ -276,27 +282,7 @@ app.directive("modalShow", function () {
 								};
 				map = new google.maps.Map(el[0], mapOptions);
 				google.maps.event.trigger(map, 'resize');
-				var marker = new google.maps.Marker({
-					position: map.getCenter(),
-					map: map,
-					animation: google.maps.Animation.BOUNCE,
-					draggable:true
-
-				});
-
-				var info = new google.maps.InfoWindow({
-					content:''
-
-				})
-
-				info.open(map, marker);
-				google.maps.event.addListener(marker, 'dragend', function(e)
-				{
-					info.setContent('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
-					scope.property.myLat= e.latLng.lat();
-					scope.property.myLong= e.latLng.lng();
-					console.log('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
-				});
+				
 			}
 
 			var previousLocation;
