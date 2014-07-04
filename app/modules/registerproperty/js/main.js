@@ -116,10 +116,11 @@ angular.module('registerProperty', [])
 		restrict: 'EA',
 		scope:{
 			location:"=",
-			property:"="
+			property:"=",
+			resizeMap:"="
 		},
 		link:function(scope, el) {
-		
+			var map;
 			var initializeMap = function () {	
 			
 				if(!scope.location) {
@@ -132,7 +133,7 @@ angular.module('registerProperty', [])
 									mapTypeId: google.maps.MapTypeId.ROADMAP
 								};
 				map = new google.maps.Map(el[0], mapOptions);
-				google.maps.event.trigger(map, 'resize');
+				
 				var marker = new google.maps.Marker({
 					position: map.getCenter(),
 					map: map,
@@ -160,12 +161,13 @@ angular.module('registerProperty', [])
 
 			var previousLocation;
 			scope.$watch(function() {
-				if(scope.location && previousLocation !== scope.location) {
+				if(scope.location && previousLocation !== scope.location && scope.resizeMap) {
 					previousLocation = scope.location;
 					initializeMap();
 				}
 			});
-		
+			
+	
 		}
 	};
 });

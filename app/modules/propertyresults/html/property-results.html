@@ -33,12 +33,12 @@
         <span class="filtersLabel">Filters</span>
       </div>
       <div class="col-md-2">
-	    <select class="form-control selectpicker" nya-selectpicker ng-options="subType as subType for subType in propertySubTypeMapper['Residential']" ng-model="search.propertType">
+	    <select class="form-control selectpicker" selectpicker ng-options="subType as subType for subType in propertySubTypeMapper['Residential']" ng-model="search.propertType">
           <option value="">Property type</option>
         </select>
       </div>
       <div class="col-md-1 bedsfilter">
-        <select class="form-control selectpicker" nya-selectpicker ng-options="value as value for value in bedRoomsDropDownValues" ng-model="search.beds">
+        <select class="form-control selectpicker" selectpicker ng-options="value as value for value in bedRoomsDropDownValues" ng-model="search.beds">
           <option value="" selected>Beds</option>
         </select>
       </div>
