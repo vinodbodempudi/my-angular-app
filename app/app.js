@@ -11,7 +11,8 @@ var app = angular.module('fatHomesApp', [
   'propertyDetails',
   'login',
   'imageupload',
-  'nya.bootstrap.select'
+  'nya.bootstrap.select',
+  'ui.bootstrap'
 ]);
 //app.constant('servicesBaseUrl', 'http://54.88.7.125:3000');
 app.constant('servicesBaseUrl', 'http://localhost:3000');

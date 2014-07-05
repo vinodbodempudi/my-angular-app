@@ -162,6 +162,11 @@ angular.module('propertyResults', [])
 })
 .filter('currencyFormatter', function() {
   return function(value) {
+  
+	if(!value) {
+		return "";
+	}
+  
 	var temp=value.toString(), index = temp.indexOf(".");
 	
 	if(index > -1) {

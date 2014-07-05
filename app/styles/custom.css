@@ -1,4 +1,5 @@
 h1,h2,h3,h4,h5,h6,.tagline{font-family: 'Puritan', sans-serif;}
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 a{ color:#159CEB;}
 a:focus{outline: none;}
 button::-moz-focus-inner{border: 0;}
@@ -460,10 +461,117 @@ table.table-borderless td i {padding-right:5px;}
 
 .detailstd {
 width:25%;
-
-
 }
 
+.details-tab-bg {
+background: transparent url(../images/gold.gif) center top repeat-y;
+margin: 0 auto;
+}
+
+.details-tab-row {
+position: relative;
+margin-left: 48px;
+}
+
+
+.speaker_image {
+position: relative;
+margin-top: -1px;
+}
+
+.schedule_row .left {
+width: 42.8333333333%;
+text-align: right;
+/*margin-top: -5px;*/
+}
+
+.schedule_row .left label {
+font-family: "Open Sans",Helvetica,Arial,sans-serif;
+font-size: 14px !important;
+color:#484848 !important;
+font-weight: 400 !important;
+/*margin-top: -5px;*/
+}
+
+.schedule_row .right {
+width: 42.8333333333%;
+/*margin-top: -10px;*/
+}
+
+.schedule_row .right label {
+font-size: 13px !important;
+color:#484848 !important;
+/*margin-top: -10px;*/
+}
+
+.right {
+float: right;
+display: inline;
+}
+
+.schedule_row .speaker_image {
+width: 8.5%;
+margin-right: 2.91666666667%;
+float: right;
+display: inline;
+}
+
+.schedule_row .speaker_image.dot {
+text-align: center;
+}
+
+.push {
+clear: both;
+}
+
+.no-names .schedule_row {
+margin-bottom: 20px;
+}
+
+.schedule_row {
+width: 100%;
+margin-bottom: 50px;
+}
+
+.schedule {
+background: transparent url(../images/gold.gif) center top repeat-y;
+width: 92.75%;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.no-names h3.schedule_speaker {
+font-family: 'Knockout 29 A', 'Knockout 29 B', Helvetica, Arial, sans-serif;
+font-weight: 400;
+font-size: 3em;
+color: #333;
+text-transform: capitalize;
+margin-bottom: 6px;
+}
+
+.left {
+float: left;
+display: inline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* padding-right: 15px; *
 
 /* Details page end*/
 
