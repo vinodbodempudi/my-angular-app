@@ -12,7 +12,9 @@
           <div class="row">
             <div ng-repeat="property in showProperties = (properties | orderBy:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search)">
               <div class="list-view" style="cursor:pointer;" ng-click="getPropertyDetails(property._id);">
-                <div class="image"> <img src="images/list1.png" alt="" /> </div>
+                <div class="image" ng-show="!property.coverPhotoUrl"> <img src="images/list1.png" alt="" /> </div>
+				<div class="image" ng-show="property.coverPhotoUrl"> <img src="{{property.coverPhotoUrl}}" alt="" /> </div>
+				
                 <div class="content">
                   <div class="row ">
                     <div class="col-xs-7">
