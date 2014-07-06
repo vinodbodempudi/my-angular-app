@@ -107,7 +107,14 @@ footer{ text-align:center; padding-bottom:0px;}
 
 .list-view { padding:10px 0px; border-bottom:1px solid #eaeaea;}
 .list-view:hover{ background:#f9f9f9;}
-.list-view .image{ width:100px; height:120px; margin-right:10px; float:left;}
+.list-view .image {
+	width: 91px;
+	height: 107px;
+	margin-right: 10px;
+	float: left;
+	position: relative;
+	left: 15px;
+ }
 .list-view .image img{ width:100%; height:100%;}
 .list-view .content{ margin-left:110px; overflow:hidden}
 .list-view .content h3{ float:left; color:#1885f0; margin:0; font-size:21px;}

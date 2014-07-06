@@ -72,8 +72,16 @@ angular.module('registerProperty', [])
     $scope.registerProperty = function () {
 	
 	   $scope.property.createdDate = new Date();
-	   console.log(angular.toJson($scope.property));
-       registerPropertyService.registerProperty(angular.toJson($scope.property))
+		var request = {
+			property: $scope.property,
+			images: {
+				userImage:$scope.userImage,
+				propertyImages: $scope.propertyImages
+			}
+		}
+   
+	   console.log(angular.toJson(request));
+       registerPropertyService.registerProperty(angular.toJson(request))
        	    .success(function(data){
 				$scope.registerPropertySuccess = true;
 		    }).error(function(e){

@@ -113,27 +113,29 @@ angular.module('imageupload', [])
 
                     var files = evt.target.files;
                     for(var i = 0; i < files.length; i++) {
-                        //create a result object for each file in files
-                        var imageResult = {
-                            file: files[i],
-                            url: URL.createObjectURL(files[i])
-                        };
-
                         fileToDataURL(files[i]).then(function (dataURL) {
-                            imageResult.dataURL = dataURL;
-							applyScope(imageResult);
+							applyScope(decodeBase64Image(dataURL));
                         });
 
-                        /*if(scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
-                            doResizing(imageResult, function(imageResult) {
-                                applyScope(imageResult);
-                            });
-                        }
-                        else { //no resizing
-                            applyScope(imageResult);
-                        }*/
                     }
                 });
+				
+				function decodeBase64Image(dataString) {
+					var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+					response = {};
+
+					if (matches.length !== 3) {
+						return new Error('Invalid input string');
+					}
+
+					response.baseUrl = matches[0].replace(matches[2], "");
+					response.ext = matches[1].substring(matches[1].indexOf("/")+1);
+					response.data = matches[2];
+
+					return response;
+				}
+				
+				
             }
         };
     });

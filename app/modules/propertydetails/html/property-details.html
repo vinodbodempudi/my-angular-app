@@ -11,16 +11,16 @@
             	<a class="btn btn-sm btn-default" href="" ng-click="showPropertyResults();"><i class="fa fa-arrow-circle-o-left"></i> Back to List</a>
             </div>
           </div>
+		  <div class="col-sm-9">
+			<h4>{{property.details.title}}</h4>
+		  </div>
         </div>
              
         <div class="tabs" style="height:400px; overflow-y:visible;">
          
           <div class="tab-content">
-			<h4>{{property.details.title}}</h4>
-
 			<accordion close-others="true" >
 				<accordion-group ng-click="selectedTab='Details'" heading="Details">
-					
 					<div class="schedule no-names">
 						<div class="schedule_row">
 							<div class="left">
@@ -184,11 +184,11 @@
 						</div>
 						<div class="schedule_row" ng-show="property.details.mode=='Rent'">
 							<div class="left">
-								<label class="">Prefered Tenant</label>
+								<label class="">Allow</label>
 							</div>
 							<div class="right">
-								<div  ng-show="property.details.allowNonVeg"><i class="fa fa-check-circle"></i><label>Allow Non-veg</label></div>
-								<div  ng-show="property.details.allowPets"><i class="fa fa-check-circle"></i><label>Allow Pets</label></div>
+								<div  ng-show="property.details.allowNonVeg"><label>Non-veg</label></div>
+								<div  ng-show="property.details.allowPets"><label>Pets</label></div>
 							</div>
 							<div class="speaker_image dot">
 								<img src="images/dot.png" alt="">
@@ -223,28 +223,38 @@
 							</div>
 							<div class="push"></div>
 						</div>
-						<div class="schedule_row" ng-show="property.details.address">
-							<div class="left">
-								<label class="">Address</label>
-							</div>
-							<div class="right">
-								<label>{{property.details.address}}</label>
-								 <div><i class="fa fa-check-circle" ng-show="property.details.propertyStatus"></i><label>{{property.details.propertyStatus}}</label></div>
-							</div>
-							<div class="speaker_image dot">
-								<img src="images/dot.png" alt="">
-							</div>
-							<div class="push"></div>
-						</div>
 						<div class="schedule_row" ng-show="property.details.price">
 							<div class="left">
 								<label class="">Total Price</label>
 							</div>
 							<div class="right">
 								<label class="fa fa-rupee"></label><label> {{property.details.price.price | currencyFormatter}}</label>
-								<div width="17%" ng-show="property.details.price.negotiable"><i class="fa fa-check-circle"></i> <label>Negotiable</label></div>
-								<div width="40%" ng-show="property.details.price.registrationFeeIncluded"><i class="fa fa-check-circle"></i> <label>Registration Fee included</label></div>
-
+								<div ng-show="property.details.price.negotiable"><label>Negotiable</label></div>
+								<div ng-show="property.details.price.registrationFeeIncluded"><label>Registration Fee included</label></div>
+							</div>
+							<div class="speaker_image dot">
+								<img src="images/dot.png" alt="">
+							</div>
+							<div class="push"></div>
+						</div>
+						<div class="schedule_row" ng-show="property.details.propertyStatus">
+							<div class="left">
+								<label class="">Sale Type</label>
+							</div>
+							<div class="right">
+								<label>{{property.details.propertyStatus}}</label>
+							</div>
+							<div class="speaker_image dot">
+								<img src="images/dot.png" alt="">
+							</div>
+							<div class="push"></div>
+						</div>
+						<div class="schedule_row" ng-show="property.details.address">
+							<div class="left">
+								<label class="">Address</label>
+							</div>
+							<div class="right">
+								<label>{{property.details.address}}</label>
 							</div>
 							<div class="speaker_image dot">
 								<img src="images/dot.png" alt="">
@@ -496,20 +506,56 @@
 								<img ng-if="!property.user.image" src="images/blank_person.jpg" width="100px" height="100px" />
 							</div>
 							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="padding-top: 13px;padding-left: 35px;"> 
-								<p>
-									<i class="fa fa-user"></i>
-									<span>Name : </span>
-									<label class="contactDetails">{{property.user.name}}</label>
-								</p>
-								<p>
-									<i class="fa fa-envelope"></i><span>E-mail : </span><label class="contactDetails">{{property.user.email}}</label>
-								</p>
-								<p>
-									<i class="fa fa-phone"></i><span>Phone No : </span><label class="contactDetails">+91 {{property.user.phoneNumber}}</label>
-								</p>
-								<p>
-									<i class="fa fa-user"></i> <label class="contactDetails">{{property.user.type}}</label></p>
-								<p>
+								<div class="schedule no-names">
+									<div class="schedule_row">
+										<div class="left">
+											<label class="">Name</label>
+										</div>
+										<div class="right">
+											<label>{{property.user.name}}</label>
+										</div>
+										<div class="speaker_image dot">
+											<img src="images/dot.png" alt="">
+										</div>
+										<div class="push"></div>
+									</div>
+									<div class="schedule_row">
+										<div class="left">
+											<label class="">E-mail</label>
+										</div>
+										<div class="right">
+											<label>{{property.user.email}}</label>
+										</div>
+										<div class="speaker_image dot">
+											<img src="images/dot.png" alt="">
+										</div>
+										<div class="push"></div>
+									</div>
+									<div class="schedule_row">
+										<div class="left">
+											<label class="">Phone No</label>
+										</div>
+										<div class="right">
+											<label>{{property.user.phoneNumber}}</label>
+										</div>
+										<div class="speaker_image dot">
+											<img src="images/dot.png" alt="">
+										</div>
+										<div class="push"></div>
+									</div>
+									<div class="schedule_row">
+										<div class="left">
+											<label class="">Seller</label>
+										</div>
+										<div class="right">
+											<label>{{property.user.type}}</label>
+										</div>
+										<div class="speaker_image dot">
+											<img src="images/dot.png" alt="">
+										</div>
+										<div class="push"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
