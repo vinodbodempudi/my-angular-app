@@ -444,14 +444,15 @@
                                 <label class="col-sm-2 control-label">Additional rooms</label>
                                 <div class="col-sm-2">
                                     <select selectpicker title="" class="form-control input-sm" ng-model="property.specifications.additionalRooms">
-                                        <option>puja</option>
-                                        <option>study</option>
                                         <option>Dining</option>
+                                        <option>Puja</option>
+                                        <option>Study</option>
+                                       
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
                                     <input type="text" class="form-control input-sm" ng-model="property.specifications.otherRoom" placeholder="Other room">
-									<label class="hint-text">Eg. Children room, Children room</label>
+									<label class="hint-text">Eg. Children room, Servent room</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -462,6 +463,10 @@
                                         <option>West</option>
 										<option>North</option>
                                         <option>South</option>
+                                        <option>North-East</option>
+                                        <option>North-West</option>
+                                        <option>South-East</option>
+                                        <option>South-West</option>
                                     </select>
                                 </div>
                                 <label class="col-sm-2 control-label">Facing</label>
@@ -474,7 +479,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <input type="text" class="form-control input-sm" ng-model="property.specifications.otherfacing" placeholder="Other facing">
-									<label class="hint-text">Eg. North-East, North-West</label>
+									<label class="hint-text">Eg. Lake side, Pool</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -582,9 +587,10 @@
 								<label class="col-sm-2 control-label">Ownership type:</label>
 								<div class="col-sm-2">
 									<select selectpicker title="" class="form-control input-sm" ng-model="property.specifications.ownershipType">
+                                        <option>Co-operative Society</option>
 										<option>Freehold</option>
-										<option>leasehold</option>
-										<option>Power of Attorney</option>
+										<option>Leasehold</option>
+                                        <option>Power of Attorney</option>
 									</select>
 								</div>
 							</div>
