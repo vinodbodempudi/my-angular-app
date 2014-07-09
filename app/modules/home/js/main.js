@@ -11,7 +11,7 @@ angular.module('home', [])
 			$rootScope.user.city = city;
 			$rootScope.user.locality = locality;
 			
-			$location.path('/propertyresults/' + city + '/' + locality);
+			$location.path('/properties/' + city + '/' + locality);
 			$rootScope.showTabs.showTabs = true;
 		}
 	}

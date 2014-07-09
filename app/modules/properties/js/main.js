@@ -25,14 +25,6 @@ angular.module('properties', [])
 			});
 	}
 	
-	
-	$scope.$on('$routeChangeSuccess', function(value) {
-		showView();
-    });
-	
-	
-	
-	
 	$scope.openChangeLocationModal = function() {
 		$scope.newCity = $scope.city;
 		$scope.newLocality = $scope.locality;
@@ -46,6 +38,7 @@ angular.module('properties', [])
 		if($scope.form1.$valid) {
 			$scope.showChangeLocationModal = false;
 			$location.path('/properties/' + city + '/' + locality, false);
+			$scope.getProperties(city, locality);
 		}
 	}
 	
@@ -99,10 +92,18 @@ angular.module('properties', [])
 	
 	$scope.showPropertyDetails = function(propertyId) {
 		$location.path('/properties/' + $scope.city + '/' + $scope.locality + '/' + propertyId, false);
+		$scope.getPropertyDetails(propertyId);
 	};
 	
 	$scope.showPropertyResults = function() {
+
 		$location.path('/properties/' + $scope.city + '/' + $scope.locality, false);
+		if($scope.properties && $scope.properties.length > 0) {
+			$scope.showPage = 'propertyResults';
+			return;
+		}
+	
+		$scope.getProperties($scope.city, $scope.locality);
 	}
 	
 	

@@ -125,10 +125,6 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Login
 	$rootScope.fatHome={};
 	$rootScope.user={};
 
-	$scope.$on('$routeUpdate', function(value) {
-        alert('$routeUpdate');
-    });
-	
 	$scope.showLoginModal = function (loginUser) {
 		if($rootScope.isUserLoggedin) {
 			$rootScope.userDetails = null;

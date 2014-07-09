@@ -489,7 +489,9 @@ margin-top: -1px;
 .schedule_row .left {
 width: 42.8333333333%;
 text-align: right;
-/*margin-top: -5px;*/
+margin-top: -5px;
+position: relative;
+top: 5px;
 }
 
 .schedule_row .left label {
@@ -502,7 +504,9 @@ font-weight: 400 !important;
 
 .schedule_row .right {
 width: 42.8333333333%;
-/*margin-top: -10px;*/
+margin-top: -5px;
+position: relative;
+top: 5px;
 }
 
 .schedule_row .right label {
