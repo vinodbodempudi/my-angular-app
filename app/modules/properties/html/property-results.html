@@ -1,0 +1,62 @@
+  <div class="list">
+	<div class="moveright">
+		<div class="input-group filter "> <span class="input-group-addon text-info">{{showProperties.length}} Results</span> <span class="input-group-addon">Sort by:</span>
+		  <select selectpicker title="" ng-options="sortOption.lable for sortOption in sortOptions" class="form-control selectpicker selectsort" ng-model="predicate">
+		  </select>
+		</div>
+	</div>
+	<div class="lists-view">
+	  <div class="row">
+		<div ng-repeat="property in showProperties = (properties | orderBy:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search)">
+		  <div class="list-view" style="cursor:pointer;" ng-click="showPropertyDetails(property._id);">
+			<div class="image" ng-show="!property.coverPhotoUrl"> <img src="images/list1.png" alt="" /> </div>
+			<div class="image" ng-show="property.coverPhotoUrl"> <img src="{{property.coverPhotoUrl}}" alt="" /> </div>
+			
+			<div class="content">
+			  <div class="row ">
+				<div class="col-xs-7">
+				  <h3><a href=""><label title="{{property.title}}" class="propertyresultsLabel">{{property.title}}</label></a></h3>
+				</div>
+				<div class="col-xs-5 price" style="text-align:Right;">
+				  <h4><i class="fa fa-rupee"></i> <span>{{property.price | currencyFormatter}}</span></h4>
+				</div>
+			  </div>
+			  <div class="row properresultssqftlabel">
+				<div class="col-xs-12 price" style="textAlign:Right;">
+				  <h5 style="text-align: right;" ng-show="property.perUnitPrice"><span>{{property.perUnitPrice}}/Sq.ft</span></h5>
+				</div>
+			  </div>
+			  <div class="row firstRow">
+				<div class="col-xs-3"> <span>{{property.bedRooms}}</span> Beds </div>
+				<div class="col-xs-3"> <span>{{property.bathRooms}}</span> Baths </div>
+				<div class="col-xs-3" ng-show="property.builtUpSize"> <span>{{property.builtUpSize}}</span> {{property.builtUpUnits}} </div>
+			  </div>
+			  <div class="row secondRow">
+				<div class="col-xs-2"> <span>{{property.mode}}</span> </div>
+				<div class="col-xs-5"> <span>{{property.propertySubType}}</span> </div>
+				<div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>{{property.locality}}</span> </div>
+				
+			  </div>
+			  
+			  <div class="row thirdRow dateright">
+				<div class="text-right">{{property.createdDate | date:'MMM d, y'}}</div>
+			  </div>
+			  <div class="row customsocial" ng-show="false">
+				<div class="col-xs-8 text-right">
+				 <div class="btn-group">
+					<button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-up"></i> Like</button>
+					<button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> Comment</button>
+					<button type="button" class="btn btn-default btn-sm"><i class="fa fa-star-o"></i> Save</button>
+				  </div>
+				</div>
+				<div class="col-xs-4 dateright">
+				  <div class="text-right">{{property.createdDate | date:'MMM d, y'}}</div>
+				</div>
+			  </div>
+			</div>
+			<div class="clearfix"></div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>

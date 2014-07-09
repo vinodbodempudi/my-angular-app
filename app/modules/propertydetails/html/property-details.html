@@ -2,9 +2,9 @@
   <div class="hidemap">
     <button type="button" class="btn btn-info btn-xs"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
   </div>
-  <div class="row maprow propertyDetails">
+  <div class="row maprow propertyDetails container-fluid" style="margin-right:0px;">
     <div class="col-md-4 col-md-push-8 searchresults">
-      <div class="list detail-view">
+      <div class="list detail-view" style="margin-right: -15px;">
         <div class="row" style="height:30px;">
           <div class="col-sm-3">
             <div class="btn-group">
@@ -16,9 +16,9 @@
 		  </div>
         </div>
              
-        <div class="tabs" style="height:400px; overflow-y:visible;">
+        <div class="tabs">
          
-          <div class="tab-content">
+          <div class="tab-content lists-view">
 			<accordion close-others="true" >
 				<accordion-group ng-click="selectedTab='Details'" heading="Details">
 					<div class="schedule no-names">
@@ -187,6 +187,7 @@
 								<label class="">Allow</label>
 							</div>
 							<div class="right">
+								<label ng-show="!property.details.allowNonVeg && !property.details.allowPets"></label>
 								<div  ng-show="property.details.allowNonVeg"><label>Non-veg</label></div>
 								<div  ng-show="property.details.allowPets"><label>Pets</label></div>
 							</div>
@@ -200,6 +201,7 @@
 								<label class="">Maintainance Fee</label>
 							</div>
 							<div class="right">
+								<label ng-show="!property.details.maintenanceFee"></label>
 								<label class="fa fa-rupee" ng-show="property.details.maintenanceFee"></label>
 								<label ng-show="property.details.maintenanceFee"> {{property.details.maintenanceFee | currencyFormatter}}</label>
 							</div>
@@ -213,11 +215,13 @@
 								<label class="">Agent Commision</label>
 							</div>
 							<div class="right">
+								<label ng-show="!property.details.commitionInDays && !property.details.fixedPrice"></label>
 								<div ng-show="property.details.mode=='Rent' && property.user.type === 'Agent' && property.details.commitionInDays">
 									<label ng-show="!property.details.fixedPrice">{{property.details.commitionInDays}}</label>
 									<label ng-show="property.details.fixedPrice" class="fa fa-rupee"></label>
 									<label ng-show="property.details.fixedPrice"> {{property.details.fixedPrice | currencyFormatter}}</label>
-								</div>							</div>
+								</div>
+							</div>
 							<div class="speaker_image dot">
 								<img src="images/dot.png" alt="">
 							</div>
@@ -395,8 +399,18 @@
 							</div>
 							<div class="right">
 								<label>{{property.specifications.flooring}}</label>
-								<div><i class="fa fa-check-circle" ng-show="property.specifications.houseWith"></i><label ng-show="property.specifications.houseWith">{{property.specifications.houseWith}}</label></div>
-								<div><i class="fa fa-check-circle" ng-show="property.specifications.parking.fourWheelerVisitors"></i><label ng-show="property.specifications.parking.fourWheelerVisitors">4 Wheeler Visiting</label></div>
+							</div>
+							<div class="speaker_image dot">
+								<img src="images/dot.png" alt="">
+							</div>
+							<div class="push"></div>
+						</div>
+						<div class="schedule_row">
+							<div class="left">
+								<label class="">Furnishing</label>
+							</div>
+							<div class="right">
+								<label>{{property.specifications.houseWith}}</label>
 							</div>
 							<div class="speaker_image dot">
 								<img src="images/dot.png" alt="">
@@ -408,9 +422,10 @@
 								<label class="">Parking</label>
 							</div>
 							<div class="right">
-								<label ng-show="property.specifications.parking.twoWheeler">2 wheeler</label>
-								<span style="padding-left:20px;" ng-show="property.specifications.parking.twoWheeler.type"><i class="fa fa-check-circle"></i><label>{{property.specifications.parking.twoWheeler.type}}</label></span>
-								<span style="padding-left:20px;" ng-show="property.specifications.parking.twoWheeler.common"><i class="fa fa-check-circle"></i><label>common</label></span>
+								<label ng-show="!property.specifications.parking.twoWheeler"></label>
+								<label ng-show="property.specifications.parking.twoWheeler">2 wheeler</label><br>
+								<span ng-show="property.specifications.parking.twoWheeler.type"><label>{{property.specifications.parking.twoWheeler.type}}</label></span>
+								<span style="padding-left:15px;" ng-show="property.specifications.parking.twoWheeler.common"><label>common</label></span>
 							</div>
 							<div class="speaker_image dot">
 								<img src="images/dot.png" alt="">
@@ -422,9 +437,11 @@
 								<label class="">Parking</label>
 							</div>
 							<div class="right">
-								<label ng-show="property.specifications.parking.fourWheeler">4 wheeler</label>
-								<span style="padding-left:20px;" ng-show="property.specifications.parking.fourWheeler.type"><i class="fa fa-check-circle"></i><label>{{property.specifications.parking.fourWheeler.type}}</label></span>
-								<span style="padding-left:20px;" ng-show="property.specifications.parking.fourWheeler.common"><i class="fa fa-check-circle"></i><label>common</label></span>
+								<label ng-show="!property.specifications.parking.fourWheeler"></label>
+								<label ng-show="property.specifications.parking.fourWheeler">4 wheeler</label><br>
+								<span ng-show="property.specifications.parking.fourWheeler.type"><label>{{property.specifications.parking.fourWheeler.type}}</label></span>
+								<span style="padding-left:15px;" ng-show="property.specifications.parking.fourWheeler.common"><label>common</label></span>
+								<div ng-show="property.specifications.parking.fourWheelerVisitors"><label>4 Wheeler Visiting</label></div>
 							</div>
 							<div class="speaker_image dot">
 								<img src="images/dot.png" alt="">
@@ -590,8 +607,5 @@
         <div class="map" map location="currentLocationDetails" id="map"> </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12"> </div>
   </div>
 </div>

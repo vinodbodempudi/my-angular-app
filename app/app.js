@@ -12,7 +12,8 @@ var app = angular.module('fatHomesApp', [
   'login',
   'imageupload',
   'nya.bootstrap.select',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'properties'
 ]);
 //app.constant('servicesBaseUrl', 'http://54.88.7.125:3000');
 app.constant('servicesBaseUrl', 'http://localhost:3000');
@@ -22,9 +23,15 @@ app.config(function ($routeProvider, $httpProvider) {
         templateUrl: 'modules/propertyresults/html/property-results.html',
         controller: 'PropertyResultsCtrl'
       })
-      .when('/propertydetails/:city/:locality/:propertyId', {
-        templateUrl: 'modules/propertydetails/html/property-details.html',
-        controller: 'PropertyDetailsCtrl'
+	  .when('/properties/:city/:locality', {
+        templateUrl: 'modules/properties/html/properties.html',
+        controller: 'PropertiesCtrl',
+		reloadOnSearch:false
+      })
+      .when('/properties/:city/:locality/:propertyId', {
+        templateUrl: 'modules/properties/html/properties.html',
+        controller: 'PropertiesCtrl',
+		reloadOnSearch:false
       })
       .when('/registerproperty/:city/:locality', {
         templateUrl: 'modules/registerproperty/html/register-property.html',
@@ -44,6 +51,19 @@ app.config(function ($routeProvider, $httpProvider) {
     }    
     $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';//disable IE ajax request caching*/
   });
+app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
+	var original = $location.path;
+	$location.path = function (path, reload) {
+		if (reload === false) {
+			var lastRoute = $route.current;
+			var un = $rootScope.$on('$locationChangeSuccess', function () {
+				$route.current = lastRoute;
+				un();
+			});
+		}
+		return original.apply($location, [path]);
+	};
+}]);
 app.run(['$rootScope', '$location',function($rootScope, $location){
 	$rootScope.showTabs = {};
 	if($location.path().match('propertydetails') != null
@@ -104,7 +124,11 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Login
 	
 	$rootScope.fatHome={};
 	$rootScope.user={};
-		
+
+	$scope.$on('$routeUpdate', function(value) {
+        alert('$routeUpdate');
+    });
+	
 	$scope.showLoginModal = function (loginUser) {
 		if($rootScope.isUserLoggedin) {
 			$rootScope.userDetails = null;
@@ -260,6 +284,16 @@ app.directive("modalShow", function () {
         }
     };
 
+})
+.filter('ordinal', function() {
+  return function(input) {
+  
+	if(!input) {
+		return '';
+	}
+  
+    return input.charAt(0).toUpperCase() + input.substr(1).replace(/[A-Z]/g, ' $&');
+  }
 })
 .directive('map', function() {
 	return {

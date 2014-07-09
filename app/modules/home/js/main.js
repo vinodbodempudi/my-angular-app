@@ -223,6 +223,14 @@ angular.module('home', [])
 			months:months			
 		};
     };
+	
+	this.convertToCamelCase = function (value) {
+        if(!value) {
+			return '';
+		}
+	
+        return value.charAt(0).toUpperCase() + value.substr(1).replace(/[A-Z]/g, ' $&');
+    };
 
 });
 

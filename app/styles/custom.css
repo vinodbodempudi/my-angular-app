@@ -768,3 +768,18 @@ line-height: 2.3 !important;
   display: none !important;
 }
 
+
+.register-property-info-text:before { 
+content: '\201C'; 
+font-size:230%;
+font-family: Times New Roman; 
+padding-right: 5px; 
+color:#333;
+} 
+.register-property-info-text:after { 
+content: '\201D'; 
+font-size:230%; 
+padding-left: 5px;
+font-family: Times New Roman; 
+color:#333;
+}

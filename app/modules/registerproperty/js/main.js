@@ -34,6 +34,10 @@ angular.module('registerProperty', [])
 			});
 	}
 	
+	$scope.convertToCamelCase = function(value) {
+        $scope.property.details.title = fatHomeUtil.convertToCamelCase(value);
+	};
+	
 	$scope.getLocalities = function(city) {
 		locationService.getLocalities(city)
 			.success(function(data){
@@ -55,16 +59,13 @@ angular.module('registerProperty', [])
 	}
 
 	$scope.updateCoverPhotoIndex = function(index) {
-	
-		angular.forEach($scope.property.photos, function (image, i) {
+		angular.forEach($scope.propertyImages, function (image, i) {
 			if(i===index) {
 				image.coverPhoto = true;
 			} else {
 				image.coverPhoto = false;
 			}
-		
 		});
-		
 	}
 	
 	

@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('propertyResults', [])
+angular.module('properties', [])
 
-.controller('PropertyResultsCtrl',['$scope', '$routeParams', 'PropertyResultsService', 'FatHomeUtil', 'LocationService', '$location',
-	function($scope, $routeParams, propertyResultsService, fatHomeUtil, locationService, $location) {
+.controller('PropertiesCtrl',['$scope', '$routeParams', 'PropertiesService', 'FatHomeUtil', 'LocationService', '$location',
+	function($scope, $routeParams, propertiesService, fatHomeUtil, locationService, $location) {
 	
     $scope.user.city = $scope.city = $scope.newCity = $routeParams.city;
 	$scope.user.locality = $scope.locality = $scope.newLocality = $routeParams.locality;
@@ -26,9 +26,11 @@ angular.module('propertyResults', [])
 	}
 	
 	
-	$scope.$on('$routeUpdate', function(value) {
-        alert('$routeUpdate');
+	$scope.$on('$routeChangeSuccess', function(value) {
+		showView();
     });
+	
+	
 	
 	
 	$scope.openChangeLocationModal = function() {
@@ -43,7 +45,7 @@ angular.module('propertyResults', [])
 		
 		if($scope.form1.$valid) {
 			$scope.showChangeLocationModal = false;
-			$location.path('/propertyresults/' + city + '/' + locality);
+			$location.path('/properties/' + city + '/' + locality, false);
 		}
 	}
 	
@@ -70,19 +72,22 @@ angular.module('propertyResults', [])
 		
     var getPropertiesRequest = {city:$routeParams.city, locality:$routeParams.locality};
 
-	propertyResultsService.getProperties(getPropertiesRequest)
+	
+	$scope.getProperties = function(city, locality) {
+		propertiesService.getProperties(city, locality)
 		.success(function(data){
+			$scope.showPage = 'propertyResults';
 			$scope.properties = data;
 			$scope.predicate.dataField = 'createdDate';
 			$scope.predicate.reverseOrder = true;
 		}).error(function(e){
 			
 		});
-	
+	};
 	
 	$scope.getPropertyDetails = function(propertyId) {
 	
-		propertyResultsService.getPropertyDetails(propertyId)
+		propertiesService.getPropertyDetails(propertyId)
 		.success(function(data){
 			$scope.showPage = 'propertyDetails';
 			$scope.property = data;
@@ -91,13 +96,37 @@ angular.module('propertyResults', [])
 		});
 	
 	};
+	
+	$scope.showPropertyDetails = function(propertyId) {
+		$location.path('/properties/' + $scope.city + '/' + $scope.locality + '/' + propertyId, false);
+	};
+	
 	$scope.showPropertyResults = function() {
-		$scope.showPage = 'propertyResults';
+		$location.path('/properties/' + $scope.city + '/' + $scope.locality, false);
 	}
-}]).service('PropertyResultsService',['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
+	
+	
+	var showView = function() {
+	
+		$scope.user.city = $scope.city = $scope.newCity = $routeParams.city;
+		$scope.user.locality = $scope.locality = $scope.newLocality = $routeParams.locality;
+        var propertyId = $routeParams.propertyId;
+	
+		if(propertyId) {
+			$scope.getPropertyDetails(propertyId);
+			return;
+		}
+		$scope.getProperties($scope.city, $scope.locality);
+	}
+	
+	
+	
+	showView();
+	
+}]).service('PropertiesService',['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
 
-    this.getProperties = function (getPropertiesRequest) {
-        return $http.get(servicesBaseUrl+'/properties/'+getPropertiesRequest.city+'/'+getPropertiesRequest.locality);
+    this.getProperties = function (city, locality) {
+        return $http.get(servicesBaseUrl+'/properties/'+city+'/'+locality);
     };
 	
 	this.getPropertyDetails = function (propertyId) {
@@ -180,17 +209,17 @@ angular.module('propertyResults', [])
 		lastThree = ',' + lastThree;
 	return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
   }
-}).directive('propertyResults', function() {
+}).directive('propertyResults1', function() {
 	return {
 		replace:true,
 		restrict: 'EA',
-		templateUrl: 'modules/propertyresults/html/property-results-partial.html',
+		templateUrl: 'modules/properties/html/property-results.html',
 	};
-}).directive('propertyDetails', function() {
+}).directive('propertyDetails1', function() {
 	return {
 		replace:true,
 		restrict: 'EA',
-		templateUrl: 'modules/propertydetails/html/property-details.html',
+		templateUrl: 'modules/properties/html/property-details.html',
 	};
 });
 

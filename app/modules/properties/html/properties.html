@@ -1,0 +1,120 @@
+<div class="addBlock">
+  <div class="row" style="margin-right: -13px;">
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="add"></div>
+        </div>
+        <div class="col-sm-6">
+          <div class="add"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+		<div class="row" style="margin-right: -6px;">
+		  <div class="col-sm-5 changeLocalityDiv">
+			<img class="changeLocalityImage" ng-src="/images/next_blue.png"/> 
+			<span class="changeLocalityLabel">change <br>
+			locality here<span>
+		  </div>
+		  <div class="locationDisplay" class="col-sm-7">
+			<h3><i class="fa fa-caret-square-o-down" ng-click="openChangeLocationModal();"></i> {{city}}</h3>
+			<h4>   {{locality}}</h4>
+		  </div>
+		</div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="searchForm">
+  <div class="row">
+	<form name="filterForm" role="form" novalidate>
+	  <div class="col-md-1 filtersdiv">
+        <span class="filtersLabel">Filters</span>
+      </div>
+      <div class="col-md-2">
+	    <select class="form-control selectpicker" selectpicker ng-options="subType as subType for subType in propertySubTypeMapper['Residential']" ng-model="search.propertType">
+          <option value="">Property type</option>
+        </select>
+      </div>
+      <div class="col-md-1 bedsfilter">
+        <select class="form-control selectpicker" selectpicker ng-options="value as value for value in bedRoomsDropDownValues" ng-model="search.beds">
+          <option value="" selected>Beds</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group price"> <span class="input-group-addon"><i class="fa fa-rupee"></i></span>
+          <input type="text" name="minPrice" class="form-control pull-left" ng-pattern=/^[0-9]+$/ placeholder="Min" ng-model="search.minPrice">
+          <input type="text" name="maxPrice" class="form-control" placeholder="Max" ng-pattern=/^[0-9]+$/ ng-model="search.maxPrice">
+		  <p ng-show="filterForm.minPrice.$error.pattern || filterForm.maxPrice.$error.pattern" class="label errorText">Enter valid min or max price</p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <label class="switch-light well" onClick="">
+          <input type="checkbox" ng-model="search.purpose">
+          <span> <span>BUY</span> <span>RENT</span> </span> <a class="btn btn-success"></a> </label>
+      </div>
+      <div class="col-md-3 sqft">
+        <div class="input-group price "> <span class="input-group-addon input-group-addon_custom">SQFT</span>
+          <input type="text" name="minSft" ng-pattern=/^[0-9]+$/ class="form-control pull-left" placeholder="Min" ng-model="search.minSft">
+          <input type="text" name="maxSft" ng-pattern=/^[0-9]+$/ class="form-control" placeholder="Max" ng-model="search.maxSft">
+		  <p ng-show="filterForm.minSft.$error.pattern || filterForm.maxSft.$error.pattern" class="label errorText">Enter valid min or max SQFT</p>
+        </div>
+      </div>
+	  </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid results">
+  <div class="row maprow"> 
+    <div class="col-md-4 col-md-push-8 searchresults">
+		<div ng-switch on="showPage" ng-init="showPage='propertyResults'">
+			<div property-results1 ng-switch-when="propertyResults" ></div>
+			<div property-details1 ng-switch-when="propertyDetails" ></div>
+		</div>
+    </div>
+    <div class="col-md-8 col-md-pull-4 mapresults">
+      <div class="mapContent">    
+      <div class="hidemap">
+      <button type="button" class="btn btn-info btn-xs"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
+      </div>
+        <div class="map" map location="currentLocationDetails" id="map"> </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" ng-init="showChangeLocationModal = false;" modal-visible="showChangeLocationModal" modal-show id="changeLocality" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"                    >
+  <div class="modal-dialog selectCityModal">
+    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+		<div class="modal-body selectCityModalContent">
+			<form name="form1" role="form" novalidate>
+				<div class="form-group">
+				  <select class="form-control input-sm" nya-selectpicker name="city" ng-required='true' data-width="100%" ng-options="city as city for city in fatHome.cities" name="city" ng-change="getLocalities(city)"  ng-model="newCity">
+					<option value="">Select City</option>
+				   </select>
+				   <p ng-show="form1.city.$invalid && form1.submitted" class="label errorText">select city</p>
+				</div>
+				<div class="form-group">
+					<select class="form-control input-sm" nya-selectpicker name="locality" ng-required='true' ng-options="locality.locality as locality.locality for locality in fatHome.localities" name="locality" ng-model="newLocality">
+						<option value="">Select Locality</option>
+					</select>
+					<p ng-show="form1.locality.$invalid && form1.submitted" class="label errorText">select locality</p>
+				</div>
+				<div class="text-right">
+					 <button type="button" class="btn btn-primary" ng-click="showProperties(newCity, newLocality);">Show Properties</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</form>
+		</div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

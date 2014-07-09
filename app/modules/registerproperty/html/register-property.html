@@ -150,7 +150,7 @@
                                 </div>
 								<label class="col-sm-1 control-label mandatory">Title:</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control input-sm" name="propertyTitle" ng-model="property.details.title" ng-required='true' placeholder="Title">
+                                    <input type="text" class="form-control input-sm" name="propertyTitle" ng-change="convertToCamelCase(property.details.title);" ng-model="property.details.title" ng-required='true' placeholder="Title">
 									<p ng-show="form1.submitted && form1.propertyTitle.$error.required" class="label errorText">Enter title</p>
                                 </div>
                             </div>
@@ -903,14 +903,19 @@
                                 <p>You can upload upto 10 photos</p>
                                 <div class="upload-img">
 									<div class="wrap-details" style="width:150px;display:inline-block;margin:5px;text-align:center;" ng-repeat="photo in propertyImages">
+										<label class="control-label"><input type="checkbox" ng-change="updateCoverPhotoIndex($index);" ng-checked="coverPhotoIndex" name="coverPhototOptions" ng-model="photo.coverPhoto" > Cover photo</label>	
 										<img src="{{photo.baseUrl+photo.data}}"  alt="..." class="img-thumbnail">
-										<label class="control-label"><input type="checkbox" ng-change="updateCoverPhotoIndex($index);" ng-checked="coverPhotoIndex" name="coverPhototOptions" ng-model="photo.coverPhoto" > Cover photo</label>
+										<a style="margin:5px;height=30px;" class="btn btn-danger" href="" ng-click="propertyImages.splice($index, 1);">
+											<i class="fa fa-trash-o fa-lg"></i>
+											Delete
+										</a>
 									</div>
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
-                                <label class="register-property-info-text">Pin your property on map by simply draging pin on map</label>
+								<img src="images/info_icon.jpg"  alt="...">
+                                <label> Pin your property on map by simply draging pin on map</label>
                                 <div class="map" pin-property property="property" resize-map="showForm3" location="currentLocationDetails" id="map"></div>
                             </div>
                         </div>
