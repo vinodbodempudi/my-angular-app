@@ -1,11 +1,9 @@
   <div class="list detail-view">
-	<div class="row" style="height:30px;">
-	  <div class="col-sm-3">
-		<div class="btn-group">
-			<a class="btn btn-sm btn-default" href="" ng-click="showPropertyResults();"><i class="fa fa-arrow-circle-o-left"></i> Back to List</a>
-		</div>
+	<div class="row">
+	  <div class="col-sm-2">
+		<img src="images/icon_back.jpg" title="Back to List" style="cursor:pointer;" ng-click="showPropertyResults();"/>
 	  </div>
-	  <div class="col-sm-9">
+	  <div class="col-sm-10">
 		<h4>{{property.details.title}}</h4>
 	  </div>
 	</div>
@@ -510,13 +508,11 @@
 			<accordion-group heading="Contact" ng-click="selectedTab='Contact'">
 				 <div class="tab-pane active" id="tab4">
 					<div class="row " id="contactdetails" style="margin-top: 30px;">
-						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
-						</div>
 						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-							<img ng-if="property.user.image" src="{{property.user.image}}" width="100px" height="100px" />
-							<img ng-if="!property.user.image" src="images/blank_person.jpg" width="100px" height="100px" />
+							<img ng-show="property.urls.userUrl" src="{{property.urls.userUrl}}" width="100px" height="100px" />
+							<img ng-show="!property.urls.userUrl" src="images/blank_person.jpg" width="100px" height="100px" />
 						</div>
-						<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="padding-top: 13px;padding-left: 35px;"> 
+						<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 property-contact-info"> 
 							<div class="schedule no-names">
 								<div class="schedule_row">
 									<div class="left">

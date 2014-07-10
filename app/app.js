@@ -66,7 +66,7 @@ app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $loc
 }]);
 app.run(['$rootScope', '$location',function($rootScope, $location){
 	$rootScope.showTabs = {};
-	if($location.path().match('propertydetails') != null
+	if($location.path().match('properties') != null
 		||  $location.path().match('propertyresults') != null
 		||  $location.path().match('registerproperty') != null) {
 			$rootScope.showTabs = {};

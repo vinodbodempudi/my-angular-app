@@ -66,26 +66,36 @@ angular.module('home', [])
     };
 	
 	this.unitOptions = function () {
-        return ["Sq. Feet",
-				"Sq. Meter",
-				"Sq. Yards",
-				"Aankadam",
-				"Acres",
-				"Ares",
-				"Bigha",
-				"Biswa",
-				"Chataks",
-				"Cents",
-				"Chataks",
-				"Guntha",
-				"Grounds",
-				"Hectares",
-				"Kanal",
-				"Kottah",
-				"Marla",
-				"Perch",
-				"Rood"];
+        return [{label:"Sq. Feet", sqftMultiplier:1},
+				{label:"Sq. Meter", sqftMultiplier:10.76},
+				{label:"Sq. Yards", sqftMultiplier:9},
+				{label:"Aankadam", sqftMultiplier:774.91},
+				{label:"Acres", sqftMultiplier:43560},
+				{label:"Ares", sqftMultiplier:11582.34},
+				{label:"Bigha", sqftMultiplier:26910.65},
+				{label:"Biswa", sqftMultiplier:1360},
+				{label:"Cents", sqftMultiplier:435.60},
+				{label:"Guntha", sqftMultiplier:1089},
+				{label:"Grounds", sqftMultiplier:2395.80},
+				{label:"Hectares", sqftMultiplier:107638},
+				{label:"Kanal", sqftMultiplier:5445.21},
+				{label:"Kottah", sqftMultiplier:720},
+				{label:"Marla", sqftMultiplier:272.25},
+				{label:"Perch", sqftMultiplier:2931.11},
+				{label:"Rood", sqftMultiplier:117244.35}]
+		
     };
+	
+	this.getSqftMutiplier = function (units) {
+		var unitOptions = this.unitOptions(), i;
+		for (i = 0; i <unitOptions.length; i++) { 
+			if(unitOptions[i].label ===  units) {
+				return unitOptions[i].sqftMultiplier;
+			}
+		}
+		
+		return 0;
+	};
 	
 	this.getDropDownValues = function (maxValue) {
 		var hours = [];

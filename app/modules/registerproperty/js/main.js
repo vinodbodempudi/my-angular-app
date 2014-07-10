@@ -72,9 +72,9 @@ angular.module('registerProperty', [])
 	
     $scope.registerProperty = function () {
 	
-	   $scope.property.createdDate = new Date();
+	   
 		var request = {
-			property: $scope.property,
+			property: adjustProperty($scope.property),
 			images: {
 				userImage:$scope.userImage,
 				propertyImages: $scope.propertyImages
@@ -88,6 +88,34 @@ angular.module('registerProperty', [])
 		    }).error(function(e){
 		    });
     };
+	
+	
+	var adjustProperty = function(property) {
+		property.createdDate = new Date();
+	
+		if(property.details.area.builtUp) {
+			property.details.area.builtUp.builtUpInSqft = fatHomeUtil.getSqftMutiplier(property.details.area.builtUp.units)*Number(property.details.area.builtUp.builtUp);
+		}
+		
+		if(property.details.area.plotOrLand) {
+			property.details.area.plotOrLand.plotOrLandInSqft = fatHomeUtil.getSqftMutiplier(property.details.area.plotOrLand.units)*Number(property.details.area.plotOrLand.plotOrLand);
+		}
+		
+		if(property.details.area.carpet) {
+			property.details.area.carpet.carpetInSqft = fatHomeUtil.getSqftMutiplier(property.details.area.carpet.units)*Number(property.details.area.carpet.carpet);
+		}
+	
+		return property;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }])
 .service('RegisterPropertyService',['$http',  'servicesBaseUrl', function($http, servicesBaseUrl) {
     this.registerProperty = function (property) {
