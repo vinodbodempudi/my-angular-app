@@ -13,6 +13,7 @@ angular.module('properties', [])
 	$scope.bedRoomsDropDownValues = fatHomeUtil.bedRoomsDropDownValues();
 	$scope.propertyTypes = fatHomeUtil.propertyTypes();
 	$scope.propertySubTypeMapper = fatHomeUtil.propertySubTypeMapper();
+	$scope.unitOptions = fatHomeUtil.unitOptions();
 	$scope.predicate = {};
 	
 	if(!$scope.fatHome.cities) {
@@ -36,6 +37,10 @@ angular.module('properties', [])
 		$scope.form1.submitted=true;
 		
 		if($scope.form1.$valid) {
+		
+			$scope.user.city = $scope.city = city;
+			$scope.user.locality = $scope.locality = locality;
+		
 			$scope.showChangeLocationModal = false;
 			$location.path('/properties/' + city + '/' + locality, false);
 			$scope.getProperties(city, locality);

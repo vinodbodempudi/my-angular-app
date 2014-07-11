@@ -44,7 +44,7 @@
 								<label class="col-sm-2 control-label" ng-show="property.user.type==='Agent'">Agent Photo:</label>
 								<label class="col-sm-2 control-label" ng-show="property.user.type==='Builder'">Builder Company Logo:</label>
 								<div class="col-sm-2" style="position:relative;" ng-show="property.user.type==='Agent' || property.user.type==='Builder'">
-									<a class='btn btn-primary btn-sm' href='javascript:;'>
+									<a class='btn btn-primary btn-sm homebtn' href='javascript:;'>
 										Choose File...
 										<!--<input type="file" class="agentphoto" name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>-->
 										<input id="inputImage" type="file"  class="agentphoto" name="file_source" size="40" accept="image/*" image="userImage" />
@@ -893,7 +893,7 @@
                                 <label for="exampleInputFile">Upload Photos</label>
                                 <!--<input type="file" id="exampleInputFile"> -->
                                 <div style="position:relative;">
-                                    <a class='btn btn-primary btn-sm' href='javascript:;'>
+                                    <a class='btn btn-primary btn-sm homebtn' href='javascript:;'>
 										Choose File...
 										<input type="file" accept="image/*" image="propertyImages" multiple style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
 									</a>
@@ -940,7 +940,7 @@
 			<span class="resgisterPropertySuccessLabel">Property details saved successfully.</span>
 		</div>
 		<div class="text-center">
-			<a href="#/propertyresults/{{user.city}}/{{user.locality}}"><button class="btn btn-info">Back to Results</button></a>
+			<a href="#/properties/{{user.city}}/{{user.locality}}"><button class="btn btn-info">Back to Results</button></a>
 		</div>
 	  </div>
      </div>
