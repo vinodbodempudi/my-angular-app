@@ -803,3 +803,33 @@ line-height: 2.3 !important;
 	background-color: #3e3e3e !important;
 }
 
+.custom-checkbox{
+	width: 32px;
+	height: 22px;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	top: 5px;
+	background: url("/images/minus.png") no-repeat;
+}
+.custom-checkbox:hover{
+	
+}
+.custom-checkbox.selected{
+	background: url("/images/success.gif") no-repeat;
+}
+.custom-checkbox input[type="checkbox"]{
+	margin: 0;
+	position: absolute;
+	z-index: 2;            
+	cursor: pointer;
+	outline: none;
+	opacity: 0;
+	/* CSS hacks for older browsers */
+	_noFocusLine: expression(this.hideFocus=true); 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	-khtml-opacity: 0;
+	-moz-opacity: 0;
+}
+

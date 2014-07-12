@@ -7,8 +7,6 @@ var app = angular.module('fatHomesApp', [
   'ngResource',
   'registerProperty',
   'home',
-  'propertyResults',
-  'propertyDetails',
   'login',
   'imageupload',
   'nya.bootstrap.select',

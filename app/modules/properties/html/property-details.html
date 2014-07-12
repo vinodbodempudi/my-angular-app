@@ -67,8 +67,8 @@
 							<label class="">Build-up Area</label>
 						</div>
 						<div class="right">
-							<label class="">{{property.details.area.builtUp.builtUp}} {{property.details.area.builtUp.units}}</label>
-							<select selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="property.details.area.builtUp.units">
+							<label class="">{{builtUpArea}} {{builtUpUnits}}</label>
+							<select selectpicker class="form-control input-sm" ng-change="builtUpArea=covert(builtUpUnits, property.details.area.builtUp.builtUpInSqft)" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="builtUpUnits">
 							</select>
 						</div>
 						<div class="speaker_image dot">
@@ -81,8 +81,8 @@
 							<label class="">Carpet Area</label>
 						</div>
 						<div class="right">
-							<label class="">{{property.details.area.carpet.carpet}} {{property.details.area.carpet.units}}</label>
-							<select selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="property.details.area.builtUp.units">
+							<label class="">{{carpetArea}} {{carpetUnits}}</label>
+							<select selectpicker ng-change="carpetArea=covert(carpetUnits, property.details.area.carpet.carpetInSqft)" class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="carpetUnits">
 							</select>
 						</div>
 						<div class="speaker_image dot">
@@ -107,8 +107,8 @@
 							<label class="">plot/land Area</label>
 						</div>
 						<div class="right">
-							<label class="">{{property.details.area.plotOrLand.plotOrLand}} {{property.details.area.plotOrLand.units}}</label>
-							<select selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="property.details.area.builtUp.units">
+							<label class="">{{plotOrLandArea}} {{plotOrLandUnits}}</label>
+							<select selectpicker ng-change="plotOrLandArea=covert(plotOrLandUnits, property.details.area.plotOrLand.plotOrLandInSqft)" class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="plotOrLandUnits">
 							</select>
 						</div>
 						<div class="speaker_image dot">

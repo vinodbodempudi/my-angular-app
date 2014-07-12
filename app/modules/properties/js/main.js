@@ -76,8 +76,7 @@ angular.module('properties', [])
 		.success(function(data){
 			$scope.showPage = 'propertyResults';
 			$scope.properties = data;
-			$scope.predicate.dataField = 'createdDate';
-			$scope.predicate.reverseOrder = true;
+			$scope.predicate = $scope.sortOptions[0];
 		}).error(function(e){
 			
 		});
@@ -89,10 +88,35 @@ angular.module('properties', [])
 		.success(function(data){
 			$scope.showPage = 'propertyDetails';
 			$scope.property = data;
+			showAreaDropDowns(data);
 		}).error(function(e){
 			
 		});
 	
+	};
+	
+	var showAreaDropDowns = function(property) {
+	
+		if(property.details.area.builtUp) {
+			$scope.builtUpArea = property.details.area.builtUp.builtUp;
+			$scope.builtUpUnits = property.details.area.builtUp.units;
+		}
+		
+		if(property.details.area.plotOrLand) {
+			$scope.plotOrLandArea = property.details.area.plotOrLand.plotOrLand;
+			$scope.plotOrLandUnits = property.details.area.plotOrLand.units;
+		}
+		
+		if(property.details.area.carpet) {
+			$scope.carpetArea = property.details.area.carpet.carpet;
+			$scope.carpetUnits = property.details.area.carpet.units;
+		}
+	
+	
+	}
+	
+	$scope.covert = function(units, value) {
+		return (Number(value)/fatHomeUtil.getSqftMutiplier(units)).toFixed(2);
 	};
 	
 	$scope.showPropertyDetails = function(propertyId) {
@@ -161,8 +185,11 @@ angular.module('properties', [])
 					continue;
 				}
 				
-				if((filterOption.purpose && "Rent" !== property.mode) 
-					|| (filterOption.hasOwnProperty("purpose") && !filterOption.purpose && "Sell" !== property.mode)) {
+				if(!filterOption.buy && "Sell" === property.mode) {
+					continue;
+				}
+				
+				if(!filterOption.rent && "Rent" === property.mode) {
 					continue;
 				}
 								
@@ -189,7 +216,12 @@ angular.module('properties', [])
     });
     filtered.sort(function (a, b) {
 		var tempa = a[field], tempb = b[field];
-		return (tempa > tempb ? 1 : -1);
+		
+		if('createdDate' === field) {
+			return (tempa > tempb ? 1 : -1);
+		}
+		
+		return (Number(tempa) > Number(tempb) ? 1 : -1);
     });
     if(reverse) filtered.reverse();
     return filtered;
@@ -215,17 +247,33 @@ angular.module('properties', [])
 		lastThree = ',' + lastThree;
 	return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
   }
-}).directive('propertyResults1', function() {
+}).directive('propertyResults', function() {
 	return {
 		replace:true,
 		restrict: 'EA',
 		templateUrl: 'modules/properties/html/property-results.html',
 	};
-}).directive('propertyDetails1', function() {
+}).directive('propertyDetails', function() {
 	return {
 		replace:true,
 		restrict: 'EA',
 		templateUrl: 'modules/properties/html/property-details.html',
+	};
+})
+.directive('checkbox', function() {
+	return {
+		restrict: 'EA',
+		link:function(scope, el) {
+			el.each(function(){
+				$(this).wrap( "<span class='custom-checkbox'></span>" );
+				if($(this).is(':checked')){
+					$(this).parent().addClass("selected");
+				}
+			});
+			el.click(function(){
+				$(this).parent().toggleClass("selected");
+			});
+		}
 	};
 });
 

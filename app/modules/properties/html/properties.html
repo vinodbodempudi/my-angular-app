@@ -50,9 +50,8 @@
         </div>
       </div>
       <div class="col-md-2">
-        <label class="switch-light well" onClick="">
-          <input type="checkbox" ng-model="search.purpose">
-          <span> <span>BUY</span> <span>RENT</span> </span> <a class="btn btn-success"></a> </label>
+			<label style="cursor:pointer;"><input type="checkbox" checkbox checked="checked" ng-init="search.buy = true" ng-model="search.buy">BUY</label>
+			<label style="cursor:pointer;padding-left:20px;"><input type="checkbox" checkbox checked="checked" ng-init="search.rent = true" ng-model="search.rent">RENT</label>
       </div>
       <div class="col-md-3 sqft">
         <div class="input-group price "> <span class="input-group-addon input-group-addon_custom">SQFT</span>
@@ -72,8 +71,8 @@
   <div class="row maprow"> 
     <div class="col-md-4 col-md-push-8 searchresults">
 		<div ng-switch on="showPage" ng-init="showPage='propertyResults'">
-			<div property-results1 ng-switch-when="propertyResults" ></div>
-			<div property-details1 ng-switch-when="propertyDetails" ></div>
+			<div property-results ng-switch-when="propertyResults" ></div>
+			<div property-details ng-switch-when="propertyDetails" ></div>
 		</div>
     </div>
     <div class="col-md-8 col-md-pull-4 mapresults">
