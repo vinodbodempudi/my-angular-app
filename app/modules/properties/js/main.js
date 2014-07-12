@@ -15,6 +15,7 @@ angular.module('properties', [])
 	$scope.propertySubTypeMapper = fatHomeUtil.propertySubTypeMapper();
 	$scope.unitOptions = fatHomeUtil.unitOptions();
 	$scope.predicate = {};
+	$scope.search = {};
 	
 	if(!$scope.fatHome.cities) {
 		locationService.getCities()
@@ -25,6 +26,12 @@ angular.module('properties', [])
 				
 			});
 	}
+	
+	$scope.$watch($scope.search,
+		function(newValue, oldValue) {
+			$scope.showPage = 'propertyResults';
+		}, true
+	);
 	
 	$scope.openChangeLocationModal = function() {
 		$scope.newCity = $scope.city;

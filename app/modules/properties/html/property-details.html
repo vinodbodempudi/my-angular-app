@@ -509,14 +509,20 @@
 				</div>
 			</accordion-group>
 			<accordion-group heading="Photos" ng-click="selectedTab='Photos'">
-				 
+			  <div style="height: 210px">
+				<carousel>
+				  <slide ng-repeat="propertyUrl in property.urls.propertyUrls" active="slide.active">
+					<img ng-src="{{propertyUrl.url}}" style="margin:auto;">
+				  </slide>
+				</carousel>
+			  </div>
 			</accordion-group>
 			<accordion-group heading="Contact" ng-click="selectedTab='Contact'">
 				 <div class="tab-pane active" id="tab4">
 					<div class="row " id="contactdetails" style="margin-top: 30px;">
 						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-							<img ng-show="property.urls.userUrl" src="{{property.urls.userUrl}}" width="100px" height="100px" />
-							<img ng-show="!property.urls.userUrl" src="images/blank_person.jpg" width="100px" height="100px" />
+							<img ng-show="property.urls.userUrl" ng-src="{{property.urls.userUrl}}" width="100px" height="100px" />
+							<img ng-show="!property.urls.userUrl" ng-src="images/blank_person.jpg" width="100px" height="100px" />
 						</div>
 						<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 property-contact-info"> 
 							<div class="schedule no-names">
