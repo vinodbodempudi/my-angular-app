@@ -51,6 +51,7 @@ angular.module('properties', [])
 			$scope.showChangeLocationModal = false;
 			$location.path('/properties/' + city + '/' + locality, false);
 			$scope.getProperties(city, locality);
+			$scope.currentLocationDetails = fatHomeUtil.getLocationDetails($scope.localities, $scope.locality);
 		}
 	}
 	
@@ -280,6 +281,101 @@ angular.module('properties', [])
 			el.click(function(){
 				$(this).parent().toggleClass("selected");
 			});
+		}
+	};
+})
+.directive('map', function() {
+
+	function PropertiesMap(map) {
+		this.markers = [];
+		
+		this.addMarker = function(property, clickHandler) {
+
+		  var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(property.lat, property.lng),
+			map: map
+		  });
+		  
+		  var chInfoWindow = new google.maps.InfoWindow({
+			content: "Type : "+property.mode+"<br>"+"Price : Rs. "+property.price,
+			maxWidth:250
+		  });
+		  
+		  google.maps.event.addListener(marker, 'mouseover', function() {
+			chInfoWindow.open(map, marker);
+		  });
+		  
+		  google.maps.event.addListener(marker, 'mouseout', function() {
+				if (chInfoWindow) {
+					chInfoWindow.close();
+				}
+		  });
+		  
+		  
+		  google.maps.event.addListener(marker, 'click', function() {
+			clickHandler(property._id);
+		  });
+		  
+		  this.markers.push(marker);
+		}
+		
+		this.clearMarkers = function() {
+		  this.setAllMap(null);
+		}
+
+		this.setAllMap = function(map) {
+		  for (var i = 0; i < this.markers.length; i++) {
+			this.markers[i].setMap(map);
+		  }
+		}
+	};
+
+	return {
+		restrict: 'EA',
+		link:function(scope, el) {
+			
+			var propertiesMap, initializeMap = function (location) {	
+			
+				var mapOptions = {
+									zoom: 15,
+									center: new google.maps.LatLng(location.lat, location.long),
+									mapTypeId: google.maps.MapTypeId.ROADMAP
+								};
+				map = new google.maps.Map(el[0], mapOptions);
+				propertiesMap = new PropertiesMap(map);
+			}
+			
+			var showMarkers = function (properties) {	
+				for (var i = 0; i <properties.length; i++) { 
+					var property = properties[i];
+					propertiesMap.addMarker(property, scope.getPropertyDetails);
+				}
+			}
+			
+			var properties;
+			scope.$watch("properties", function(newValue) {
+					if(propertiesMap) {
+						propertiesMap.clearMarkers();
+					}
+					
+					properties = newValue;
+					if(propertiesMap) {
+						showMarkers(newValue);
+					}
+
+				}, true);
+
+			scope.$watch("currentLocationDetails", function(newValue) {
+				if(newValue) {
+					initializeMap(newValue);
+					
+					if(properties) {
+						showMarkers(properties);
+					}
+					
+				}
+			}, true);
+		
 		}
 	};
 })

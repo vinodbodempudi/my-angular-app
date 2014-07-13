@@ -299,7 +299,7 @@ app.directive("modalShow", function () {
     };
 
 })
-.filter('ordinal', function() {
+app.filter('ordinal', function() {
   return function(input) {
   
 	if(!input) {
@@ -309,42 +309,6 @@ app.directive("modalShow", function () {
     return input.charAt(0).toUpperCase() + input.substr(1).replace(/[A-Z]/g, ' $&');
   }
 })
-.directive('map', function() {
-	return {
-		restrict: 'EA',
-		scope:{
-			position:"=",
-			location:"="
-		},
-		link:function(scope, el) {
-		
-			var initializeMap = function () {	
-			
-				if(!scope.location) {
-					return;
-				}
-			
-				var mapOptions = {
-									zoom: 15,
-									center: new google.maps.LatLng(scope.location.lat, scope.location.long),
-									mapTypeId: google.maps.MapTypeId.ROADMAP
-								};
-				map = new google.maps.Map(el[0], mapOptions);
-				google.maps.event.trigger(map, 'resize');
-				
-			}
-
-			var previousLocation;
-			scope.$watch(function() {
-				if(scope.location && previousLocation !== scope.location) {
-					previousLocation = scope.location;
-					initializeMap();
-				}
-			});
-		
-		}
-	};
-});
 
 /*app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'data', function ($scope, $modalInstance, data) {
 	$scope.data = data;
