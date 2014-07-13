@@ -33,12 +33,12 @@
         <span class="filtersLabel">Filters</span>
       </div>
       <div class="col-md-2">
-	    <select class="form-control selectpicker" selectpicker ng-options="subType as subType for subType in propertySubTypeMapper['Residential']" ng-model="search.propertType">
+	    <select class="form-control selectpicker" nya-selectpicker ng-options="subType as subType for subType in propertySubTypeMapper['Residential']" ng-model="search.propertType">
           <option value="">Property type</option>
         </select>
       </div>
       <div class="col-md-1 bedsfilter">
-        <select class="form-control selectpicker" selectpicker ng-options="value as value for value in bedRoomsDropDownValues" ng-model="search.beds">
+        <select class="form-control selectpicker" nya-selectpicker ng-options="value as value for value in bedRoomsDropDownValues" ng-model="search.beds">
           <option value="" selected>Beds</option>
         </select>
       </div>
@@ -50,8 +50,8 @@
         </div>
       </div>
       <div class="col-md-2">
-			<label style="cursor:pointer;"><input type="checkbox" checkbox checked="checked" ng-init="search.buy = true" ng-model="search.buy">BUY</label>
-			<label style="cursor:pointer;padding-left:20px;"><input type="checkbox" checkbox checked="checked" ng-init="search.rent = true" ng-model="search.rent">RENT</label>
+			<label class="btn btn-default btn-sm rent-buy-input"><input type="checkbox" checkbox checked="checked" ng-init="search.buy = true" ng-model="search.buy"><span class="rent-buy-input-label">BUY</span></label>
+			<label class="btn btn-default btn-sm rent-buy-input" style="left: 8px;position: relative;"><input type="checkbox" checkbox checked="checked" ng-init="search.rent = true" ng-model="search.rent"><span class="rent-buy-input-label">RENT</span></label>
       </div>
       <div class="col-md-3 sqft">
         <div class="input-group price "> <span class="input-group-addon input-group-addon_custom">SQFT</span>

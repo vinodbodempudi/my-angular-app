@@ -27,7 +27,7 @@ angular.module('properties', [])
 			});
 	}
 	
-	$scope.$watch($scope.search,
+	$scope.$watch("search",
 		function(newValue, oldValue) {
 			$scope.showPage = 'propertyResults';
 		}, true
@@ -280,6 +280,33 @@ angular.module('properties', [])
 			el.click(function(){
 				$(this).parent().toggleClass("selected");
 			});
+		}
+	};
+})
+.directive('scroll', function() {
+	var scrollPos;
+	return {
+		restrict: 'EA',
+		link:function(scope, el) {
+			el.scroll(function() {
+				scrollPos = el.scrollTop();
+			});
+			
+			scope.$watch("showPage",
+				function(newValue, oldValue) {
+					if(newValue === 'propertyResults')
+						el.scrollTop(scrollPos);
+				});
+			
+			scope.$watch("predicate",
+				function(newValue, oldValue) {
+					el.scrollTop(0);
+				}, true);
+
+			scope.$watch("search",
+				function(newValue, oldValue) {
+					el.scrollTop(0);
+				}, true);
 		}
 	};
 });

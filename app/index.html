@@ -176,12 +176,12 @@
             <input type="text" class="form-control" ng-model="newUser.phone" id="inputPassword3" placeholder="Phone">
           </div>
           <div class="form-group">
-            <select selectpicker class="form-control input-sm" selectpicker ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)" ng-required='true' ng-model="newUser.city">
+            <select nya-selectpicker class="form-control input-sm" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)" ng-required='true' ng-model="newUser.city">
 				<option value="">Select City</option>
 			</select>
           </div>
           <div class="form-group">
-			<select selectpicker class="form-control input-sm" selectpicker ng-options="locality.locality as locality for locality in localities" name="locality" ng-required='true' ng-model="newUser.locality">
+			<select nya-selectpicker class="form-control input-sm" ng-options="locality.locality as locality for locality in localities" name="locality" ng-required='true' ng-model="newUser.locality">
 				<option value="">Select Locality</option>
 			</select>
           </div>
@@ -306,7 +306,7 @@
 				<div class="controls">
 					<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-						<textarea name="message" class="form-control" ng-model="CC.message" rows="4" ng-required='true' cols="78" placeholder="Enter your message here"></textarea>
+						<textarea name="message" class="form-control" ng-model="feedback.message" rows="4" ng-required='true' cols="78" placeholder="Enter your message here"></textarea>
 						<p ng-show="feedbackform.message.$invalid && feedbackform.submitted" class="label errorText">enter message</p>
 					</div>
 				</div>
@@ -346,9 +346,6 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/bootstrap-select/bootstrap-select.js"></script>
-	<script src="bower_components/bootstrap-select/bootstrap-select.js"></script>
-	
-	
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	
 
@@ -357,22 +354,12 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script src="scripts/custom.js"></script>
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/services.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/form.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/signup.js"></script>
-        <!-- endbuild -->
-
-        <script src="app.js"></script>
-		<script src="lib/imageupload.js"></script>
-        <script src="modules/registerproperty/js/main.js"></script>
-		<script src="modules/properties/js/main.js"></script>
-        <script src="modules/login/js/main.js"></script>
-        <script src="modules/home/js/main.js"></script>
-		<script src="lib/nya-bootstrap-select.js"></script>
+	<script src="app.js"></script>
+	<script src="lib/imageupload.js"></script>
+	<script src="modules/registerproperty/js/main.js"></script>
+	<script src="modules/properties/js/main.js"></script>
+	<script src="modules/login/js/main.js"></script>
+	<script src="modules/home/js/main.js"></script>
+	<script src="lib/nya-bootstrap-select.js"></script>
 </body>
 </html>

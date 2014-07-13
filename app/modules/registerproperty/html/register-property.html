@@ -139,12 +139,12 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label mandatory">Type:</label>
                                 <div class="col-sm-2">
-                                    <select selectpicker class="selectpicker form-control input-sm" ng-change="propertySubTypes=propertySubTypeMapper[property.details.propertyType]" ng-options="property as property for property in propertyTypes" ng-init="property.details.propertyType='Residential'" name="propertyType" ng-required='true' ng-model="property.details.propertyType">
+                                    <select nya-selectpicker class="selectpicker form-control input-sm" ng-change="propertySubTypes=propertySubTypeMapper[property.details.propertyType]" ng-options="property as property for property in propertyTypes" ng-init="property.details.propertyType='Residential'" name="propertyType" ng-required='true' ng-model="property.details.propertyType">
                                     </select>
 									<p ng-show="form1.propertyType.$invalid && (!form1.propertyType.$pristine || form1.submitted)" class="label errorText">select property type</p>
                                 </div>
                                 <div class="col-sm-2" >
-                                    <select selectpicker title="" class="selectpicker form-control input-sm" ng-init="propertySubTypes=propertySubTypeMapper['Residential']" ng-options="subType as subType for subType in propertySubTypes" name="houseType" ng-required='true' ng-model="property.details.propertySubType">
+                                    <select nya-selectpicker title="" class="selectpicker form-control input-sm" ng-init="propertySubTypes=propertySubTypeMapper['Residential']" ng-options="subType as subType for subType in propertySubTypes" name="houseType" ng-required='true' ng-model="property.details.propertySubType">
                                     </select>
 									<p ng-show="form1.houseType.$invalid && (!form1.houseType.$pristine || form1.submitted)" class="label errorText">select house type</p>
                                 </div>
@@ -171,13 +171,13 @@
                                 </div>
                                 <label class="col-sm-2 control-label mandatory">Bedrooms:</label>
                                 <div class="col-sm-1">
-                                    <select selectpicker title="" class="form-control input-sm" ng-options="value as value for value in bedRoomsDropDownValues" name="bedRooms" ng-model="property.details.bedRooms" ng-required='true'>
+                                    <select nya-selectpicker title="" class="form-control selectpicker input-sm" ng-options="value as value for value in bedRoomsDropDownValues" name="bedRooms" ng-model="property.details.bedRooms" ng-required='true'>
 									</select>
 									<p ng-show="form1.bedRooms.$invalid && (!form1.bedRooms.$pristine || form1.submitted)" class="label errorText">select no.of bedrooms</p>
                                 </div>
                                 <label class="col-sm-2 control-label mandatory">Bathrooms:</label>
                                 <div class="col-sm-1">
-                                    <select selectpicker title="" class="form-control input-sm" name="bathRooms" ng-options="value as value for value in bathRoomsDropDownValues" ng-model="property.details.bathRooms" ng-required='true'>
+                                    <select nya-selectpicker title="" class="form-control selectpicker input-sm" name="bathRooms" ng-options="value as value for value in bathRoomsDropDownValues" ng-model="property.details.bathRooms" ng-required='true'>
                                     </select>
 									<p ng-show="form1.bathRooms.$invalid && (!form1.bathRooms.$pristine || form1.submitted)" class="label errorText">select no.of bathRooms</p>
                                 </div>
@@ -192,7 +192,7 @@
                                 </div>
 
                                 <div class="col-sm-2">
-                                    <select selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" name="builtUpUnits" ng-model="property.details.area.builtUp.units" ng-required='true'>
+                                    <select nya-selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" name="builtUpUnits" ng-model="property.details.area.builtUp.units" ng-required='true'>
                                         <option value="" selected>Units Drop Down</option>
                                     </select>
 									<p ng-show="form1.builtUpUnits.$invalid && (!form1.builtUpUnits.$pristine || form1.submitted)" class="label errorText">select Built-up units</p>
@@ -213,7 +213,7 @@
                                 </div>
 
                                 <div class="col-sm-2">
-                                    <select selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" name="carpetUnits" ng-model="property.details.area.carpet.units" ng-required='false'>
+                                    <select nya-selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" name="carpetUnits" ng-model="property.details.area.carpet.units" ng-required='false'>
                                         <option value="">Units Drop Down</option>
                                     </select>
 									<p ng-show="form1.carpetUnits.$invalid && (!form1.carpetUnits.$pristine || form1.submitted)" class="label errorText">select Carpet units</p>
@@ -224,7 +224,7 @@
 									<p ng-show="form1.plotOrLand.$error.pattern" class="label errorText">Enter valid Plot/Land</p>
                                 </div>
                                 <div class="col-sm-2">
-                                    <select selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" name="plotOrLandUnits" ng-model="property.details.area.plotOrLand.units" ng-required='false'>
+                                    <select nya-selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" name="plotOrLandUnits" ng-model="property.details.area.plotOrLand.units" ng-required='false'>
                                         <option value="">Units Drop Down</option>
                                     </select>
 									<p ng-show="form1.plotOrLandUnits.$invalid && (!form1.plotOrLandUnits.$pristine || form1.submitted)" class="label errorText">select Plot/Land units</p>
@@ -304,12 +304,12 @@
                                 </div>
                                 <label class="col-sm-2 control-label">Age of Property</label>
 								<div class="col-sm-1">
-									<select selectpicker class="form-control input-sm" ng-change="updatePropertyStatus();" ng-options="year as year for year in ageOfPropertyOptions.years"  ng-model="property.details.ageOfProperty.years">
+									<select nya-selectpicker class="form-control input-sm" ng-change="updatePropertyStatus();" ng-options="year as year for year in ageOfPropertyOptions.years"  ng-model="property.details.ageOfProperty.years">
 										<option value="">Y</option>
 									</select>
 								</div>
 								<div class="col-sm-1">
-									<select selectpicker class="form-control input-sm" ng-change="updatePropertyStatus();" ng-options="month as month for month in ageOfPropertyOptions.months" ng-model="property.details.ageOfProperty.months">
+									<select nya-selectpicker class="form-control input-sm" ng-change="updatePropertyStatus();" ng-options="month as month for month in ageOfPropertyOptions.months" ng-model="property.details.ageOfProperty.months">
 										<option value="">M</option>
 									</select>
 								</div>
@@ -395,7 +395,7 @@
 									</div>
 									<label class="col-sm-2 control-label">Preferred Tenant:</label>
 									<div class="col-sm-2">
-										<select selectpicker title="" class="form-control input-sm" ng-model="property.details.preferredTenant">
+										<select nya-selectpicker title="" class="form-control input-sm" ng-model="property.details.preferredTenant">
 											<option>No Restriction</option>
 											<option>Family</option>
 											<option>Bachelor</option>
@@ -406,7 +406,7 @@
 								<div class="form-group" ng-show="property.user.type==='Agent'">
 									<label class="col-sm-2 control-label">Agent Commision:</label>
 									<div class="col-sm-3">
-										<select title="" selectpicker class="form-control input-sm" name="commitionInDays" ng-model="property.details.commitionInDays" ng-required="false">
+										<select title="" nya-selectpicker class="form-control input-sm" name="commitionInDays" ng-model="property.details.commitionInDays" ng-required="false">
 											<option>1/2 Month Rent</option>
 											<option>1 Month Rent</option>
 											<option>1 1/2 Month Rent</option>
@@ -438,12 +438,12 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Balconies</label>
                                 <div class="col-sm-1">
-                                    <select selectpicker title="" class="form-control input-sm" ng-options="value as value for value in balconiesDropDownValues" ng-model="property.specifications.balconies">
+                                    <select nya-selectpicker title="" class="form-control input-sm" ng-options="value as value for value in balconiesDropDownValues" ng-model="property.specifications.balconies">
                                     </select>
                                 </div>
                                 <label class="col-sm-2 control-label">Additional rooms</label>
                                 <div class="col-sm-2">
-                                    <select selectpicker title="" class="form-control input-sm" ng-model="property.specifications.additionalRooms">
+                                    <select nya-selectpicker title="" class="form-control input-sm" ng-model="property.specifications.additionalRooms">
                                         <option>Dining</option>
                                         <option>Puja</option>
                                         <option>Study</option>
@@ -458,7 +458,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Directional facing</label>
                                 <div class="col-sm-2">
-                                    <select selectpicker title="" class="form-control input-sm" ng-model="property.specifications.directionalFacing">
+                                    <select nya-selectpicker title="" class="form-control input-sm" ng-model="property.specifications.directionalFacing">
                                         <option>East</option>
                                         <option>West</option>
 										<option>North</option>
@@ -471,7 +471,7 @@
                                 </div>
                                 <label class="col-sm-2 control-label">Facing</label>
                                 <div class="col-sm-2">
-                                    <select title="" selectpicker class="form-control input-sm" ng-model="property.specifications.facing">
+                                    <select title="" nya-selectpicker class="form-control input-sm" ng-model="property.specifications.facing">
                                         <option>Pool</option>
                                         <option>Main Road</option>
                                         <option>Garden</option>
@@ -557,7 +557,7 @@
                             <div class="form-group">
 								<label class="col-sm-2 control-label">Type of electricity</label>
 								<div class="col-sm-2">
-									<select selectpicker title="" class="form-control input-sm" ng-model="property.specifications.typeOfElectricity">
+									<select nya-selectpicker title="" class="form-control input-sm" ng-model="property.specifications.typeOfElectricity">
 										<option>phase I</option>
 										<option>phase II</option>
 										<option>phase III</option>
@@ -566,13 +566,13 @@
 												
 								<label class="col-sm-1 control-label flooring">Flooring</label>
 								<div class="col-sm-2">
-									<select selectpicker title="" class="form-control input-sm" ng-options="value as value for value in flooringDropDownValues" ng-model="property.specifications.flooring">
+									<select nya-selectpicker title="" class="form-control input-sm" ng-options="value as value for value in flooringDropDownValues" ng-model="property.specifications.flooring">
 									</select>
 								</div>
 							
 								<label class="col-sm-1 control-label security">Security Systems</label>
 								<div class="col-sm-2">
-									<select selectpicker title="" class="form-control input-sm" ng-model="property.specifications.securitySystem">
+									<select nya-selectpicker title="" class="form-control input-sm" ng-model="property.specifications.securitySystem">
 										<option>fire alarm</option>
 										<option>burglar alarm</option>
 									</select>
@@ -581,12 +581,12 @@
 							<div class="form-group" ng-show="property.details.mode==='Sell'">
 								<label class="col-sm-2 control-label">No of Units Available</label>
 								<div class="col-sm-1">
-									<select selectpicker title="" class="form-control input-sm" ng-options="unit as unit for unit in noOfUnits" ng-model="property.specifications.unitsAvailable">
+									<select nya-selectpicker title="" class="form-control input-sm" ng-options="unit as unit for unit in noOfUnits" ng-model="property.specifications.unitsAvailable">
 									</select>
 								</div>
 								<label class="col-sm-2 control-label">Ownership type:</label>
 								<div class="col-sm-2">
-									<select selectpicker title="" class="form-control input-sm" ng-model="property.specifications.ownershipType">
+									<select nya-selectpicker title="" class="form-control input-sm" ng-model="property.specifications.ownershipType">
                                         <option>Co-operative Society</option>
 										<option>Freehold</option>
 										<option>Leasehold</option>
@@ -936,7 +936,7 @@
     <div class="modal-content">
       <div class="modal-body">
 		<div class="text-center" style="padding: 20px;">
-			<img ng-src="images/success.gif"/> 
+			<img ng-src="images/success_32.gif"/> 
 			<span class="resgisterPropertySuccessLabel">Property details saved successfully.</span>
 		</div>
 		<div class="text-center">

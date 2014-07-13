@@ -10,7 +10,6 @@ button::-moz-focus-inner{border: 0;}
 .nav li div{ color:#999999; padding:11px 15px; display:inline-block; background:#000;}
 .nav li div a{ color:#fff;}
 .nav li div a:hover,.nav li div a:active,.nav li div a:visited{ text-decoration:none}
-.carousel-control.right,.carousel-control.left{ background:none;}
 .carousel .item img{ width:100%; max-height:600px;}
 .home-modal{ display:block; position:absolute; height:0; overflow:initial}
 .home-modal .modal-dialog{ margin-top:100px; width: 438px; height: auto;}
@@ -804,19 +803,19 @@ line-height: 2.3 !important;
 }
 
 .custom-checkbox{
-	width: 32px;
+	width: 28px;
 	height: 22px;
 	display: inline-block;
 	position: relative;
 	z-index: 1;
-	top: 5px;
 	background: url("/images/minus.png") no-repeat;
+	opacity:0.8;
 }
 .custom-checkbox:hover{
 	
 }
 .custom-checkbox.selected{
-	background: url("/images/success.gif") no-repeat;
+	background: url("/images/success_32.gif") no-repeat;
 }
 .custom-checkbox input[type="checkbox"]{
 	margin: 0;
@@ -832,4 +831,21 @@ line-height: 2.3 !important;
 	-khtml-opacity: 0;
 	-moz-opacity: 0;
 }
+
+.rent-buy-input {
+	padding-top: 5px;
+	padding-left: 6px;
+	padding-bottom: 0px;
+	border-radius: 10px;
+}
+
+.rent-buy-input-label{
+	position: relative;
+	top: -5px;
+}
+
+.carousel-control {
+  color: #E68A00;
+}
+
 

@@ -68,7 +68,7 @@
 						</div>
 						<div class="right">
 							<label class="">{{builtUpArea}} {{builtUpUnits}}</label>
-							<select selectpicker class="form-control input-sm" ng-change="builtUpArea=covert(builtUpUnits, property.details.area.builtUp.builtUpInSqft)" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="builtUpUnits">
+							<select class="form-control input-sm" style="width: 106px;" ng-change="builtUpArea=covert(builtUpUnits, property.details.area.builtUp.builtUpInSqft)" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="builtUpUnits">
 							</select>
 						</div>
 						<div class="speaker_image dot">
@@ -82,7 +82,7 @@
 						</div>
 						<div class="right">
 							<label class="">{{carpetArea}} {{carpetUnits}}</label>
-							<select selectpicker ng-change="carpetArea=covert(carpetUnits, property.details.area.carpet.carpetInSqft)" class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="carpetUnits">
+							<select ng-show="property.details.area.carpet" style="width: 106px;" ng-change="carpetArea=covert(carpetUnits, property.details.area.carpet.carpetInSqft)" class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="carpetUnits">
 							</select>
 						</div>
 						<div class="speaker_image dot">
@@ -108,7 +108,7 @@
 						</div>
 						<div class="right">
 							<label class="">{{plotOrLandArea}} {{plotOrLandUnits}}</label>
-							<select selectpicker ng-change="plotOrLandArea=covert(plotOrLandUnits, property.details.area.plotOrLand.plotOrLandInSqft)" class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="plotOrLandUnits">
+							<select ng-show="property.details.area.plotOrLand" style="width: 106px;" ng-change="plotOrLandArea=covert(plotOrLandUnits, property.details.area.plotOrLand.plotOrLandInSqft)" class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="plotOrLandUnits">
 							</select>
 						</div>
 						<div class="speaker_image dot">
@@ -430,7 +430,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.specifications.parking.fourWheeler">
+					<div class="schedule_row" ng-show="property.specifications.parking.fourWheeler || property.specifications.parking.fourWheelerVisitors">
 						<div class="left">
 							<label class="">Parking</label>
 						</div>
@@ -509,7 +509,7 @@
 				</div>
 			</accordion-group>
 			<accordion-group heading="Photos" ng-click="selectedTab='Photos'">
-			  <div style="height: 210px">
+			  <div style="height: 210px" ng-show="property.urls.propertyUrls && property.urls.propertyUrls.length > 0">
 				<carousel>
 				  <slide ng-repeat="propertyUrl in property.urls.propertyUrls" active="slide.active">
 					<img ng-src="{{propertyUrl.url}}" style="margin:auto;">

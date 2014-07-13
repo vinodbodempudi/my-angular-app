@@ -1,11 +1,11 @@
   <div class="list">
 	<div class="moveright">
 		<div class="input-group filter "> <span class="input-group-addon text-info">{{showProperties.length}} Results</span> <span class="input-group-addon">Sort by:</span>
-		  <select selectpicker title="" ng-options="sortOption.lable for sortOption in sortOptions" class="form-control selectpicker selectsort" ng-model="predicate">
+		  <select nya-selectpicker title="" ng-options="sortOption.lable for sortOption in sortOptions" class="form-control selectpicker selectsort" ng-model="predicate">
 		  </select>
 		</div>
 	</div>
-	<div class="lists-view">
+	<div class="lists-view" scroll>
 	  <div class="row">
 		<div ng-repeat="property in showProperties = (properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search)">
 		  <div class="list-view" style="cursor:pointer;" ng-click="showPropertyDetails(property._id);">

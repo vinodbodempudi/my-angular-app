@@ -118,11 +118,25 @@ app.service('LocationService', ['$http', 'servicesBaseUrl', function($http, serv
 
 }]);
 
-app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'LoginService', 'LocationService', function($scope, $rootScope, $location, loginService, locationService) {
+app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'LoginService', 'LocationService', 'fatHomeUtilService', 
+	function($scope, $rootScope, $location, loginService, locationService, fatHomeUtilService) {
 	
 	$rootScope.fatHome={};
 	$rootScope.user={};
 
+	if(typeof(Storage) !== "undefined") {
+		$rootScope.$watch("user", function(newValue, oldValue){
+			if(newValue.city) {
+				localStorage.setItem("city", newValue.city);
+			}
+			
+			if(newValue.locality) {
+				localStorage.setItem("locality", newValue.locality);
+			}
+		}, true)	
+	}
+	
+	
 	$scope.showLoginModal = function (loginUser) {
 		if($rootScope.isUserLoggedin) {
 			$rootScope.userDetails = null;
@@ -198,8 +212,11 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Login
 		$scope.feedbackform.submitted=true;
 		
 		if($scope.feedbackform.$valid) {
-			
-			loginService.sendFeedback(feedback)
+		
+			feedback.city = $scope.user.city;
+			feedback.locality = $scope.user.locality;
+			feedback.user = $scope.userDetails;
+			fatHomeUtilService.sendFeedback(feedback)
 			.success(function(data){
 				$scope.showFeedbackmodal = false;
 				$scope.feedback = {};
@@ -221,9 +238,12 @@ app.service('LoginService',['$http',  function($http) {
 	this.register = function (newUser) {
         return $http.get('data/cities.json', newUser);
     };
-	
+
+}]);
+app.service('fatHomeUtilService',['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
+
 	this.sendFeedback = function (feedBack) {
-        return $http.get('data/cities.json', feedBack);
+        return $http.post(servicesBaseUrl+'/feedback', feedBack);
     };
 }])
 
