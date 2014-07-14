@@ -236,26 +236,9 @@ angular.module('properties', [])
   };
 })
 
-.filter('currencyFormatter', function() {
-  return function(value) {
-  
-	if(!value) {
-		return "";
-	}
-  
-	var temp=value.toString(), index = temp.indexOf(".");
-	
-	if(index > -1) {
-		temp = str.substring(0, index);
-	}
-
-	var lastThree = temp.substring(temp.length-3);
-	var otherNumbers = temp.substring(0,temp.length-3);
-	if(otherNumbers != '')
-		lastThree = ',' + lastThree;
-	return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-  }
-}).directive('propertyResults', function() {
+.filter('currencyFormatter', ['FatHomeUtil', function(fatHomeUtil) {
+  return fatHomeUtil.currencyFormater;
+}]).directive('propertyResults', function() {
 	return {
 		replace:true,
 		restrict: 'EA',
@@ -284,7 +267,7 @@ angular.module('properties', [])
 		}
 	};
 })
-.directive('map', function() {
+.directive('map', ['FatHomeUtil', function(fatHomeUtil) {
 
 	function PropertiesMap(map) {
 		this.markers = [];
@@ -297,7 +280,10 @@ angular.module('properties', [])
 		  });
 		  
 		  var chInfoWindow = new google.maps.InfoWindow({
-			content: "Type : "+property.mode+"<br>"+"Price : Rs. "+property.price,
+			content: "Title : "+property.title+"<br>"
+					+"Bedrooms : "+property.bedRooms+"<br>"
+					+"Area : "+property.builtUpSize+" "+property.builtUpSize+"<br>"
+					+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(property.price)+"</label>",
 			maxWidth:250
 		  });
 		  
@@ -353,7 +339,7 @@ angular.module('properties', [])
 			}
 			
 			var properties;
-			scope.$watch("properties", function(newValue) {
+			scope.$watch("filteredProperties", function(newValue) {
 					if(propertiesMap) {
 						propertiesMap.clearMarkers();
 					}
@@ -365,7 +351,7 @@ angular.module('properties', [])
 
 				}, true);
 
-			scope.$watch("currentLocationDetails", function(newValue) {
+			scope.$watch("currentLocationDetails", function(newValue, oldValue) {
 				if(newValue) {
 					initializeMap(newValue);
 					
@@ -378,7 +364,7 @@ angular.module('properties', [])
 		
 		}
 	};
-})
+}])
 .directive('scroll', function() {
 	var scrollPos;
 	return {

@@ -48,7 +48,7 @@ angular.module('home', [])
 				
 			});
 	}
-	$scope.hideHomeScreen = true;
+	$scope.hideHomeScreen = false;
 }]).service('HomeService',['$http',  function($http) {
 
 	
@@ -250,6 +250,24 @@ angular.module('home', [])
 	
         return value.charAt(0).toUpperCase() + value.substr(1).replace(/[A-Z]/g, ' $&');
     };
+	
+	this.currencyFormater = function(value) {
+  
+		if(!value) {
+			return "";
+		}
+	  
+		var temp=value.toString(), index = temp.indexOf(".");
+		if(index > -1) {
+			temp = str.substring(0, index);
+		}
+
+		var lastThree = temp.substring(temp.length-3);
+		var otherNumbers = temp.substring(0,temp.length-3);
+		if(otherNumbers != '')
+			lastThree = ',' + lastThree;
+		return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+	}
 
 });
 
