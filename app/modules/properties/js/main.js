@@ -204,11 +204,11 @@ angular.module('properties', [])
 					continue;
 				}
 								
-				if(filterOption.minSft && Number(filterOption.minSft) > Number(property.size)) {
+				if(filterOption.minSft && Number(filterOption.minSft) > Number(property.builtUpInSqft)) {
 					continue;
 				}
 				
-				if(filterOption.maxSft && Number(filterOption.maxSft) < Number(property.size)) {
+				if(filterOption.maxSft && Number(filterOption.maxSft) < Number(property.builtUpInSqft)) {
 					continue;
 				}
 			
@@ -287,7 +287,7 @@ angular.module('properties', [])
 		  var chInfoWindow = new google.maps.InfoWindow({
 			content: "Title : "+property.title+"<br>"
 					+"Bedrooms : "+property.bedRooms+"<br>"
-					+"Area : "+property.builtUpSize+" Sq. Ft<br>"
+					+"Area : "+property.builtUpSize+" "+property.builtUpUnits+"<br>"
 					+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(property.price)+"</label>",
 			maxWidth:250
 		  });
@@ -403,7 +403,8 @@ angular.module('properties', [])
 					}
 					
 					newOptimizedProperty.bedRooms = newProperty.details.bedRooms;
-					newOptimizedProperty.builtUpSize = newProperty.details.area.builtUp.builtUpInSqft;
+					newOptimizedProperty.builtUpSize = newProperty.details.area.builtUp.builtUp;
+					newOptimizedProperty.builtUpUnits = newProperty.details.area.builtUp.units;
 	
 					
 					if(!properties || properties.length == 0) {
