@@ -84,6 +84,7 @@ angular.module('properties', [])
 		.success(function(data){
 			$scope.showPage = 'propertyResults';
 			$scope.properties = data;
+			$scope.property = null;
 			$scope.predicate = $scope.sortOptions[0];
 		}).error(function(e){
 			
@@ -91,12 +92,14 @@ angular.module('properties', [])
 	};
 	
 	$scope.getPropertyDetails = function(propertyId) {
-	
+		$scope.property = null;
 		propertiesService.getPropertyDetails(propertyId)
 		.success(function(data){
 			$scope.showPage = 'propertyDetails';
+			
 			$scope.property = data;
 			showAreaDropDowns(data);
+			$scope.showDetailsTab = true;
 		}).error(function(e){
 			
 		});
@@ -270,7 +273,9 @@ angular.module('properties', [])
 .directive('map', ['FatHomeUtil', function(fatHomeUtil) {
 
 	function PropertiesMap(map) {
+		var previousMarker;
 		this.markers = [];
+		this.propertyMarkerMap = {};
 		
 		this.addMarker = function(property, clickHandler) {
 
@@ -282,7 +287,7 @@ angular.module('properties', [])
 		  var chInfoWindow = new google.maps.InfoWindow({
 			content: "Title : "+property.title+"<br>"
 					+"Bedrooms : "+property.bedRooms+"<br>"
-					+"Area : "+property.builtUpSize+" "+property.builtUpSize+"<br>"
+					+"Area : "+property.builtUpSize+" Sq. Ft<br>"
 					+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(property.price)+"</label>",
 			maxWidth:250
 		  });
@@ -299,10 +304,12 @@ angular.module('properties', [])
 		  
 		  
 		  google.maps.event.addListener(marker, 'click', function() {
+			makeMarkerAsSelected(marker);
 			clickHandler(property._id);
 		  });
 		  
 		  this.markers.push(marker);
+		  this.propertyMarkerMap[property._id] = marker;
 		}
 		
 		this.clearMarkers = function() {
@@ -314,6 +321,32 @@ angular.module('properties', [])
 			this.markers[i].setMap(map);
 		  }
 		}
+		
+		this.setPropertyMarkerAsSelected = function(property) {
+			makeMarkerAsSelected(this.propertyMarkerMap[property._id]);
+		}
+		
+		this.resetMarkerSelection = function() {
+			if(previousMarker) {
+				previousMarker.setIcon('https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=1');
+			}
+		}
+		
+		
+		var makeMarkerAsSelected = function(marker) {
+		
+			if(!marker) {
+				return;
+			}
+		
+			if(previousMarker) {
+				previousMarker.setIcon('https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=1');
+			}
+			
+			marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
+			previousMarker = marker;
+		}
+		
 	};
 
 	return {
@@ -332,33 +365,79 @@ angular.module('properties', [])
 			}
 			
 			var showMarkers = function (properties) {	
+				
+				if(propertiesMap) {
+					propertiesMap.clearMarkers();
+				}
+				
 				for (var i = 0; i <properties.length; i++) { 
 					var property = properties[i];
 					propertiesMap.addMarker(property, scope.getPropertyDetails);
 				}
 			}
 			
-			var properties;
-			scope.$watch("filteredProperties", function(newValue) {
-					if(propertiesMap) {
-						propertiesMap.clearMarkers();
+			var properties, property;
+			var propertiesChangeHandler = function(newValue) {
+				properties = newValue;
+				if(propertiesMap) {
+					showMarkers(newValue);
+				}
+			}
+			
+			var propertyChangeHandler = function(newProperty) {
+				property = newProperty;
+				if(newProperty && propertiesMap) {
+	
+					var newOptimizedProperty = {};
+					newOptimizedProperty._id = newProperty._id;
+					newOptimizedProperty.title = newProperty.details.title;
+					if (newProperty.location) {
+						newOptimizedProperty.lat = newProperty.location.lat;
+						newOptimizedProperty.lng = newProperty.location.lng;
 					}
 					
-					properties = newValue;
-					if(propertiesMap) {
-						showMarkers(newValue);
+					if(newProperty.details.price) {
+						newOptimizedProperty.price = newProperty.details.price.price;
+					} else {
+						newOptimizedProperty.price = newProperty.details.monthlyRent;
 					}
-
-				}, true);
-
+					
+					newOptimizedProperty.bedRooms = newProperty.details.bedRooms;
+					newOptimizedProperty.builtUpSize = newProperty.details.area.builtUp.builtUpInSqft;
+	
+					
+					if(!properties || properties.length == 0) {
+						properties = [newOptimizedProperty];
+						propertiesChangeHandler(properties);
+					}
+					
+					if(propertiesMap)
+						propertiesMap.setPropertyMarkerAsSelected(property);
+				}
+			}
+			
+			
+			
+			scope.$watch("filteredProperties", propertiesChangeHandler, true);
+			scope.$watch("property", propertyChangeHandler, true);
+			
+			scope.$watch("showPage",
+				function(newValue, oldValue) {
+					if(newValue === 'propertyResults' && propertiesMap)
+						propertiesMap.resetMarkerSelection();
+				});
+			
 			scope.$watch("currentLocationDetails", function(newValue, oldValue) {
 				if(newValue) {
 					initializeMap(newValue);
 					
 					if(properties) {
-						showMarkers(properties);
+						propertiesChangeHandler(properties);
 					}
 					
+					if(property) {
+						propertyChangeHandler(property);
+					}
 				}
 			}, true);
 		

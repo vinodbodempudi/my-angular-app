@@ -12,7 +12,7 @@
 	 
 	  <div class="tab-content lists-view">
 		<accordion close-others="true" >
-			<accordion-group ng-click="selectedTab='Details'" heading="Details">
+			<accordion-group heading="Details" is-open="showDetailsTab">
 				<div class="schedule no-names">
 					<div class="schedule_row">
 						<div class="left">
@@ -265,7 +265,7 @@
 					</div>
 				</div>
 			</accordion-group>
-			<accordion-group heading="Specifications" ng-click="selectedTab='Specifications'">
+			<accordion-group heading="Specifications" is-open="showSpecificationsTab">
 				<div class="schedule no-names">
 					<div class="schedule_row">
 						<div class="left">
@@ -461,7 +461,7 @@
 				</div>
 
 			</accordion-group>
-			<accordion-group heading="Amenities"  ng-click="selectedTab='Amenities'">
+			<accordion-group heading="Amenities" is-open="showAmenitiesTab">
 				<div class="row tab-pane active text-center" id="tab2">
 					<div ng-show="property.amenities">
 						<div class="aminitieslist text-left">
@@ -508,7 +508,7 @@
 					</div>
 				</div>
 			</accordion-group>
-			<accordion-group heading="Photos" ng-click="selectedTab='Photos'">
+			<accordion-group heading="Photos" is-open="showPhotosTab">
 			  <div  class="not-select" style="height: 210px" ng-show="property.urls.propertyUrls && property.urls.propertyUrls.length > 0">
 				<carousel>
 				  <slide ng-repeat="propertyUrl in property.urls.propertyUrls" active="slide.active">
@@ -517,7 +517,7 @@
 				</carousel>
 			  </div>
 			</accordion-group>
-			<accordion-group heading="Contact" ng-click="selectedTab='Contact'">
+			<accordion-group heading="Contact" is-open="showContactTab">
 				 <div class="tab-pane active" id="tab4" style="overflow-y: auto;">
 					<div class="row " id="contactdetails" style="margin-top: 30px;">
 						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
