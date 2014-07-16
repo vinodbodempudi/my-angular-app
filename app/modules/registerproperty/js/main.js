@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('registerProperty', [])
-.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', '$routeParams', 'RegisterPropertyService',
-	function($scope, locationService, fatHomeUtil, $routeParams, registerPropertyService) {
+.controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', '$routeParams', 'RegisterPropertyService', '$rootScope',
+	function($scope, locationService, fatHomeUtil, $routeParams, registerPropertyService, $rootScope) {
 	
 	$scope.user.city = $scope.city = $routeParams.city;
 	$scope.user.locality = $scope.locality = $routeParams.locality;
@@ -113,11 +113,15 @@ angular.module('registerProperty', [])
 		}
    
 	   console.log(angular.toJson(request));
+	   $rootScope.$broadcast('SHOW_PROGRESS_BAR');
        registerPropertyService.registerProperty(angular.toJson(request))
        	    .success(function(data){
 				$scope.registerPropertySuccess = true;
+				$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 		    }).error(function(e){
 				$scope.disableSubmitbtn = true;
+				$rootScope.$broadcast('HIDE_PROGRESS_BAR');
+				
 		    });
     };
 	

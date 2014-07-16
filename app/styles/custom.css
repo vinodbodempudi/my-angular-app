@@ -873,3 +873,23 @@ line-height: 2.3 !important;
         -webkit-user-select: none; 
         -o-user-select: none; 
 } 
+
+
+.tivoliModal_small {
+    display: block !important;
+    top : 20% !important;
+	left : 36% !important;
+    width: 33% !important;
+}
+.tivoliModal_small textarea {
+   padding:2px 1px !important;
+}
+
+/* spinner */
+#spinner .loading{background:rgba(0,0,0,0.4); height: 100%; left: 0; position: absolute; top:0px; width: 100%; z-index: 1051; text-align:center;}
+#spinner .loading i{ color:#fff; margin-top:120px; font-size:30px;}
+.loading{background:rgba(0,0,0,0.4); height: 100%; left: 0; position: fixed; top:0px; width: 100%; z-index: 1051; text-align:center;}
+.loading i{ color:#fff; margin-top:10%; font-size:30px;}
+.modal-dialog{margin:100px auto;}
+.ie9 .fa-refresh:before{content:none;}
+.ie9 .fa-refresh{background: url("../../images/uprr/animated.gif") no-repeat scroll ;  height:28px; width:28px;}

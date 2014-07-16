@@ -319,8 +319,85 @@ app.filter('ordinal', function() {
     return input.charAt(0).toUpperCase() + input.substr(1).replace(/[A-Z]/g, ' $&');
   }
 })
+app.directive('pleaseWait', ['$rootScope', 'SHOW_PROGRESS_BAR', 'HIDE_PROGRESS_BAR', function ($rootScope, SHOW_PROGRESS_BAR, HIDE_PROGRESS_BAR) {
+	  var getDocHeight = function(){
+	     var D = document, h = 0;
+	     h = Math.max(D.documentElement.scrollHeight, Math.max(D.body.offsetHeight, D.documentElement.offsetHeight), Math.max(D.body.clientHeight, D.documentElement.clientHeight));
+	     return h;
+	  };  
+	  return {
+	      restrict: 'EA',
+	      replace:true,
+	      templateUrl: 'shared/html/please-wait.html',
+	      link: function (scope, element) {               
+	          $rootScope.$on(SHOW_PROGRESS_BAR, function () {
+	              element.show();
+				   element.css('height', getDocHeight());
+	          });
+	          $rootScope.$on(HIDE_PROGRESS_BAR, function () {
+	              element.hide();
+	          });
+	      }
+	  };
+  }]);
+  
+  app.constant('SHOW_PROGRESS_BAR', 'SHOW_PROGRESS_BAR');
+  app.constant('HIDE_PROGRESS_BAR', 'HIDE_PROGRESS_BAR');
 
-/*app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'data', function ($scope, $modalInstance, data) {
+   app.config(['$httpProvider', 'SHOW_PROGRESS_BAR', 'HIDE_PROGRESS_BAR', function ($httpProvider, SHOW_PROGRESS_BAR, HIDE_PROGRESS_BAR) {
+	$httpProvider.defaults.cache = false;
+    var $modal, $http, interceptor = ['$q', '$injector', function ($q, $injector) {
+            var rootScope;
+
+            function success(response) {
+                $http = $http || $injector.get('$http');
+                if ($http.pendingRequests.length < 1) {
+                    rootScope = rootScope || $injector.get('$rootScope');
+                    rootScope.$broadcast(HIDE_PROGRESS_BAR);
+                }
+                return response;
+            }
+
+            function error(response) {
+                $http = $http || $injector.get('$http');
+                if ($http.pendingRequests.length < 1) {
+                    rootScope = rootScope || $injector.get('$rootScope');
+                    rootScope.$broadcast(HIDE_PROGRESS_BAR);
+                }
+                
+                var data = {title:"Service Exception", data:response.data};
+				
+				alert("Service Exception : "+response.data);
+				
+                /*$modal = $modal || $injector.get('$modal');
+            	$modal.open({
+                    templateUrl: 'shared/html/TextAreaModal.html',
+                    controller: 'ModalInstanceCtrl',
+                    windowClass: 'tivoliModal_small',
+                    resolve: {
+            			data: function () {
+    	                      return data;
+    	                    }
+                      }
+                });*/
+                
+                return $q.reject(response);
+            }
+
+            return function (promise) {
+                rootScope = rootScope || $injector.get('$rootScope');
+                rootScope.$broadcast(SHOW_PROGRESS_BAR);
+                return promise.then(success, error);
+            }
+        }];
+
+    $httpProvider.responseInterceptors.push(interceptor);
+   }]);
+  
+  
+  
+  
+app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'data', function ($scope, $modalInstance, data) {
 	$scope.data = data;
 
 	$scope.ok = function () {
@@ -330,6 +407,6 @@ app.filter('ordinal', function() {
 	$scope.cancel = function () {
 		$modalInstance.dismiss('cancel');
 	};
-}]);*/
+}]);
 	
 	

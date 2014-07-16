@@ -51,7 +51,7 @@ angular.module('properties', [])
 			$scope.showChangeLocationModal = false;
 			$location.path('/properties/' + city + '/' + locality, false);
 			$scope.getProperties(city, locality);
-			populateCurrentLocationDetails();
+			$scope.populateCurrentLocationDetails();
 		}
 	}
 	
@@ -65,18 +65,13 @@ angular.module('properties', [])
 		locationService.getLocalities(city)
 			.success(function(data){
 				$scope.fatHome.localities = data;
-				populateCurrentLocationDetails();
+				$scope.populateCurrentLocationDetails();
 			}).error(function(e){
 				
 			});
 	}
-		
-	if($scope.fatHome.localities) {
-		populateCurrentLocationDetails();
-	}
 
-
-	var populateCurrentLocationDetails = function() {
+	$scope.populateCurrentLocationDetails = function() {
 	
 		if($scope.currentLocationDetails 
 			&& $scope.currentLocationDetails.city === $scope.city
@@ -87,6 +82,9 @@ angular.module('properties', [])
 		$scope.currentLocationDetails = fatHomeUtil.getLocationDetails($scope.fatHome.localities, $scope.locality);
 	}
 	
+	if($scope.fatHome.localities) {
+		$scope.populateCurrentLocationDetails();
+	}
     var getPropertiesRequest = {city:$routeParams.city, locality:$routeParams.locality};
 
 	
