@@ -563,6 +563,10 @@ float: left;
 display: inline;
 }
 
+.tabs h4 a {
+	display:inline-block;
+	width: 100%;
+}
 
 
 

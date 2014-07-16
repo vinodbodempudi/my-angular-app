@@ -12,7 +12,12 @@
 	 
 	  <div class="tab-content lists-view">
 		<accordion close-others="true" >
-			<accordion-group heading="Details" is-open="showDetailsTab">
+			<accordion-group is-open="showDetailsTab">
+			
+				<accordion-heading>
+					Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showDetailsTab, 'glyphicon-chevron-right': !showDetailsTab}"></i>
+				</accordion-heading>
+			
 				<div class="schedule no-names">
 					<div class="schedule_row">
 						<div class="left">
@@ -265,7 +270,10 @@
 					</div>
 				</div>
 			</accordion-group>
-			<accordion-group heading="Specifications" is-open="showSpecificationsTab">
+			<accordion-group is-open="showSpecificationsTab">
+				<accordion-heading>
+					Specifications <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showSpecificationsTab, 'glyphicon-chevron-right': !showSpecificationsTab}"></i>
+				</accordion-heading>
 				<div class="schedule no-names">
 					<div class="schedule_row">
 						<div class="left">
@@ -461,7 +469,10 @@
 				</div>
 
 			</accordion-group>
-			<accordion-group heading="Amenities" is-open="showAmenitiesTab">
+			<accordion-group is-open="showAmenitiesTab">
+				<accordion-heading>
+					Amenities <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showAmenitiesTab, 'glyphicon-chevron-right': !showAmenitiesTab}"></i>
+				</accordion-heading>
 				<div class="row tab-pane active text-center" id="tab2">
 					<div ng-show="property.amenities">
 						<div class="aminitieslist text-left">
@@ -508,7 +519,10 @@
 					</div>
 				</div>
 			</accordion-group>
-			<accordion-group heading="Photos" is-open="showPhotosTab">
+			<accordion-group is-open="showPhotosTab">
+				<accordion-heading>
+					Photos <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showPhotosTab, 'glyphicon-chevron-right': !showPhotosTab}"></i>
+				</accordion-heading>
 			  <div  class="not-select" style="height: 210px" ng-show="property.urls.propertyUrls && property.urls.propertyUrls.length > 0">
 				<carousel>
 				  <slide ng-repeat="propertyUrl in property.urls.propertyUrls" active="slide.active">
@@ -517,7 +531,10 @@
 				</carousel>
 			  </div>
 			</accordion-group>
-			<accordion-group heading="Contact" is-open="showContactTab">
+			<accordion-group is-open="showContactTab">
+				<accordion-heading>
+					Contact <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContactTab, 'glyphicon-chevron-right': !showContactTab}"></i>
+				</accordion-heading>
 				 <div class="tab-pane active" id="tab4" style="overflow-y: auto;">
 					<div class="row " id="contactdetails" style="margin-top: 30px;">
 						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">

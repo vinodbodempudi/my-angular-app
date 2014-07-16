@@ -64,12 +64,22 @@ app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $loc
 }]);
 app.run(['$rootScope', '$location',function($rootScope, $location){
 	$rootScope.showTabs = {};
-	if($location.path().match('properties') != null
-		||  $location.path().match('propertyresults') != null
-		||  $location.path().match('registerproperty') != null) {
+	if($location.path().match('properties') != null || $location.path().match('registerproperty') != null) {
+		$rootScope.showTabs = {};
+		$rootScope.showTabs.showTabs = true;
+		return;
+	}
+	
+	if(!$location.path() || $location.path().match('home') != null) {
+		var cityFromCache = localStorage.getItem("city");
+		var localityFromCache = localStorage.getItem("locality");
+		if(cityFromCache && localityFromCache) {
+			$location.path('/properties/' + cityFromCache + '/' + localityFromCache);
 			$rootScope.showTabs = {};
 			$rootScope.showTabs.showTabs = true;
 		}
+	}
+
 }]);
  app.directive('match', function () {
         return {

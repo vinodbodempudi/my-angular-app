@@ -4,14 +4,6 @@ angular.module('home', [])
 
 .controller('HomeCtrl',['$scope', 'LocationService', '$location', '$rootScope', function($scope, locationService, $location, $rootScope) {
     
-	var cityFromCache = localStorage.getItem("city");
-	var localityFromCache = localStorage.getItem("locality");
-	if(cityFromCache && localityFromCache) {
-		$location.path('/properties/' + cityFromCache + '/' + localityFromCache);
-		$rootScope.showTabs.showTabs = true;
-		return;
-	}
-	
 	$scope.showProperties = function(city, locality) {
 		$scope.form1.submitted=true;
 		
@@ -48,7 +40,7 @@ angular.module('home', [])
 				
 			});
 	}
-	$scope.hideHomeScreen = false;
+	
 }]).service('HomeService',['$http',  function($http) {
 
 	

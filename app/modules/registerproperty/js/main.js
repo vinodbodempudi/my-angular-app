@@ -22,6 +22,8 @@ angular.module('registerProperty', [])
 	$scope.propertyTypes = fatHomeUtil.propertyTypes();
 	$scope.propertySubTypeMapper = fatHomeUtil.propertySubTypeMapper();
 	
+	$scope.disableSubmitbtn = false;
+	
 	$scope.city = $scope.newCity = $routeParams.city;
 	$scope.locality = $scope.newLocality = $routeParams.locality;
 	if(!$scope.fatHome.cities) {
@@ -68,10 +70,39 @@ angular.module('registerProperty', [])
 		});
 	}
 	
+	/*$scope.$watch("propertyImages",
+		function(newValue, oldValue) {
+		
+			if(!$scope.propertyImages) {
+				return;
+			}
+		
+			var coverPhotoSelected;
+			angular.forEach($scope.propertyImages, function (image, i) {
+				if(image.coverPhoto) {
+					coverPhotoSelected = true;
+				} 
+			});
+			
+			if(!coverPhotoSelected && $scope.propertyImages.length > 0) {
+				$scope.updateCoverPhotoIndex(0);
+			}
+	}, true);*/
+	
+	$scope.selectFirstAsCoverPhoto = function() {
+		angular.forEach($scope.propertyImages, function (image, i) {
+			if(i===index) {
+				image.coverPhoto = true;
+			} else {
+				image.coverPhoto = false;
+			}
+		});
+	}
 	
 	
     $scope.registerProperty = function () {
 	
+		$scope.disableSubmitbtn = true;
 	   
 		var request = {
 			property: adjustProperty($scope.property),
@@ -86,6 +117,7 @@ angular.module('registerProperty', [])
        	    .success(function(data){
 				$scope.registerPropertySuccess = true;
 		    }).error(function(e){
+				$scope.disableSubmitbtn = true;
 		    });
     };
 	
