@@ -916,7 +916,7 @@
                                 <p>You can upload upto 10 photos</p>
                                 <div class="upload-img">
 									<div class="wrap-details" style="width:150px;display:inline-block;margin:5px;text-align:center;" ng-repeat="photo in propertyImages">
-										<label class="control-label"><input type="checkbox" ng-change="updateCoverPhotoIndex($index);" ng-checked="coverPhotoIndex" name="coverPhototOptions" ng-model="photo.coverPhoto" > Cover photo</label>	
+										<label class="control-label"><input type="checkbox" ng-change="updateCoverPhotoIndex($index);" ng-checked="photo.coverPhoto" name="coverPhototOptions" ng-model="photo.coverPhoto" > Cover photo</label>	
 										<img src="{{photo.baseUrl+photo.data}}"  alt="..." class="img-thumbnail">
 										<a style="margin:5px;height=30px;" class="btn btn-danger" href="" ng-click="propertyImages.splice($index, 1);">
 											<i class="fa fa-trash-o fa-lg"></i>

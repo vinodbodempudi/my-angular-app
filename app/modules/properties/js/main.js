@@ -17,6 +17,8 @@ angular.module('properties', [])
 	$scope.predicate = {};
 	$scope.search = {};
 	
+	$scope.addImages = ["images/a1_old.jpg", "images/a2.jpg", "images/a3.jpg"];
+	
 	if(!$scope.fatHome.cities) {
 		locationService.getCities()
 			.success(function(data){

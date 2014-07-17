@@ -858,6 +858,12 @@ line-height: 2.3 !important;
 .carousel-indicators {
   bottom:-50px;
 }
+
+
+.add .carousel-indicators {
+  bottom:-10px;
+}
+
 .carousel-inner {
    margin-bottom:50px;
 }

@@ -70,7 +70,7 @@ angular.module('registerProperty', [])
 		});
 	}
 	
-	/*$scope.$watch("propertyImages",
+	$scope.$watch("propertyImages",
 		function(newValue, oldValue) {
 		
 			if(!$scope.propertyImages) {
@@ -87,7 +87,7 @@ angular.module('registerProperty', [])
 			if(!coverPhotoSelected && $scope.propertyImages.length > 0) {
 				$scope.updateCoverPhotoIndex(0);
 			}
-	}, true);*/
+	}, true);
 	
 	$scope.selectFirstAsCoverPhoto = function() {
 		angular.forEach($scope.propertyImages, function (image, i) {
