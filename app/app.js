@@ -115,7 +115,7 @@ app.directive('selectpicker', ['$timeout',
         };
     }]);
 app.service('LocationService', ['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
-
+	$http.defaults.useXDomain = true;
 	this.getCities = function () {
         return $http.get(servicesBaseUrl+'/cities');
 		//return $http.get('data/cities.json');
@@ -346,6 +346,9 @@ app.directive('pleaseWait', ['$rootScope', 'SHOW_PROGRESS_BAR', 'HIDE_PROGRESS_B
 
    app.config(['$httpProvider', 'SHOW_PROGRESS_BAR', 'HIDE_PROGRESS_BAR', function ($httpProvider, SHOW_PROGRESS_BAR, HIDE_PROGRESS_BAR) {
 	$httpProvider.defaults.cache = false;
+	$httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+		
     var $modal, $http, interceptor = ['$q', '$injector', function ($q, $injector) {
             var rootScope;
 
@@ -386,7 +389,7 @@ app.directive('pleaseWait', ['$rootScope', 'SHOW_PROGRESS_BAR', 'HIDE_PROGRESS_B
 
             return function (promise) {
                 rootScope = rootScope || $injector.get('$rootScope');
-                rootScope.$broadcast(SHOW_PROGRESS_BAR);
+                //rootScope.$broadcast(SHOW_PROGRESS_BAR);
                 return promise.then(success, error);
             }
         }];

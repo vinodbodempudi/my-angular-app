@@ -240,7 +240,7 @@ angular.module('home', [])
 			return '';
 		}
 	
-        return value.charAt(0).toUpperCase() + value.substr(1).replace(/[A-Z]/g, ' $&');
+        return value.charAt(0).toUpperCase() + value.substring(1);
     };
 	
 	this.currencyFormater = function(value) {

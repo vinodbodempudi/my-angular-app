@@ -293,7 +293,7 @@
 						</div>
 						<div class="right">
 							<label>{{property.specifications.additionalRooms}}</label>
-							<label ng-show="property.specifications.otherRoom">,</label>
+							<label ng-show="property.specifications.otherRoom && property.specifications.additionalRooms">,</label>
 							<label ng-show="property.specifications.additionalRooms">{{property.specifications.otherRoom}}</label>
 						</div>
 						<div class="speaker_image dot">
@@ -319,7 +319,7 @@
 						</div>
 						<div class="right">
 							<label>{{property.specifications.facing}}</label>
-							<label ng-show="property.specifications.otherfacing">,</label>
+							<label ng-show="property.specifications.otherfacing && property.specifications.facing">,</label>
 							<label ng-show="property.specifications.otherfacing">{{property.specifications.otherfacing}}</label>
 						</div>
 						<div class="speaker_image dot">

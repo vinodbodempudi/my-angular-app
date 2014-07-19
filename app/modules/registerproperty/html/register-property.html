@@ -1,5 +1,5 @@
 <div class="container panellabel">
-    <div class="row" ng-init="showForm1=true;showForm2=false;showForm3=false;">
+    <div class="row" scroll ng-init="showForm1=true;showForm2=false;showForm3=false;">
         <div class="col-sm-12">
             <h3 class="resgisterPropertyHeaderLabel">Enter property details</h3><label class="register-property-info-text">Share more details to get quality inquiries</label>
             <form class="form-horizontal" ng-show="showForm1" autocomplete="on" name="form1" novalidate>
@@ -152,7 +152,7 @@
                                 </div>
 								<label class="col-sm-1 control-label mandatory">Title:</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control input-sm" name="propertyTitle" ng-change="convertToCamelCase(property.details.title);" ng-model="property.details.title" ng-required='true' placeholder="Title">
+                                    <input type="text" class="form-control input-sm" name="propertyTitle" ng-model="property.details.title" ng-required='true' placeholder="Title">
 									<p ng-show="form1.submitted && form1.propertyTitle.$error.required" class="label errorText">Enter title</p>
                                 </div>
                             </div>

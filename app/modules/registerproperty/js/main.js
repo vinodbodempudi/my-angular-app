@@ -36,10 +36,6 @@ angular.module('registerProperty', [])
 			});
 	}
 	
-	$scope.convertToCamelCase = function(value) {
-        $scope.property.details.title = fatHomeUtil.convertToCamelCase(value);
-	};
-	
 	$scope.getLocalities = function(city) {
 		locationService.getLocalities(city)
 			.success(function(data){
@@ -141,6 +137,7 @@ angular.module('registerProperty', [])
 			property.details.area.carpet.carpetInSqft = fatHomeUtil.getSqftMutiplier(property.details.area.carpet.units)*Number(property.details.area.carpet.carpet);
 		}
 	
+		property.details.title = fatHomeUtil.convertToCamelCase(property.details.title);
 		return property;
 	}
 	
@@ -158,6 +155,32 @@ angular.module('registerProperty', [])
         return $http.post(servicesBaseUrl+'/properties', property);
     };
 }])
+.directive('scroll', function() {
+	var scrollPos;
+	return {
+		restrict: 'EA',
+		link:function(scope, el) {
+						
+			scope.$watch("showForm1",
+				function(newValue, oldValue) {
+					if(newValue)
+						$(window).scrollTop(0);
+				});
+			
+			scope.$watch("showForm2",
+				function(newValue, oldValue) {
+					if(newValue)
+						$(window).scrollTop(0);
+				}, true);
+
+			scope.$watch("showForm3",
+				function(newValue, oldValue) {
+					if(newValue)
+						$(window).scrollTop(0);
+				}, true);
+		}
+	};
+})
 .directive('datePicker', function () {
 	return {
 		restrict: 'EA',

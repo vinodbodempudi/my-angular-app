@@ -39,7 +39,7 @@ button::-moz-focus-inner{border: 0;}
 .circle{
 	width: 135px; height: 135px; line-height: 135px; text-align:center; -webkit-border-radius: 67px 68px 68px 67px/67px 67px 68px 68px; -moz-border-radius: 67px 68px 68px 67px/67px 67px 68px 68px; border-radius: 67px 68px 68px 67px/67px 67px 68px 68px; background-color: #fc0; font-size:40px; margin:0 auto; color:#fff;
 	}
-	
+
 .home .services{ margin:30px 0; width:100%}
 
 .tagline{ padding:30px; font-size:30px; text-align:center; background:#404040; color:#FFF; margin-bottom:30px;}
@@ -193,7 +193,7 @@ footer{ text-align:center; padding-bottom:0px;}
 .upload-img img{width:150px; height:150px;}
 .navbar-btn{margin-bottom: 0px;
     margin-top: 0px; padding-top:9px !important;}
-	
+
 
 
 .navbar-inverse .navbar-nav > li > a  > span{
@@ -815,7 +815,7 @@ line-height: 2.3 !important;
 	opacity:0.8;
 }
 .custom-checkbox:hover{
-	
+
 }
 .custom-checkbox.selected{
 	background: url("/images/success_32.gif") no-repeat;
@@ -897,5 +897,5 @@ line-height: 2.3 !important;
 .loading{background:rgba(0,0,0,0.4); height: 100%; left: 0; position: fixed; top:0px; width: 100%; z-index: 1051; text-align:center;}
 .loading i{ color:#fff; margin-top:10%; font-size:30px;}
 .modal-dialog{margin:100px auto;}
-.ie9 .fa-refresh:before{content:none;}
-.ie9 .fa-refresh{background: url("../../images/uprr/animated.gif") no-repeat scroll ;  height:28px; width:28px;}
+.fa-refresh:before{content:none;}
+.fa-refresh{background: url("../images/3.gif") no-repeat scroll ;  height:32px; width:32px;}
