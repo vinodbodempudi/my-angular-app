@@ -371,7 +371,7 @@ angular.module('properties', [])
 									center: new google.maps.LatLng(locationDetails.lat, locationDetails.long),
 									mapTypeId: google.maps.MapTypeId.ROADMAP
 								};
-				map = new google.maps.Map(el[0], mapOptions);
+				var map = new google.maps.Map(el[0], mapOptions);
 				propertiesMap = new PropertiesMap(map);
 			}
 			

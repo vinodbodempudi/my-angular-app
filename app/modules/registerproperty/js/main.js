@@ -228,7 +228,7 @@ angular.module('registerProperty', [])
 									center: new google.maps.LatLng(scope.location.lat, scope.location.long),
 									mapTypeId: google.maps.MapTypeId.ROADMAP
 								};
-				map = new google.maps.Map(el[0], mapOptions);
+				var map = new google.maps.Map(el[0], mapOptions);
 				
 				var marker = new google.maps.Marker({
 					position: map.getCenter(),
