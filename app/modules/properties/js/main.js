@@ -364,11 +364,11 @@ angular.module('properties', [])
 		restrict: 'EA',
 		link:function(scope, el) {
 			
-			var propertiesMap, initializeMap = function (location) {	
+			var propertiesMap, initializeMap = function (locationDetails) {	
 			
 				var mapOptions = {
 									zoom: 15,
-									center: new google.maps.LatLng(location.lat, location.long),
+									center: new google.maps.LatLng(locationDetails.lat, locationDetails.long),
 									mapTypeId: google.maps.MapTypeId.ROADMAP
 								};
 				map = new google.maps.Map(el[0], mapOptions);
@@ -441,6 +441,7 @@ angular.module('properties', [])
 			
 			scope.$watch("currentLocationDetails", function(newValue, oldValue) {
 				if(newValue) {
+					console.log(angular.toJson(newValue));
 					initializeMap(newValue);
 					
 					if(properties) {
