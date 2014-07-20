@@ -52,14 +52,14 @@
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="searchForm">
+<div class="addBlock">
+  <div class="">
   <div class="row">
-	<form name="filterForm" role="form" novalidate>
+	<form name="filterForm"class="col-sm-9 searchForm" role="form" novalidate>
 	  <div class="col-md-1 filtersdiv">
         <span class="filtersLabel">Filters</span>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2 propertyfilter">
 	    <select class="form-control selectpicker" nya-selectpicker ng-options="subType as subType for subType in propertySubTypeMapper['Residential']" ng-model="search.propertType">
           <option value="">Property type</option>
         </select>
@@ -69,18 +69,18 @@
           <option value="" selected>Beds</option>
         </select>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 pricefilter">
         <div class="input-group price"> <span class="input-group-addon"><i class="fa fa-rupee"></i></span>
           <input type="text" name="minPrice" class="form-control pull-left" ng-pattern=/^[0-9]+$/ placeholder="Min" ng-model="search.minPrice">
           <input type="text" name="maxPrice" class="form-control" placeholder="Max" ng-pattern=/^[0-9]+$/ ng-model="search.maxPrice">
 		  <p ng-show="filterForm.minPrice.$error.pattern || filterForm.maxPrice.$error.pattern" class="label errorText">Enter valid min or max price</p>
         </div>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2 propetyTypefilter">
 			<label class="btn btn-default btn-sm rent-buy-input" style="padding-left: 0px;"><input type="checkbox" checkbox checked="checked" ng-init="search.buy = true" ng-model="search.buy"><span class="rent-buy-input-label">BUY</span></label>
 			<label class="btn btn-default btn-sm rent-buy-input" style="left: 8px;position: relative;"><input type="checkbox" checkbox checked="checked" ng-init="search.rent = true" ng-model="search.rent"><span class="rent-buy-input-label">RENT</span></label>
       </div>
-      <div class="col-md-3 sqft">
+      <div class="col-md-3 sizefilter">
         <div class="input-group price "> <span class="input-group-addon input-group-addon_custom">SQFT</span>
           <input type="text" name="minSft" ng-pattern=/^[0-9]+$/ class="form-control pull-left" placeholder="Min" ng-model="search.minSft">
           <input type="text" name="maxSft" ng-pattern=/^[0-9]+$/ class="form-control" placeholder="Max" ng-model="search.maxSft">
@@ -122,13 +122,13 @@
 		<div class="modal-body selectCityModalContent">
 			<form name="form1" role="form" novalidate>
 				<div class="form-group">
-				  <select class="form-control input-sm" nya-selectpicker name="city" ng-required='true' data-width="100%" ng-options="city as city for city in fatHome.cities" name="city" ng-change="getLocalities(city)"  ng-model="newCity">
+				  <select class="form-control input-sm" nya-selectpicker name="city" ng-required='true' data-width="100%" ng-options="city as city for city in fatHome.cities | orderBy:'toString()'" name="city" ng-change="getLocalities(city)"  ng-model="newCity">
 					<option value="">Select City</option>
 				   </select>
 				   <p ng-show="form1.city.$invalid && form1.submitted" class="label errorText">select city</p>
 				</div>
 				<div class="form-group">
-					<select class="form-control input-sm" nya-selectpicker name="locality" ng-required='true' ng-options="locality.locality as locality.locality for locality in fatHome.localities" name="locality" ng-model="newLocality">
+					<select class="form-control input-sm" nya-selectpicker name="locality" ng-required='true' ng-options="locality.locality as locality.locality for locality in fatHome.localities | orderBy:'locality'" name="locality" ng-model="newLocality">
 						<option value="">Select Locality</option>
 					</select>
 					<p ng-show="form1.locality.$invalid && form1.submitted" class="label errorText">select locality</p>

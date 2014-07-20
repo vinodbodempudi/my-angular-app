@@ -179,12 +179,12 @@
             <input type="text" class="form-control" ng-model="newUser.phone" id="inputPassword3" placeholder="Phone">
           </div>
           <div class="form-group">
-            <select nya-selectpicker class="form-control input-sm" ng-options="city as city for city in cities" name="city" ng-change="getLocalities(property.user.city)" ng-required='true' ng-model="newUser.city">
+            <select nya-selectpicker class="form-control input-sm" ng-options="city as city for city in cities | orderBy:'toString()'" name="city" ng-change="getLocalities(property.user.city)" ng-required='true' ng-model="newUser.city">
 				<option value="">Select City</option>
 			</select>
           </div>
           <div class="form-group">
-			<select nya-selectpicker class="form-control input-sm" ng-options="locality.locality as locality for locality in localities" name="locality" ng-required='true' ng-model="newUser.locality">
+			<select nya-selectpicker class="form-control input-sm" ng-options="locality.locality as locality for locality in localities | orderBy:'locality'" name="locality" ng-required='true' ng-model="newUser.locality">
 				<option value="">Select Locality</option>
 			</select>
           </div>
