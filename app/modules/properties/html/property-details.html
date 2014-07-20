@@ -81,7 +81,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode==='Sell'">
+					<!--<div class="schedule_row" ng-show="property.details.mode==='Sell'">
 						<div class="left">
 							<label class="">Carpet Area</label>
 						</div>
@@ -94,7 +94,7 @@
 							<img src="images/dot.png" alt="">
 						</div>
 						<div class="push"></div>
-					</div>
+					</div>-->
 					<div class="schedule_row" ng-show="property.details.mode==='Sell'">
 						<div class="left">
 							<label class="">Per Unit price</label>
@@ -443,7 +443,7 @@
 							<label class="">Parking</label>
 						</div>
 						<div class="right">
-							<label ng-show="!property.specifications.parking.fourWheeler"></label>
+							<label ng-show="!property.specifications.parking.fourWheeler && !property.specifications.parking.fourWheelerVisitors"></label>
 							<label ng-show="property.specifications.parking.fourWheeler">4 wheeler</label><br>
 							<span ng-show="property.specifications.parking.fourWheeler.type"><label>{{property.specifications.parking.fourWheeler.type}}</label></span>
 							<span style="padding-left:15px;" ng-show="property.specifications.parking.fourWheeler.common"><label>common</label></span>

@@ -43,18 +43,13 @@ angular.module('properties', [])
 	}
 	
 	$scope.showProperties = function(city, locality) {
-		$scope.form1.submitted=true;
-		
-		if($scope.form1.$valid) {
-		
-			$scope.user.city = $scope.city = city;
-			$scope.user.locality = $scope.locality = locality;
-		
-			$scope.showChangeLocationModal = false;
-			$location.path('/properties/' + city + '/' + locality, false);
-			$scope.getProperties(city, locality);
-			$scope.populateCurrentLocationDetails();
-		}
+		$scope.user.city = $scope.city = city;
+		$scope.user.locality = $scope.locality = locality;
+	
+		$scope.showChangeLocationModal = false;
+		$location.path('/properties/' + city + '/' + locality, false);
+		$scope.getProperties(city, locality);
+		$scope.populateCurrentLocationDetails();
 	}
 	
 	$scope.getLocalities = function(city) {

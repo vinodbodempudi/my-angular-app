@@ -50,10 +50,12 @@ footer{ text-align:center; padding-bottom:0px;}
 .footer-icons a:hover{ text-decoration:none}
 
 .add{ height:110px; background:#CCC}
-.addBlock{ margin:8px auto;max-width:98%}
-
-.locationDisplay h3{margin-bottom:0;}
-.locationDisplay h4{margin-top:0px;}
+.addBlock{ 
+margin-top: 8px;
+margin-bottom: 8px;
+margin-left: 12px;
+margin-right: 8px;
+max-width:98%}
 
 .searchForm{ padding:5px;}
 
@@ -159,7 +161,7 @@ footer{ text-align:center; padding-bottom:0px;}
 .list-view .thirdRow{margin-top:7px;}
 .list-view .content .btn-group{ margin-top:6px; visibility:hidden}
 .list-view:hover .content .btn-group{ visibility:visible}
-.lists-view{ overflow:hidden; overflow-y:auto; max-height:452px}
+.lists-view{ overflow:hidden; overflow-y:auto; max-height:488px;position: relative;top: -36px;}
 
 #signin,#account,#contact,#feedback,#changeLocality,#registerPropertySuccessModal{ z-index:99999;}
 #signin .modal-dialog,#account .modal-dialog{ width:500px;}
@@ -246,7 +248,7 @@ color:#da4834;
 .coveredun .radio-inline, .checkbox-inline {padding-left: 41px;}
 /* end */
 
-.moveright .selectsort{width:140px !important;}
+.selectsort{width:140px !important;}
 .list .moveright{margin-left:120px;}
 .property-results-count-block {
 	position: relative;
@@ -696,21 +698,14 @@ clear:right;
 text-align: center;
 height: 100%;
 position: relative;
-top: 28px;
-left: -15px;
+top: 40px;
+left: -10px;
 }
 
 .locationDisplay{ 
-	text-align: left;
 	position: relative;
-	left: -59px;
-	top: 4px;
-}
-
-.locationDisplay h4 {
-	padding-left: 22px;
-	position: relative;
-	left: 17px;
+left: -62px;
+top: 8px;
 }
 
 .changeLocalityImage {

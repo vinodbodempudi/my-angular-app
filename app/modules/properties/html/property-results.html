@@ -9,8 +9,8 @@
 	  <div class="row">
 		<div ng-repeat="property in $parent.filteredProperties = (properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search)">
 		  <div class="list-view" style="cursor:pointer;" ng-click="showPropertyDetails(property._id);">
-			<div class="image" ng-show="!property.coverPhotoUrl"> <img src="images/list1.png" alt="" /> </div>
-			<div class="image" ng-show="property.coverPhotoUrl"> <img src="{{property.coverPhotoUrl}}" alt="" /> </div>
+			<div class="image" ng-show="!property.coverPhotoUrl"> <img ng-src="images/list1.png" alt="" /> </div>
+			<div class="image" ng-show="property.coverPhotoUrl"> <img ng-src="{{property.coverPhotoUrl}}" alt="" /> </div>
 			
 			<div class="content">
 			  <div class="row ">
