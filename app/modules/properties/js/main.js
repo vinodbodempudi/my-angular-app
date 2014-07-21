@@ -105,7 +105,13 @@ angular.module('properties', [])
 			
 			$scope.property = data;
 			showAreaDropDowns(data);
-			$scope.showDetailsTab = true;
+			$scope.propertyDetails = {
+				showDetailsTab : true,
+				showSpecificationsTab : false,
+				showAmenitiesTab : false,
+				showPhotosTab : false,
+				showContactTab : false
+			};
 		}).error(function(e){
 			
 		});

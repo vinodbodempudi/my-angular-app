@@ -12,10 +12,10 @@
 	 
 	  <div class="tab-content details-view">
 		<accordion close-others="true" >
-			<accordion-group is-open="showDetailsTab">
+			<accordion-group is-open="propertyDetails.showDetailsTab">
 			
 				<accordion-heading>
-					Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showDetailsTab, 'glyphicon-chevron-right': !showDetailsTab}"></i>
+					Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showDetailsTab, 'glyphicon-chevron-right': !propertyDetails.showDetailsTab}"></i>
 				</accordion-heading>
 			
 				<div class="schedule no-names">
@@ -270,9 +270,9 @@
 					</div>
 				</div>
 			</accordion-group>
-			<accordion-group is-open="showSpecificationsTab">
+			<accordion-group is-open="propertyDetails.showSpecificationsTab">
 				<accordion-heading>
-					Specifications <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showSpecificationsTab, 'glyphicon-chevron-right': !showSpecificationsTab}"></i>
+					Specifications <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showSpecificationsTab, 'glyphicon-chevron-right': !propertyDetails.showSpecificationsTab}"></i>
 				</accordion-heading>
 				<div class="schedule no-names">
 					<div class="schedule_row">
@@ -469,9 +469,9 @@
 				</div>
 
 			</accordion-group>
-			<accordion-group is-open="showAmenitiesTab">
+			<accordion-group is-open="propertyDetails.showAmenitiesTab">
 				<accordion-heading>
-					Amenities <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showAmenitiesTab, 'glyphicon-chevron-right': !showAmenitiesTab}"></i>
+					Amenities <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showAmenitiesTab, 'glyphicon-chevron-right': !propertyDetails.showAmenitiesTab}"></i>
 				</accordion-heading>
 				<div class="row tab-pane active text-center" id="tab2">
 					<div ng-show="property.amenities">
@@ -519,9 +519,9 @@
 					</div>
 				</div>
 			</accordion-group>
-			<accordion-group is-open="showPhotosTab">
+			<accordion-group is-open="propertyDetails.showPhotosTab">
 				<accordion-heading>
-					Photos <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showPhotosTab, 'glyphicon-chevron-right': !showPhotosTab}"></i>
+					Photos <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showPhotosTab, 'glyphicon-chevron-right': !propertyDetails.showPhotosTab}"></i>
 				</accordion-heading>
 			  <div  class="not-select" style="height: 210px" ng-show="property.urls.propertyUrls && property.urls.propertyUrls.length > 0">
 				<carousel>
@@ -531,9 +531,9 @@
 				</carousel>
 			  </div>
 			</accordion-group>
-			<accordion-group is-open="showContactTab">
+			<accordion-group is-open="propertyDetails.showContactTab">
 				<accordion-heading>
-					Contact <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContactTab, 'glyphicon-chevron-right': !showContactTab}"></i>
+					Contact <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showContactTab, 'glyphicon-chevron-right': !propertyDetails.showContactTab}"></i>
 				</accordion-heading>
 				 <div class="tab-pane active" id="tab4" style="overflow-y: auto;">
 					<div class="row " id="contactdetails" style="margin-top: 30px;">
