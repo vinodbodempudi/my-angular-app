@@ -103,9 +103,9 @@
 <div class="container-fluid results">
   <div class="row maprow"> 
     <div class="col-md-4 col-md-push-8 searchresults">
-		<div ng-switch on="showPage" ng-init="showPage='propertyResults'">
-			<div property-results ng-switch-when="propertyResults" ></div>
-			<div property-details ng-switch-when="propertyDetails" ></div>
+		<div ng-init="showPage='propertyResults'">
+			<div property-results ng-show="showPage === 'propertyResults'" ></div>
+			<div property-details ng-show="showPage === 'propertyDetails'" ></div>
 		</div>
     </div>
     <div class="col-md-8 col-md-pull-4 mapresults">

@@ -133,7 +133,7 @@ angular.module('properties', [])
 	}
 	
 	$scope.covert = function(units, value) {
-		return (Number(value)/fatHomeUtil.getSqftMutiplier(units)).toFixed(2);
+		return (Number(value)/fatHomeUtil.getSqftMutiplier(units)).toFixed(3);
 	};
 	
 	$scope.showPropertyDetails = function(propertyId) {
@@ -251,13 +251,13 @@ angular.module('properties', [])
 	return {
 		replace:true,
 		restrict: 'EA',
-		templateUrl: 'modules/properties/html/property-results.html',
+		templateUrl: 'modules/properties/html/property-results.html'
 	};
 }).directive('propertyDetails', function() {
 	return {
 		replace:true,
 		restrict: 'EA',
-		templateUrl: 'modules/properties/html/property-details.html',
+		templateUrl: 'modules/properties/html/property-details.html'
 	};
 })
 .directive('checkbox', function() {
