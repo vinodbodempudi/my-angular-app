@@ -162,7 +162,7 @@ max-width:98%}
 .list-view .content .btn-group{ margin-top:6px; visibility:hidden}
 .list-view:hover .content .btn-group{ visibility:visible}
 .lists-view{ overflow:hidden; overflow-y:auto; max-height:488px;position: relative;top: -36px;}
-.details-view{ overflow:hidden; overflow-y:auto; max-height:488px;position: relative;}
+.details-view{ overflow:hidden; overflow-y:auto; max-height:452px;position: relative;}
 #signin,#account,#contact,#feedback,#changeLocality,#registerPropertySuccessModal{ z-index:99999;}
 #signin .modal-dialog,#account .modal-dialog{ width:500px;}
 #signin .form-group,#account .form-group{margin-left:-5px; margin-right:-5px;}
