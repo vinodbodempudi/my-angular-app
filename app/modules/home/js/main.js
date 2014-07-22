@@ -70,7 +70,7 @@ angular.module('home', [])
 	
 	this.unitOptions = function () {
         return [{label:"Sq. Feet", sqftMultiplier:1},
-				{label:"Sq. Meter", sqftMultiplier:10.76},
+				{label:"Sq. Meter", sqftMultiplier:10.7639},
 				{label:"Sq. Yards", sqftMultiplier:9},
 				{label:"Aankadam", sqftMultiplier:72},
 				{label:"Acres", sqftMultiplier:43560},
@@ -83,7 +83,7 @@ angular.module('home', [])
 				{label:"Chataks", sqftMultiplier:450},
 				{label:"Guntha", sqftMultiplier:1089},
 				{label:"Grounds", sqftMultiplier:2400},
-				{label:"Hectares", sqftMultiplier:107638},
+				{label:"Hectares", sqftMultiplier:107639},
 				{label:"Kanal", sqftMultiplier:108000},
 				{label:"Kottah (B)", sqftMultiplier:720},
 				{label:"Marla", sqftMultiplier:5400},
