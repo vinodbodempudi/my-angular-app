@@ -139,7 +139,7 @@ angular.module('properties', [])
 	}
 	
 	$scope.covert = function(units, value) {
-		return (Number(value)/fatHomeUtil.getSqftMutiplier(units)).toFixed(3);
+		return (Number(value)/fatHomeUtil.getSqftMutiplier(units)).toFixed(4);
 	};
 	
 	$scope.showPropertyDetails = function(propertyId) {
