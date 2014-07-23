@@ -73,7 +73,8 @@
 						</div>
 						<div class="right">
 							<label class="">{{builtUpArea}} {{builtUpUnits}}</label>
-							<select class="form-control input-sm" style="width: 106px;" ng-change="builtUpArea=covert(builtUpUnits, property.details.area.builtUp.builtUpInSqft)" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="builtUpUnits">
+							<select class="form-control input-sm" style="width: 106px;" ng-change="builtUpArea=covert(builtUpUnits, property.details.area.builtUp.builtUpInSqft)" ng-model="builtUpUnits">
+								<option ng-repeat="unit in unitOptions" value="{{unit.label}}">{{unit.label}}</option>
 							</select>
 						</div>
 						<div class="speaker_image dot">

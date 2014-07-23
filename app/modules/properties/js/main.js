@@ -90,7 +90,7 @@ angular.module('properties', [])
 		.success(function(data){
 			$scope.showPage = 'propertyResults';
 			$scope.properties = data;
-			$scope.property = null;
+			//$scope.property = null;
 			$scope.predicate = $scope.sortOptions[0];
 		}).error(function(e){
 			
@@ -98,7 +98,7 @@ angular.module('properties', [])
 	};
 	
 	$scope.getPropertyDetails = function(propertyId) {
-		$scope.property = null;
+		//$scope.property = null;
 		propertiesService.getPropertyDetails(propertyId)
 		.success(function(data){
 			$scope.showPage = 'propertyDetails';
