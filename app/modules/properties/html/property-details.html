@@ -114,7 +114,8 @@
 						</div>
 						<div class="right">
 							<label class="">{{plotOrLandArea}} {{plotOrLandUnits}}</label>
-							<select ng-show="property.details.area.plotOrLand" style="width: 106px;" ng-change="plotOrLandArea=covert(plotOrLandUnits, property.details.area.plotOrLand.plotOrLandInSqft)" class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" ng-model="plotOrLandUnits">
+							<select ng-show="property.details.area.plotOrLand" style="width: 106px;" ng-change="plotOrLandArea=covert(plotOrLandUnits, property.details.area.plotOrLand.plotOrLandInSqft)" class="form-control input-sm" ng-model="plotOrLandUnits">
+								<option ng-repeat="unit in unitOptions" value="{{unit.label}}">{{unit.label}}</option>
 							</select>
 						</div>
 						<div class="speaker_image dot">
