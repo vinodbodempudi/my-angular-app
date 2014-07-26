@@ -1,10 +1,7 @@
 'use strict';
 
 var app = angular.module('fatHomesApp', [
-  'ngCookies',
-  'ngSanitize',
   'ngRoute',
-  'ngResource',
   'registerProperty',
   'home',
   'login',

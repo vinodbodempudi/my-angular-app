@@ -80,7 +80,7 @@ angular.module('imageupload', [])
                 resizeMaxHeight: '@?',
                 resizeMaxWidth: '@?',
                 resizeQuality: '@?',
-                resizeType: '@?',
+                resizeType: '@?'
             },
             link: function postLink(scope, element, attrs, ctrl) {
 
