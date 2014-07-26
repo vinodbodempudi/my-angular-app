@@ -1,4 +1,4 @@
-h1,h2,h3,h4,h5,h6,.tagline{font-family: 'Puritan', sans-serif;}
+h1,h2,h3,h4,h5,h6,.tagline{font-family: arial,sans-serif;}
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 a{ color:#159CEB;}
 a:focus{outline: none;}
@@ -248,12 +248,13 @@ color:#da4834;
 .coveredun .radio-inline, .checkbox-inline {padding-left: 41px;}
 /* end */
 
-.selectsort{width:140px !important;}
+.selectsort{}
 .list .moveright{margin-left:120px;}
 .property-results-count-block {
+	float:right;
 	position: relative;
 	top: -39px;
-	right: -4px;
+	right: -6px;
 }
 .maprow .searchresults{padding-left:0px;}
 .maprow .mapresults{padding-right:0px;}

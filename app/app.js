@@ -58,12 +58,17 @@ app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $loc
 				$route.current = lastRoute;
 				un();
 			});
-		}
+		} 
 		return original.apply($location, [path]);
 	};
 }]);
 app.run(['$rootScope', '$location',function($rootScope, $location){
 	$rootScope.showTabs = {};
+	
+	$rootScope.$on('$locationChangeSuccess', function () {
+		$rootScope.$broadcast('locationChangeSuccess', $location.path());
+	});
+	
 	if($location.path().match('properties') != null || $location.path().match('registerproperty') != null) {
 		$rootScope.showTabs = {};
 		$rootScope.showTabs.showTabs = true;
@@ -79,7 +84,8 @@ app.run(['$rootScope', '$location',function($rootScope, $location){
 			$rootScope.showTabs.showTabs = true;
 		}
 	}
-
+	
+	
 }]);
  app.directive('match', function () {
         return {

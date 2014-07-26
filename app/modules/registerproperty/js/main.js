@@ -141,7 +141,20 @@ angular.module('registerProperty', [])
 		return property;
 	}
 	
-	
+	$scope.validateFloors = function(totalFloors, floorNumber) {
+		
+		$scope.form2.floorNumber.$error.invalidFloorNumber = false;
+		if(!totalFloors || !floorNumber) {
+			return;
+		}
+		
+		if(form2.totalFloors.$valid && Number(totalFloors) < Number(floorNumber)) {
+			$scope.form2.floorNumber.$error.invalidFloorNumber = true;
+			form2.totalFloors.$valid = false;
+		}
+		
+		form2.totalFloors.$valid = true;
+	}
 	
 	
 	

@@ -2,8 +2,8 @@
 
 angular.module('properties', [])
 
-.controller('PropertiesCtrl',['$scope', '$routeParams', 'PropertiesService', 'FatHomeUtil', 'LocationService', '$location',
-	function($scope, $routeParams, propertiesService, fatHomeUtil, locationService, $location) {
+.controller('PropertiesCtrl',['$scope', '$routeParams', 'PropertiesService', 'FatHomeUtil', 'LocationService', '$location', '$rootScope', 
+	function($scope, $routeParams, propertiesService, fatHomeUtil, locationService, $location, $rootScope) {
 	
     $scope.user.city = $scope.city = $scope.newCity = $routeParams.city;
 	$scope.user.locality = $scope.locality = $scope.newLocality = $routeParams.locality;
@@ -18,6 +18,18 @@ angular.module('properties', [])
 	$scope.search = {};
 	
 	$scope.addImages = ["images/a1_old.jpg", "images/a2.jpg", "images/a3.jpg"];
+	
+	$scope.$on('locationChangeSuccess', function (event, path) {
+		if(path && path.match('properties')) {
+			var arr = path.split("/");
+			if(arr.length > 4) {
+				$scope.showPage = 'propertyDetails';
+				$scope.getPropertyDetails(arr[4]);
+				return;
+			} 
+			$scope.showPage = 'propertyResults';
+		}
+	});
 	
 	if(!$scope.fatHome.cities) {
 		locationService.getCities()
@@ -90,7 +102,6 @@ angular.module('properties', [])
 		.success(function(data){
 			$scope.showPage = 'propertyResults';
 			$scope.properties = data;
-			//$scope.property = null;
 			$scope.predicate = $scope.sortOptions[0];
 		}).error(function(e){
 			
@@ -150,11 +161,11 @@ angular.module('properties', [])
 	$scope.showPropertyResults = function() {
 
 		$location.path('/properties/' + $scope.city + '/' + $scope.locality, false);
+		$scope.property = null;
 		if($scope.properties && $scope.properties.length > 0) {
 			$scope.showPage = 'propertyResults';
 			return;
 		}
-	
 		$scope.getProperties($scope.city, $scope.locality);
 	}
 	
@@ -289,7 +300,7 @@ angular.module('properties', [])
 		this.markers = [];
 		this.propertyMarkerMap = {};
 		
-		this.addMarker = function(property, clickHandler) {
+		this.addMarker = function(property, resultsHandler, detailsHandler) {
 
 		  var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(property.lat, property.lng),
@@ -316,8 +327,16 @@ angular.module('properties', [])
 		  
 		  
 		  google.maps.event.addListener(marker, 'click', function() {
+		  
+			if(marker === previousMarker) {
+				resultsHandler();
+				previousMarker.setIcon('https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=1');
+				previousMarker = null;
+				return;
+			}
+		  
 			makeMarkerAsSelected(marker);
-			clickHandler(property._id);
+			detailsHandler(property._id);
 		  });
 		  
 		  this.markers.push(marker);
@@ -355,7 +374,7 @@ angular.module('properties', [])
 				previousMarker.setIcon('https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=1');
 			}
 			
-			marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
+			marker.setIcon('../images/green-marker.png');
 			previousMarker = marker;
 		}
 		
@@ -384,7 +403,7 @@ angular.module('properties', [])
 				
 				for (var i = 0; i <properties.length; i++) { 
 					var property = properties[i];
-					propertiesMap.addMarker(property, scope.getPropertyDetails);
+					propertiesMap.addMarker(property, scope.showPropertyResults, scope.showPropertyDetails);
 				}
 			}
 			

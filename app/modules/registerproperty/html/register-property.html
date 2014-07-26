@@ -508,11 +508,12 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ name="floorNumber" class="form-control input-sm" ng-model="property.specifications.floorNumber" placeholder="Floor Number">
+                                    <input type="text" ng-pattern=/^[0-9]+$/ name="floorNumber" class="form-control input-sm" ng-change="validateFloors(property.specifications.totalFloor, property.specifications.floorNumber)" ng-model="property.specifications.floorNumber" placeholder="Floor Number">
 									<p ng-show="form2.floorNumber.$error.pattern" class="label errorText">Enter valid floor number</p>
+									<p ng-show="form2.floorNumber.$error.invalidFloorNumber" class="label errorText">Floor number should not be greater than total floors</p>
 								</div>
                                 <div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ name="totalFloors" class="form-control input-sm" ng-model="property.specifications.totalFloor" placeholder="Total Floors">
+                                    <input type="text" ng-pattern=/^[0-9]+$/ name="totalFloors" class="form-control input-sm" ng-change="validateFloors(property.specifications.totalFloor, property.specifications.floorNumber)" ng-model="property.specifications.totalFloor" placeholder="Total Floors">
 									<p ng-show="form2.totalFloors.$error.pattern" class="label errorText">Enter valid total floor</p>
 								</div>
                             </div>
