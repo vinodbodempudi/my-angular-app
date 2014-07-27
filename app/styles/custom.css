@@ -264,7 +264,8 @@ color:#da4834;
 	top: -39px;
 	right: -6px;
 }
-.maprow .searchresults{padding-left:0px;}
+.maprow{margin-right: -10px;}
+.maprow .searchresults{padding-left:0px;padding-right: 0px;}
 .maprow .mapresults{padding-right:0px;}
 .availability{
     text-align: left !important; 
