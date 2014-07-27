@@ -130,20 +130,22 @@ angular.module('properties', [])
 	};
 	
 	var showAreaDropDowns = function(property) {
-	
+		$scope.builtUp={};
+		$scope.plotOrLand={};
+		$scope.carpet={};
 		if(property.details.area.builtUp) {
-			$scope.builtUpArea = property.details.area.builtUp.builtUp;
-			$scope.builtUpUnits = property.details.area.builtUp.units;
+			$scope.builtUp.builtUpArea = property.details.area.builtUp.builtUp;
+			$scope.builtUp.builtUpUnits = property.details.area.builtUp.units;
 		}
 		
 		if(property.details.area.plotOrLand) {
-			$scope.plotOrLandArea = property.details.area.plotOrLand.plotOrLand;
-			$scope.plotOrLandUnits = property.details.area.plotOrLand.units;
+			$scope.plotOrLand.plotOrLandArea = property.details.area.plotOrLand.plotOrLand;
+			$scope.plotOrLand.plotOrLandUnits = property.details.area.plotOrLand.units;
 		}
 		
 		if(property.details.area.carpet) {
-			$scope.carpetArea = property.details.area.carpet.carpet;
-			$scope.carpetUnits = property.details.area.carpet.units;
+			$scope.carpet.carpetArea = property.details.area.carpet.carpet;
+			$scope.carpet.carpetUnits = property.details.area.carpet.units;
 		}
 	
 	
@@ -267,12 +269,14 @@ angular.module('properties', [])
 }]).directive('propertyResults', function() {
 	return {
 		replace:true,
+		scope:false,
 		restrict: 'EA',
 		templateUrl: 'modules/properties/html/property-results.html'
 	};
 }).directive('propertyDetails', function() {
 	return {
 		replace:true,
+		scope:false,
 		restrict: 'EA',
 		templateUrl: 'modules/properties/html/property-details.html'
 	};

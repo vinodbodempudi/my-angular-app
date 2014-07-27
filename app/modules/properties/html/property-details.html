@@ -72,8 +72,8 @@
 							<label class="">Build-up Area</label>
 						</div>
 						<div class="right">
-							<label class="">{{builtUpArea}} {{builtUpUnits}}</label>
-							<select class="form-control input-sm" style="width: 106px;" ng-change="builtUpArea=covert(builtUpUnits, property.details.area.builtUp.builtUpInSqft)" ng-model="builtUpUnits">
+							<label class="">{{builtUp.builtUpArea}} {{builtUp.builtUpUnits}}</label>
+							<select class="form-control input-sm" style="width: 106px;" ng-change="builtUp.builtUpArea=covert(builtUp.builtUpUnits, property.details.area.builtUp.builtUpInSqft)" ng-model="builtUp.builtUpUnits">
 								<option ng-repeat="unit in unitOptions" value="{{unit.label}}">{{unit.label}}</option>
 							</select>
 						</div>
@@ -113,8 +113,8 @@
 							<label class="">plot/land Area</label>
 						</div>
 						<div class="right">
-							<label class="">{{plotOrLandArea}} {{plotOrLandUnits}}</label>
-							<select ng-show="property.details.area.plotOrLand" style="width: 106px;" ng-change="plotOrLandArea=covert(plotOrLandUnits, property.details.area.plotOrLand.plotOrLandInSqft)" class="form-control input-sm" ng-model="plotOrLandUnits">
+							<label class="">{{plotOrLand.plotOrLandArea}} {{plotOrLand.plotOrLandUnits}}</label>
+							<select ng-show="property.details.area.plotOrLand" style="width: 106px;" ng-change="plotOrLand.plotOrLandArea=covert(plotOrLand.plotOrLandUnits, property.details.area.plotOrLand.plotOrLandInSqft)" class="form-control input-sm" ng-model="plotOrLand.plotOrLandUnits">
 								<option ng-repeat="unit in unitOptions" value="{{unit.label}}">{{unit.label}}</option>
 							</select>
 						</div>

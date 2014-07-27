@@ -747,11 +747,12 @@ width: 16%;
 }
 
 .searchForm .pricefilter {
-width: 25%;
+width: 24%;
 
 }
 .searchForm .propetyTypefilter{
-width: 19%;
+width: 20%;
+min-width:190px;
 
 }
 .searchForm .sizefilter  {
