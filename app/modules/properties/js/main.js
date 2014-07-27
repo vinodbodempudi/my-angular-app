@@ -461,7 +461,6 @@ angular.module('properties', [])
 			
 			scope.$watch("currentLocationDetails", function(newValue, oldValue) {
 				if(newValue) {
-					console.log(angular.toJson(newValue));
 					initializeMap(newValue);
 					
 					if(properties) {
