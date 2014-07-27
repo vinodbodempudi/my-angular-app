@@ -927,7 +927,7 @@ line-height: 2.3 !important;
 .loading i{ color:#fff; margin-top:10%; font-size:30px;}
 .modal-dialog{margin:100px auto;}
 .fa-refresh:before{content:none;}
-.fa-refresh{background: url("../images/3.gif") no-repeat scroll ;  height:32px; width:32px;}
+.fa-refresh{background: url("../images/ajax-loader.gif") no-repeat scroll ;  height:128px; width:128px;}
 
 
 
