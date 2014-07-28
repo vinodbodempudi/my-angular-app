@@ -47,6 +47,18 @@ angular.module('properties', [])
 		}, true
 	);
 	
+	$scope.$watch("propertyDetails",
+		function(newValue, oldValue) {
+			if(newValue.showPhotosTab 
+				&& $scope.property.urls 
+				&& $scope.property.urls.propertyUrls 
+				&& $scope.property.urls.propertyUrls.length > 0
+				&& $scope.slides !== $scope.property.urls.propertyUrls) {
+				$scope.slides = $scope.property.urls.propertyUrls;
+			}
+		}, true
+	);
+	
 	$scope.openChangeLocationModal = function() {
 		$scope.newCity = $scope.city;
 		$scope.newLocality = $scope.locality;
@@ -116,13 +128,18 @@ angular.module('properties', [])
 			
 			$scope.property = data;
 			showAreaDropDowns(data);
-			$scope.propertyDetails = {
-				showDetailsTab : true,
-				showSpecificationsTab : false,
-				showAmenitiesTab : false,
-				showPhotosTab : false,
-				showContactTab : false
-			};
+			
+			if(!$scope.propertyDetails) {
+				$scope.propertyDetails = {};
+			}
+			
+			
+			$scope.propertyDetails.showDetailsTab = true;
+			$scope.propertyDetails.showSpecificationsTab = false;
+			$scope.propertyDetails.showAmenitiesTab = false;
+			$scope.propertyDetails.showPhotosTab = false;
+			$scope.propertyDetails.showContactTab = false;
+
 		}).error(function(e){
 			
 		});
@@ -276,7 +293,6 @@ angular.module('properties', [])
 }).directive('propertyDetails', function() {
 	return {
 		replace:true,
-		scope:false,
 		restrict: 'EA',
 		templateUrl: 'modules/properties/html/property-details.html'
 	};
