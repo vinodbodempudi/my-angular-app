@@ -324,9 +324,9 @@ angular.module('properties', [])
 
 		  var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(property.lat, property.lng),
-			map: map
+			map: map,
+			icon: '../images/red-matker.png'
 		  });
-		  marker.setIcon('../images/red-matker.png');
 		  
 		  var chInfoWindow = new google.maps.InfoWindow({
 			content: "Title : "+property.title+"<br>"
