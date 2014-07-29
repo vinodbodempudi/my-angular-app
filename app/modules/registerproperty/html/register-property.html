@@ -90,7 +90,7 @@
                                 </div>
                                 <label class="col-sm-2 control-label mandatory">Locality:</label>
                                 <div class="col-sm-3">
-                                    <select nya-selectpicker class="form-control input-sm" ng-options="locality.locality as locality.locality for locality in fatHome.localities | orderBy:'locality'" name="locality" ng-required='true' ng-model="property.user.locality">
+                                    <select nya-selectpicker class="form-control input-sm" ng-options="locality.locality as locality.locality for locality in fatHome.localities | orderBy:'locality'" ng-change="populateCurrentLocationDetails();" name="locality" ng-required='true' ng-model="property.user.locality">
 										<option value="">Select Locality</option>
 									</select>
                                     <p ng-show="form1.locality.$invalid && (!form1.locality.$pristine || form1.submitted)" class="label errorText">select locality</p>
@@ -508,12 +508,12 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ name="floorNumber" class="form-control input-sm" ng-change="validateFloors(property.specifications.totalFloor, property.specifications.floorNumber)" ng-model="property.specifications.floorNumber" placeholder="Floor Number">
+                                    <input type="text" ng-pattern=/^[0-9]+$/ ng-required="form2.floorNumber.$dirty || form2.floorNumber.$error.invalidFloorNumber" name="floorNumber" class="form-control input-sm" ng-change="validateFloors(property.specifications.totalFloor, property.specifications.floorNumber)" ng-model="property.specifications.floorNumber" placeholder="Floor Number">
 									<p ng-show="form2.floorNumber.$error.pattern" class="label errorText">Enter valid floor number</p>
 									<p ng-show="form2.floorNumber.$error.invalidFloorNumber" class="label errorText">Floor number should not be greater than total floors</p>
 								</div>
                                 <div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ name="totalFloors" class="form-control input-sm" ng-change="validateFloors(property.specifications.totalFloor, property.specifications.floorNumber)" ng-model="property.specifications.totalFloor" placeholder="Total Floors">
+                                    <input type="text" ng-pattern=/^[0-9]+$/ ng-required="form2.totalFloors.$dirty" name="totalFloors" class="form-control input-sm" ng-change="validateFloors(property.specifications.totalFloor, property.specifications.floorNumber)" ng-model="property.specifications.totalFloor" placeholder="Total Floors">
 									<p ng-show="form2.totalFloors.$error.pattern" class="label errorText">Enter valid total floor</p>
 								</div>
                             </div>
@@ -893,7 +893,7 @@
                     <div class="text-right">
 						<label class="register-property-info-text">Share more details to get quality inquiries</label>
                         <button type="button" class="btn btn-info" ng-click="showForm2=false;showForm1=!showForm2;">Previous</button>
-                        <button type="button" class="btn btn-info" ng-click="showForm2=false;showForm3=!showForm2;">Next</button>
+                        <button type="button" class="btn btn-info" ng-click="form2.submitted=true;showForm3=form2.$valid;showForm2=!form2.$valid;">Next</button>
                     </div>
                 </div>
             </form>

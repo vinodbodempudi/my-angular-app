@@ -5,7 +5,7 @@
 		  </select>
 		</div>
 	</div>
-	<div class="lists-view" style="clear:both;" scroll>
+	<div class="lists-view" style="clear:both; position:relative" scroll>
 	  <div class="row">
 		<div ng-repeat="property in $parent.filteredProperties = (properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search)">
 		  <div class="list-view" style="cursor:pointer;" ng-click="showPropertyDetails(property._id);">

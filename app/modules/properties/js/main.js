@@ -130,16 +130,20 @@ angular.module('properties', [])
 			showAreaDropDowns(data);
 			
 			if(!$scope.propertyDetails) {
-				$scope.propertyDetails = {};
+				$scope.propertyDetails = {
+					showDetailsTab:true,
+					showSpecificationsTab:false,
+					showAmenitiesTab:false,
+					showPhotosTab:false,
+					showContactTab:false
+				};
+			} else if(!$scope.propertyDetails.showDetailsTab
+				&& !$scope.propertyDetails.showSpecificationsTab
+				&& !$scope.propertyDetails.showAmenitiesTab
+				&& !$scope.propertyDetails.showPhotosTab
+				&& !$scope.propertyDetails.showContactTab){
+				$scope.propertyDetails.showDetailsTab = true;
 			}
-			
-			
-			$scope.propertyDetails.showDetailsTab = true;
-			$scope.propertyDetails.showSpecificationsTab = false;
-			$scope.propertyDetails.showAmenitiesTab = false;
-			$scope.propertyDetails.showPhotosTab = false;
-			$scope.propertyDetails.showContactTab = false;
-
 		}).error(function(e){
 			
 		});

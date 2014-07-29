@@ -40,14 +40,25 @@ angular.module('registerProperty', [])
 		locationService.getLocalities(city)
 			.success(function(data){
 				$scope.fatHome.localities = data;
-				$scope.currentLocationDetails = fatHomeUtil.getLocationDetails(data, $scope.locality);
+				$scope.populateCurrentLocationDetails();
 			}).error(function(e){
 				
 			});
 	}
 
 	if($scope.fatHome.localities) {
-		$scope.currentLocationDetails = fatHomeUtil.getLocationDetails($scope.fatHome.localities, $scope.locality);
+		$scope.populateCurrentLocationDetails();
+	}
+	
+	$scope.populateCurrentLocationDetails = function() {
+	
+		if($scope.currentLocationDetails 
+			&& $scope.currentLocationDetails.city === $scope.property.user.city
+			&& $scope.currentLocationDetails.locality === $scope.property.user.locality) {
+			return;
+		}
+	
+		$scope.currentLocationDetails = fatHomeUtil.getLocationDetails($scope.fatHome.localities, $scope.property.user.locality);
 	}
 
 	$scope.updatePropertyStatus = function() {
