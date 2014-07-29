@@ -527,7 +527,7 @@
 				</accordion-heading>
 			  <div  class="not-select" style="height: 210px" ng-show="property.urls.propertyUrls && property.urls.propertyUrls.length > 0">
 				<carousel>
-				  <slide ng-repeat="propertyUrl in property.urls.propertyUrls">
+				  <slide ng-repeat="propertyUrl in slides">
 					<img ng-src="{{propertyUrl.url}}" style="margin:auto;width: auto; height: 200px; max-height: 200px;">
 				  </slide>
 				</carousel>
