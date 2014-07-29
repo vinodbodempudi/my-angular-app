@@ -49,7 +49,7 @@ angular.module('properties', [])
 	
 	$scope.$watch("propertyDetails",
 		function(newValue, oldValue) {
-			if(newValue.showPhotosTab 
+			if(newValue && newValue.showPhotosTab 
 				&& $scope.property.urls 
 				&& $scope.property.urls.propertyUrls 
 				&& $scope.property.urls.propertyUrls.length > 0
@@ -326,6 +326,7 @@ angular.module('properties', [])
 			position: new google.maps.LatLng(property.lat, property.lng),
 			map: map
 		  });
+		  marker.setIcon('../images/red-matker.png');
 		  
 		  var chInfoWindow = new google.maps.InfoWindow({
 			content: "Title : "+property.title+"<br>"
@@ -350,7 +351,7 @@ angular.module('properties', [])
 		  
 			if(marker === previousMarker) {
 				resultsHandler();
-				previousMarker.setIcon('https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=1');
+				previousMarker.setIcon('../images/red-matker.png');
 				previousMarker = null;
 				return;
 			}
@@ -379,7 +380,7 @@ angular.module('properties', [])
 		
 		this.resetMarkerSelection = function() {
 			if(previousMarker) {
-				previousMarker.setIcon('https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=1');
+				previousMarker.setIcon('../images/red-matker.png');
 			}
 		}
 		
@@ -391,7 +392,7 @@ angular.module('properties', [])
 			}
 		
 			if(previousMarker) {
-				previousMarker.setIcon('https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=1');
+				previousMarker.setIcon('../images/red-matker.png');
 			}
 			
 			marker.setIcon('../images/green-marker.png');
