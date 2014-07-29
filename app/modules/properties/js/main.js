@@ -144,6 +144,16 @@ angular.module('properties', [])
 				&& !$scope.propertyDetails.showContactTab){
 				$scope.propertyDetails.showDetailsTab = true;
 			}
+			
+			if($scope.propertyDetails.showPhotosTab
+				&& $scope.property.urls 
+				&& $scope.property.urls.propertyUrls 
+				&& $scope.property.urls.propertyUrls.length > 0
+				&& $scope.slides !== $scope.property.urls.propertyUrls) {
+					$scope.slides = $scope.property.urls.propertyUrls;
+			} else {
+				$scope.slides = [];
+			}
 		}).error(function(e){
 			
 		});
