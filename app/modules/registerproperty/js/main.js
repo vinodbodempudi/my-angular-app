@@ -46,10 +46,6 @@ angular.module('registerProperty', [])
 			});
 	}
 
-	if($scope.fatHome.localities) {
-		$scope.populateCurrentLocationDetails();
-	}
-	
 	$scope.populateCurrentLocationDetails = function() {
 	
 		if($scope.currentLocationDetails 
@@ -59,6 +55,10 @@ angular.module('registerProperty', [])
 		}
 	
 		$scope.currentLocationDetails = fatHomeUtil.getLocationDetails($scope.fatHome.localities, $scope.property.user.locality);
+	}
+	
+	if($scope.fatHome.localities) {
+		$scope.populateCurrentLocationDetails();
 	}
 
 	$scope.updatePropertyStatus = function() {
