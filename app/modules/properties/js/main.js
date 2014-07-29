@@ -325,7 +325,7 @@ angular.module('properties', [])
 		  var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(property.lat, property.lng),
 			map: map,
-			icon: '../images/red-matker.png'
+			icon: '../images/red-marker.png'
 		  });
 		  
 		  var chInfoWindow = new google.maps.InfoWindow({
@@ -333,7 +333,7 @@ angular.module('properties', [])
 					+"Bedrooms : "+property.bedRooms+"<br>"
 					+"Area : "+property.builtUpSize+" "+property.builtUpUnits+"<br>"
 					+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(property.price)+"</label>",
-			maxWidth:250
+			maxWidth:250 
 		  });
 		  
 		  google.maps.event.addListener(marker, 'mouseover', function() {
@@ -351,7 +351,7 @@ angular.module('properties', [])
 		  
 			if(marker === previousMarker) {
 				resultsHandler();
-				previousMarker.setIcon('../images/red-matker.png');
+				previousMarker.setIcon('../images/red-marker.png');
 				previousMarker = null;
 				return;
 			}
@@ -380,7 +380,7 @@ angular.module('properties', [])
 		
 		this.resetMarkerSelection = function() {
 			if(previousMarker) {
-				previousMarker.setIcon('../images/red-matker.png');
+				previousMarker.setIcon('../images/red-marker.png');
 			}
 		}
 		
@@ -392,7 +392,7 @@ angular.module('properties', [])
 			}
 		
 			if(previousMarker) {
-				previousMarker.setIcon('../images/red-matker.png');
+				previousMarker.setIcon('../images/red-marker.png');
 			}
 			
 			marker.setIcon('../images/green-marker.png');
