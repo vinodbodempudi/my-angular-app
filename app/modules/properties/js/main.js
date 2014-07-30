@@ -231,7 +231,7 @@ angular.module('properties', [])
 }]).service('PropertiesService',['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
 
     this.getProperties = function (city, locality) {
-        return $http.get('data/propertyresults.json');
+        return $http.get(servicesBaseUrl+'/properties/'+city+'/'+locality);
     };
 	
 	this.getPropertyDetails = function (propertyId) {
@@ -240,7 +240,7 @@ angular.module('properties', [])
 
 }]).filter('filterPropertiesResults', [function () {
     return function (properties, filterOption) {
-		console.log('filterPropertiesResults');
+		
         if (!angular.isUndefined(properties) && !angular.isUndefined(filterOption)) {
             var tempProperties = [], property, propertyPrice;
 			for (var i = 0; i < properties.length; i++) { 
@@ -310,7 +310,7 @@ angular.module('properties', [])
     });
     filtered.sort(function (a, b) {
 		var tempa, tempb;
-		console.log('Sort function');
+		
 		if(field === 'price') {
 			if(a.details.mode==='Sell') {
 				 tempa = a.details.price.price;
