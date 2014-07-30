@@ -940,7 +940,7 @@ line-height: 2.3 !important;
 .loading i{ color:#fff; margin-top:10%; font-size:30px;}
 .modal-dialog{margin:100px auto;}
 .fa-refresh:before{content:none;}
-.fa-refresh{background: url("../images/ajax-loader.gif") no-repeat scroll ;  height:128px; width:128px;}
+.fa-refresh{background: url("../images/ajax-loader.GIF") no-repeat scroll ;  height:128px; width:128px;}
 
 
 
