@@ -120,10 +120,18 @@ angular.module('properties', [])
 		});
 	};
 	
+	$scope.isGetPropertyDetailsServiceInProgress = false;
 	$scope.getPropertyDetails = function(propertyId) {
-		//$scope.property = null;
+	
+		if($scope.isGetPropertyDetailsServiceInProgress) {
+			return;
+		}
+		
+	
+		$scope.isGetPropertyDetailsServiceInProgress = true;
 		propertiesService.getPropertyDetails(propertyId)
 		.success(function(data){
+			$scope.isGetPropertyDetailsServiceInProgress = false;
 			$scope.showPage = 'propertyDetails';
 			
 			$scope.property = data;
@@ -155,7 +163,7 @@ angular.module('properties', [])
 				$scope.slides = [];
 			}
 		}).error(function(e){
-			
+			$scope.isGetPropertyDetailsServiceInProgress = false;
 		});
 	
 	};
@@ -223,7 +231,7 @@ angular.module('properties', [])
 }]).service('PropertiesService',['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
 
     this.getProperties = function (city, locality) {
-        return $http.get(servicesBaseUrl+'/properties/'+city+'/'+locality);
+        return $http.get('data/propertyresults.json');
     };
 	
 	this.getPropertyDetails = function (propertyId) {
@@ -232,39 +240,58 @@ angular.module('properties', [])
 
 }]).filter('filterPropertiesResults', [function () {
     return function (properties, filterOption) {
+		console.log('filterPropertiesResults');
         if (!angular.isUndefined(properties) && !angular.isUndefined(filterOption)) {
-            var tempProperties = [], property;
+            var tempProperties = [], property, propertyPrice;
 			for (var i = 0; i < properties.length; i++) { 
 				property = properties[i];
-				if(filterOption.propertType && filterOption.propertType !== property.propertySubType) {
+				if(filterOption.propertType && filterOption.propertType !== property.details.propertySubType) {
 					continue;
 				}
 				
-				if(filterOption.beds && Number(filterOption.beds) !== Number(property.bedRooms)) {
+				if(filterOption.beds && Number(filterOption.beds) !== Number(property.details.bedRooms)) {
 					continue;
 				}
 				
-				if(filterOption.minPrice && Number(filterOption.minPrice) > Number(property.price)) {
+				if(filterOption.minPrice) {
+				
+					if(property.details.mode==='Sell') {
+						propertyPrice = property.details.price.price;
+					} else {
+						propertyPrice = property.details.monthlyRent;
+					}
+				
+					if(Number(filterOption.minPrice) > Number(propertyPrice)) {
+						continue;
+					}
+				}
+				
+				if(filterOption.maxPrice) {
+				
+					if(property.details.mode==='Sell') {
+						propertyPrice = property.details.price.price;
+					} else {
+						propertyPrice = property.details.monthlyRent;
+					}
+				
+					if(Number(filterOption.maxPrice) < Number(propertyPrice)) {
+						continue;
+					}
+				}
+				
+				if(!filterOption.buy && "Sell" === property.details.mode) {
 					continue;
 				}
 				
-				if(filterOption.maxPrice && Number(filterOption.maxPrice) < Number(property.price)) {
-					continue;
-				}
-				
-				if(!filterOption.buy && "Sell" === property.mode) {
-					continue;
-				}
-				
-				if(!filterOption.rent && "Rent" === property.mode) {
+				if(!filterOption.rent && "Rent" === property.details.mode) {
 					continue;
 				}
 								
-				if(filterOption.minSft && Number(filterOption.minSft) > Number(property.builtUpInSqft)) {
+				if(filterOption.minSft && Number(filterOption.minSft) > Number(property.details.area.builtUp.builtUpInSqft)) {
 					continue;
 				}
 				
-				if(filterOption.maxSft && Number(filterOption.maxSft) < Number(property.builtUpInSqft)) {
+				if(filterOption.maxSft && Number(filterOption.maxSft) < Number(property.details.area.builtUp.builtUpInSqft)) {
 					continue;
 				}
 			
@@ -282,12 +309,33 @@ angular.module('properties', [])
       filtered.push(property);
     });
     filtered.sort(function (a, b) {
-		var tempa = a[field], tempb = b[field];
-		
-		if('createdDate' === field) {
-			return (tempa > tempb ? 1 : -1);
+		var tempa, tempb;
+		console.log('Sort function');
+		if(field === 'price') {
+			if(a.details.mode==='Sell') {
+				 tempa = a.details.price.price;
+			} else {
+				tempa = a.details.monthlyRent;
+			}
+			
+			if(b.details.mode==='Sell') {
+				 tempb = b.details.price.price;
+			} else {
+				tempb = b.details.monthlyRent;
+			}
+		}
+
+		if(field === 'size') {
+			tempa = a.details.area.builtUp.builtUpInSqft;
+			tempb = b.details.area.builtUp.builtUpInSqft;
 		}
 		
+		if(field === 'createdDate') {
+			tempa = a[field];
+			tempb = b[field];
+			return (tempa > tempb ? 1 : -1);
+		}
+
 		return (Number(tempa) > Number(tempb) ? 1 : -1);
     });
     if(reverse) filtered.reverse();
@@ -337,18 +385,28 @@ angular.module('properties', [])
 		this.addMarker = function(property, resultsHandler, detailsHandler) {
 
 		  var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(property.lat, property.lng),
+			position: new google.maps.LatLng(property.location.lat, property.location.lng),
 			map: map,
 			icon: '../images/red-marker.png'
 		  });
 		  
+		  var getPropertyPrice = function(property) {
+				if(property.details.mode==='Sell') {
+					 return property.details.price.price;
+				}
+				
+				return property.details.monthlyRent;
+			}
+		  
 		  var chInfoWindow = new google.maps.InfoWindow({
-			content: "Title : "+property.title+"<br>"
-					+"Bedrooms : "+property.bedRooms+"<br>"
-					+"Area : "+property.builtUpSize+" "+property.builtUpUnits+"<br>"
-					+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(property.price)+"</label>",
+			content: "Title : "+property.details.title+"<br>"
+					+"Bedrooms : "+property.details.bedRooms+"<br>"
+					+"Area : "+property.details.area.builtUp.builtUp+" "+property.details.area.builtUp.units+"<br>"
+					+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(getPropertyPrice(property))+"</label>",
 			maxWidth:250 
 		  });
+		  
+		  
 		  
 		  google.maps.event.addListener(marker, 'mouseover', function() {
 			chInfoWindow.open(map, marker);
@@ -454,27 +512,8 @@ angular.module('properties', [])
 				property = newProperty;
 				if(newProperty && propertiesMap) {
 	
-					var newOptimizedProperty = {};
-					newOptimizedProperty._id = newProperty._id;
-					newOptimizedProperty.title = newProperty.details.title;
-					if (newProperty.location) {
-						newOptimizedProperty.lat = newProperty.location.lat;
-						newOptimizedProperty.lng = newProperty.location.lng;
-					}
-					
-					if(newProperty.details.price) {
-						newOptimizedProperty.price = newProperty.details.price.price;
-					} else {
-						newOptimizedProperty.price = newProperty.details.monthlyRent;
-					}
-					
-					newOptimizedProperty.bedRooms = newProperty.details.bedRooms;
-					newOptimizedProperty.builtUpSize = newProperty.details.area.builtUp.builtUp;
-					newOptimizedProperty.builtUpUnits = newProperty.details.area.builtUp.units;
-	
-					
 					if(!properties || properties.length == 0) {
-						properties = [newOptimizedProperty];
+						properties = [newProperty];
 						propertiesChangeHandler(properties);
 					}
 					
