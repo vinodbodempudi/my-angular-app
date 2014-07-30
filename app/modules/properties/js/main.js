@@ -496,6 +496,10 @@ angular.module('properties', [])
 				
 				for (var i = 0; i <properties.length; i++) { 
 					var property = properties[i];
+					if(!property.location) {
+						continue;
+					}
+					
 					propertiesMap.addMarker(property, scope.showPropertyResults, scope.showPropertyDetails);
 				}
 			}
