@@ -154,6 +154,7 @@
                                 <div class="col-sm-3">
                                     <input type="text" class="form-control input-sm" name="propertyTitle" ng-model="property.details.title" ng-required='true' placeholder="Title">
 									<p ng-show="form1.submitted && form1.propertyTitle.$error.required" class="label errorText">Enter title</p>
+									<label class="hint-text">eg: 2 bed 2 bath apt</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -459,7 +460,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <input type="text" class="form-control input-sm" ng-model="property.specifications.otherRoom" placeholder="Other room">
-									<label class="hint-text">Eg. Children room, Servant room</label>
+									<label class="hint-text">eg: Children room, Servant room</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -488,7 +489,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <input type="text" class="form-control input-sm" ng-model="property.specifications.otherfacing" placeholder="Other facing">
-									<label class="hint-text">Eg. Lake side, Pool</label>
+									<label class="hint-text">eg: Lake side, Pool</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -508,12 +509,12 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ ng-required="form2.floorNumber.$dirty || form2.floorNumber.$error.invalidFloorNumber" name="floorNumber" class="form-control input-sm" ng-change="validateFloors(property.specifications.totalFloor, property.specifications.floorNumber)" ng-model="property.specifications.floorNumber" placeholder="Floor Number">
+                                    <input type="text" ng-pattern=/^[0-9]+$/ name="floorNumber" class="form-control input-sm" ng-change="validateFloors(property.specifications.totalFloor, property.specifications.floorNumber)" ng-model="property.specifications.floorNumber" placeholder="Floor Number">
 									<p ng-show="form2.floorNumber.$error.pattern" class="label errorText">Enter valid floor number</p>
 									<p ng-show="form2.floorNumber.$error.invalidFloorNumber" class="label errorText">Floor number should not be greater than total floors</p>
 								</div>
                                 <div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ ng-required="form2.totalFloors.$dirty" name="totalFloors" class="form-control input-sm" ng-change="validateFloors(property.specifications.totalFloor, property.specifications.floorNumber)" ng-model="property.specifications.totalFloor" placeholder="Total Floors">
+                                    <input type="text" ng-pattern=/^[0-9]+$/ name="totalFloors" class="form-control input-sm" ng-change="validateFloors(property.specifications.totalFloor, property.specifications.floorNumber)" ng-model="property.specifications.totalFloor" placeholder="Total Floors">
 									<p ng-show="form2.totalFloors.$error.pattern" class="label errorText">Enter valid total floor</p>
 								</div>
                             </div>
