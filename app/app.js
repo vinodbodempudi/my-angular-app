@@ -1,5 +1,8 @@
 'use strict';
-
+if($window.isIE8) {
+		$location.path('/browser');
+		return;
+	}
 var app = angular.module('fatHomesApp', [
   'ngRoute',
   'registerProperty',
@@ -36,6 +39,9 @@ app.config(function ($routeProvider, $httpProvider) {
         templateUrl: 'modules/home/html/home.html',
         controller: 'HomeCtrl'
       })
+	  .when('/browser', {
+        templateUrl: 'shared/html/browser.html'
+      })
       .otherwise({
         redirectTo: '/home'
       });
@@ -59,7 +65,8 @@ app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $loc
 		return original.apply($location, [path]);
 	};
 }]);
-app.run(['$rootScope', '$location',function($rootScope, $location){
+app.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
+
 	$rootScope.showTabs = {};
 	
 	$rootScope.$on('$locationChangeSuccess', function () {
