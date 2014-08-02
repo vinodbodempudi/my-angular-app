@@ -1,8 +1,5 @@
 'use strict';
-if($window.isIE8) {
-		$location.path('/browser');
-		return;
-	}
+
 var app = angular.module('fatHomesApp', [
   'ngRoute',
   'registerProperty',
