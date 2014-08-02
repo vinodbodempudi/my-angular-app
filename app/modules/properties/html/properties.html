@@ -101,19 +101,19 @@
 
 
 <div class="container-fluid results">
-  <div class="row maprow"> 
-    <div class="col-md-4 col-md-push-8 searchresults">
-		<div ng-init="showPage='propertyResults'">
+  <div class="row maprow full-height"> 
+    <div class="col-md-4 col-md-push-8 searchresults full-height">
+		<div ng-init="showPage='propertyResults'" class="full-height">
 			<div property-results ng-show="showPage === 'propertyResults'" ></div>
 			<div property-details ng-show="showPage === 'propertyDetails'" ></div>
 		</div>
     </div>
-    <div class="col-md-8 col-md-pull-4 mapresults">
-      <div class="mapContent">    
+    <div class="col-md-8 col-md-pull-4 mapresults full-height">
+      <div class="mapContent full-height">    
       <div class="hidemap">
       <button type="button" class="btn btn-info btn-xs" ng-show="false"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
       </div>
-        <div class="map" map> </div>
+        <div class="map full-height" map> </div>
       </div>
     </div>
   </div>

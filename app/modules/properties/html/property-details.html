@@ -1,4 +1,4 @@
-  <div class="list detail-view">
+  <div class="list detail-view full-height">
 	<div class="row" style="margin-right:0px;">
 	  <div class="col-sm-2">
 		<img src="images/icon_back.jpg" title="Back to List" style="cursor:pointer;" ng-click="showPropertyResults();"/>
@@ -294,6 +294,7 @@
 							<label class="">Additional Rooms</label>
 						</div>
 						<div class="right">
+							<label ng-show="!property.specifications.otherRoom && !property.specifications.additionalRooms"></label>
 							<label ng-show="property.specifications.additionalRooms">{{property.specifications.additionalRooms}}</label>
 							<label ng-show="property.specifications.otherRoom && property.specifications.additionalRooms">,</label>
 							<label ng-show="property.specifications.otherRoom">{{property.specifications.otherRoom}}</label>

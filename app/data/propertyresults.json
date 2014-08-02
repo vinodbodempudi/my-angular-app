@@ -1,41 +1,69 @@
-[
-  {
-	"_id":"1",
-    "title": "Very good 5 Bedroom Home ..",
-    "price": "50000",
-    "bedRooms": 2,
-    "bathRooms": 1,
-    "size": "1050",
-    "locality": "KukatPally",
-    "propertySubType": "Residentail",
-    "date": "03 Oct, 2013",
-	"purpose":"BUY",
-	"type":"Sell"
-  },
-  {
-	"_id":"1",
-    "title": "Spacioua 4 Bedroom Home ..",
-    "price": "30000",
-    "bedRooms": 2,
-    "bathRooms": 1,
-    "size": "1050",
-    "locality": "KukatPally",
-    "propertySubType": "Residentail",
-    "date": "03 Oct, 2013",
-	"purpose":"BUY",
-	"type":"Rent"
-  },
-  {
-	"_id":"2",
-    "title": "Spacious 3 Bedroom Home ..",
-    "price": "40000",
-    "bedRooms": 3,
-    "bathRooms": 2,
-    "size": "1250",
-    "locality": "KukatPally",
-    "propertySubType": "Apartment",
-    "date": "02 Oct, 2013",
-	"purpose":"BUY",
-	"type":"Rent"
-  }
+[  
+   {  
+      "user":{  
+         "locality":"Alwal"
+      },
+      "details":{  
+         "mode":"Sell",
+         "propertySubType":"Pent House",
+         "title":"Sidhu pent house",
+         "bedRooms":"3",
+         "bathRooms":"2",
+         "area":{  
+            "builtUp":{  
+               "builtUp":"123123",
+               "units":"Chataks",
+               "builtUpInSqft":55405350
+            },
+            "perUnitPrice":"123"
+         },
+         "price":{  
+            "price":"1091"
+         }
+      },
+      "location":{  
+         "lat":17.43967731252427,
+         "lng":78.44128800314934
+      },
+      "createdDate":"2014-07-30T17:12:00.406Z",
+      
+"urls":{  
+         "coverPhotoUrl":{  
+            "url":"http://s3.amazonaws.com/fathome-images/7-30-2014/Hyderabad/Alwal/d7e7a336-b355-4cbe-f607-918d8358253f/0.jpeg"
+
+         }
+      },
+      "_id":"53d92762f0a1d2b41e88c760"
+   },
+   {  
+      "user":{  
+         "locality":"Alwal"
+      },
+      "details":{  
+         "mode":"Rent",
+         "propertySubType":"Individual House/Villa",
+         "title":"Builder sidhu villa",
+         "bedRooms":"1",
+         "bathRooms":"2",
+         "area":{  
+            "builtUp":{  
+               "builtUp":"23234",
+               "units":"Chataks",
+               "builtUpInSqft":10455300
+            }
+         },
+         "monthlyRent":"23432"
+      },
+      "location":{  
+         "lat":17.503173247802227,
+         "lng":78.49800419101564
+      },
+      "createdDate":"2014-07-30T17:15:49.016Z",
+      "urls":{  
+         "coverPhotoUrl":{  
+            "url":"http://s3.amazonaws.com/fathome-images/7-30-2014/Hyderabad/Alwal/f8134096-fd38-4222-f9d3-140222e5eeb6/0.jpeg"
+         }
+      },
+      "_id":"53d92846f0a1d2b41e88c762"
+   }
 ]

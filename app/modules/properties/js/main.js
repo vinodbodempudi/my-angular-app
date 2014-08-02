@@ -16,6 +16,7 @@ angular.module('properties', [])
 	$scope.unitOptions = fatHomeUtil.unitOptions();
 	$scope.predicate = {};
 	$scope.search = {};
+	$scope.slides  = [];
 	
 	$scope.addImages = ["images/a1_old.jpg", "images/a2.jpg", "images/a3.jpg"];
 	
@@ -49,12 +50,8 @@ angular.module('properties', [])
 	
 	$scope.$watch("propertyDetails",
 		function(newValue, oldValue) {
-			if(newValue && newValue.showPhotosTab 
-				&& $scope.property.urls 
-				&& $scope.property.urls.propertyUrls 
-				&& $scope.property.urls.propertyUrls.length > 0
-				&& $scope.slides !== $scope.property.urls.propertyUrls) {
-				$scope.slides = $scope.property.urls.propertyUrls;
+			if(newValue) {
+				setPropertyImages();
 			}
 		}, true
 	);
@@ -136,37 +133,50 @@ angular.module('properties', [])
 			
 			$scope.property = data;
 			showAreaDropDowns(data);
+			setPropertyDetailsTab();
 			
-			if(!$scope.propertyDetails) {
-				$scope.propertyDetails = {
-					showDetailsTab:true,
-					showSpecificationsTab:false,
-					showAmenitiesTab:false,
-					showPhotosTab:false,
-					showContactTab:false
-				};
-			} else if(!$scope.propertyDetails.showDetailsTab
-				&& !$scope.propertyDetails.showSpecificationsTab
-				&& !$scope.propertyDetails.showAmenitiesTab
-				&& !$scope.propertyDetails.showPhotosTab
-				&& !$scope.propertyDetails.showContactTab){
-				$scope.propertyDetails.showDetailsTab = true;
-			}
-			
-			if($scope.propertyDetails.showPhotosTab
-				&& $scope.property.urls 
-				&& $scope.property.urls.propertyUrls 
-				&& $scope.property.urls.propertyUrls.length > 0
-				&& $scope.slides !== $scope.property.urls.propertyUrls) {
-					$scope.slides = $scope.property.urls.propertyUrls;
-			} else {
-				$scope.slides = [];
+			if($scope.propertyDetails.showPhotosTab) {
+				setPropertyImages();
 			}
 		}).error(function(e){
 			$scope.isGetPropertyDetailsServiceInProgress = false;
 		});
 	
 	};
+	
+	var setPropertyDetailsTab = function() {
+		if(!$scope.propertyDetails) {
+			$scope.propertyDetails = {
+				showDetailsTab:true,
+				showSpecificationsTab:false,
+				showAmenitiesTab:false,
+				showPhotosTab:false,
+				showContactTab:false
+			};
+		} else if(!$scope.propertyDetails.showDetailsTab
+			&& !$scope.propertyDetails.showSpecificationsTab
+			&& !$scope.propertyDetails.showAmenitiesTab
+			&& !$scope.propertyDetails.showPhotosTab
+			&& !$scope.propertyDetails.showContactTab){
+			$scope.propertyDetails.showDetailsTab = true;
+		}
+	}
+	
+	var setPropertyImages = function() {
+		if($scope.property.urls 
+			&& $scope.property.urls.propertyUrls 
+			&& $scope.property.urls.propertyUrls.length > 0
+			&& $scope.slides !== $scope.property.urls.propertyUrls) {
+				$scope.slides = [];
+				angular.forEach($scope.property.urls.propertyUrls, function(propertyUrl, key) {
+					if(propertyUrl) {
+						$scope.slides.push(propertyUrl);
+					}
+				});
+		} else {
+			$scope.slides = [];
+		}
+	}
 	
 	var showAreaDropDowns = function(property) {
 		$scope.builtUp={};
@@ -387,7 +397,7 @@ angular.module('properties', [])
 		  var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(property.location.lat, property.location.lng),
 			map: map,
-			icon: '../images/red-marker.png'
+			icon: 'https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=0.70'
 		  });
 		  
 		  var getPropertyPrice = function(property) {
@@ -423,7 +433,7 @@ angular.module('properties', [])
 		  
 			if(marker === previousMarker) {
 				resultsHandler();
-				previousMarker.setIcon('../images/red-marker.png');
+				previousMarker.setIcon('https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=0.70');
 				previousMarker = null;
 				return;
 			}
@@ -452,7 +462,7 @@ angular.module('properties', [])
 		
 		this.resetMarkerSelection = function() {
 			if(previousMarker) {
-				previousMarker.setIcon('../images/red-marker.png');
+				previousMarker.setIcon('https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=0.70');
 			}
 		}
 		
@@ -464,7 +474,7 @@ angular.module('properties', [])
 			}
 		
 			if(previousMarker) {
-				previousMarker.setIcon('../images/red-marker.png');
+				previousMarker.setIcon('https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=0.70');
 			}
 			
 			marker.setIcon('../images/green-marker.png');

@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> 
-<html class="no-js" id="ng-app" ng-app="fatHomesApp"> <!--<![endif]-->
+<html class="no-js full-height" id="ng-app" ng-app="fatHomesApp"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,7 +56,7 @@
         </script>
       <![endif]-->
   </head>
-  <body ng-controller="fatHomeController" class="main" ng-cloak>
+  <body ng-controller="fatHomeController" class="main full-height" ng-cloak>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -88,7 +88,7 @@
     </div>
 
     <!-- Add your site or application content here -->
-    <div ng-view=""></div>
+    <div ng-view="" class="body-content"></div>
 	<div please-wait></div>
    <!-- <footer ng-show="false">
       <p>&copy; 2012-2013 Fathome.com. Toll Free Number: 000-100-100-10000 <a href="#">Terms of Service</a> | <a href="#">Privacy</a> Aenean rutrum placerat libero, eu tincidunt turpis tempus ut</p>

@@ -1,3 +1,4 @@
+html, body {margin:0; padding:0;}
 h1,h2,h3,h4,h5,h6,.tagline{font-family: arial,sans-serif;}
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 a{ color:#159CEB;}
@@ -105,11 +106,19 @@ max-width:98%}
 		.switch-light input:checked ~ span span:last-child {
         color:#fff; }
 
-.map{ height:500px; border:1px solid #ccc;}
+.map{border:1px solid #ccc;}
 .mapContent{box-shadow:0px 0 10px rgba(0,0,0,0.6) inset; position:relative;}
 .hidemap{ position:absolute; left:15px; top:0px; z-index:1}
 .hidemap .btn-info{border-radius:0px 0px 4px 0px}
-.results{ margin:10px auto;}
+.results{ 
+	margin:10px auto;
+	position: absolute;
+	height: auto;
+	width:100%;
+	bottom: 0;
+	top: 205px;
+	min-height:300px;
+}
 
 .results .col-md-7,.results .col-md-pull-6{ padding-right:0;}
 .results .col-md-5,.results .col-md-push-6{ padding-left:0;}
@@ -118,7 +127,7 @@ max-width:98%}
 .results .col-md-5{ padding-left:15px;}
 .detail .col-md-6{ padding-left:15px; padding-right:15px;}
 }
-.list{ border:1px solid #ccc; min-height:500px; max-height:500px; /*box-shadow:-2px 0 2px #ccc; */padding:4px;}
+.list{ border:1px solid #ccc; min-height:400px; /*box-shadow:-2px 0 2px #ccc; */padding:4px;}
 .list .scroll{max-height:325px; overflow-y:auto;}
 .col-md-5 .list{ border-left:none;}
 .list .filter{ margin-bottom:4px;}
@@ -180,8 +189,8 @@ max-width:98%}
 .list-view .thirdRow{margin-top:7px;}
 .list-view .content .btn-group{ margin-top:6px; visibility:hidden}
 .list-view:hover .content .btn-group{ visibility:visible}
-.lists-view{ overflow:hidden; overflow-y:auto; max-height:488px;position: relative;top: -36px;}
-.details-view{ overflow:hidden; overflow-y:auto; max-height:452px;position: relative;}
+.lists-view{ overflow:hidden; overflow-y:auto; min-height:258px;position: relative;top: -36px;}
+.details-view{ overflow:hidden; overflow-y:auto; min-height:222px;position: relative;}
 #signin,#account,#contact,#feedback,#changeLocality,#registerPropertySuccessModal{ z-index:99999;}
 #signin .modal-dialog,#account .modal-dialog{ width:500px;}
 #signin .form-group,#account .form-group{margin-left:-5px; margin-right:-5px;}
@@ -200,6 +209,7 @@ max-width:98%}
 .detail-images li{ display:inline-block; width:40px; height:40px; margin:0px 2px;}
 .detail-images li img{ width:100%; height:100%; cursor:pointer;}
 /*.detail-view h3{ color:#159CEB; margin:10px 10px 0; } */
+.detail-view{overflow-y: auto;}
 .detail-view h3{ color:#159CEB;  padding:5px 10px 0px; margin-top:10px;}
 .detail-images i{ color:#39F;}
 #headertabs .tabs{ margin:0px; padding-left:247px;}
@@ -277,7 +287,7 @@ color:#da4834;
 }
 .maprow{margin-right: -10px;}
 .maprow .searchresults{padding-left:0px;padding-right: 0px;}
-.maprow .mapresults{padding-right:0px;}
+.maprow .mapresults{padding-right:0px;overflow-y: auto;}
 .availability{
     text-align: left !important; 
 }
@@ -942,5 +952,8 @@ line-height: 2.3 !important;
 .fa-refresh:before{content:none;}
 .fa-refresh{background: url("../images/ajax-loader.GIF") no-repeat scroll ;  height:128px; width:128px;}
 
+.full-height {
+	height:100%;
+}
 
 

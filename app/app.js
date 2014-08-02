@@ -332,10 +332,11 @@ app.directive('pleaseWait', ['$rootScope', 'SHOW_PROGRESS_BAR', 'HIDE_PROGRESS_B
 	      restrict: 'EA',
 	      replace:true,
 	      templateUrl: 'shared/html/please-wait.html',
-	      link: function (scope, element) {               
+	      link: function (scope, element) {
+			  element.hide();
 	          $rootScope.$on(SHOW_PROGRESS_BAR, function () {
 	              element.show();
-				   element.css('height', getDocHeight());
+				  element.css('height', getDocHeight());
 	          });
 	          $rootScope.$on(HIDE_PROGRESS_BAR, function () {
 	              element.hide();
