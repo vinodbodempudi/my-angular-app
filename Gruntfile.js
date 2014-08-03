@@ -256,9 +256,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '.tmp/concat/scripts',
-          src: '*.js',
-          dest: '.tmp/concat/scripts'
+          cwd: '.',
+          src: ['app/app.js','app/modules/**/*.js'],
+          dest: 'dest'
         }]
       }
     },
@@ -330,18 +330,30 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+   uglify: {
+      dist: {
+         files:[{
+         	expand:true,
+         	cwd:'dest',
+         	src:'**/*.js',
+         	dest:'dest/min/'
+         }]
+       }
+     },
+     concat: {
+
+     	lib:{
+     		src:['app/bower_components/jquery/jquery.min.js' ,'app/bower_components/bootstrap/dist/js/bootstrap.min.js'],
+     		dest:'dest/fat-home-lib-min.js'
+
+     	},
+
+       dist: {
+       	src:'dest/min/**/*.js',
+       	dest:'dest/min/fat-app-min.js'
+
+       }
+     },
 
     // Test settings
     karma: {
