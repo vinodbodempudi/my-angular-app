@@ -258,7 +258,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '.',
           src: ['app/app.js','app/modules/**/*.js'],
-          dest: 'dest'
+          dest: 'dest/js'
         }]
       }
     },
@@ -330,27 +330,50 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
+
+     cssmin: {
+       minify: {
+        expand: true,
+        src: ['app/styles/*.css', '!*.min.css'],
+        dest: 'dest/css/min/',
+        ext: '.min.css'
+      },
+
+
+    combine: {
+      files: {
+             'dest/lib/css/fat-home-lib-min.css': ['app/bower_components/bootstrap/dist/css/bootstrap.min.css', 'app/bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
+         'app/bower_components/bootstrap-select/bootstrap-select.min.css','app/bower_components/jquery-ui/themes/base/minified/jquery-ui.min.css',
+         'app/bower_components/fontawesome/css/font-awesome.min.css']
+          }
+        
+      }
+      },
+
    uglify: {
       dist: {
          files:[{
          	expand:true,
-         	cwd:'dest',
+         	cwd:'dest/js',
          	src:'**/*.js',
-         	dest:'dest/min/'
+         	dest:'dest/js/min/'
          }]
        }
      },
      concat: {
 
      	lib:{
-     		src:['app/bower_components/jquery/jquery.min.js' ,'app/bower_components/bootstrap/dist/js/bootstrap.min.js'],
-     		dest:'dest/fat-home-lib-min.js'
+     		src:['app/bower_components/jquery/jquery.min.js' ,'app/bower_components/bootstrap/dist/js/bootstrap.min.js',
+        'app/bower_components/bootstrap-select/bootstrap-select.min.js','app/bower_components/jquery-ui/jquery-ui.min.js',
+        'app/bower_components/angular/angular.min.js','app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+        'app/bower_components/angular-route/angular-route.min.js'],
+     		dest:'dest/lib/js/fat-home-lib-min.js'
 
      	},
 
        dist: {
-       	src:'dest/min/**/*.js',
-       	dest:'dest/min/fat-app-min.js'
+       	src:'dest//js/min/**/*.js',
+       	dest:'dest/js/min/fat-home-min.js'
 
        }
      },
