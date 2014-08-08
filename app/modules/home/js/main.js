@@ -49,6 +49,20 @@ angular.module('home', [])
 }])
 .service('FatHomeUtil',function() {
 
+	this.getAddsImages = function () {
+        return [
+			{imageUrl:"images/add1.jpg", action:""},
+			{imageUrl:"images/add2.jpg", action:""},
+			{imageUrl:"images/add3.jpg", action:""},
+			{imageUrl:"images/add4.jpg", action:""},
+			{imageUrl:"images/add5.jpg", action:""},
+			{imageUrl:"images/add6.jpg", action:""},
+			{imageUrl:"images/add7.jpg", action:""},
+			{imageUrl:"images/add8.jpg", action:""},
+			{imageUrl:"images/add9.jpg", action:""}
+		];
+    };
+
 	this.getLocationDetails = function (localities, localityName) {
         for (var i = 0; i <localities.length; i++) { 
 			if(localities[i].locality ===  localityName) {
@@ -64,7 +78,7 @@ angular.module('home', [])
 			{lable:"Price(low to high)", dataField:"price", reverseOrder:false},
 			{lable:"Price(high to low)", dataField:"price", reverseOrder:true},
 			{lable:"Sqft(low to high)", dataField:"size", reverseOrder:false},
-			{lable:"Sqft(high to low)", dataField:"size", reverseOrder:true},
+			{lable:"Sqft(high to low)", dataField:"size", reverseOrder:true}
 		];
     };
 	

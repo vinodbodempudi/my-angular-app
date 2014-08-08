@@ -18,7 +18,13 @@ angular.module('properties', [])
 	$scope.search = {};
 	$scope.slides  = [];
 	
-	$scope.addImages = ["images/a1_old.jpg", "images/a2.jpg", "images/a3.jpg"];
+	var addsImages = fatHomeUtil.getAddsImages();
+	
+	$scope.firstBlockAdds = addsImages.slice(0, 3);
+	$scope.secondBlockAdds = addsImages.slice(3, 6);
+	$scope.thirdBlockAdds = addsImages.slice(6, 9);
+	
+	
 	
 	$scope.$on('locationChangeSuccess', function (event, path) {
 		if(path && path.match('properties')) {

@@ -901,7 +901,8 @@ line-height: 2.3 !important;
 }
 
 .carousel-control {
-  color: #E68A00;
+  opacity:0.9;
+  background:tra
 }
 .carousel-inner img {
 	width:100%;
@@ -911,6 +912,32 @@ line-height: 2.3 !important;
   bottom:-50px;
 }
 
+.glyphicon-chevron-left:before {
+	content: "\e079";
+	position: relative;
+	top: 4px;
+	left: -2px;
+}
+
+.glyphicon-chevron-right:before {
+	content: "\e080";
+	position: relative;
+	top: 4px;
+	left: -2px;
+}
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right {
+	background-color: #fff;
+	border-radius: 15px;
+	opacity:0.9;
+	font-size:20px;
+	background-image:none;
+}
+
+.carousel-control.left, .carousel-control.right {
+	background-image:none;
+
+}
 
 .add .carousel-indicators {
   bottom:-10px;

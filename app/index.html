@@ -34,9 +34,18 @@
     <link href="http://fonts.googleapis.com/css?family=Puritan:400,400italic" rel="stylesheet" type="text/css">
     <!--<link rel="stylesheet" type="text/css" href="bower_components/css-toggle-switch/dist/toggle-switch.css" media="screen"/>-->
    
-    <link rel="stylesheet" type="text/css" href="custom.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="styles/custom.css" media="screen" />
 
-    
+    <!--[if lte IE 8]>
+        <script>
+		  window.location.href = "http://www.fathome.in/shared/html/browser.html"
+          document.createElement('carousel');
+          document.createElement('slide');
+          document.createElement('accordion-group');
+		  document.createElement('accordion-heading');
+  		  window.isIE8 = true;
+        </script>
+      <![endif]-->
         
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lte IE 9]>
@@ -49,16 +58,7 @@
 <!--[if lt IE 8]>
     <link href="lib/fontawesome/font-awesome-ie7.min.css" rel="stylesheet" media="screen">
     <![endif]-->
-	<!--[if lte IE 8]>
-        <script>
-		  window.location.href = "http://www.fathome.in/shared/html/browser.html"
-          document.createElement('carousel');
-          document.createElement('slide');
-          document.createElement('accordion-group');
-		  document.createElement('accordion-heading');
-  		  window.isIE8 = true;
-        </script>
-      <![endif]-->
+	
   </head>
   <body ng-controller="fatHomeController" class="main full-height" ng-cloak>
     <!--[if lt IE 7]>
@@ -83,8 +83,8 @@
             <li><a href="#/registerproperty/{{user.city}}/{{user.locality}}" style="background-color: #2aabd2;" class="btn btn-info btn-xm navbar-btn"><span>POST PROPERTY
            <!-- <i class="fa fa-caret-right"></i>-->
             </span></a></li>
-            <li><a href="#"><i class="fa fa-facebook-square fa-lg"></i></a></li>
-            <li ><a href="#" style="padding-left:0px;"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
+            <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+            <li ><a href="https://plus.google.com/" style="padding-left:0px;" target="_blank"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
           </ul>
         </div>
         <!--/.nav-collapse -->
@@ -235,9 +235,9 @@
 				    <label>Hyderabad, India</label>
 					<p>
 						<i class="fa fa-phone"></i> Phone : <label class="contact-label">+91 9999999999</label><br/> 
-			       </p>
+			       </p> 
 					<p>
-						<i class="fa fa-envelope"></i>E-mail : <label class="contact-label"><a href="mailto:contact@fathome.in">contact@fathome.in</a></label>
+						<i class="fa fa-envelope"></i>E-mail : <label class="contact-label"><a href="mailto:contact@fathome.in" style="color:black;">contact@fathome.in</a></label>
 					</p>
                 </div>
 				
@@ -254,7 +254,7 @@
 			       </p>
                     
                     <p>
-				<i class="fa fa-envelope"></i>E-mail : <label class="contact-label"><a href="mailto:contact@fathome.in">contact@fathome.in</a></label>
+				<i class="fa fa-envelope"></i>E-mail : <label class="contact-label"><a href="mailto:contact@fathome.in" style="color:black;">contact@fathome.in</a></label>
 			</p>
                     
                 </div>
@@ -358,12 +358,12 @@
   <script src="bower_components/angular-route/angular-route.min.js"></script>
 	-->
   <script src="lib/imageupload.js"></script>
-  <!--<script src="app.js"></script>	
+  <script src="app.js"></script>	
 	<script src="modules/registerproperty/js/main.js"></script>
 	<script src="modules/properties/js/main.js"></script>
 	<script src="modules/login/js/main.js"></script>
-	<script src="modules/home/js/main.js"></script>-->
-  <script src="fat-home-min.js"></script>
+	<script src="modules/home/js/main.js"></script>
+ <!-- <script src="fat-home-min.js"></script>-->
 	<script src="lib/nya-bootstrap-select.js"></script>
 </body>
 </html>
