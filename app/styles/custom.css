@@ -69,7 +69,7 @@ footer{ text-align:center; padding-bottom:0px;}
 .footer-icons a{color:#404040;}
 .footer-icons a:hover{ text-decoration:none}
 
-.add{ height:110px; background:#CCC}
+.add{ height:132px; background:#CCC}
 .addBlock{ 
 margin-top: 8px;
 margin-bottom: 8px;
@@ -116,7 +116,7 @@ max-width:98%}
 	height: auto;
 	width:100%;
 	bottom: 0;
-	top: 205px;
+	top: 227px;
 	min-height:300px;
 }
 
@@ -127,7 +127,7 @@ max-width:98%}
 .results .col-md-5{ padding-left:15px;}
 .detail .col-md-6{ padding-left:15px; padding-right:15px;}
 }
-.list{ border:1px solid #ccc; min-height:400px; /*box-shadow:-2px 0 2px #ccc; */padding:4px;}
+.list{ border:1px solid #ccc; min-height:380px; /*box-shadow:-2px 0 2px #ccc; */padding:4px;}
 .list .scroll{max-height:325px; overflow-y:auto;}
 .col-md-5 .list{ border-left:none;}
 .list .filter{ margin-bottom:4px;}

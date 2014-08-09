@@ -1,11 +1,11 @@
 <div class="addBlock">
-  <div class="row" style="margin-right: -13px;">
+  <div class="row" style="margin-right: -13px;height:132px;">
     <div class="col-sm-9">
       <div class="row">
         <div class="col-sm-4">
           <div class="add">
 			<div  class="not-select" ng-show="firstBlockAdds && firstBlockAdds.length > 0">
-				<carousel interval="2000">
+				<carousel interval="3000">
 				  <slide ng-repeat="add in firstBlockAdds" active="slide.active">
 					<img ng-src="{{add.imageUrl}}" style="margin:auto;width: 100%; max-height: 100%;height:132px;">
 				  </slide>
@@ -16,7 +16,7 @@
         <div class="col-sm-4">
           <div class="add">
 			<div  class="not-select" ng-show="secondBlockAdds && secondBlockAdds.length > 0">
-				<carousel interval="2000">
+				<carousel interval="3100">
 				  <slide ng-repeat="add in secondBlockAdds" active="slide.active">
 					<img ng-src="{{add.imageUrl}}" style="margin:auto;width: 100%; max-height: 100%;height:132px;">
 				  </slide>
@@ -27,7 +27,7 @@
 		<div class="col-sm-4">
           <div class="add">
 			<div  class="not-select" ng-show="thirdBlockAdds && thirdBlockAdds.length > 0">
-				<carousel interval="2000">
+				<carousel interval="3200">
 				  <slide ng-repeat="add in thirdBlockAdds" active="slide.active">
 					<img ng-src="{{add.imageUrl}}" style="margin:auto;width: 100%; max-height: 100%;height:132px;">
 				  </slide>
