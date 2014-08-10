@@ -257,7 +257,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '.',
-          src: ['app/app.js','app/modules/**/*.js'],
+          src: ['app/app.js','app/configuration.js','app/lib/imageupload.js','app/lib/nya-bootstrap-select.js','app/modules/**/*.js'],
           dest: 'dest/js'
         }]
       }
@@ -343,8 +343,7 @@ module.exports = function (grunt) {
     combine: {
       files: {
              'dest/lib/css/fat-home-lib-min.css': ['app/bower_components/bootstrap/dist/css/bootstrap.min.css', 'app/bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
-         'app/bower_components/bootstrap-select/bootstrap-select.min.css','app/bower_components/jquery-ui/themes/base/minified/jquery-ui.min.css',
-         'app/bower_components/fontawesome/css/font-awesome.min.css']
+         'app/bower_components/bootstrap-select/bootstrap-select.min.css','app/bower_components/jquery-ui/themes/base/minified/jquery-ui.min.css']
           }
         
       }
