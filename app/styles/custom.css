@@ -934,6 +934,10 @@ line-height: 2.3 !important;
 	background-image:none;
 }
 
+.add .carousel-control .glyphicon-chevron-left, .add .carousel-control .glyphicon-chevron-right {
+	opacity:0;
+}
+
 .carousel-control.left, .carousel-control.right {
 	background-image:none;
 
@@ -982,5 +986,5 @@ line-height: 2.3 !important;
 .full-height {
 	height:100%;
 }
-
+.property-form-invalid {color: #a94442;font-weight: bold;font-size: 13px;}
 

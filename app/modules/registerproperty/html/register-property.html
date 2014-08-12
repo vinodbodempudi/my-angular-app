@@ -430,6 +430,9 @@
 							</div>
                         </div>
                     </div>
+					<div class="text-right property-form-invalid" ng-show="form1.submitted && form1.$invalid">
+						Please enter all required fields
+                    </div>
                     <div class="text-right">
 						<label class="register-property-info-text">Share more details to get quality inquiries</label>
                         <button type="submit" class="btn btn-info" ng-click="form1.submitted=true;showForm2=form1.$valid;showForm1=!form1.$valid;window.scrollTo(0, 0);">Next</button>
@@ -522,8 +525,7 @@
                                 <label class="col-sm-2 control-label">Parking Covered</label>
                                 <div class="col-sm-10 coveredun">
                                     <div class="checkbox-inline">
-                                        <label>
-                                            <input type="checkbox" ng-model="property.specifications.parking.twoWheeler.covered">2 wheeler</label>
+                                        <label><input type="checkbox" ng-model="property.specifications.parking.twoWheeler.covered">2 wheeler</label>
                                     </div>
                                     <div class="radio-inline" ng-show="property.specifications.parking.twoWheeler.covered">
                                         <label>
@@ -919,7 +921,7 @@
                                 <div class="upload-img">
 									<div class="wrap-details" style="width:150px;display:inline-block;margin:5px;text-align:center;" ng-repeat="photo in propertyImages">
 										<label class="control-label"><input type="checkbox" ng-change="updateCoverPhotoIndex($index);" ng-checked="photo.coverPhoto" name="coverPhototOptions" ng-model="photo.coverPhoto" > Cover photo</label>	
-										<img src="{{photo.baseUrl+photo.data}}"  alt="..." class="img-thumbnail">
+										<img ng-src="{{photo.baseUrl+photo.data}}"  alt="..." class="img-thumbnail">
 										<a style="margin:5px;height=30px;" class="btn btn-danger" href="" ng-click="propertyImages.splice($index, 1);">
 											<i class="fa fa-trash-o fa-lg"></i>
 											Delete

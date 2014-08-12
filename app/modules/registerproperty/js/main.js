@@ -118,8 +118,6 @@ angular.module('registerProperty', [])
 				propertyImages: $scope.propertyImages
 			}
 		}
-   
-	   console.log(angular.toJson(request));
 	   $rootScope.$broadcast('SHOW_PROGRESS_BAR');
        registerPropertyService.registerProperty(angular.toJson(request))
        	    .success(function(data){
@@ -149,6 +147,20 @@ angular.module('registerProperty', [])
 		}
 	
 		property.details.title = fatHomeUtil.convertToCamelCase(property.details.title);
+		
+		
+		if(property.details.availability === "Ready to Move" && property.details.date) {
+			delete property.details.date;
+		}
+
+		if(property.specifications.parking.fourWheeler && !property.specifications.parking.fourWheeler.covered) {
+			delete property.specifications.parking.fourWheeler;
+		}
+		
+		if(property.specifications.parking.twoWheeler && !property.specifications.parking.twoWheeler.covered) {
+			delete property.specifications.parking.twoWheeler;
+		}
+
 		return property;
 	}
 	
@@ -163,8 +175,6 @@ angular.module('registerProperty', [])
 			$scope.form2.floorNumber.$error.invalidFloorNumber = true;
 			form2.totalFloors.$valid = false;
 		}
-		
-		
 	}
 	
 	
@@ -276,6 +286,16 @@ angular.module('registerProperty', [])
 					info.setContent('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
 					scope.property.location.lat= e.latLng.lat();
 					scope.property.location.lng= e.latLng.lng();
+					
+					google.maps.event.removeListener(zoomChangeListener);
+				});
+				
+				var zoomChangeListener = google.maps.event.addListener(map, 'zoom_changed', function() {
+					if(map.getZoom() < 15) {
+						return;
+					}
+					
+					marker.setPosition(map.getCenter());
 				});
 			}
 

@@ -112,7 +112,7 @@
 						<div class="left">
 							<label class="">plot/land Area</label>
 						</div>
-						<div class="right">
+						<div class="right" ng-show="plotOrLand.plotOrLandArea">
 							<label class="">{{plotOrLand.plotOrLandArea}} {{plotOrLand.plotOrLandUnits}}</label>
 							<select ng-show="property.details.area.plotOrLand" style="width: 106px;" ng-change="plotOrLand.plotOrLandArea=covert(plotOrLand.plotOrLandUnits, property.details.area.plotOrLand.plotOrLandInSqft)" class="form-control input-sm" ng-model="plotOrLand.plotOrLandUnits">
 								<option ng-repeat="unit in unitOptions" value="{{unit.label}}">{{unit.label}}</option>
@@ -426,15 +426,15 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.specifications.parking.twoWheeler">
+					<div class="schedule_row">
 						<div class="left">
 							<label class="">Parking</label>
 						</div>
 						<div class="right">
 							<label ng-show="!property.specifications.parking.twoWheeler"></label>
-							<label ng-show="property.specifications.parking.twoWheeler">2 wheeler</label><br>
-							<span ng-show="property.specifications.parking.twoWheeler.type"><label>{{property.specifications.parking.twoWheeler.type}}</label></span>
-							<span style="padding-left:15px;" ng-show="property.specifications.parking.twoWheeler.common"><label>common</label></span>
+							<label ng-show="property.specifications.parking.twoWheeler && property.specifications.parking.twoWheeler.covered">2 wheeler</label><br>
+							<span ng-show="property.specifications.parking.twoWheeler && property.specifications.parking.twoWheeler.covered && property.specifications.parking.twoWheeler.type"><label>{{property.specifications.parking.twoWheeler.type}}</label></span>
+							<span style="padding-left:15px;" ng-show="property.specifications.parking.twoWheeler && property.specifications.parking.twoWheeler.covered && property.specifications.parking.twoWheeler.common"><label>common</label></span>
 						</div>
 						<div class="speaker_image dot">
 							<img src="images/dot.png" alt="">
@@ -447,9 +447,9 @@
 						</div>
 						<div class="right">
 							<label ng-show="!property.specifications.parking.fourWheeler && !property.specifications.parking.fourWheelerVisitors"></label>
-							<label ng-show="property.specifications.parking.fourWheeler">4 wheeler</label><br>
-							<span ng-show="property.specifications.parking.fourWheeler.type"><label>{{property.specifications.parking.fourWheeler.type}}</label></span>
-							<span style="padding-left:15px;" ng-show="property.specifications.parking.fourWheeler.common"><label>common</label></span>
+							<label ng-show="property.specifications.parking.fourWheeler && property.specifications.parking.fourWheeler.covered">4 wheeler</label><br>
+							<span ng-show="property.specifications.parking.fourWheeler && property.specifications.parking.fourWheeler.covered && property.specifications.parking.fourWheeler.type"><label>{{property.specifications.parking.fourWheeler.type}}</label></span>
+							<span style="padding-left:15px;" ng-show="property.specifications.parking.fourWheeler && property.specifications.parking.fourWheeler.covered && property.specifications.parking.fourWheeler.common"><label>common</label></span>
 							<div ng-show="property.specifications.parking.fourWheelerVisitors"><label>4 Wheeler Visiting</label></div>
 						</div>
 						<div class="speaker_image dot">

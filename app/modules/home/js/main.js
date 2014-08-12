@@ -163,19 +163,19 @@ angular.module('home', [])
 	
 	this.flooringDropDownValues = function () {
         return [
+			"Cement",
+			"Ceramic",
+			"Granite",
+			"IPSFinish",
 			"Marble",
+			"Marbonite",
+			"Mosaic Tiles",
 			"Normal Tiles",
+			"Spartex Tiles",
+			"Stone",
+			"Vinyl",
 			"Vitrified Tiles",
 			"Wooden",
-			"Ceramic",
-			"Mosaic Tiles",
-			"Granite",
-			"Spartex Tiles",
-			"Marbonite",
-			"Stone",
-			"IPSFinish",
-			"Cement",
-			"Vinyl",
 			"Other"
 		];
     };

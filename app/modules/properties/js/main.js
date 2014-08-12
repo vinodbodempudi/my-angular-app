@@ -193,7 +193,7 @@ angular.module('properties', [])
 			$scope.builtUp.builtUpUnits = property.details.area.builtUp.units;
 		}
 		
-		if(property.details.area.plotOrLand) {
+		if(property.details.area.plotOrLand && property.details.area.plotOrLand.plotOrLand) {
 			$scope.plotOrLand.plotOrLandArea = property.details.area.plotOrLand.plotOrLand;
 			$scope.plotOrLand.plotOrLandUnits = property.details.area.plotOrLand.units;
 		}
