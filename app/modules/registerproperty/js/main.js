@@ -23,6 +23,7 @@ angular.module('registerProperty', [])
 	$scope.propertySubTypeMapper = fatHomeUtil.propertySubTypeMapper();
 	
 	$scope.disableSubmitbtn = false;
+	$scope.propertyImages = [];
 	
 	$scope.city = $scope.newCity = $routeParams.city;
 	$scope.locality = $scope.newLocality = $routeParams.locality;
@@ -153,11 +154,17 @@ angular.module('registerProperty', [])
 			delete property.details.date;
 		}
 
-		if(property.specifications.parking.fourWheeler && !property.specifications.parking.fourWheeler.covered) {
+		if(property.specifications
+			&& property.specifications.parking
+			&& property.specifications.parking.fourWheeler 
+			&& !property.specifications.parking.fourWheeler.covered) {
 			delete property.specifications.parking.fourWheeler;
 		}
 		
-		if(property.specifications.parking.twoWheeler && !property.specifications.parking.twoWheeler.covered) {
+		if(property.specifications
+			&& property.specifications.parking
+			&& property.specifications.parking.twoWheeler 
+			&& !property.specifications.parking.twoWheeler.covered) {
 			delete property.specifications.parking.twoWheeler;
 		}
 

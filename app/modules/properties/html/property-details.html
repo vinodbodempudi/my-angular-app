@@ -112,9 +112,10 @@
 						<div class="left">
 							<label class="">plot/land Area</label>
 						</div>
-						<div class="right" ng-show="plotOrLand.plotOrLandArea">
+						<div class="right">
+							<label ng-show="!plotOrLand.plotOrLandArea"></label>
 							<label class="">{{plotOrLand.plotOrLandArea}} {{plotOrLand.plotOrLandUnits}}</label>
-							<select ng-show="property.details.area.plotOrLand" style="width: 106px;" ng-change="plotOrLand.plotOrLandArea=covert(plotOrLand.plotOrLandUnits, property.details.area.plotOrLand.plotOrLandInSqft)" class="form-control input-sm" ng-model="plotOrLand.plotOrLandUnits">
+							<select ng-show="plotOrLand.plotOrLandArea" style="width: 106px;" ng-change="plotOrLand.plotOrLandArea=covert(plotOrLand.plotOrLandUnits, property.details.area.plotOrLand.plotOrLandInSqft)" class="form-control input-sm" ng-model="plotOrLand.plotOrLandUnits">
 								<option ng-repeat="unit in unitOptions" value="{{unit.label}}">{{unit.label}}</option>
 							</select>
 						</div>
@@ -441,7 +442,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.specifications.parking.fourWheeler || property.specifications.parking.fourWheelerVisitors">
+					<div class="schedule_row" ng-show="property.specifications.parking.fourWheeler.covered || property.specifications.parking.fourWheelerVisitors">
 						<div class="left">
 							<label class="">Parking</label>
 						</div>
