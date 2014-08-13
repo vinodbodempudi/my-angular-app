@@ -430,12 +430,9 @@
 							</div>
                         </div>
                     </div>
-					<div class="text-right property-form-invalid" ng-show="form1.submitted && form1.$invalid">
-						Please enter all required fields
-                    </div>
                     <div class="text-right">
 						<label class="register-property-info-text">Share more details to get quality inquiries</label>
-                        <button type="submit" class="btn btn-info" ng-click="form1.submitted=true;showForm2=form1.$valid;showForm1=!form1.$valid;window.scrollTo(0, 0);">Next</button>
+                        <button type="submit" class="btn btn-info" ng-click="validateFirstForm();">Next</button>
                     </div>
                 </div>
             </form>

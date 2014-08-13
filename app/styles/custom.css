@@ -694,14 +694,14 @@ position: relative;
 /*Contact page start*/
 .iconDetails {
  margin-right:2%;
-
-float:left; 
 height:40px;
 width:40px;	
-clear:right;
+
 } 
 
+.flag {text-align: center;}
 .flag label{padding-top:3%; font-size:15px;}
+
 
 /*Contact page end*/
 

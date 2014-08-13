@@ -78,6 +78,15 @@ angular.module('registerProperty', [])
 		});
 	}
 	
+	$scope.validateFirstForm = function() {
+		$scope.form1.submitted=true;
+		$scope.showForm2=$scope.form1.$valid;
+		$scope.showForm1=!$scope.form1.$valid;
+		if(!$scope.form1.$valid) {
+			alert('Please enter all required fields');
+		}
+	}
+
 	$scope.$watch("propertyImages",
 		function(newValue, oldValue) {
 		
@@ -294,10 +303,11 @@ angular.module('registerProperty', [])
 					scope.property.location.lat= e.latLng.lat();
 					scope.property.location.lng= e.latLng.lng();
 					
-					google.maps.event.removeListener(zoomChangeListener);
+					google.maps.event.removeListener(centerChangeListener);
 				});
 				
-				var zoomChangeListener = google.maps.event.addListener(map, 'zoom_changed', function() {
+				
+				var centerChangeListener = google.maps.event.addListener(map, 'center_changed', function() {
 					if(map.getZoom() < 15) {
 						return;
 					}
@@ -318,63 +328,3 @@ angular.module('registerProperty', [])
 		}
 	};
 });
-/*
-.directive('imageReader',function(){
-
-	var fileToDataURL = function (file) {
-		var deferred = $q.defer();
-		var reader = new FileReader();
-		reader.onload = function (e) {
-			deferred.resolve(e.target.result);
-		};
-		reader.readAsDataURL(file);
-		return deferred.promise;
-	};
-
-	return {
-		restrict : 'A',
-		link : function(scope, el, attrs, cntr){
-			el.on('change', function (evt) {
-			
-				var imageResult = {
-					file: files[0],
-					url: URL.createObjectURL(files[0])
-				};
-
-				fileToDataURL(files[0]).then(function (dataURL) {
-					imageResult.dataURL = dataURL;
-				});
-			
-				var f = this.value;
-				if(this.files){
-					rf(this.files[0], this.name,this);
-				}else{
-					var c = ierf(f);
-					set(this.name, c, f);
-				}
-			};			
-			function rf(f,n,e){
-				var reader = new FileReader();
-				reader.onload = readSuccess;
-				function readSuccess(evt){
-					set(n, evt.target.result, e.value);
-				};
-				reader.readAsText(f);
-			}
-			function ierf(f){
-				try{
-					var a  = new ActiveXObject("Scripting.FileSystemObject"), o = a.OpenTextFile(f, 1), c = o.ReadAll(); 
-					o.Close();
-					return c;
-				}catch(e){
-					return "";
-				}
-			}
-			function set(n, c, f){
-				scope[n] = c;
-				scope[n+"Label"] = f;
-				scope.$apply();
-			}					
-		}	
-	}
-});*/
