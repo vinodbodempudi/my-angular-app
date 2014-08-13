@@ -144,10 +144,6 @@ angular.module('properties', [])
 				setPropertyImages();
 			}
 			
-			if($scope.properties.length == 0) {
-				$scope.getProperties($scope.city, $scope.locality);
-			}
-			
 		}).error(function(e){
 			$scope.isGetPropertyDetailsServiceInProgress = false;
 		});
