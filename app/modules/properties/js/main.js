@@ -129,8 +129,7 @@ angular.module('properties', [])
 		if($scope.isGetPropertyDetailsServiceInProgress) {
 			return;
 		}
-		
-	
+
 		$scope.isGetPropertyDetailsServiceInProgress = true;
 		propertiesService.getPropertyDetails(propertyId)
 		.success(function(data){
@@ -144,6 +143,11 @@ angular.module('properties', [])
 			if($scope.propertyDetails.showPhotosTab) {
 				setPropertyImages();
 			}
+			
+			if($scope.properties.length == 0) {
+				$scope.getProperties($scope.city, $scope.locality);
+			}
+			
 		}).error(function(e){
 			$scope.isGetPropertyDetailsServiceInProgress = false;
 		});
@@ -185,9 +189,7 @@ angular.module('properties', [])
 	}
 	
 	var showAreaDropDowns = function(property) {
-		$scope.builtUp={};
-		$scope.plotOrLand={};
-		$scope.carpet={};
+		resetAreaDropDowns();
 		if(property.details.area.builtUp) {
 			$scope.builtUp.builtUpArea = property.details.area.builtUp.builtUp;
 			$scope.builtUp.builtUpUnits = property.details.area.builtUp.units;
@@ -202,8 +204,12 @@ angular.module('properties', [])
 			$scope.carpet.carpetArea = property.details.area.carpet.carpet;
 			$scope.carpet.carpetUnits = property.details.area.carpet.units;
 		}
+	}
 	
-	
+	var resetAreaDropDowns = function() {
+		$scope.builtUp={};
+		$scope.plotOrLand={};
+		$scope.carpet={};
 	}
 	
 	$scope.covert = function(units, value) {
@@ -219,6 +225,7 @@ angular.module('properties', [])
 
 		$location.path('/properties/' + $scope.city + '/' + $scope.locality, false);
 		$scope.property = null;
+		resetAreaDropDowns();
 		if($scope.properties && $scope.properties.length > 0) {
 			$scope.showPage = 'propertyResults';
 			return;
@@ -234,7 +241,15 @@ angular.module('properties', [])
         var propertyId = $routeParams.propertyId;
 	
 		if(propertyId) {
-			$scope.getPropertyDetails(propertyId);
+			propertiesService.getProperties($scope.city, $scope.locality)
+				.success(function(data){
+					$scope.showPage = 'propertyDetails';
+					$scope.properties = data;
+					$scope.getPropertyDetails(propertyId);
+				}).error(function(e){
+					
+				});
+			
 			return;
 		}
 		$scope.getProperties($scope.city, $scope.locality);
@@ -418,8 +433,7 @@ angular.module('properties', [])
 			content: "Title : "+property.details.title+"<br>"
 					+"Bedrooms : "+property.details.bedRooms+"<br>"
 					+"Area : "+property.details.area.builtUp.builtUp+" "+property.details.area.builtUp.units+"<br>"
-					+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(getPropertyPrice(property))+"</label>",
-			maxWidth:250 
+					+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(getPropertyPrice(property))+"</label>"
 		  });
 		  
 		  

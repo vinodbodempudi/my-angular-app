@@ -699,7 +699,7 @@ width:40px;
 
 } 
 
-.flag {text-align: center;}
+.flag {text-align: center;margin:10px;clear:both;}
 .flag label{padding-top:3%; font-size:15px;}
 
 
