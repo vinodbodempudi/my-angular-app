@@ -142,6 +142,7 @@
 							<label class="">Age of property</label>
 						</div>
 						<div class="right">
+							<label ng-show="!property.details.ageOfProperty.years && !property.details.ageOfProperty.months"></label>
 							<label ng-show="property.details.ageOfProperty.years">{{property.details.ageOfProperty.years}} years</label>
 							<label ng-show="property.details.ageOfProperty.months">{{property.details.ageOfProperty.months}} months</label>
 						</div>

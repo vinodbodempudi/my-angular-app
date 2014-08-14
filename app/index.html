@@ -406,6 +406,24 @@
 </div>
 <!-- /.modal -->
 
+<div class="modal" modal-visible="feedbackSubmitSuccess" ng-init="feedbackSubmitSuccess=false;" modal-show data-backdrop="false" id="registerPropertySuccessModal" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+		<div class="text-center" style="padding: 20px;">
+			<img ng-src="images/success_32.gif"/> 
+			<span class="feedbackSubmitSuccessLabel">Feedback submitted successfully.</span>
+		</div>
+		<div class="text-center">
+			<a href="" ng-click="feedbackSubmitSuccess=!feedbackSubmitSuccess"><button class="btn btn-info">Close</button></a>
+		</div>
+	  </div>
+     </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
   <script src="fat-home-lib-min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
   <!-- 

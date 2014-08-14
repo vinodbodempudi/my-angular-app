@@ -235,6 +235,7 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Login
 			fatHomeUtilService.sendFeedback(feedback)
 			.success(function(data){
 				$scope.showFeedbackmodal = false;
+				$scope.feedbackSubmitSuccess = true;
 				$scope.feedback = {};
 				$scope.feedbackform.submitted = false;
 			}).error(function(e){

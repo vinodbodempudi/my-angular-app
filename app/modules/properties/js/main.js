@@ -239,6 +239,7 @@ angular.module('properties', [])
 		if(propertyId) {
 			propertiesService.getProperties($scope.city, $scope.locality)
 				.success(function(data){
+					$scope.predicate = $scope.sortOptions[0];
 					$scope.showPage = 'propertyDetails';
 					$scope.properties = data;
 					$scope.getPropertyDetails(propertyId);
@@ -495,6 +496,27 @@ angular.module('properties', [])
 			
 			marker.setIcon('../images/green-marker.png');
 			previousMarker = marker;
+			
+
+			//map.panTo(marker.getPosition());
+			/* var scale = Math.pow(2, map.getZoom());
+			var proj = map.getProjection();
+			var bounds = map.getBounds();
+
+
+			 var nw = proj.fromLatLngToPoint(
+			  new google.maps.LatLng(
+				bounds.getNorthEast().lat(),
+				bounds.getSouthWest().lng()
+			  ));
+
+			var point = proj.fromLatLngToPoint(marker.getPosition());
+
+			var nw1 = new google.maps.Point(
+			  Math.floor((point.x - nw.x) * scale),
+			  Math.floor((point.y - nw.y) * scale));
+			 map.panBy(nw1.x, nw1.y);*/
+			  
 		}
 		
 	};

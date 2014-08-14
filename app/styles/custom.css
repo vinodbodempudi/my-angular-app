@@ -107,6 +107,9 @@ max-width:98%}
         color:#fff; }
 
 .map{border:1px solid #ccc;}
+.map div {
+ line-height: normal ! important;
+}
 .mapContent{box-shadow:0px 0 10px rgba(0,0,0,0.6) inset; position:relative;}
 .hidemap{ position:absolute; left:15px; top:0px; z-index:1}
 .hidemap .btn-info{border-radius:0px 0px 4px 0px}
@@ -127,7 +130,7 @@ max-width:98%}
 .results .col-md-5{ padding-left:15px;}
 .detail .col-md-6{ padding-left:15px; padding-right:15px;}
 }
-.list{ border:1px solid #ccc; min-height:380px; /*box-shadow:-2px 0 2px #ccc; */padding:4px;}
+.list{ border:1px solid #ccc; min-height:350px; /*box-shadow:-2px 0 2px #ccc; */padding:4px;}
 .list .scroll{max-height:325px; overflow-y:auto;}
 .col-md-5 .list{ border-left:none;}
 .list .filter{ margin-bottom:4px;}
@@ -189,7 +192,16 @@ max-width:98%}
 .list-view .thirdRow{margin-top:7px;}
 .list-view .content .btn-group{ margin-top:6px; visibility:hidden}
 .list-view:hover .content .btn-group{ visibility:visible}
-.lists-view{ overflow:hidden; overflow-y:auto; min-height:258px;position: relative;top: -36px;}
+.lists-view {
+    min-height: 258px;
+    overflow-x: hidden;
+    bottom: 0;
+    clear: both;
+    height: 100%;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+}
 .details-view{ overflow:hidden; overflow-y:auto; min-height:222px;position: relative;}
 #signin,#account,#contact,#feedback,#changeLocality,#registerPropertySuccessModal{ z-index:99999;}
 #signin .modal-dialog,#account .modal-dialog{ width:500px;}
@@ -665,7 +677,7 @@ input.from{text-align:left !important;}
 .register-success-modal{ margin-top:100px; width: 438px; height: auto;}
 
 
-.resgisterPropertySuccessLabel {
+.resgisterPropertySuccessLabel, .feedbackSubmitSuccessLabel {
 color: #468847;
 padding: 15px;
 font-size: 16px;
