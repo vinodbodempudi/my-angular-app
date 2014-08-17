@@ -528,10 +528,10 @@
 				<accordion-heading>
 					Photos <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showPhotosTab, 'glyphicon-chevron-right': !propertyDetails.showPhotosTab}"></i>
 				</accordion-heading>
-			  <div  class="not-select" style="height: 210px" ng-show="property.urls.propertyUrls && property.urls.propertyUrls.length > 0">
+			  <div  class="not-select" style="height: 210px" ng-show="slides && slides.length > 0">
 				<carousel>
 				  <slide ng-repeat="propertyUrl in slides track by $index">
-					<img ng-src="{{propertyUrl.url}}" style="margin:auto;width: auto; height: 200px; max-height: 200px;">
+					<div property-image url="propertyUrl"></div>
 				  </slide>
 				</carousel>
 			  </div>

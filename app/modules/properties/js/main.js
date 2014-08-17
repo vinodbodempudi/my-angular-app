@@ -131,6 +131,7 @@ angular.module('properties', [])
 		}
 
 		$scope.isGetPropertyDetailsServiceInProgress = true;
+		$scope.slides = [{"url":"images/ajax-loader.GIF"}];
 		propertiesService.getPropertyDetails(propertyId)
 		.success(function(data){
 			$scope.isGetPropertyDetailsServiceInProgress = false;
@@ -403,6 +404,21 @@ angular.module('properties', [])
 		}
 	};
 })
+.directive('propertyImage', function() {
+	return {
+		restrict: 'EA',
+		scope:{
+			url:"="
+		},
+		template:"<img style='width: 128px; height: 128px;' ng-src='images/ajax-loader.GIF'><img ng-show='url.url' ng-src='{{url.url}}' style='margin:auto;width: auto; height: 200px; max-height: 200px;'>",
+		link:function(scope, el) {
+			var propertyImage = angular.element(el.children()[1]), imageLoader = angular.element(el.children()[0]);;
+			propertyImage.load(function() {
+				imageLoader.hide();
+			});
+		}
+	};
+})
 .directive('map', ['FatHomeUtil', function(fatHomeUtil) {
 
 	function PropertiesMap(map) {
@@ -427,10 +443,12 @@ angular.module('properties', [])
 			}
 		  
 		  var chInfoWindow = new google.maps.InfoWindow({
-			content: "Title : "+property.details.title+"<br>"
-					+"Bedrooms : "+property.details.bedRooms+"<br>"
-					+"Area : "+property.details.area.builtUp.builtUp+" "+property.details.area.builtUp.units+"<br>"
-					+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(getPropertyPrice(property))+"</label>"
+			content: "<div class='scroll-fix'>"
+						+"Title : "+property.details.title+"<br>"
+						+"Bedrooms : "+property.details.bedRooms+"<br>"
+						+"Area : "+property.details.area.builtUp.builtUp+" "+property.details.area.builtUp.units+"<br>"
+						+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(getPropertyPrice(property))+"</label>"
+					+"</div>"
 		  });
 		  
 		  

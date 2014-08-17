@@ -705,13 +705,13 @@ position: relative;
 
 /*Contact page start*/
 .iconDetails {
- margin-right:2%;
+ margin-right: 6%;
 height:40px;
 width:40px;	
 
 } 
 
-.flag {text-align: center;margin:10px;clear:both;}
+.flag {text-align: center;margin:15px;clear:both;}
 .flag label{padding-top:3%; font-size:15px;}
 
 
@@ -1000,3 +1000,9 @@ line-height: 2.3 !important;
 }
 .property-form-invalid {color: #a94442;font-weight: bold;font-size: 13px;}
 
+.scroll-fix  {
+    line-height: 1.35;
+	height:75px;
+    overflow: hidden  !important;
+    white-space: nowrap;
+}
