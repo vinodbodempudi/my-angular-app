@@ -131,7 +131,7 @@ angular.module('properties', [])
 		}
 
 		$scope.isGetPropertyDetailsServiceInProgress = true;
-		$scope.slides = [{"url":"images/ajax-loader.GIF"}];
+		$scope.slides = [{"loading":"images/ajax-loader-small.GIF"}];
 		propertiesService.getPropertyDetails(propertyId)
 		.success(function(data){
 			$scope.isGetPropertyDetailsServiceInProgress = false;
@@ -410,7 +410,7 @@ angular.module('properties', [])
 		scope:{
 			url:"="
 		},
-		template:"<img style='width: 128px; height: 128px;' ng-src='images/ajax-loader.GIF'><img ng-show='url.url' ng-src='{{url.url}}' style='margin:auto;width: auto; height: 200px; max-height: 200px;'>",
+		template:"<div style='margin: 0px auto; height: 200px;top: 68px; position: relative;'><img style='width:64px;height:64px;' ng-src='images/ajax-loader-small.GIF'></div><img ng-show='url.url' ng-src='{{url.url}}' style='margin:auto;width: auto; height: 200px; max-height: 200px;'>",
 		link:function(scope, el) {
 			var propertyImage = angular.element(el.children()[1]), imageLoader = angular.element(el.children()[0]);;
 			propertyImage.load(function() {
