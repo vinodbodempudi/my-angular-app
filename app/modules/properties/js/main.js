@@ -3,7 +3,7 @@
 angular.module('properties', [])
 
 .controller('PropertiesCtrl',['$scope', '$routeParams', 'PropertiesService', 'FatHomeUtil', 'LocationService', '$location', '$rootScope', 
-	function($scope, $routeParams, propertiesService, fatHomeUtil, locationService, $location, $rootScope) {
+	'$timeout', function($scope, $routeParams, propertiesService, fatHomeUtil, locationService, $location, $rootScope, $timeout) {
 	
     $scope.user.city = $scope.city = $scope.newCity = $routeParams.city;
 	$scope.user.locality = $scope.locality = $scope.newLocality = $routeParams.locality;
@@ -54,8 +54,8 @@ angular.module('properties', [])
 		}, true
 	);
 	
-	$scope.$watch("propertyDetails",
-		function(newValue, oldValue) {
+	$scope.$watch("propertyDetails.showPhotosTab",
+		function(newValue) {
 			if(newValue) {
 				setPropertyImages();
 			}
@@ -131,7 +131,7 @@ angular.module('properties', [])
 		}
 
 		$scope.isGetPropertyDetailsServiceInProgress = true;
-		$scope.slides = [{"loading":"images/ajax-loader-small.GIF"}];
+		$scope.slides = [{"url":"images/ajax-loader-small.GIF"}];
 		propertiesService.getPropertyDetails(propertyId)
 		.success(function(data){
 			$scope.isGetPropertyDetailsServiceInProgress = false;
@@ -170,19 +170,23 @@ angular.module('properties', [])
 	}
 	
 	var setPropertyImages = function() {
-		if($scope.property.urls 
-			&& $scope.property.urls.propertyUrls 
-			&& $scope.property.urls.propertyUrls.length > 0
-			&& $scope.slides !== $scope.property.urls.propertyUrls) {
+	
+		$timeout(function() {
+			if($scope.property.urls 
+				&& $scope.property.urls.propertyUrls 
+				&& $scope.property.urls.propertyUrls.length > 0
+				&& $scope.slides !== $scope.property.urls.propertyUrls) {
+					$scope.slides = [];
+					angular.forEach($scope.property.urls.propertyUrls, function(propertyUrl) {
+						if(propertyUrl) {
+							$scope.slides.push(propertyUrl);
+						}
+					});
+			} else {
 				$scope.slides = [];
-				angular.forEach($scope.property.urls.propertyUrls, function(propertyUrl, key) {
-					if(propertyUrl) {
-						$scope.slides.push(propertyUrl);
-					}
-				});
-		} else {
-			$scope.slides = [];
-		}
+			}
+		}, 0);
+
 	}
 	
 	var showAreaDropDowns = function(property) {
@@ -410,11 +414,20 @@ angular.module('properties', [])
 		scope:{
 			url:"="
 		},
-		template:"<div style='margin: 0px auto; height: 200px;top: 68px; position: relative;'><img style='width:64px;height:64px;' ng-src='images/ajax-loader-small.GIF'></div><img ng-show='url.url' ng-src='{{url.url}}' style='margin:auto;width: auto; height: 200px; max-height: 200px;'>",
+		template:"<div style='margin: 0px auto; height: 200px;top: 68px; position: relative;'><img style='width:64px;height:64px;' src='images/ajax-loader-small.GIF'></div><img ng-src='{{url.url}}' style='margin:auto;width: auto; height: 200px; max-height: 200px;'>",
 		link:function(scope, el) {
 			var propertyImage = angular.element(el.children()[1]), imageLoader = angular.element(el.children()[0]);;
-			propertyImage.load(function() {
-				imageLoader.hide();
+			
+			if(scope.url.url.indexOf('images/ajax-loader-small.GIF') !=-1) {
+				propertyImage.hide();
+			}
+			
+			propertyImage.one("load", function() {
+			  if(scope.url.url.indexOf('images/ajax-loader-small.GIF') ==-1) {
+					imageLoader.hide();
+				}
+			}).each(function() {
+			  if(this.complete) $(this).load();
 			});
 		}
 	};
