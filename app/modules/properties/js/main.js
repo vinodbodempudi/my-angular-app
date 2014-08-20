@@ -416,15 +416,20 @@ angular.module('properties', [])
 		},
 		template:"<div style='margin: 0px auto; height: 200px;top: 68px; position: relative;'><img style='width:64px;height:64px;' src='images/ajax-loader-small.GIF'></div><img ng-src='{{url.url}}' style='margin:auto;width: auto; height: 200px; max-height: 200px;'>",
 		link:function(scope, el) {
-			var propertyImage = angular.element(el.children()[1]), imageLoader = angular.element(el.children()[0]);;
-			
+			var propertyImage = angular.element(el.children()[1]), imageLoader = angular.element(el.children()[0]);
+					
 			if(scope.url.url.indexOf('images/ajax-loader-small.GIF') !=-1) {
 				propertyImage.hide();
+				imageLoader.show();
 			}
 			
-			propertyImage.one("load", function() {
-			  if(scope.url.url.indexOf('images/ajax-loader-small.GIF') ==-1) {
+			propertyImage.load(function() {
+				if(scope.url.url.indexOf('images/ajax-loader-small.GIF') == -1) {
 					imageLoader.hide();
+					propertyImage.show();
+				} else {
+					propertyImage.hide();
+					imageLoader.show();
 				}
 			}).each(function() {
 			  if(this.complete) $(this).load();
