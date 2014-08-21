@@ -183,9 +183,9 @@ angular.module('properties', [])
 						}
 					});
 			} else {
-				$scope.slides = [];
+				$scope.slides = [{}];
 			}
-		}, 5);
+		}, 0);
 
 	}
 	
@@ -414,17 +414,17 @@ angular.module('properties', [])
 		scope:{
 			url:"="
 		},
-		template:"<div style='margin: 0px auto; height: 200px;top: 68px; position: relative;'><img style='width:64px;height:64px;' src='images/ajax-loader-small.GIF'></div><img ng-src='{{url.url}}' style='margin:auto;width: auto; height: 200px; max-height: 200px;'>",
+		template:"<div style='margin: 0px auto; height: 200px;top: 68px; position: relative;'><img style='width:64px;height:64px;' src='images/ajax-loader-small.GIF' ng-show='url.url'></div><img ng-src='{{url.url}}' ng-show='url.url' style='margin:auto;width: auto; height: 200px; max-height: 200px;'>",
 		link:function(scope, el) {
 			var propertyImage = angular.element(el.children()[1]), imageLoader = angular.element(el.children()[0]);
-					
-			if(scope.url.url.indexOf('images/ajax-loader-small.GIF') !=-1) {
+			
+			if(scope.url.url && scope.url.url.indexOf('images/ajax-loader-small.GIF') !=-1) {
 				propertyImage.hide();
 				imageLoader.show();
 			}
 			
 			propertyImage.load(function() {
-				if(scope.url.url.indexOf('images/ajax-loader-small.GIF') == -1) {
+				if(scope.url.url && scope.url.url.indexOf('images/ajax-loader-small.GIF') == -1) {
 					imageLoader.hide();
 					propertyImage.show();
 				} else {
