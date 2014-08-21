@@ -257,7 +257,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '.',
-          src: ['app/app.js','app/configuration.js','app/lib/imageupload.js','app/lib/nya-bootstrap-select.js','app/modules/**/*.js'],
+          src: ['app/lib/google-map.js','app/app.js','app/configuration.js','app/lib/imageupload.js','app/lib/nya-bootstrap-select.js','app/modules/**/*.js'],
           dest: 'dest/js'
         }]
       }
@@ -372,10 +372,43 @@ module.exports = function (grunt) {
 
        dist: {
        	src:'dest//js/min/**/*.js',
-       	dest:'dest/js/min/fat-home-min.js'
+       	dest:'dest/js/min/concat/fat-home-min.js'
 
        }
      },
+
+     compress: {
+  main: {
+    options: {
+      mode: 'gzip'
+    },
+    expand: true,
+    cwd: 'dest/js/min/concat',
+    src: ['**/*'],
+    dest: 'dest/zip'
+  }
+},
+
+
+// make a zipfile
+compressnew: {
+  main: {
+    options: {
+      archive: 'archive.zip'
+    },
+    files: [
+      {flatten: true,src: ['dest/js/min/concat/*'], dest: 'dest/zip/', filter: 'isFile'} // includes files in path
+      
+    ]
+  }
+},
+
+
+
+
+
+
+
 
     // Test settings
     karma: {
