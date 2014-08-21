@@ -12,7 +12,7 @@ button::-moz-focus-inner{border: 0;}
 .nav li div a{ color:#fff;}
 .nav li div a:hover,.nav li div a:active,.nav li div a:visited{ text-decoration:none}
 .home-modal{ display:block; position:absolute; overflow:initial}
-.home-modal .modal-dialog{ margin-top:55px; width: 438px; height: auto;}
+.home-modal .modal-dialog{ margin-top:10%; width: 438px; height: auto;}
 .modal-content{ 
  -webkit-border-radius: 10px; 
  -moz-border-radius: 10px; 
@@ -41,7 +41,7 @@ img {
   -ms-interpolation-mode: bicubic;
 }
 #homepage {
- background-image:url(../images/a1.jpg);
+ /*background-image:url(../images/a1.jpg);*/
  background-size: 100% 100%;
  min-height:600px;
  background-repeat: no-repeat;

@@ -185,7 +185,7 @@ angular.module('properties', [])
 			} else {
 				$scope.slides = [];
 			}
-		}, 0);
+		}, 5);
 
 	}
 	
