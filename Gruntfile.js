@@ -257,7 +257,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '.',
-          src: ['app/app.js','app/configuration.js','app/lib/imageupload.js','app/lib/nya-bootstrap-select.js','app/modules/**/*.js'],
+          src: ['app/lib/google-map.js','app/app.js','app/configuration.js','app/lib/imageupload.js','app/lib/nya-bootstrap-select.js','app/modules/**/*.js'],
           dest: 'dest/js'
         }]
       }
@@ -342,8 +342,9 @@ module.exports = function (grunt) {
 
     combine: {
       files: {
-             'dest/lib/css/fat-home-lib-min.css': ['app/bower_components/bootstrap/dist/css/bootstrap.min.css', 'app/bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
-         'app/bower_components/bootstrap-select/bootstrap-select.min.css','app/bower_components/jquery-ui/themes/base/minified/jquery-ui.min.css']
+             'dest/combine/fat-home-min.css': ['app/bower_components/bootstrap/dist/css/bootstrap.min.css', 'app/bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
+                  'app/bower_components/bootstrap-select/bootstrap-select.min.css','app/bower_components/jquery-ui/themes/base/minified/jquery-ui.min.css',
+                  'dest/css/min/app/styles/custom.min.css']
           }
         
       }
@@ -361,21 +362,30 @@ module.exports = function (grunt) {
      },
      concat: {
 
-     	lib:{
+     	dist:{
      		src:['app/bower_components/jquery/jquery.min.js' ,'app/bower_components/bootstrap/dist/js/bootstrap.min.js',
         'app/bower_components/bootstrap-select/bootstrap-select.min.js','app/bower_components/jquery-ui/jquery-ui.min.js',
         'app/bower_components/angular/angular.min.js','app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'app/bower_components/angular-route/angular-route.min.js'],
-     		dest:'dest/lib/js/fat-home-lib-min.js'
+        'app/bower_components/angular-route/angular-route.min.js','dest/js/min/**/*.js'],
+     		dest:'dest/concat/fat-home-min.js'
 
-     	},
-
-       dist: {
-       	src:'dest//js/min/**/*.js',
-       	dest:'dest/js/min/fat-home-min.js'
-
-       }
+     	}
      },
+
+	// use custom extension for the output file
+	compress: {
+	  main: {
+	    options: {
+	      mode: 'gzip'
+	    },
+	    files: [
+	      // Each of the files in the src/ folder will be output to
+	      // the dist/ folder each with the extension .gz.js
+	      {expand: true, src: ['dest/combine/fat-home-min.css','dest/concat/fat-home-min.js'], dest: 'dest/zip'}
+	    ]
+	  }
+	},
+
 
     // Test settings
     karma: {
