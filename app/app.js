@@ -8,7 +8,8 @@ var app = angular.module('fatHomesApp', [
   'imageupload',
   'nya.bootstrap.select',
   'ui.bootstrap',
-  'properties'
+  'properties',
+  'ngAnimate'
 ]);
 
 app.config(function ($routeProvider, $httpProvider) {
