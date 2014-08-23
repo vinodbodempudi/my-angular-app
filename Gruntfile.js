@@ -257,7 +257,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '.',
-          src: ['app/lib/google-map.js','app/app.js','app/configuration.js','app/lib/imageupload.js','app/lib/nya-bootstrap-select.js','app/modules/**/*.js'],
+          src: ['app/lib/ui-bootstrap-carousel.js', 'app/lib/google-map.js','app/app.js','app/configuration.js','app/lib/imageupload.js','app/lib/nya-bootstrap-select.js','app/modules/**/*.js'],
           dest: 'dest/js'
         }]
       }
@@ -366,7 +366,8 @@ module.exports = function (grunt) {
      		src:['app/bower_components/jquery/jquery.min.js' ,'app/bower_components/bootstrap/dist/js/bootstrap.min.js',
         'app/bower_components/bootstrap-select/bootstrap-select.min.js','app/bower_components/jquery-ui/jquery-ui.min.js',
         'app/bower_components/angular/angular.min.js','app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'app/bower_components/angular-route/angular-route.min.js','dest/js/min/**/*.js'],
+        'app/bower_components/angular-route/angular-route.min.js','app/bower_components/angular-animate/angular-animate.min.js',
+		'dest/js/min/**/*.js'],
      		dest:'dest/concat/fat-home-min.js'
 
      	}
