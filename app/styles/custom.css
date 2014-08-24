@@ -992,7 +992,7 @@ line-height: 2.3 !important;
 .loading{background:rgba(0,0,0,0.4); height: 100%; left: 0; position: fixed; top:0px; width: 100%; z-index: 1051; text-align:center;}
 .loading i{ color:#fff; margin-top:10%; font-size:30px;}
 .modal-dialog{margin:100px auto;}
-.fa-refresh:before{content:none;}
+.fa-refresh:before{content:none !important}
 .fa-refresh{background: url("../images/ajax-loader.GIF") no-repeat scroll ;  height:128px; width:128px;}
 
 .full-height {
