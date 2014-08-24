@@ -649,8 +649,10 @@ angular.module('properties', [])
 			
 			scope.$watch("showPage",
 				function(newValue, oldValue) {
-					if(newValue === 'propertyResults')
-						el.scrollTop(scrollPos);
+					if(newValue === 'propertyResults') {
+						//el.scrollTop(scrollPos);
+						setTimeout(function() { document.getElementById('propertyResults').scrollTop = scrollPos; }, 0);
+					}
 				});
 			
 			scope.$watch("predicate",
