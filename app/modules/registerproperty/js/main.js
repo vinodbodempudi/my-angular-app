@@ -8,7 +8,25 @@ angular.module('registerProperty', [])
 	$scope.user.locality = $scope.locality = $routeParams.locality;
 	
 	$scope.registerPropertySuccess = false;
-    $scope.property = {user:{}};
+	
+	var userDetails = $rootScope.userDetails;
+	if(userDetails) {
+		$scope.property = {
+			user:{
+				name: userDetails.name,
+				type: userDetails.type,
+				email: userDetails.email,
+				phoneNumber: userDetails.phoneNumber,
+				locality: userDetails.locality,
+				city:userDetails.city
+			}
+		};
+	
+	} else {
+		$scope.property = {user:{}};
+	
+	}
+    
 	$scope.property.user.city = $scope.city;
 	$scope.property.user.locality = $scope.locality;
 	$scope.unitOptions = fatHomeUtil.unitOptions();

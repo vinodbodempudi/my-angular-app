@@ -1,0 +1,80 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h2 class="modal-title" id="myModalLabel">Registration</h2>
+        <p><strong>Create an Account</strong> to list a property, save searches and track homes.<br />
+          Already have an account? <a href="" class="signin" ng-click="cancel();showLoginModal();">Sign In</a></p>
+</div>
+<div style="min-height: 100%;
+	height: auto !important;
+	height: 100%; ">
+    <div class="modal-body">
+		<form class="form-horizontal" role="form" name="registerUserForm" novalidate>
+          <div class="form-group">
+            <input type="text" ng-model="newUser.name" name="userName" ng-required="true" class="form-control input-sm" placeholder="Name">
+            <p ng-show="registerUserForm.userName.$invalid && (!registerUserForm.userName.$pristine || registerUserForm.submitted)" class="label errorText">enter name</p>
+          </div>
+		  <div class="form-group">
+            <input type="email" class="form-control" ng-model="newUser.email" name="email" required id="inputEmail3" placeholder="Email">
+			<p class="label errorText" ng-show="registerUserForm.submitted && registerUserForm.email.$error.required && !registerUserForm.email.$dirty">Enter email</p>
+            <p ng-show="registerUserForm.email.$invalid && registerUserForm.email.$dirty" class="label errorText">Enter valid email</p>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" ng-change="validatePassword(newUser.password, newUser.confirmPassword, registerUserForm)" ng-model="newUser.password" name="password" required id="inputPassword3" placeholder="Password">
+			<p ng-show="registerUserForm.password.$invalid && (!registerUserForm.password.$pristine || registerUserForm.submitted)" class="label errorText">enter password</p>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" ng-change="validatePassword(newUser.password, newUser.confirmPassword, registerUserForm)" ng-model="newUser.confirmPassword" required name="confirmPassword" id="inputPassword3" placeholder="Confirm Password">
+			<p ng-show="registerUserForm.confirmPassword.$invalid && (!registerUserForm.confirmPassword.$pristine || registerUserForm.submitted)" class="label errorText">enter password again</p>
+			<p ng-show="registerUserForm.confirmPassword.$error.invalidConfirmPassword" class="label errorText">Password should match</p>
+          </div>
+          <div class="form-group">
+            <input type="tel" maxlength="10" class="form-control" ng-model="newUser.phoneNumber" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" required id="inputPassword3" placeholder="Phone">
+			 <p ng-show="registerUserForm.submitted && registerUserForm.phoneNumber.$error.required" class="label errorText">Enter phone number</p>
+			 <p ng-show="registerUserForm.phoneNumber.$error.pattern" class="errorText label">Enter valid phone number</p>
+          </div>
+          <div class="form-group">
+            <select nya-selectpicker class="form-control input-sm" name="city" required ng-options="city as city for city in fatHome.cities | orderBy:'toString()'" name="city" ng-change="getLocalities(property.user.city)" ng-required='true' ng-model="newUser.city">
+				<option value="">Select City</option>
+			</select>
+			<p ng-show="registerUserForm.city.$invalid && (!registerUserForm.city.$pristine || registerUserForm.submitted)" class="label errorText">select city</p>
+          </div>
+          <div class="form-group">
+			<select nya-selectpicker class="form-control input-sm" name="locality" required ng-options="locality.locality as locality.locality for locality in fatHome.localities | orderBy:'locality'" name="locality" ng-required='true' ng-model="newUser.locality">
+				<option value="">Select Locality</option>
+			</select>
+			<p ng-show="registerUserForm.locality.$invalid && (!registerUserForm.locality.$pristine || registerUserForm.submitted)" class="label errorText">select locality</p>
+          </div>
+		  <div class="form-group">
+				<div class="col-sm-10">
+					<div class="radio-inline">
+						<label>
+							<input type="radio" ng-model="newUser.type" name="userTypeOptions" ng-required='true' value="Owner" checked>Owner
+						</label>
+					</div>
+					<div class="radio-inline">
+						<label>
+							<input type="radio" ng-model="newUser.type" name="userTypeOptions" ng-required='true' value="Agent" checked>Agent
+						</label>
+					</div>
+					<div class="radio-inline">
+						<label>
+							<input type="radio" ng-model="newUser.type" name="userTypeOptions" ng-required='true' value="Builder" checked>Builder
+						</label>
+					</div>
+				</div>
+				<div ng-show="registerUserForm.userTypeOptions.$invalid && (!registerUserForm.userTypeOptions.$pristine || registerUserForm.submitted)">
+					 <label class="col-sm-2"></label>
+					 <div class="col-sm-10">
+						<p class="label errorText">select user type</p>
+					</div>
+				</div>
+				
+			</div>
+        </form>
+	</div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+        <button type="button" class="btn btn-primary homebtn" ng-click="registerUserForm.submitted=true;register(newUser, registerUserForm.$invalid)">Create</button>
+</div>

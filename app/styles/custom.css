@@ -1006,3 +1006,12 @@ line-height: 2.3 !important;
     overflow: hidden  !important;
     white-space: nowrap;
 }
+
+
+.tivoliModal {
+	display: block !important;
+	width: 80%;
+	position: :absolute;
+	
+
+}

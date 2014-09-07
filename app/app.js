@@ -4,11 +4,11 @@ var app = angular.module('fatHomesApp', [
   'ngRoute',
   'registerProperty',
   'home',
-  'login',
   'imageupload',
   'nya.bootstrap.select',
   'ui.bootstrap',
   'properties',
+  'login',
   'ngAnimate'
 ]);
 
@@ -135,11 +135,12 @@ app.service('LocationService', ['$http', 'servicesBaseUrl', function($http, serv
 
 }]);
 
-app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'LoginService', 'LocationService', 'fatHomeUtilService', 
-	function($scope, $rootScope, $location, loginService, locationService, fatHomeUtilService) {
+app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'LocationService', '$modal',
+	function($scope, $rootScope, $location, locationService, $modal) {
 	
 	$rootScope.fatHome={};
 	$rootScope.user={};
+	$rootScope.isUserLoggedin=false;
 
 	if(typeof(Storage) !== "undefined") {
 		$rootScope.$watch("user", function(newValue, oldValue){
@@ -154,27 +155,34 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Login
 	}
 	
 	
-	$scope.showLoginModal = function (loginUser) {
-		if($rootScope.isUserLoggedin) {
-			$rootScope.userDetails = null;
-			$rootScope.isUserLoggedin = false;
-			$scope.loginLabel = "Sign In";
-			//$location.path('/home');
-			return;
-		}
-	
-		$scope.showLoginmodal = true;
-		$scope.showRegistermodal = false;
+	$scope.showLoginModal = function () {
+		$scope.$broadcast('showLoginModal');
 	}
 	
-	$scope.showRegisterModal = function () {
-		$scope.showLoginmodal = false;
-		$scope.showRegistermodal = true;
-		
-		if(!$scope.cities) {
-			$scope.getCities();
-		}
+	$scope.logOut = function (loginUser) {
+		$rootScope.userDetails = null;
+		$rootScope.isUserLoggedin = false;
+		var modalInstance = $modal.open({
+			  templateUrl: 'modules/login/html/signout-success.html',
+			  controller: 'FeedBackModalCtrl'
+			});
 	}
+	
+	$scope.showFeedbackmodal = function () {
+		var modalInstance = $modal.open({
+			  templateUrl: 'shared/html/feedback.html',
+			  controller: 'FeedBackModalCtrl'
+			});
+	}
+	
+	$scope.showContactmodal = function () {
+		var modalInstance = $modal.open({
+			  templateUrl: 'shared/html/contact.html',
+			  controller :'ModalInstanceCtrl'
+			});
+	}
+	
+	
 	
 	$scope.getCities = function() {
 		locationService.getCities()
@@ -194,72 +202,20 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Login
 		    	
 		    });
 	};
-	
-	$scope.login = function (loginUser) {
-		loginService.authenticate(loginUser)
-			.success(function(data){
-				$rootScope.userDetails = data;
-				$rootScope.isUserLoggedin = true;
-				$scope.loginLabel = "Sign Out";
-				$scope.loginUser = {};
-				$scope.showLoginmodal = false;
-			}).error(function(e){
-				
-			});
-	
-	};
-	
-	$scope.register = function (newUser) {
-		loginService.register(newUser)
-			.success(function(data){
-				$rootScope.userDetails = data;
-				$rootScope.isUserLoggedin = true;
-				$scope.loginLabel = "Sign Out";
-				$scope.loginUser = {};
-				$scope.showRegistermodal = false;
-			}).error(function(e){
-				
-			});
-	
-	};
-	
-	
-	$scope.sendFeedback = function (feedback) {
-	
-		$scope.feedbackform.submitted=true;
-		
-		if($scope.feedbackform.$valid) {
-		
-			feedback.city = $scope.user.city;
-			feedback.locality = $scope.user.locality;
-			feedback.user = $scope.userDetails;
-			fatHomeUtilService.sendFeedback(feedback)
-			.success(function(data){
-				$scope.showFeedbackmodal = false;
-				$scope.feedbackSubmitSuccess = true;
-				$scope.feedback = {};
-				$scope.feedbackform.submitted = false;
-			}).error(function(e){
-				
-			});
-	
+
+	$scope.postProperty = function () {
+		if($rootScope.isUserLoggedin) {
+			$location.path('/registerproperty/' + $scope.user.city + '/' + $scope.user.locality);
+			return;
 		}
+		$rootScope.showPostProperty = true;
+		$scope.$broadcast('showLoginModal');
 	};
-}]);
 
-app.service('LoginService',['$http',  function($http) {
-
-	this.authenticate = function (loginUser) {
-        return $http.get('data/cities.json', loginUser);
-    };
-	
-	this.register = function (newUser) {
-        return $http.get('data/cities.json', newUser);
-    };
 
 }]);
+
 app.service('fatHomeUtilService',['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
-
 	this.sendFeedback = function (feedBack) {
         return $http.post(servicesBaseUrl+'/feedback', feedBack);
     };
@@ -408,9 +364,43 @@ app.directive('pleaseWait', ['$rootScope', 'SHOW_PROGRESS_BAR', 'HIDE_PROGRESS_B
   
   
   
+app.controller('FeedBackModalCtrl', ['$scope', '$modalInstance', 'fatHomeUtilService', '$modal',
+	function ($scope, $modalInstance, fatHomeUtilService, $modal) {
+
+	$scope.ok = function () {
+		$modalInstance.close();
+	};
+
+	$scope.cancel = function () {
+		$modalInstance.dismiss('cancel');
+	};
+	
+	$scope.sendFeedback = function (feedback, invalid) {
+		if(invalid) {
+			return;
+		}
+	
+		feedback.city = $scope.user.city;
+		feedback.locality = $scope.user.locality;
+		feedback.user = $scope.userDetails;
+		fatHomeUtilService.sendFeedback(feedback)
+		.success(function(data){
+			$scope.cancel();
+			var modalInstance = $modal.open({
+			  templateUrl: 'shared/html/feedback-success.html',
+			  controller: 'ModalInstanceCtrl'
+			});
+		}).error(function(e){
+			
+		});
+
+	};
+	
+}]);
   
-app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'data', function ($scope, $modalInstance, data) {
-	$scope.data = data;
+  
+  
+app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
 
 	$scope.ok = function () {
 		$modalInstance.close();

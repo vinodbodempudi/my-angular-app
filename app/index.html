@@ -11,15 +11,15 @@
     <meta name="description" content="Find a great house or apartment for rent or buy in Hyderabad, India on fathome.in! Find Hyderabad real estate here.">
 	<meta name="robots" content="noodp,noydir" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--
+    
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-select/bootstrap-select.min.css" media="screen" />
-    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/minified/jquery-ui.min.css">-->
-    <link rel="stylesheet" type="text/css" href="fat-home-min.css" media="screen" />
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/minified/jquery-ui.min.css">
+    
     <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.min.css" media="screen">
     <link href="http://fonts.googleapis.com/css?family=Puritan:400,400italic" rel="stylesheet" type="text/css">
-<!--    <link rel="stylesheet" type="text/css" href="custom.min.css" media="screen" />-->
+	<link rel="stylesheet" type="text/css" href="styles/custom.css" media="screen" />
 
     <!--[if lte IE 8]>
         <script>
@@ -48,13 +48,14 @@
         <div class="collapse navbar-collapse" >
           <ul class="nav navbar-nav navbar-right" ng-show="showTabs.showTabs">
             <li><a href="#/properties/{{user.city}}/{{user.locality}}"><i class="fa fa-home"></i></a></li>
-            <li><a href="" ng-click="showFeedbackmodal=!showFeedbackmodal;feedback={};feedbackform.submitted=false;">FEEDBACK</a></li>
-            <li><a href="" ng-click="showContactmodal=!showContactmodal">CONTACT US</a></li>
+            <li><a href="" ng-click="showFeedbackmodal();">FEEDBACK</a></li>
+            <li><a href="" ng-click="showContactmodal();">CONTACT US</a></li>
             <!--
-            <li class="active" ng-show="false"><a href="main.html">My Shortlist</a></li>
-			<li><a href="" ng-show="false" ng-init="loginLabel='Sign In'" ng-click="showLoginModal();">{{loginLabel}}</a></li>
-             -->
-            <li><a href="#/registerproperty/{{user.city}}/{{user.locality}}" style="background-color: #2aabd2;" class="btn btn-info btn-xm navbar-btn"><span>POST PROPERTY
+            <li class="active" ng-show="false"><a href="main.html">My Shortlist</a></li> -->
+			<li ng-controller="LoginCtrl"><a href="" ng-show="!isUserLoggedin" ng-click="showLoginModal();">Sign In</a></li>
+			<li><a href="" ng-show="isUserLoggedin" ng-click="logOut();">Sign Out</a></li>
+            
+            <li><a href="" ng-click="postProperty();" style="background-color: #2aabd2;" class="btn btn-info btn-xm navbar-btn"><span>POST PROPERTY
            <!-- <i class="fa fa-caret-right"></i>-->
             </span></a></li>
             <li><a href="https://www.facebook.com/pages/fathomein/327105184080870" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a></li>
@@ -81,318 +82,6 @@
        ga('send', 'pageview');
     </script>
 
-	<!-- ************** Modals ************** -->
-<!-- Signin Modal -->
-<div class="modal fade" modal-visible="showLoginmodal" modal-show id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" 
-                   >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h2 class="modal-title" id="myModalLabel">Signin</h2>
-        <p>Signin to save and track Homes!</p>
-      </div>
-
-       <div class="modal-body">
-        
-        <form class="form-horizontal" role="form" name="loginForm" ng-submit="login(loginUser)" novalidate>
-        
-        <!-- form -->
-          <div class="form-group" ng-class="{ 'has-error' : loginForm.loginUserEmail.$invalid && loginForm.loginUserEmail.$dirty}">
-            <input type="email" class="form-control" id="inputEmail3" name="loginUserEmail" placeholder="Email" ng-model="loginUser.email" required>
-             <p class="help-block" ng-show="loginForm.loginUserEmail.$dirty && loginForm.loginUserEmail.$invalid">Invalid Email</p>
-          </div>
-          <div class="form-group" ng-class="{ 'has-error' : loginForm.loginUserPassword.$error.required && loginForm.loginUserPassword.$dirty}">
-            <input type="password" class="form-control" id="inputPassword3" name="loginUserPassword" placeholder="Password" 
-            ng-model="loginUser.password" required>
-            <p class="help-block" ng-show="loginForm.loginUserPassword.$error.required && loginForm.loginUserPassword.$dirty">Password required</p>
-          </div>
-         
-          <span ng-show="loginUser.loginFailed" style="color:red" > The email or password you entered is incorrect.</span>
-          <div class="form-group">
-            <div class="col-sm-6">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox">
-                  Remember me </label>
-              </div>
-            </div>
-            <div class="col-sm-6 text-right">
-              <a ng-click="showRegisterModal();" class="createAccount">Register</a>
-
-            </div>
-          </div>
-        <!-- Form End -->
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Signin</button>
-      </div>
-      
-        </form>
-        </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-<!-- Create Account Modal -->
-<div class="modal fade" modal-visible="showRegistermodal" modal-show id="account" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h2 class="modal-title" id="myModalLabel">Registration</h2>
-        <p><strong>Create an Account</strong> to list a property, save searches and track homes.<br />
-          Already have an account? <a href="" class="signin" ng-click="showLoginModal();">Sign In</a></p>
-      </div>
-      <div class="modal-body">
-        <!-- form -->
-        <form class="form-horizontal" role="form">
-          <div class="form-group">
-            <input type="email" class="form-control" ng-model="newUser.email" id="inputEmail3" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" ng-model="newUser.password" id="inputPassword3" placeholder="Password">
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" ng-model="newUser.confirmPassword" id="inputPassword3" placeholder="Confirm Password">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" ng-model="newUser.phone" id="inputPassword3" placeholder="Phone">
-          </div>
-          <div class="form-group">
-            <select nya-selectpicker class="form-control input-sm" ng-options="city as city for city in cities | orderBy:'toString()'" name="city" ng-change="getLocalities(property.user.city)" ng-required='true' ng-model="newUser.city">
-				<option value="">Select City</option>
-			</select>
-          </div>
-          <div class="form-group">
-			<select nya-selectpicker class="form-control input-sm" ng-options="locality.locality as locality for locality in localities | orderBy:'locality'" name="locality" ng-required='true' ng-model="newUser.locality">
-				<option value="">Select Locality</option>
-			</select>
-          </div>
-        </form>
-        <!-- Form End -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="register(newUser)">Create</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
-<!-- Contact Modal -->
-<div class="modal fade" ng-init="showContactmodal = false;" modal-visible="showContactmodal" modal-show id="contact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"                    >
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Contact us</h4>
-			</div>
-
-			<div class="modal-body" style="background-color: white;">
-				<div class="row" id="contactdetails">
-					<div class="col-md-6">
-						<div class="flag">
-							<img src='India-Flag.png' class='iconDetails'>
-							<label style="padding-left:10px;">India</label>
-						</div>
-						<div class="schedule no-names">
-							<div class="schedule_row">
-								<div class="left">
-									<label class="">Hyderabad</label>
-								</div>
-								<div class="right">
-									<label class="">India</label>
-								</div>
-								<div class="speaker_image dot">
-									<img src="images/dot.png" alt="">
-								</div>
-								<div class="push"></div>
-							</div>
-							<div class="schedule_row">
-								<div class="left">
-									<label class="">Email</label>
-								</div>
-								<div class="right">
-									<label class="">contact@fathome.in</label>
-								</div>
-								<div class="speaker_image dot">
-									<img src="images/dot.png" alt="">
-								</div>
-								<div class="push"></div>
-							</div>
-							<div class="schedule_row">
-								<div class="left">
-									<label class="">Phone</label>
-								</div>
-								<div class="right">
-									<label class="">+91 7396355472</label>
-								</div>
-								<div class="speaker_image dot">
-									<img src="images/dot.png" alt="">
-								</div>
-								<div class="push"></div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6" style="padding-left: 1px;">
-						<div class="flag">
-							<img src='United-States-of-America-Flag.png' class='iconDetails'>
-							 <label style="padding-left:10px;">United States</label>
-						</div>
-						<div class="schedule no-names">
-							<div class="schedule_row">
-								<div class="left">
-									<label class="">Phoenix</label>
-								</div>
-								<div class="right">
-									<label class="">AZ</label>
-								</div>
-								<div class="speaker_image dot">
-									<img src="images/dot.png" alt="">
-								</div>
-								<div class="push"></div>
-							</div>
-							<div class="schedule_row">
-								<div class="left">
-									<label class="">Email</label>
-								</div>
-								<div class="right">
-									<label class="">contact@fathome.in</label>
-								</div>
-								<div class="speaker_image dot">
-									<img src="images/dot.png" alt="">
-								</div>
-								<div class="push"></div>
-							</div>
-							<div class="schedule_row">
-								<div class="left">
-									<label class="">Phone</label>
-								</div>
-								<div class="right">
-									<label class="">001-316-882-3352</label>
-								</div>
-								<div class="speaker_image dot">
-									<img src="images/dot.png" alt="">
-								</div>
-								<div class="push"></div>
-							</div>
-						</div>
-    
-					</div>
-				</div>
-			</div>
-		</div>
-    <!-- /.modal-content -->
-	</div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
-<!-- Feedback Modal -->
-<div class="modal fade" ng-init="showFeedbackmodal = false;" modal-visible="showFeedbackmodal" modal-show id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"                    >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Feedback Form</h4>
-      </div>
-
-      <div class="modal-body feedbackformgap">
-         <form class="myfirstform" role="form" name="feedbackform" novalidate>
-			<div class="form-group">
-				<label class="control-label">Name</label>
-				<div class="controls">
-					<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-user"></i></span>
-						<input type="text" class="form-control" ng-model="feedback.userName" name="name" placeholder="Name"><br/>
-					</div>
-					<span class="optional">optional</span>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="control-label">Phone</label>
-				<div class="controls">
-					<div class="input-group">
-						<span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-						<input type="text" class="form-control" maxlength="10" ng-model="feedback.phoneNumber" ng-pattern=/[0-9]{10,10}/ name="phonenumber" placeholder="phone" ng-required="feedbackform.phonenumber.$dirty">
-						<p ng-show="feedbackform.phonenumber.$error.pattern" class="errorText label">Enter valid phone number</p>
-					</div>
-					<span class="optional">optional</span>
-				</div>
-			</div>
-			
-			
-			<div class="form-group">
-				<label class="control-label">Email</label>
-				<div class="controls">
-					<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-						<input type="email" class="form-control" ng-model="feedback.email" id="email" name="email" ng-required="feedbackform.email.$dirty" placeholder="Email">
-						<p ng-show="feedbackform.email.$invalid && feedbackform.email.$dirty" class="label errorText">Enter valid email</p>
-					</div>
-					<span class="optional">optional</span>
-				</div>	
-			</div>
-			
-					
-			<div class="form-group ">
-				<label class="control-label">Message</label>
-				<div class="controls">
-					<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-						<textarea name="message" class="form-control" ng-model="feedback.message" rows="4" ng-required='true' cols="78" placeholder="Enter your message here"></textarea>
-						<p ng-show="feedbackform.message.$invalid && feedbackform.submitted" class="label errorText">enter message</p>
-					</div>
-				</div>
-			</div>
-			<div class="form-group ">
-				 <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6" >		  
-					<img ng-src="images/Info.png" width="24" height="24"/> 
-					<label style="position: relative;top: 2px;margin-left: 5px;">  Thank you for your feedback</label>
-				</div>			   
-			</div>
-			<div class="col-md-6 col-sm-6 col-lg-6 col-xs-6" >		  
-			   <button type="submit" id="mybtn" class="btn btn-primary pull-right homebtn" ng-click="sendFeedback(feedback);">Send Feedback</button>	        
-			</div>
-		</form>
-      </div>
-	  
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
-<div class="modal" modal-visible="feedbackSubmitSuccess" ng-init="feedbackSubmitSuccess=false;" modal-show data-backdrop="false" id="registerPropertySuccessModal" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-		<div class="text-center" style="padding: 20px;">
-			<img ng-src="images/success_32.gif"/> 
-			<span class="feedbackSubmitSuccessLabel">Feedback submitted successfully.</span>
-		</div>
-		<div class="text-center">
-			<a href="" ng-click="feedbackSubmitSuccess=!feedbackSubmitSuccess"><button class="btn btn-info">Close</button></a>
-		</div>
-	  </div>
-     </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-  <script src="fat-home-min.js"></script>
- 
-  <!-- 
   <script src="bower_components/jquery/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="bower_components/bootstrap-select/bootstrap-select.min.js"></script>
@@ -400,9 +89,9 @@
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="bower_components/angular-route/angular-route.min.js"></script>
-	-->
-	<!--
-	<script src="lib/google-map.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="lib/imageupload.js"></script>
 	<script src="app.js"></script>	
 	<script src="configuration.js"></script>
@@ -410,9 +99,8 @@
 	<script src="modules/properties/js/main.js"></script>
 	<script src="modules/login/js/main.js"></script>
 	<script src="modules/home/js/main.js"></script>
-  <script src="lib/nya-bootstrap-select.js"></script>-->
- 
-<!--  <script src="fat-home-min.js"></script> -->
+  <script src="lib/nya-bootstrap-select.js"></script>
+
 	
 </body>
 </html>
