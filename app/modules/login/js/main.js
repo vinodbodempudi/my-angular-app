@@ -2,24 +2,12 @@
 
 angular.module('login', [])
 .controller('LoginCtrl', ['$scope', 'LoginService', '$modal', function($scope, loginService, $modal) {
-    console.log('LoginCtrl');
-    $scope.$on('authenticate', function(userDetails) {
-		loginService.authenticate(userDetails)
-			.success(function(data){
-				$rootScope.userDetails = data;
-				$rootScope.isUserLoggedin = true;
-				$scope.loginLabel = "Sign Out";
-				$scope.loginUser = {};
-				$scope.showLoginmodal = false;
-			}).error(function(e){
-				
-			});
-	});
-	
+
 	$scope.$on('showLoginModal', function() {
 		 var modalInstance = $modal.open({
 			  templateUrl: 'modules/login/html/login.html',
-			  controller: 'LoginModalCtrl'
+			  controller: 'LoginModalCtrl',
+			  windowClass:'sign-modal'
 			});
 	});
 	
@@ -31,7 +19,7 @@ angular.module('login', [])
 .service('LoginService',['$http',  'servicesBaseUrl', function($http, servicesBaseUrl) {
 
 	this.authenticate = function (loginUser) {
-        return $http.get(servicesBaseUrl+'/users/'+loginUser.email);
+        return $http.post(servicesBaseUrl+'/users/authenticate', angular.toJson(loginUser));
 		//return $http.get('data/login.json');
     };
 	
@@ -45,6 +33,7 @@ angular.module('login', [])
 .controller('LoginModalCtrl', ['$scope', '$modalInstance', '$modal', 'LoginService', '$rootScope', '$location',
 	function ($scope, $modalInstance, $modal, loginService, $rootScope, $location) {
 
+	$scope.loginInProgress = false;
 	$scope.ok = function () {
 		$modalInstance.close();
 	};
@@ -57,7 +46,8 @@ angular.module('login', [])
 		$scope.cancel();
 		var modalInstance = $modal.open({
 			  templateUrl: 'modules/login/html/register-user.html',
-			  controller: 'RegisterUserModalCtrl'
+			  controller: 'RegisterUserModalCtrl',
+			  windowClass:'sign-modal'
 			});
 	
 	}
@@ -73,8 +63,10 @@ angular.module('login', [])
 			return;
 		}
 		
+		$scope.loginInProgress = true;
 		loginService.authenticate(userDetails)
 			.success(function(data){
+				$scope.loginInProgress = false;
 				$scope.cancel();
 				$rootScope.userDetails = data;
 				$rootScope.isUserLoggedin = true;
@@ -92,6 +84,7 @@ angular.module('login', [])
 				
 				
 			}).error(function(e){
+				$scope.loginInProgress = false;
 				$scope.loginFailed = true;
 			});
 	};
@@ -99,7 +92,7 @@ angular.module('login', [])
 }])
 .controller('RegisterUserModalCtrl', ['$scope', '$modalInstance', 'LoginService', '$modal', function ($scope, $modalInstance, loginService, $modal) {
 
-	$scope.form = {}
+	$scope.registerInProgress = false;
 
 	$scope.ok = function () {
 		$modalInstance.close();
@@ -112,43 +105,46 @@ angular.module('login', [])
 	$scope.showLoginModal = function() {
 		 var modalInstance = $modal.open({
 			  templateUrl: 'modules/login/html/login.html',
-			  controller: 'LoginModalCtrl'
+			  controller: 'LoginModalCtrl',
+			  windowClass:'sign-modal'
 			});
 	};
 	
-	$scope.validatePassword = function(form, password, confirmPassword) {
+	$scope.validatePassword = function(password, confirmPassword) {
 		
-		/*form.confirmPassword.$error.invalidConfirmPassword = false;
+		$scope.invalidConfirmPassword = false;
 		if(!password || !confirmPassword) {
 			return;
 		}
-		
-		form.confirmPassword.$valid = true;
-		if(form.confirmPassword.$valid && password === confirmPassword) {
-			form.confirmPassword.$error.invalidConfirmPassword = true;
-			form.confirmPassword.$valid = false;
-		}*/
+
+		if(confirmPassword && password != confirmPassword) {
+			$scope.invalidConfirmPassword = true;
+		}
 	}
 	
 	$scope.register = function (newUser, invalid) {
 	
-		if(invalid) {
+		if(invalid && $scope.invalidConfirmPassword) {
 			return;
 		}
 	
+		delete newUser.confirmPassword;
+		$scope.registerInProgress = true;
 		loginService.register(newUser)
 			.success(function(data){
+				$scope.registerInProgress = false;
 				$scope.cancel();
 				var modalInstance = $modal.open({
 				  templateUrl: 'modules/login/html/register-success.html',
-				  controller: 'ModalInstanceCtrl'
+				  controller: 'ModalInstanceCtrl',
+				  windowClass:'sign-modal'
 				});
 				
 				modalInstance.result.then(function (result) {
 					 $scope.showLoginModal();
 				});
 			}).error(function(e){
-				
+				$scope.registerInProgress = false;
 			});
 	
 	};

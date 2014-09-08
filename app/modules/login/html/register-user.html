@@ -1,8 +1,9 @@
-<div class="modal-header">
+<div class="modal-header" style="padding-bottom: 0px;">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
         <h2 class="modal-title" id="myModalLabel">Registration</h2>
-        <p><strong>Create an Account</strong> to list a property, save searches and track homes.<br />
-          Already have an account? <a href="" class="signin" ng-click="cancel();showLoginModal();">Sign In</a></p>
+        <p style="margin-bottom:0px;"><strong>Create an Account</strong> to list a property, save searches and track homes.<br />
+          Already have an account? 
+		  <button type="button" class="btn btn-primary homebtn" ng-click="cancel();showLoginModal();">Sign In</button></p>
 </div>
 <div style="min-height: 100%;
 	height: auto !important;
@@ -19,13 +20,13 @@
             <p ng-show="registerUserForm.email.$invalid && registerUserForm.email.$dirty" class="label errorText">Enter valid email</p>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" ng-change="validatePassword(newUser.password, newUser.confirmPassword, registerUserForm)" ng-model="newUser.password" name="password" required id="inputPassword3" placeholder="Password">
+            <input type="password" class="form-control" ng-change="validatePassword(newUser.password, newUser.confirmPassword)" ng-model="newUser.password" name="password" required id="inputPassword3" placeholder="Password">
 			<p ng-show="registerUserForm.password.$invalid && (!registerUserForm.password.$pristine || registerUserForm.submitted)" class="label errorText">enter password</p>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" ng-change="validatePassword(newUser.password, newUser.confirmPassword, registerUserForm)" ng-model="newUser.confirmPassword" required name="confirmPassword" id="inputPassword3" placeholder="Confirm Password">
+            <input type="password" class="form-control" ng-change="validatePassword(newUser.password, newUser.confirmPassword)" ng-model="newUser.confirmPassword" required name="confirmPassword" id="inputPassword3" placeholder="Confirm Password">
 			<p ng-show="registerUserForm.confirmPassword.$invalid && (!registerUserForm.confirmPassword.$pristine || registerUserForm.submitted)" class="label errorText">enter password again</p>
-			<p ng-show="registerUserForm.confirmPassword.$error.invalidConfirmPassword" class="label errorText">Password should match</p>
+			<p ng-show="invalidConfirmPassword" class="label errorText">Password should match</p>
           </div>
           <div class="form-group">
             <input type="tel" maxlength="10" class="form-control" ng-model="newUser.phoneNumber" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" required id="inputPassword3" placeholder="Phone">
@@ -44,8 +45,13 @@
 			</select>
 			<p ng-show="registerUserForm.locality.$invalid && (!registerUserForm.locality.$pristine || registerUserForm.submitted)" class="label errorText">select locality</p>
           </div>
-		  <div class="form-group">
+		  <div class="form-group" style="margin-bottom: 0px;">
 				<div class="col-sm-10">
+					<div class="radio-inline">
+						<label>
+							<input type="radio" ng-model="newUser.type" name="userTypeOptions" ng-required='true' value="Individual" checked>Individual
+						</label>
+					</div>
 					<div class="radio-inline">
 						<label>
 							<input type="radio" ng-model="newUser.type" name="userTypeOptions" ng-required='true' value="Owner" checked>Owner
@@ -71,10 +77,10 @@
 				
 			</div>
         </form>
+		<div style="text-align:right;">
+			<button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+			<button type="button" ng-disabled="registerInProgress" class="btn btn-primary homebtn" ng-click="registerUserForm.submitted=true;register(newUser, registerUserForm.$invalid)">Create</button>
+			<img ng-show="registerInProgress" ng-src="images/ajax-loader-32x32.GIF"/> 
+		</div>
 	</div>
-</div>
-
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-        <button type="button" class="btn btn-primary homebtn" ng-click="registerUserForm.submitted=true;register(newUser, registerUserForm.$invalid)">Create</button>
 </div>

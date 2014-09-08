@@ -1008,10 +1008,6 @@ line-height: 2.3 !important;
 }
 
 
-.tivoliModal {
-	display: block !important;
-	width: 80%;
-	position: :absolute;
-	
-
-}
+.sign-modal .modal-dialog { width: 450px; }
+.sign-modal .modal-content { background-color: darkgray; }
+.

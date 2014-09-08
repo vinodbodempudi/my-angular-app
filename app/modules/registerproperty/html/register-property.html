@@ -11,6 +11,11 @@
                             <div class="form-group" ng-class="{'has-error':form1.userTypeOptions.$invalid && !form1.userTypeOptions.$pristine}">
                                 <label class="col-sm-2 control-label mandatory">I am:</label>
                                 <div class="col-sm-10">
+									<div class="radio-inline">
+										<label>
+											<input type="radio" ng-model="newUser.type" name="userTypeOptions" ng-required='true' value="Individual" checked>Individual
+										</label>
+									</div>
                                     <div class="radio-inline">
                                         <label>
                                             <input type="radio" ng-model="property.user.type" name="userTypeOptions" ng-required='true' value="Owner" checked>Owner
