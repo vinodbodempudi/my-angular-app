@@ -335,7 +335,7 @@ app.directive('pleaseWait', ['$rootScope', 'SHOW_PROGRESS_BAR', 'HIDE_PROGRESS_B
                 
                 var data = {title:"Service Exception", data:response.data};
 				
-				alert("Service Exception : "+response.data);
+				//alert("Service Exception : "+response.data);
 				
                 /*$modal = $modal || $injector.get('$modal');
             	$modal.open({
