@@ -124,7 +124,7 @@ angular.module('login', [])
 	
 	$scope.register = function (newUser, invalid) {
 	
-		if(invalid && $scope.invalidConfirmPassword) {
+		if(invalid || $scope.invalidConfirmPassword) {
 			return;
 		}
 	
