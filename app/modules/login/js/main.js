@@ -95,7 +95,8 @@ angular.module('login', [])
 	};
 
 }])
-.controller('RegisterUserModalCtrl', ['$scope', '$modalInstance', 'LoginService', '$modal', function ($scope, $modalInstance, loginService, $modal) {
+.controller('RegisterUserModalCtrl', ['$scope', '$modalInstance', 'LoginService', '$modal', '$rootScope', '$location',
+	function ($scope, $modalInstance, loginService, $modal, $rootScope, $location) {
 
 	$scope.registerInProgress = false;
 
