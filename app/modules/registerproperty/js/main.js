@@ -4,6 +4,10 @@ angular.module('registerProperty', [])
 .controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', '$routeParams', 'RegisterPropertyService', '$rootScope',
 	function($scope, locationService, fatHomeUtil, $routeParams, registerPropertyService, $rootScope) {
 	
+	if(!$scope.isUserLoggedin) {
+		$rootScope.$broadcast('showLoginModal');
+	}
+	
 	$scope.user.city = $scope.city = $routeParams.city;
 	$scope.user.locality = $scope.locality = $routeParams.locality;
 	
@@ -18,14 +22,19 @@ angular.module('registerProperty', [])
 				email: userDetails.email,
 				phoneNumber: userDetails.phoneNumber,
 				locality: userDetails.locality,
-				city:userDetails.city
+				city:userDetails.city,
+				userId:userDetails._id
 			}
 		};
 	
 	} else {
 		$scope.property = {user:{}};
-	
 	}
+	
+	$scope.$watch("userDetails",
+		function(newValue, oldValue) {
+			$scope.property.user = newValue;
+	}, true);
     
 	$scope.property.user.city = $scope.city;
 	$scope.property.user.locality = $scope.locality;

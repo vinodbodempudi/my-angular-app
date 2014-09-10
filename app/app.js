@@ -166,6 +166,12 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Locat
 			  templateUrl: 'modules/login/html/signout-success.html',
 			  controller: 'FeedBackModalCtrl'
 			});
+			
+		modalInstance.result.then(function (result) {
+			 if($location.path().match('registerproperty') != null) {
+				$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
+			}
+		});
 	}
 	
 	$scope.showFeedbackmodal = function () {

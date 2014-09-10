@@ -36,10 +36,16 @@ angular.module('login', [])
 	$scope.loginInProgress = false;
 	$scope.ok = function () {
 		$modalInstance.close();
+		if(!$rootScope.isUserLoggedin && $location.path().match('registerproperty') != null) {
+			$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
+		}
 	};
 
 	$scope.cancel = function () {
 		$modalInstance.dismiss('cancel');
+		if(!$rootScope.isUserLoggedin && $location.path().match('registerproperty') != null) {
+			$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
+		}
 	};
 	
 	$scope.showRegisterModal = function() {
@@ -67,10 +73,9 @@ angular.module('login', [])
 		loginService.authenticate(userDetails)
 			.success(function(data){
 				$scope.loginInProgress = false;
-				$scope.cancel();
 				$rootScope.userDetails = data;
 				$rootScope.isUserLoggedin = true;
-				
+				$scope.cancel();
 				if(userDetails.rememberMe) {
 					localStorage.setItem("userDetails", angular.toJson(userDetails));
 				} else {
@@ -96,10 +101,16 @@ angular.module('login', [])
 
 	$scope.ok = function () {
 		$modalInstance.close();
+		if(!$rootScope.isUserLoggedin && $location.path().match('registerproperty') != null) {
+			$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
+		}
 	};
 
 	$scope.cancel = function () {
 		$modalInstance.dismiss('cancel');
+		if(!$rootScope.isUserLoggedin && $location.path().match('registerproperty') != null) {
+			$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
+		}
 	};
 	
 	$scope.showLoginModal = function() {
@@ -128,7 +139,6 @@ angular.module('login', [])
 			return;
 		}
 	
-		delete newUser.confirmPassword;
 		$scope.registerInProgress = true;
 		loginService.register(newUser)
 			.success(function(data){
