@@ -370,9 +370,19 @@ app.directive('pleaseWait', ['$rootScope', 'SHOW_PROGRESS_BAR', 'HIDE_PROGRESS_B
   
   
   
-app.controller('FeedBackModalCtrl', ['$scope', '$modalInstance', 'fatHomeUtilService', '$modal',
-	function ($scope, $modalInstance, fatHomeUtilService, $modal) {
+app.controller('FeedBackModalCtrl', ['$scope', '$modalInstance', 'fatHomeUtilService', '$modal', '$rootScope',
+	function ($scope, $modalInstance, fatHomeUtilService, $modal, $rootScope) {
 
+	
+	if($rootScope.isUserLoggedin) {
+		$scope.feedback = {};
+		$scope.feedback.email = $rootScope.userDetails.email;
+		$scope.feedback.userName = $rootScope.userDetails.name;
+		$scope.feedback.phoneNumber = $rootScope.userDetails.phoneNumber;
+		$scope.feedback._id = $rootScope.userDetails._id;
+	}
+	
+	
 	$scope.ok = function () {
 		$modalInstance.close();
 	};
