@@ -32,8 +32,16 @@ angular.module('registerProperty', [])
 	}
 	
 	$scope.$watch("userDetails",
-		function(newValue, oldValue) {
-			$scope.property.user = newValue;
+		function(userDetails, oldValue) {
+			$scope.property.user = {
+				name: userDetails.name,
+				type: userDetails.type,
+				email: userDetails.email,
+				phoneNumber: userDetails.phoneNumber,
+				locality: userDetails.locality,
+				city:userDetails.city,
+				userId:userDetails._id
+			};
 	}, true);
     
 	$scope.property.user.city = $scope.city;
