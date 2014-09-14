@@ -135,7 +135,7 @@ angular.module('login', [])
 	}
 	
 	$scope.register = function (newUser, invalid) {
-	
+		$scope.duplicateEmail = false;
 		if(invalid || $scope.invalidConfirmPassword) {
 			return;
 		}
@@ -154,8 +154,13 @@ angular.module('login', [])
 				modalInstance.result.then(function (result) {
 					 $scope.showLoginModal();
 				});
-			}).error(function(e){
+			}).error(function(response, status){
 				$scope.registerInProgress = false;
+								
+				if(status === 409) {
+					$scope.duplicateEmail = true;
+				}
+				
 			});
 	
 	};

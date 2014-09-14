@@ -209,8 +209,8 @@
 						</div>
 						<div class="right">
 							<label ng-show="!property.details.maintenanceFee"></label>
-							<label class="fa fa-rupee" ng-show="property.details.maintenanceFee || Number(property.details.maintenanceFee) >== 0"></label>
-							<label ng-show="property.details.maintenanceFee || Number(property.details.maintenanceFee) >== 0"> {{property.details.maintenanceFee | currencyFormatter}}</label>
+							<label class="fa fa-rupee" ng-show="isValidMaitenanceFee"></label>
+							<label ng-show="isValidMaitenanceFee"> {{property.details.maintenanceFee | currencyFormatter}}</label>
 						</div>
 						<div class="speaker_image dot">
 							<img src="images/dot.png" alt="">

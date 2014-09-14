@@ -264,8 +264,8 @@ angular.module('home', [])
 	
 	this.currencyFormater = function(value) {
   
-		if(!value || Number(value) <= 0) {
-			return "0";
+		if(!value) {
+			return "";
 		}
 	  
 		var temp=value.toString(), index = temp.indexOf(".");

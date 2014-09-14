@@ -145,6 +145,8 @@ angular.module('properties', [])
 				setPropertyImages();
 			}
 			
+			$scope.isValidMaitenanceFee = isValidAmount(data.details.maintenanceFee);
+			
 		}).error(function(e){
 			$scope.isGetPropertyDetailsServiceInProgress = false;
 		});
@@ -256,6 +258,19 @@ angular.module('properties', [])
 		}
 		$scope.getProperties($scope.city, $scope.locality);
 	}
+	
+	var isValidAmount = function(amount) {
+		console.log(amount);
+		if(amount == undefined || amount.toString().length == 0) {
+			return false;
+		}
+	
+		if(Number(amount) >= 0) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	
 	
