@@ -6,7 +6,7 @@ a:focus{outline: none;}
 button::-moz-focus-inner{border: 0;}
 .navbar-brand { background:url(../images/fathome.png) no-repeat center; width:124px; height:42px; text-indent:-9999px;padding-top:11px;padding-bottom:11px}
 .navbar > .container .navbar-brand{ margin-left:0px;}
-.navbar { min-height:42px; box-shadow:0px 2px 2px rgba(0,0,0,0.4); border-radius:inherit; margin-bottom:0;}
+.navbar { min-height:42px; box-shadow:0px 2px 2px rgba(0,0,0,0.4); border-radius:inherit; margin-bottom:0;z-index: 1052;}
 .navbar-nav>li>a {padding-top:11px;padding-bottom:11px}
 .nav li div{ color:#999999; padding:11px 15px; display:inline-block; background:#000;}
 .nav li div a{ color:#fff;}
@@ -1007,7 +1007,7 @@ line-height: 2.3 !important;
     white-space: nowrap;
 }
 
-
-.sign-modal .modal-dialog { width: 450px; }
+.sign-modal { z-index: 99999 !important;}
+.sign-modal .modal-dialog { width: 450px;}
 .sign-modal .modal-content { background-color: darkgray; }
 .

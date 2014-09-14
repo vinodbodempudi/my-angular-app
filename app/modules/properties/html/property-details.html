@@ -209,8 +209,8 @@
 						</div>
 						<div class="right">
 							<label ng-show="!property.details.maintenanceFee"></label>
-							<label class="fa fa-rupee" ng-show="property.details.maintenanceFee"></label>
-							<label ng-show="property.details.maintenanceFee"> {{property.details.maintenanceFee | currencyFormatter}}</label>
+							<label class="fa fa-rupee" ng-show="property.details.maintenanceFee || Number(property.details.maintenanceFee) >== 0"></label>
+							<label ng-show="property.details.maintenanceFee || Number(property.details.maintenanceFee) >== 0"> {{property.details.maintenanceFee | currencyFormatter}}</label>
 						</div>
 						<div class="speaker_image dot">
 							<img src="images/dot.png" alt="">
@@ -239,7 +239,7 @@
 							<label class="">Total Price</label>
 						</div>
 						<div class="right">
-							<label class="fa fa-rupee"></label><label> {{property.details.price.price | currencyFormatter}}</label>
+							<label class="fa fa-rupee"> </label><label> {{property.details.price.price | currencyFormatter}}</label>
 							<div ng-show="property.details.price.negotiable"><label>Negotiable</label></div>
 							<div ng-show="property.details.price.registrationFeeIncluded"><label>Registration Fee included</label></div>
 						</div>
@@ -459,7 +459,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.specifications.briefDescription">
+					<div class="schedule_row">
 						<div class="left">
 							<label class="">Property Description</label>
 						</div>
