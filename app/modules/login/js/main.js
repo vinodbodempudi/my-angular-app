@@ -99,7 +99,7 @@ angular.module('login', [])
 	function ($scope, $modalInstance, loginService, $modal, $rootScope, $location) {
 
 	$scope.registerInProgress = false;
-
+	$scope.newUser = {city:$scope.user.city, locality:$scope.user.locality};
 	$scope.ok = function () {
 		$modalInstance.close();
 		if(!$rootScope.isUserLoggedin && $location.path().match('registerproperty') != null) {
