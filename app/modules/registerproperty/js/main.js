@@ -13,12 +13,10 @@ angular.module('registerProperty', [])
 	
 	$scope.registerPropertySuccess = false;
 	
-	var userDetails = $rootScope.userDetails;
-	if(userDetails) {
+	var setUserDetails = function(userDetails) {
 		$scope.property = {
 			user:{
 				name: userDetails.name,
-				type: userDetails.type,
 				email: userDetails.email,
 				phoneNumber: userDetails.phoneNumber,
 				locality: userDetails.locality,
@@ -26,22 +24,28 @@ angular.module('registerProperty', [])
 				userId:userDetails._id
 			}
 		};
+		
+		if(userDetails.type === 'Individual') {
+			$scope.property.user.type = 'Owner';
+		} else {
+			$scope.property.user.type = userDetails.type;
+		}
 	
+	}
+	
+	var userDetails = $rootScope.userDetails;
+	if($rootScope.userDetails) {
+		setUserDetails($rootScope.userDetails);
 	} else {
 		$scope.property = {user:{}};
 	}
 	
 	$scope.$watch("userDetails",
 		function(userDetails, oldValue) {
-			$scope.property.user = {
-				name: userDetails.name,
-				type: userDetails.type,
-				email: userDetails.email,
-				phoneNumber: userDetails.phoneNumber,
-				locality: userDetails.locality,
-				city:userDetails.city,
-				userId:userDetails._id
-			};
+			if(!userDetails) {
+				return;
+			}
+			setUserDetails(userDetails);
 	}, true);
     
 	$scope.property.user.city = $scope.city;
