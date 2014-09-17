@@ -70,6 +70,14 @@ app.run(['$rootScope', '$location', '$window', function($rootScope, $location, $
 		$rootScope.$broadcast('locationChangeSuccess', $location.path());
 	});
 	
+	var userDetails = localStorage.getItem("userDetails");
+	if(userDetails) {
+		$rootScope.userDetails = angular.fromJson(userDetails);
+		$rootScope.isUserLoggedin = true;
+	} else {
+		$rootScope.isUserLoggedin=false;
+	}
+	
 	if($location.path().match('properties') != null || $location.path().match('registerproperty') != null) {
 		$rootScope.showTabs = {};
 		$rootScope.showTabs.showTabs = true;
@@ -140,7 +148,6 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Locat
 	
 	$rootScope.fatHome={};
 	$rootScope.user={};
-	$rootScope.isUserLoggedin=false;
 
 	if(typeof(Storage) !== "undefined") {
 		$rootScope.$watch("user", function(newValue, oldValue){

@@ -61,7 +61,7 @@
                                     <p class="label errorText" ng-show="form1.submitted && form1.email.$error.required && !form1.email.$dirty">Enter email</p>
                                     <p ng-show="form1.email.$invalid && form1.email.$dirty" class="label errorText">Enter valid email</p>
                                 </div>
-                                <div class="col-sm-2" ng-show="false">
+                                <div class="col-sm-2">
                                     <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i>
                                     </button>
                                 </div>
@@ -70,11 +70,12 @@
                             <div class="form-group" ng-class="{'has-error':form1.phoneNumber.$invalid && !form1.phoneNumber.$pristine}">
                                 <label class="col-sm-2 control-label mandatory">Phone:</label>
                                 <div class="col-sm-2">
-                                    <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" ng-required='true' ng-model="property.user.phoneNumber" class="form-control input-sm" placeholder="Phone">
+									<label>+91 - <label>
+                                    <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" ng-required='true' ng-model="property.user.phoneNumber" style="display:inline-block;width:125px;" class="form-control input-sm" placeholder="Phone">
                                     <p ng-show="form1.submitted && form1.phoneNumber.$error.required" class="label errorText">Enter phone number</p>
 									<p ng-show="form1.phoneNumber.$error.pattern" class="errorText label">Enter valid phone number</p>
                                 </div>
-                                <div class="col-sm-2" ng-show="false">
+                                <div class="col-sm-2">
                                     <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i>
                                     </button>
                                 </div>

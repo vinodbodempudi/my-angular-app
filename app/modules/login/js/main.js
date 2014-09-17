@@ -70,11 +70,6 @@ angular.module('login', [])
 	
 	}
 	
-	var userDetails = localStorage.getItem("userDetails");
-	if(userDetails) {
-		$scope.loginUser = angular.fromJson(userDetails);
-	}
-
 	$scope.authenticate = function(userDetails, invalid) {
 		$scope.loginFailed = false;
 		if(invalid) {
@@ -88,11 +83,9 @@ angular.module('login', [])
 				$rootScope.userDetails = data;
 				$rootScope.isUserLoggedin = true;
 				$scope.cancel();
-				if(userDetails.rememberMe) {
-					localStorage.setItem("userDetails", angular.toJson(userDetails));
-				} else {
-					localStorage.removeItem("userDetails");
-				}
+				
+				localStorage.setItem("userDetails", angular.toJson(data));
+				localStorage.setItem("rememberMe", userDetails.rememberMe);
 				
 				if($rootScope.showPostProperty) {
 					$rootScope.showPostProperty = false;
