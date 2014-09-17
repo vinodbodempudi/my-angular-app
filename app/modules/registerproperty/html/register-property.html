@@ -57,7 +57,7 @@
                             <div class="form-group" ng-class="{'has-error':form1.email.$invalid && !form1.email.$pristine}">
                                 <label class="col-sm-2 control-label mandatory">Email:</label>
                                 <div class="col-sm-2">
-                                    <input type="email" ng-model="property.user.email" name="email" ng-required='true' class="form-control input-sm" placeholder="Primary Email">
+                                    <input type="email" ng-model="property.user.primaryEmail" name="email" ng-required='true' class="form-control input-sm" placeholder="Primary Email">
                                     <p class="label errorText" ng-show="form1.submitted && form1.email.$error.required && !form1.email.$dirty">Enter email</p>
                                     <p ng-show="form1.email.$invalid && form1.email.$dirty" class="label errorText">Enter valid email</p>
                                 </div>
@@ -84,7 +84,7 @@
                                 <label class="col-sm-2 control-label mandatory">Phone:</label>
                                 <div class="col-sm-3">
 									<label>+91 - </label>
-                                    <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" ng-required='true' ng-model="property.user.phoneNumber" style="display:inline-block;width:85%;" class="form-control input-sm" placeholder="Primary Phone">
+                                    <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" ng-required='true' ng-model="property.user.primaryPhoneNumber" style="display:inline-block;width:85%;" class="form-control input-sm" placeholder="Primary Phone">
                                     <p ng-show="form1.submitted && form1.phoneNumber.$error.required" class="label errorText" style="padding-left: 38px;">Enter phone number</p>
 									<p ng-show="form1.phoneNumber.$error.pattern" class="errorText label" style="padding-left: 38px;">Enter valid phone number</p>
                                 </div>
@@ -98,7 +98,7 @@
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-3">
 									<label>+91 - </label>
-                                    <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="secondaryPhoneNo" ng-required='form1.secondaryPhoneNo.$dirty' ng-model="property.user.secondaryPhoneNo" style="display:inline-block;width:85%;" class="form-control input-sm" placeholder="Secondary Phone">
+                                    <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="secondaryPhoneNo" ng-required='form1.secondaryPhoneNo.$dirty' ng-model="property.user.secondaryPhoneNumber" style="display:inline-block;width:85%;" class="form-control input-sm" placeholder="Secondary Phone">
                                     <p ng-show="form1.submitted && form1.secondaryPhoneNo.$error.required" style="padding-left: 38px;" class="label errorText">Enter phone number</p>
 									<p ng-show="form1.secondaryPhoneNo.$error.pattern" style="padding-left: 38px;" class="errorText label">Enter valid phone number</p>
                                 </div>

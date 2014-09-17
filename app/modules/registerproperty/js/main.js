@@ -35,8 +35,8 @@ angular.module('registerProperty', [])
 	var setUserDetails = function(userDetails) {
 		$scope.property.user = {
 				name: userDetails.name,
-				email: userDetails.email,
-				phoneNumber: userDetails.phoneNumber,
+				primaryEmail: userDetails.email,
+				primaryPhoneNumber: userDetails.phoneNumber,
 				locality: userDetails.locality,
 				city:userDetails.city,
 				userId:userDetails._id

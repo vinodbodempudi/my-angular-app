@@ -565,7 +565,9 @@
 										<label class="">E-mail</label>
 									</div>
 									<div class="right">
-										<label>{{property.user.email}}</label>
+										<label ng-show="property.user.email">{{property.user.email}}</label>
+										<label ng-show="property.user.primaryEmail">{{property.user.primaryEmail}}</label><br>
+										<label ng-show="property.user.secondaryEmail">{{property.user.secondaryEmail}}</label>
 									</div>
 									<div class="speaker_image dot">
 										<img src="images/dot.png" alt="">
@@ -577,7 +579,9 @@
 										<label class="">Phone No</label>
 									</div>
 									<div class="right">
-										<label>+91-{{property.user.phoneNumber}}</label>
+										<label ng-show="property.user.phoneNumber">+91-{{property.user.phoneNumber}}</label>
+										<label ng-show="property.user.primaryPhoneNumber">+91-{{property.user.primaryPhoneNumber}}</label><br>
+										<label ng-show="property.user.secondaryPhoneNumber">+91-{{property.user.secondaryPhoneNumber}}</label>
 									</div>
 									<div class="speaker_image dot">
 										<img src="images/dot.png" alt="">
