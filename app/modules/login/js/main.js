@@ -1,10 +1,22 @@
 'use strict';
 
 angular.module('login', [])
-.controller('LoginCtrl', ['$scope', 'LoginService', '$modal', function($scope, loginService, $modal) {
+.controller('LoginCtrl', ['$scope', 'LoginService', '$modal', '$location', function($scope, loginService, $modal, $location) {
 
 	$scope.$on('showLoginModal', function() {
-		 var modalInstance = $modal.open({
+	
+		if($location.path().match('registerproperty') != null) {
+			$modal.open({
+			  templateUrl: 'modules/login/html/login.html',
+			  controller: 'LoginModalCtrl',
+			  keyboard:false,
+			  backdrop:'static',
+			  windowClass:'sign-modal'
+			});
+			return;
+		}
+	
+		 $modal.open({
 			  templateUrl: 'modules/login/html/login.html',
 			  controller: 'LoginModalCtrl',
 			  windowClass:'sign-modal'

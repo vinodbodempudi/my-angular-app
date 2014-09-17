@@ -12,42 +12,7 @@ angular.module('registerProperty', [])
 	$scope.user.locality = $scope.locality = $routeParams.locality;
 	
 	$scope.registerPropertySuccess = false;
-	
-	var setUserDetails = function(userDetails) {
-		$scope.property = {
-			user:{
-				name: userDetails.name,
-				email: userDetails.email,
-				phoneNumber: userDetails.phoneNumber,
-				locality: userDetails.locality,
-				city:userDetails.city,
-				userId:userDetails._id
-			}
-		};
-		
-		if(userDetails.type === 'Individual') {
-			$scope.property.user.type = 'Owner';
-		} else {
-			$scope.property.user.type = userDetails.type;
-		}
-	
-	}
-	
-	var userDetails = $rootScope.userDetails;
-	if($rootScope.userDetails) {
-		setUserDetails($rootScope.userDetails);
-	} else {
-		$scope.property = {user:{}};
-	}
-	
-	$scope.$watch("userDetails",
-		function(userDetails, oldValue) {
-			if(!userDetails) {
-				return;
-			}
-			setUserDetails(userDetails);
-	}, true);
-    
+	$scope.property = {user:{}};
 	$scope.property.user.city = $scope.city;
 	$scope.property.user.locality = $scope.locality;
 	$scope.unitOptions = fatHomeUtil.unitOptions();
@@ -66,6 +31,39 @@ angular.module('registerProperty', [])
 	
 	$scope.city = $scope.newCity = $routeParams.city;
 	$scope.locality = $scope.newLocality = $routeParams.locality;
+	
+	var setUserDetails = function(userDetails) {
+		$scope.property.user = {
+				name: userDetails.name,
+				email: userDetails.email,
+				phoneNumber: userDetails.phoneNumber,
+				locality: userDetails.locality,
+				city:userDetails.city,
+				userId:userDetails._id
+			};
+		
+		if(userDetails.type === 'Individual') {
+			$scope.property.user.type = 'Owner';
+		} else {
+			$scope.property.user.type = userDetails.type;
+		}
+	
+	}
+	
+	var userDetails = $rootScope.userDetails;
+	if($rootScope.userDetails) {
+		setUserDetails($rootScope.userDetails);
+	}
+	
+	$scope.$watch("userDetails",
+		function(userDetails, oldValue) {
+			if(!userDetails) {
+				return;
+			}
+			setUserDetails(userDetails);
+	}, true);
+    
+	
 	if(!$scope.fatHome.cities) {
 		locationService.getCities()
 			.success(function(data){
