@@ -579,7 +579,7 @@ angular.module('properties', [])
 			var propertiesMap, initializeMap = function (locationDetails) {	
 			
 				var mapOptions = {
-									zoom: 15,
+									zoom: 14,
 									center: new google.maps.LatLng(locationDetails.lat, locationDetails.long),
 									mapTypeId: google.maps.MapTypeId.ROADMAP
 								};

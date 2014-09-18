@@ -48,6 +48,7 @@ angular.module('login', [])
 	$scope.loginInProgress = false;
 	$scope.ok = function () {
 		$modalInstance.close();
+		$rootScope.showPostProperty = false;
 		if(!$rootScope.isUserLoggedin && $location.path().match('registerproperty') != null) {
 			$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
 		}
@@ -55,6 +56,7 @@ angular.module('login', [])
 
 	$scope.cancel = function () {
 		$modalInstance.dismiss('cancel');
+		$rootScope.showPostProperty = false;
 		if(!$rootScope.isUserLoggedin && $location.path().match('registerproperty') != null) {
 			$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
 		}

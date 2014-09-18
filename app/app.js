@@ -169,11 +169,22 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Locat
 	$scope.logOut = function (loginUser) {
 		$rootScope.userDetails = null;
 		$rootScope.isUserLoggedin = false;
-		var modalInstance = $modal.open({
+		
+		var modalInstance;
+		if($location.path().match('registerproperty') != null) {
+			modalInstance = $modal.open({
 			  templateUrl: 'modules/login/html/signout-success.html',
-			  controller: 'FeedBackModalCtrl'
+			  controller: 'ModalInstanceCtrl',
+			  keyboard:false,
+			  backdrop:'static'
 			});
-			
+		} else {
+			modalInstance = $modal.open({
+			  templateUrl: 'modules/login/html/signout-success.html',
+			  controller: 'ModalInstanceCtrl'
+			});
+		}
+	
 		modalInstance.result.then(function (result) {
 			 if($location.path().match('registerproperty') != null) {
 				$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
@@ -234,58 +245,6 @@ app.service('fatHomeUtilService',['$http', 'servicesBaseUrl', function($http, se
     };
 }])
 
-
-app.directive("modalShow", function () {
-    return {
-        restrict: "A",
-        scope: {
-            modalVisible: "="
-        },
-        link: function (scope, element, attrs) {
-
-            //Hide or show the modal
-            scope.showModal = function (visible) {
-                if (visible)
-                {
-                    element.modal("show");
-                }
-                else
-                {
-                    element.modal("hide");
-					$('body').removeClass('modal-open');
-					$('.modal-backdrop').remove();
-                }
-            }
-
-            //Check to see if the modal-visible attribute exists
-            if (!attrs.modalVisible)
-            {
-
-                //The attribute isn't defined, show the modal by default
-                scope.showModal(true);
-
-            }
-            else
-            {
-
-                //Watch for changes to the modal-visible attribute
-                scope.$watch("modalVisible", function (newValue, oldValue) {
-                    scope.showModal(newValue);
-                });
-
-                //Update the visible value when the dialog is closed through UI actions (Ok, cancel, etc.)
-                element.bind("hide.bs.modal", function () {
-                    scope.modalVisible = false;
-                    if (!scope.$$phase && !scope.$root.$$phase)
-                        scope.$apply();
-                });
-
-            }
-
-        }
-    };
-
-})
 app.filter('ordinal', function() {
   return function(input) {
   
@@ -420,7 +379,24 @@ app.controller('FeedBackModalCtrl', ['$scope', '$modalInstance', 'fatHomeUtilSer
 	};
 	
 }]);
-  
+app.directive('formatPrice', ['FatHomeUtil', function(fatHomeUtil) {
+  return {
+    require: 'ngModel',
+    link: function(scope, element, attrs, ngModelController) {
+	
+      ngModelController.$parsers.push(function(data) {
+        //convert data from view format to model format
+		var value = fatHomeUtil.currencyFormater(data);
+        return value; //converted
+      });
+
+      ngModelController.$formatters.push(function(data) {
+        //convert data from model format to view format
+        return fatHomeUtil.currencyFormater(data); //converted
+      });
+    }
+  }
+}]);
   
   
 app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
