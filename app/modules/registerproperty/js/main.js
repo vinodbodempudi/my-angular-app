@@ -33,15 +33,11 @@ angular.module('registerProperty', [])
 	$scope.locality = $scope.newLocality = $routeParams.locality;
 	
 	var setUserDetails = function(userDetails) {
-		$scope.property.user = {
-				name: userDetails.name,
-				email: userDetails.email,
-				phoneNumber: userDetails.phoneNumber,
-				locality: userDetails.locality,
-				city:userDetails.city,
-				userId:userDetails._id
-			};
-		
+		$scope.property.user.name = userDetails.name;
+		$scope.property.user.email = userDetails.email;
+		$scope.property.user.phoneNumber = userDetails.phoneNumber;
+		$scope.property.user.userId = userDetails.userId;
+	
 		if(userDetails.type === 'Individual') {
 			$scope.property.user.type = 'Owner';
 		} else {

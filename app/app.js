@@ -162,11 +162,22 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Locat
 	$scope.logOut = function (loginUser) {
 		$rootScope.userDetails = null;
 		$rootScope.isUserLoggedin = false;
-		var modalInstance = $modal.open({
+		
+		var modalInstance;
+		if($location.path().match('registerproperty') != null) {
+			modalInstance = $modal.open({
 			  templateUrl: 'modules/login/html/signout-success.html',
-			  controller: 'FeedBackModalCtrl'
+			  controller: 'ModalInstanceCtrl',
+			  keyboard:false,
+			  backdrop:'static'
 			});
-			
+		} else {
+			modalInstance = $modal.open({
+			  templateUrl: 'modules/login/html/signout-success.html',
+			  controller: 'ModalInstanceCtrl'
+			});
+		}
+	
 		modalInstance.result.then(function (result) {
 			 if($location.path().match('registerproperty') != null) {
 				$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
