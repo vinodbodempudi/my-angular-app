@@ -84,7 +84,6 @@ angular.module('login', [])
 				$scope.loginInProgress = false;
 				$rootScope.userDetails = data;
 				$rootScope.isUserLoggedin = true;
-				$scope.cancel();
 				
 				localStorage.setItem("userDetails", angular.toJson(data));
 				localStorage.setItem("rememberMe", userDetails.rememberMe);
@@ -94,7 +93,7 @@ angular.module('login', [])
 					$location.path('/registerproperty/' + $scope.user.city + '/' + $scope.user.locality);
 				}
 				
-				
+				$scope.cancel();
 			}).error(function(e){
 				$scope.loginInProgress = false;
 				$scope.loginFailed = true;

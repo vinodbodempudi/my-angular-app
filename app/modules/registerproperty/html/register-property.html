@@ -231,7 +231,7 @@
 									<p ng-show="form1.builtUpUnits.$invalid && (!form1.builtUpUnits.$pristine || form1.submitted)" class="label errorText">select Built-up units</p>
                                 </div>
 								<div class="col-sm-2" ng-show="property.details.mode==='Sell'">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required="property.details.mode==='Sell'" placeholder="Per Sq.ft price">
+                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required="false" placeholder="Per Sq.ft price">
 									<p ng-show="form1.submitted && form1.perUnitPrice.$error.required" class="label errorText">Enter per unit price</p>
 									<p ng-show="form1.perUnitPrice.$error.pattern" class="label errorText">Enter valid unit price</p>
                                 </div>
@@ -482,7 +482,11 @@
                                     <select selectpicker title="" class="form-control input-sm" ng-model="property.specifications.additionalRooms">
                                         <option value="" selected></option>
 										<option>Dining</option>
+										<option>Drawing room</option>
+										<option>Media room</option>
                                         <option>Puja</option>
+										<option>Servant room</option>
+										<option>Store room</option>
                                         <option>Study</option>
                                     </select>
                                 </div>
@@ -658,6 +662,13 @@
                                         </label>
                                     </div>
                                 </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.24HRWater">24Hr Water
+                                        </label>
+                                    </div>
+                                </div>
 
                                 <div class="col-sm-3">
                                     <div class="checkbox-inline">
@@ -729,6 +740,28 @@
                                         </label>
                                     </div>
                                 </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.curtains">Curtains
+                                        </label>
+                                    </div>
+                                </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.curtainHolders">Curtain holders
+                                        </label>
+                                    </div>
+                                </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.cupboards">Cupboards
+                                        </label>
+                                    </div>
+                                </div>
+								
                                 <div class="col-sm-3">
                                     <div class="checkbox-inline">
                                         <label>
@@ -736,6 +769,14 @@
                                         </label>
                                     </div>
                                 </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.fans">Fans
+                                        </label>
+                                    </div>
+                                </div>
+								
                                  <div class="col-sm-3">
                                     <div class="checkbox-inline">
                                         <label>
@@ -750,6 +791,21 @@
                                         </label>
                                     </div>
                                 </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.geysers">Geysers
+                                        </label>
+                                    </div>
+                                </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.grills">Grills
+                                        </label>
+                                    </div>
+                                </div>
+								
                                 <div class="col-sm-3">
                                     <div class="checkbox-inline">
                                         <label>
@@ -761,6 +817,20 @@
                                     <div class="checkbox-inline">
                                         <label>
                                                 <input type="checkbox" ng-model="property.amenities.healthFacilities">Health Facilities
+                                        </label>
+                                    </div>
+                                </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.homeTheater">Home Theater
+                                        </label>
+                                    </div>
+                                </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.indoorGames">Indoor Games
                                         </label>
                                     </div>
                                 </div>
@@ -791,13 +861,23 @@
                                                 <input type="checkbox" ng-model="property.amenities.library">Library
                                         </label>
                                     </div>
-                                </div><div class="col-sm-3">
+                                </div>
+								<div class="col-sm-3">
                                     <div class="checkbox-inline">
                                         <label>
                                                 <input type="checkbox" ng-model="property.amenities.lift">Lift
                                         </label>
                                     </div>
-                                </div><div class="col-sm-3">
+                                </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.lights">Lights
+                                        </label>
+                                    </div>
+                                </div>
+								
+								<div class="col-sm-3">
                                     <div class="checkbox-inline">
                                         <label>
                                                 <input type="checkbox" ng-model="property.amenities.maintenanceStaff">Maintenance staff
@@ -893,6 +973,13 @@
                                         </label>
                                     </div>
                                 </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.tt">TT
+                                        </label>
+                                    </div>
+                                </div>
                                  <div class="col-sm-3">
                                     <div class="checkbox-inline">
                                         <label>
@@ -900,10 +987,38 @@
                                         </label>
                                     </div>
                                 </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.ventilation">Ventilation
+                                        </label>
+                                    </div>
+                                </div>
+								
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.walkingTrack">Walking track
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="col-sm-3">
                                     <div class="checkbox-inline">
                                         <label>
                                                 <input type="checkbox" ng-model="property.amenities.wasteDisposal">Waste Disposal
+                                        </label>
+                                    </div>
+                                </div><div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.watchmenRoom">Watchmen room
+                                        </label>
+                                    </div>
+                                </div>
+								<div class="col-sm-3">
+                                    <div class="checkbox-inline">
+                                        <label>
+                                                <input type="checkbox" ng-model="property.amenities.waterFacility">Water facility
                                         </label>
                                     </div>
                                 </div>
