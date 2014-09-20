@@ -265,7 +265,7 @@ angular.module('properties', [])
 			return false;
 		}
 		
-		if(Number(amount.replace(/,/g, "")) >= 0) {
+		if(Number(amount) >= 0) {
 			return true;
 		}
 		return false;

@@ -400,7 +400,7 @@ app.directive('formatNumber', ['FatHomeUtil', function(fatHomeUtil) {
 		tempValue = fatHomeUtil.currencyFormater(input);
 		ngModelController.$setViewValue(tempValue);
 		ngModelController.$render();
-        return tempValue; //converted
+        return input; //converted
       });
 
     }

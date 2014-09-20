@@ -167,6 +167,8 @@ angular.module('registerProperty', [])
 				var modalInstance = $modal.open({
 				  templateUrl: 'modules/registerproperty/html/register-success.html',
 				  controller: 'ModalInstanceCtrl',
+				  keyboard:false,
+				  backdrop:'static',
 				  windowClass:'sign-modal'
 				});
 				modalInstance.result.then(function (result) {
@@ -217,7 +219,35 @@ angular.module('registerProperty', [])
 			delete property.specifications.parking.twoWheeler;
 		}
 
+		removeNonQualifiedProperties(property);
 		return property;
+	}
+	
+	var removeNonQualifiedProperties = function(property) {
+	
+		
+	
+		if(property.details.mode === 'Sell') {
+			delete property.details.monthlyRent;
+			delete property.details.maintenanceFee;
+			delete property.details.deposit;
+			delete property.details.allowNonVeg;
+			delete property.details.allowPets;
+			delete property.details.preferredTenant;
+			delete property.details.commitionInDays;
+			delete property.details.fixedPrice;
+		}
+
+		if(property.details.mode === 'Rent') {
+			delete property.details.area.perUnitPrice;
+			delete property.details.area.plotOrLand;
+			delete property.details.price;
+			delete property.details.propertyStatus;
+			if(property.specifications && property.specifications.unitsAvailable) {
+				delete property.specifications.unitsAvailable;
+			}
+		}
+			
 	}
 	
 	$scope.validateFloors = function(totalFloors, floorNumber) {
