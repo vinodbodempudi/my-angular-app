@@ -24,13 +24,13 @@
 			  </div>
 			  <div class="row properresultssqftlabel">
 				<div class="col-xs-12 price" style="textAlign:Right;">
-				  <h5 style="text-align: right;" ng-show="property.details.mode==='Sell' && property.details.area.perUnitPrice"><span>{{property.details.area.perUnitPrice}}/Sq.ft</span></h5>
+				  <h5 style="text-align: right;" ng-show="property.details.mode==='Sell' && property.details.area.perUnitPrice"><span>{{property.details.area.perUnitPrice | currencyFormatter}}/Sq.ft</span></h5>
 				</div>
 			  </div>
 			  <div class="row firstRow">
 				<div class="col-xs-3"> <span>{{property.details.bedRooms}}</span> Beds </div>
 				<div class="col-xs-3"> <span>{{property.details.bathRooms}}</span> Baths </div>
-				<div class="col-xs-3"> <span>{{property.details.area.builtUp.builtUp}}</span> {{property.details.area.builtUp.units}} </div>
+				<div class="col-xs-3"> <span>{{property.details.area.builtUp.builtUp | currencyFormatter}}</span> {{property.details.area.builtUp.units}} </div>
 			  </div>
 			  <div class="row secondRow">
 				<div class="col-xs-2"> <span>{{property.details.mode}}</span> </div>
