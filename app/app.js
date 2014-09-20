@@ -379,21 +379,30 @@ app.controller('FeedBackModalCtrl', ['$scope', '$modalInstance', 'fatHomeUtilSer
 	};
 	
 }]);
-app.directive('formatPrice', ['FatHomeUtil', function(fatHomeUtil) {
+app.directive('formatNumber', ['FatHomeUtil', function(fatHomeUtil) {
   return {
     require: 'ngModel',
     link: function(scope, element, attrs, ngModelController) {
-	
+	 var regEx = /^[0-9]+$/, tempValue;
       ngModelController.$parsers.push(function(data) {
+		ngModelController.$setValidity('pattern',true);
+		if(!data || data.length == 0 || data == tempValue) {
+			return data;
+		}
+	  
+		var input = data.replace(/,/g, "");
+		if(!regEx.test(input)) {
+			ngModelController.$setValidity('pattern',false);
+			return data;
+		}
+		
         //convert data from view format to model format
-		var value = fatHomeUtil.currencyFormater(data);
-        return value; //converted
+		tempValue = fatHomeUtil.currencyFormater(input);
+		ngModelController.$setViewValue(tempValue);
+		ngModelController.$render();
+        return tempValue; //converted
       });
 
-      ngModelController.$formatters.push(function(data) {
-        //convert data from model format to view format
-        return fatHomeUtil.currencyFormater(data); //converted
-      });
     }
   }
 }]);

@@ -46,24 +46,20 @@ angular.module('login', [])
 	function ($scope, $modalInstance, $modal, loginService, $rootScope, $location) {
 
 	$scope.loginInProgress = false;
-	$scope.ok = function () {
-		$modalInstance.close();
-		$rootScope.showPostProperty = false;
-		if(!$rootScope.isUserLoggedin && $location.path().match('registerproperty') != null) {
-			$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
-		}
-	};
 
-	$scope.cancel = function () {
+	$scope.cancel = function (isFromRegisterUserAction) {
 		$modalInstance.dismiss('cancel');
-		$rootScope.showPostProperty = false;
+		if(!isFromRegisterUserAction) {
+			$rootScope.showPostProperty = false;
+		}
+		
 		if(!$rootScope.isUserLoggedin && $location.path().match('registerproperty') != null) {
 			$location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
 		}
 	};
 	
 	$scope.showRegisterModal = function() {
-		$scope.cancel();
+		$scope.cancel(true);
 		var modalInstance = $modal.open({
 			  templateUrl: 'modules/login/html/register-user.html',
 			  controller: 'RegisterUserModalCtrl',

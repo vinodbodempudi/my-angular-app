@@ -2,7 +2,7 @@
 
 angular.module('registerProperty', [])
 .controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', '$routeParams', 'RegisterPropertyService', '$rootScope',
-	function($scope, locationService, fatHomeUtil, $routeParams, registerPropertyService, $rootScope) {
+	'$modal', '$location', function($scope, locationService, fatHomeUtil, $routeParams, registerPropertyService, $rootScope, $modal, $location) {
 	
 	if(!$scope.isUserLoggedin) {
 		$rootScope.$broadcast('showLoginModal');
@@ -11,7 +11,6 @@ angular.module('registerProperty', [])
 	$scope.user.city = $scope.city = $routeParams.city;
 	$scope.user.locality = $scope.locality = $routeParams.locality;
 	
-	$scope.registerPropertySuccess = false;
 	$scope.property = {user:{}};
 	$scope.property.user.city = $scope.city;
 	$scope.property.user.locality = $scope.locality;
@@ -165,7 +164,14 @@ angular.module('registerProperty', [])
 	   $rootScope.$broadcast('SHOW_PROGRESS_BAR');
        registerPropertyService.registerProperty(angular.toJson(request))
        	    .success(function(data){
-				$scope.registerPropertySuccess = true;
+				var modalInstance = $modal.open({
+				  templateUrl: 'modules/registerproperty/html/register-success.html',
+				  controller: 'ModalInstanceCtrl',
+				  windowClass:'sign-modal'
+				});
+				modalInstance.result.then(function (result) {
+					 $location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
+				});
 				$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 		    }).error(function(e){
 				$scope.disableSubmitbtn = true;

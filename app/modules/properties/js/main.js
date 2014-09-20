@@ -260,12 +260,12 @@ angular.module('properties', [])
 	}
 	
 	var isValidAmount = function(amount) {
-		console.log(amount);
+
 		if(amount == undefined || amount.toString().length == 0) {
 			return false;
 		}
-	
-		if(Number(amount) >= 0) {
+		
+		if(Number(amount.replace(/,/g, "")) >= 0) {
 			return true;
 		}
 		return false;

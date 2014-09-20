@@ -83,8 +83,10 @@
                             <div class="form-group" ng-class="{'has-error':form1.phoneNumber.$invalid && !form1.phoneNumber.$pristine}">
                                 <label class="col-sm-2 control-label mandatory">Phone:</label>
                                 <div class="col-sm-3">
-									<label>+91 - </label>
-                                    <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" ng-required='true' ng-model="property.user.primaryPhoneNumber" style="display:inline-block;width:85%;" class="form-control input-sm" placeholder="Primary Phone">
+									<div class="input-group">
+									  <div class="input-group-addon">+91</div>
+									  <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" ng-required='true' ng-model="property.user.primaryPhoneNumber" class="form-control input-sm" placeholder="Primary Phone">
+									</div>
                                     <p ng-show="form1.submitted && form1.phoneNumber.$error.required" class="label errorText" style="padding-left: 38px;">Enter phone number</p>
 									<p ng-show="form1.phoneNumber.$error.pattern" class="errorText label" style="padding-left: 38px;">Enter valid phone number</p>
                                 </div>
@@ -97,8 +99,10 @@
 							<div class="form-group" >
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-3">
-									<label>+91 - </label>
-                                    <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="secondaryPhoneNo" ng-required='form1.secondaryPhoneNo.$dirty' ng-model="property.user.secondaryPhoneNumber" style="display:inline-block;width:85%;" class="form-control input-sm" placeholder="Secondary Phone">
+									<div class="input-group">
+										  <div class="input-group-addon">+91</div>
+										  <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="secondaryPhoneNo" ng-required='form1.secondaryPhoneNo.$dirty' ng-model="property.user.secondaryPhoneNumber" class="form-control input-sm" placeholder="Secondary Phone">
+									</div>
                                     <p ng-show="form1.submitted && form1.secondaryPhoneNo.$error.required" style="padding-left: 38px;" class="label errorText">Enter phone number</p>
 									<p ng-show="form1.secondaryPhoneNo.$error.pattern" style="padding-left: 38px;" class="errorText label">Enter valid phone number</p>
                                 </div>
@@ -219,7 +223,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label mandatory">Area:</label>
                                 <div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="builtUp" ng-model="property.details.area.builtUp.builtUp" ng-required='true' placeholder="Built-up">
+                                    <input type="text" format-number class="form-control input-sm" name="builtUp" ng-model="property.details.area.builtUp.builtUp" ng-required='true' placeholder="Built-up">
 									<p ng-show="form1.submitted && form1.builtUp.$error.required" class="label errorText">Enter Built-up</p>
 									<p ng-show="form1.builtUp.$error.pattern" class="label errorText">Enter valid Built-up</p>
                                 </div>
@@ -231,7 +235,7 @@
 									<p ng-show="form1.builtUpUnits.$invalid && (!form1.builtUpUnits.$pristine || form1.submitted)" class="label errorText">select Built-up units</p>
                                 </div>
 								<div class="col-sm-2" ng-show="property.details.mode==='Sell'">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required="false" placeholder="Per Sq.ft price">
+                                    <input type="text" format-number class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required="false" placeholder="Per Sq.ft price">
 									<p ng-show="form1.submitted && form1.perUnitPrice.$error.required" class="label errorText">Enter per unit price</p>
 									<p ng-show="form1.perUnitPrice.$error.pattern" class="label errorText">Enter valid unit price</p>
                                 </div>
@@ -240,7 +244,7 @@
 							<div class="form-group" ng-show="property.details.mode==='Sell'">
 								<!--<label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="carpet" ng-model="property.details.area.carpet.carpet" ng-required='false' placeholder="Carpet">
+                                    <input type="text" format-number class="form-control input-sm" name="carpet" ng-model="property.details.area.carpet.carpet" ng-required='false' placeholder="Carpet">
 									<p ng-show="form1.submitted && form1.carpet.$error.required" class="label errorText">Enter Carpet</p>
 									<p ng-show="form1.carpet.$error.pattern" class="label errorText">Enter valid Carpet</p>
                                 </div>
@@ -253,7 +257,7 @@
                                 </div>-->
 								<label class="col-sm-2 control-label"></label>
 								<div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required='false' placeholder="Plot/Land">
+                                    <input type="text" format-number class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required='false' placeholder="Plot/Land">
 									<p ng-show="form1.submitted && form1.plotOrLand.$error.required" class="label errorText">Enter Plot/Land</p>
 									<p ng-show="form1.plotOrLand.$error.pattern" class="label errorText">Enter valid Plot/Land</p>
                                 </div>
@@ -266,7 +270,7 @@
 							
 							</div>
                                 <!--<div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required='true' placeholder="Plot/Land">
+                                    <input type="text" format-number class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required='true' placeholder="Plot/Land">
 									<p ng-show="form1.submitted && form1.plotOrLand.$error.required" class="label errorText">Enter Plot/Land</p>
 									<p ng-show="form1.plotOrLand.$error.pattern" class="label errorText">Enter valid Plot/Land</p>
                                 </div>
@@ -282,7 +286,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="carpet" ng-model="property.details.area.carpet.carpet" ng-required='false' placeholder="Carpet">
+                                    <input type="text" format-number class="form-control input-sm" name="carpet" ng-model="property.details.area.carpet.carpet" ng-required='false' placeholder="Carpet">
 									<p ng-show="form1.submitted && form1.carpet.$error.required" class="label errorText">Enter Carpet</p>
 									<p ng-show="form1.carpet.$error.pattern" class="label errorText">Enter valid Carpet</p>
                                 </div>
@@ -294,7 +298,7 @@
 									<p ng-show="form1.carpetUnits.$invalid && (!form1.carpetUnits.$pristine || form1.submitted)" class="label errorText">select Carpet units</p>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required='true' placeholder="Per unit price">
+                                    <input type="text" format-number class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required='true' placeholder="Per unit price">
 									<p ng-show="form1.submitted && form1.perUnitPrice.$error.required" class="label errorText">Enter per unit price</p>
 									<p ng-show="form1.perUnitPrice.$error.pattern" class="label errorText">Enter valid unit price</p>
                                 </div>
@@ -353,7 +357,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label mandatory">Total Price:</label>
 									<div class="col-sm-2">
-										<input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" placeholder="Amount" name="price" ng-model="property.details.price.price" ng-required="property.details.mode==='Sell'">
+										<input type="text" format-number class="form-control input-sm" placeholder="Amount" name="price" ng-model="property.details.price.price" ng-required="property.details.mode==='Sell'">
 										<p ng-show="form1.submitted && form1.price.$error.required" class="label errorText">Enter total price</p>
 										<p ng-show="form1.price.$error.pattern" class="label errorText">Enter valid unit price</p>
 									</div>
@@ -396,18 +400,18 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label mandatory">Monthly Rent:</label>
 									<div class="col-sm-2">
-										<input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="monthlyRent" ng-model="property.details.monthlyRent" ng-required="property.details.mode==='Rent'" placeholder="Rent">
+										<input type="text" format-number class="form-control input-sm" name="monthlyRent" ng-model="property.details.monthlyRent" ng-required="property.details.mode==='Rent'" placeholder="Rent">
 										<p ng-show="form1.submitted && form1.monthlyRent.$error.required" class="label errorText">Enter monthly rent</p>
 										<p ng-show="form1.monthlyRent.$error.pattern" class="label errorText">Enter valid monthly rent</p>
 									</div>
 									<label class="col-sm-1 control-label maintenancefee">Maintenance Fee:</label>
 									<div class="col-sm-2 mainfee">
-									  <input type="text" ng-pattern=/^[0-9]+$/ name="maintenanceFee" class="form-control input-sm" ng-model="property.details.maintenanceFee" placeholder="Maintenance Fee">
+									  <input type="text" format-number name="maintenanceFee" class="form-control input-sm" ng-model="property.details.maintenanceFee" placeholder="Maintenance Fee">
 									  <p ng-show="form1.maintenanceFee.$error.pattern" class="label errorText">Enter valid Maintenance Fee</p>
 									</div>
 									<label class="col-sm-1 control-label deposit">Deposit:</label>
 									<div class="col-sm-2">
-										<input type="text" ng-pattern=/^[0-9]+$/ class="form-control input-sm" name="deposit" ng-model="property.details.deposit" ng-required="false" placeholder="Deposit">
+										<input type="text" format-number class="form-control input-sm" name="deposit" ng-model="property.details.deposit" ng-required="false" placeholder="Deposit">
 										<p ng-show="form1.deposit.$error.pattern" class="label errorText">Enter valid deposit Fee</p>
 									</div>
 								</div>
@@ -451,7 +455,7 @@
 										<p ng-show="form1.commitionInDays.$invalid && (!form1.commitionInDays.$pristine || form1.submitted)" class="label errorText">select commition in days</p>
 									</div>
 									<div class="col-sm-2" ng-show="property.details.commitionInDays==='Others'">
-										<input type="text" ng-pattern=/^[0-9]+$/ name="fixedPrice" class="form-control input-sm" ng-model="property.details.fixedPrice" placeholder="Fixed Price">
+										<input type="text" format-number name="fixedPrice" class="form-control input-sm" ng-model="property.details.fixedPrice" placeholder="Fixed Price">
 										<p ng-show="form1.fixedPrice.$error.pattern" class="label errorText">Enter valid fixed price</p>
 									</div>
 								</div>
@@ -1088,20 +1092,3 @@
         </div>
     </div>
 </div>​
-<div class="modal" modal-visible="registerPropertySuccess" modal-show data-backdrop="false" id="registerPropertySuccessModal" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-		<div class="text-center" style="padding: 20px;">
-			<img ng-src="images/success_32.gif"/> 
-			<span class="resgisterPropertySuccessLabel">Property details saved successfully.</span>
-		</div>
-		<div class="text-center">
-			<a href="#/properties/{{property.user.city}}/{{property.user.locality}}"><button class="btn btn-info">Back to Results</button></a>
-		</div>
-	  </div>
-     </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>

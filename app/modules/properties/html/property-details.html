@@ -96,7 +96,7 @@
 						</div>
 						<div class="push"></div>
 					</div>-->
-					<div class="schedule_row" ng-show="property.details.mode==='Sell'">
+					<div class="schedule_row" ng-show="property.details.mode==='Sell' && property.details.area.perUnitPrice">
 						<div class="left">
 							<label class="">Per Unit price</label>
 						</div>
@@ -298,8 +298,8 @@
 						<div class="right">
 							<label ng-show="!property.specifications.otherRoom && !property.specifications.additionalRooms"></label>
 							<label ng-show="property.specifications.additionalRooms">{{property.specifications.additionalRooms}}</label>
-							<label ng-show="property.specifications.otherRoom && property.specifications.additionalRooms">,</label>
-							<label ng-show="property.specifications.otherRoom">{{property.specifications.otherRoom}}</label>
+							<label ng-show="property.specifications.otherRoom && property.specifications.otherRoom.length && property.specifications.additionalRooms">,</label>
+							<label ng-show="property.specifications.otherRoom && property.specifications.otherRoom.length">{{property.specifications.otherRoom}}</label>
 						</div>
 						<div class="speaker_image dot">
 							<img src="images/dot.png" alt="">

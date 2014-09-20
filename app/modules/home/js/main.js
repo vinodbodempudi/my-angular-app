@@ -267,6 +267,10 @@ angular.module('home', [])
 		if(!value) {
 			return "";
 		}
+		
+		if(/,/g.test(value)) {
+			return value;
+		}
 	  
 		var temp=value.toString(), index = temp.indexOf(".");
 		if(index > -1) {
