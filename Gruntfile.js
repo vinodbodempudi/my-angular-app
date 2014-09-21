@@ -257,7 +257,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '.',
-          src: ['app/lib/ui-bootstrap-carousel.js', 'app/lib/google-map.js','app/app.js','app/configuration.js','app/lib/imageupload.js','app/lib/nya-bootstrap-select.js','app/modules/**/*.js'],
+          src: ['app/lib/ui-bootstrap-carousel.js', 'app/app.js','app/configuration.js','app/lib/imageupload.js','app/lib/nya-bootstrap-select.js','app/modules/**/*.js'],
           dest: 'dest/js'
         }]
       }
