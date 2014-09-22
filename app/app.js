@@ -169,7 +169,7 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Locat
 	$scope.logOut = function (loginUser) {
 		$rootScope.userDetails = null;
 		$rootScope.isUserLoggedin = false;
-		
+		localStorage.removeItem("userDetails");
 		var modalInstance;
 		if($location.path().match('registerproperty') != null) {
 			modalInstance = $modal.open({

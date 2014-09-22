@@ -67,6 +67,13 @@ angular.module('login', [])
 			});
 	
 	}
+
+	if(localStorage.rememberMe) {
+		$scope.loginUser = {};
+		$scope.loginUser.email = localStorage.userName;
+		$scope.loginUser.password = localStorage.password;
+		$scope.loginUser.rememberMe = true;
+	}
 	
 	$scope.authenticate = function(userDetails, invalid) {
 		$scope.loginFailed = false;
@@ -82,7 +89,16 @@ angular.module('login', [])
 				$rootScope.isUserLoggedin = true;
 				
 				localStorage.setItem("userDetails", angular.toJson(data));
-				localStorage.setItem("rememberMe", userDetails.rememberMe);
+				
+				if(userDetails.rememberMe) {
+					localStorage.userName = userDetails.email;
+					localStorage.password =  userDetails.password;
+					localStorage.rememberMe = userDetails.rememberMe;
+				} else {
+					localStorage.removeItem("userName");
+					localStorage.removeItem("password");
+					localStorage.removeItem("rememberMe");
+				}
 				
 				if($rootScope.showPostProperty) {
 					$rootScope.showPostProperty = false;

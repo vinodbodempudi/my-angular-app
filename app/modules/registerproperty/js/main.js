@@ -172,7 +172,7 @@ angular.module('registerProperty', [])
 				  windowClass:'sign-modal'
 				});
 				modalInstance.result.then(function (result) {
-					 $location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
+					 $location.path('/properties/' + $scope.property.user.city + '/' + $scope.property.user.locality);
 				});
 				$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 		    }).error(function(e){
