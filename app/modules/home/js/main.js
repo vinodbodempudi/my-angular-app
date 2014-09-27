@@ -284,5 +284,47 @@ angular.module('home', [])
 		return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
 	}
 
-});
+})
+.service('FatHomeAppStateUtil', ['$location', function($location) {
+
+	this.isRegisterProperty = function () {
+        if($location.path().match('registerproperty') != null) {
+			return true;
+		}
+		return false;
+    };
+	
+	this.isEditProperty = function () {
+        if($location.path().match('editproperty') != null) {
+			return true;
+		}
+		return false;
+    };
+	
+	this.isPropertiesHome = function () {
+        if($location.path().match('properties') != null) {
+			return true;
+		}
+		return false;
+    };
+	
+	this.showRegisterProperty = function () {
+        if($location.path().match('properties') != null) {
+			return true;
+		}
+		return false;
+    };
+	
+	this.showPropertiesHome = function (city, locality, propertyId, reload) {
+		if(propertyId) {
+			$location.path('/properties/' + city + '/' + locality + '/' + propertyId, reload);
+			return;
+		}
+        $location.path('/properties/' + $rootScope.user.city + '/' + $rootScope.user.locality, reload);
+    };
+	
+	this.showEditProperty = function (city, locality, propertyId, reload) {
+        $location.path('/editproperty/' + city + '/' + locality + '/' + propertyId, reload);
+    };
+}]);
 

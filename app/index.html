@@ -50,7 +50,7 @@
             <li><a href="#/properties/{{user.city}}/{{user.locality}}"><i class="fa fa-home"></i></a></li>
             <li><a href="" ng-click="showFeedbackmodal();">FEEDBACK</a></li>
             <li><a href="" ng-click="showContactmodal();">CONTACT US</a></li>
-            <li><a href="" ng-click="" popover-placement="bottom" popover="On the Bottom!">MY LIST</a></li>
+            <li><a href=""  ng-click="showMyProperties();" pop-over >MY LIST</a></li>
 			<li ng-controller="LoginCtrl"><a href="" ng-show="!isUserLoggedin" ng-click="showLoginModal();">SIGN IN</a></li>
 			<li><a href="" ng-show="isUserLoggedin" ng-click="logOut();">SIGN OUT</a></li>
             
@@ -100,6 +100,9 @@
 	<script src="modules/home/js/main.js"></script>
   <script src="lib/nya-bootstrap-select.js"></script>
 
+  <script type="text/ng-template" id="templateId.html">
+    sdfsd sdf sdfsdf
+</script>
 	
 </body>
 </html>

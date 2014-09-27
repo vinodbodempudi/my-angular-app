@@ -2,7 +2,7 @@
 
 angular.module('registerProperty', [])
 .controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', '$routeParams', 'RegisterPropertyService', '$rootScope',
-	'$modal', '$location', function($scope, locationService, fatHomeUtil, $routeParams, registerPropertyService, $rootScope, $modal, $location) {
+	'$modal', '$location', 'FatHomeAppStateUtil', function($scope, locationService, fatHomeUtil, $routeParams, registerPropertyService, $rootScope, $modal, $location, fatHomeAppStateUtil) {
 	
 	if(!$scope.isUserLoggedin) {
 		$rootScope.$broadcast('showLoginModal');
@@ -36,7 +36,7 @@ angular.module('registerProperty', [])
 		$scope.property.user.name = userDetails.name;
 		$scope.property.user.primaryEmail = userDetails.email;
 		$scope.property.user.primaryPhoneNumber = userDetails.phoneNumber;
-		$scope.property.user.userId = userDetails.userId;
+		$scope.property.user._id = userDetails._id;
 
 		if(userDetails.type === 'Individual') {
 			$scope.property.user.type = 'Owner';
@@ -49,6 +49,10 @@ angular.module('registerProperty', [])
 	var userDetails = $rootScope.userDetails;
 	if($rootScope.userDetails) {
 		setUserDetails($rootScope.userDetails);
+	}
+	
+	if(fatHomeAppStateUtil.isEditProperty()) {
+		$scope.property = $rootScope.editProperty;
 	}
 	
 	$scope.$watch("userDetails",

@@ -285,6 +285,10 @@ angular.module('properties', [])
 	this.getPropertyDetails = function (propertyId) {
         return $http.get(servicesBaseUrl+'/properties/'+propertyId);
     };
+	
+	this.getMyProperties = function (userId) {
+        return $http.get(servicesBaseUrl+'/properties/my-properties/'+userId);
+    };
 
 }]).filter('filterPropertiesResults', [function () {
     return function (properties, filterOption) {
