@@ -105,6 +105,12 @@ angular.module('login', [])
 					$location.path('/registerproperty/' + $scope.user.city + '/' + $scope.user.locality);
 				}
 				
+				if($rootScope.showMyListPopover) {
+					$rootScope.showMyListPopover = false;
+					$rootScope.$broadcast('showMyListPopOver');
+				}
+				
+				
 				$scope.cancel();
 			}).error(function(e){
 				$scope.loginInProgress = false;

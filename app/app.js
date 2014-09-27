@@ -443,21 +443,38 @@ app.directive('popOver', ['$compile', 'FatHomeAppStateUtil', '$rootScope', 'Prop
 			});
 		};
 		
+		var showingPopover = false;
 		scope.showMyProperties = function() {
-			removeClickEvent();
+			if(showingPopover) {
+				showingPopover = false;
+				hideMyListModal();
+				return;
+			}
+			
+			if(!scope.isUserLoggedin) {
+				$rootScope.showMyListPopover = true;
+				hideMyListModal();
+				$rootScope.$broadcast('showLoginModal');
+				
+				scope.$on('showMyListPopOver', function() {
+					showMyProperties();
+				});
+				
+				return;
+			}
+
+			showMyProperties();
+		};
+		
+		var showMyProperties = function() {
 			propertiesService.getMyProperties(scope.userDetails._id)
 			.success(function(data){
-				if(!scope.properties) {
-					preparePopOver(data);
-					$(element).popover('show');
-					return;
-				}
-				
 				preparePopOver(data);
 			}).error(function(e){
 
 			});
 		};
+		
 		
 		var preparePopOver = function(properties) {
 			scope.properties = properties;
@@ -465,30 +482,30 @@ app.directive('popOver', ['$compile', 'FatHomeAppStateUtil', '$rootScope', 'Prop
 				content: $compile(itemsTemplate)(scope),
 				placement: "bottom",
 				html: true,
-				trigger:'click'
+				trigger:'manual'
 			};
 			$(element).popover(options);
-			addClickEvent();
+			showMyListModal();
 		}
-		
-		var addClickEvent = function() {
-			$('html').on('click', function(e) {
-				hideMyListModal();
-			});
-		}
-		
-		var removeClickEvent = function() {
-			$('html').off('click');
-		}
-		
+	
 		scope.deleteProperty = function(propertyId) {
 			if (window.confirm('Are you sure you want delete?')) {
 				hideMyListModal();
 			}
 		};
 		
+		var showMyListModal = function() {
+			showingPopover = true;
+			$(element).popover('show');
+			$('html').on('click', function(e) {
+				hideMyListModal();
+			});
+		}
+		
 		var hideMyListModal = function() {
 			$(element).popover('hide');
+			showingPopover = false;
+			$('html').off('click');
 		}
 	}
   };
