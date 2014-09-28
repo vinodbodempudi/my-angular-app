@@ -286,8 +286,8 @@ angular.module('properties', [])
         return $http.get(servicesBaseUrl+'/properties/'+propertyId);
     };
 	
-	this.getMyProperties = function (userId) {
-        return $http.get(servicesBaseUrl+'/properties/my-properties/'+userId);
+	this.getMyProperties = function (userId, email) {
+        return $http.get(servicesBaseUrl+'/properties/my-properties/'+userId+'/'+email);
     };
 
 }]).filter('filterPropertiesResults', [function () {

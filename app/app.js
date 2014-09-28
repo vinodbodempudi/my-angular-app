@@ -467,7 +467,7 @@ app.directive('popOver', ['$compile', 'FatHomeAppStateUtil', '$rootScope', 'Prop
 		};
 		
 		var showMyProperties = function() {
-			propertiesService.getMyProperties(scope.userDetails._id)
+			propertiesService.getMyProperties(scope.userDetails._id, scope.userDetails.email)
 			.success(function(data){
 				preparePopOver(data);
 			}).error(function(e){

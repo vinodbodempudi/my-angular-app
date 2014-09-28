@@ -166,31 +166,47 @@ angular.module('registerProperty', [])
 			}
 		}
 	   $rootScope.$broadcast('SHOW_PROGRESS_BAR');
-       registerPropertyService.registerProperty(angular.toJson(request))
-       	    .success(function(data){
-				var modalInstance = $modal.open({
-				  templateUrl: 'modules/registerproperty/html/register-success.html',
-				  controller: 'ModalInstanceCtrl',
-				  keyboard:false,
-				  backdrop:'static',
-				  windowClass:'sign-modal'
-				});
-				modalInstance.result.then(function (result) {
-					 $location.path('/properties/' + $scope.property.user.city + '/' + $scope.property.user.locality);
-				});
-				$rootScope.$broadcast('HIDE_PROGRESS_BAR');
-		    }).error(function(e){
-				$scope.disableSubmitbtn = true;
-				$rootScope.$broadcast('HIDE_PROGRESS_BAR');
-				
-		    });
+	   
+	   if(fatHomeAppStateUtil.isRegisterProperty()) {
+			registerPropertyService.registerProperty(angular.toJson(request))
+				.success(savePropertySuccessHandler)
+				.error(savePropertyErrorHandler);
+	   } else {
+			registerPropertyService.updateProperty(angular.toJson(request))
+				.success(savePropertySuccessHandler)
+				.error(savePropertyErrorHandler);
+	   }
+	   
+       
     };
 	
+	var savePropertySuccessHandler = function(data){
+		var modalInstance = $modal.open({
+		  templateUrl: 'modules/registerproperty/html/register-success.html',
+		  controller: 'ModalInstanceCtrl',
+		  keyboard:false,
+		  backdrop:'static',
+		  windowClass:'sign-modal'
+		});
+		modalInstance.result.then(function (result) {
+			 $location.path('/properties/' + $scope.property.user.city + '/' + $scope.property.user.locality);
+		});
+		$rootScope.$broadcast('HIDE_PROGRESS_BAR');
+	};
+	
+	var savePropertyErrorHandler = function(e){
+		$scope.disableSubmitbtn = true;
+		$rootScope.$broadcast('HIDE_PROGRESS_BAR');
+		
+	};
 	
 	var adjustProperty = function(property) {
 	
 		if(fatHomeAppStateUtil.isRegisterProperty()) {
 			property.createdDate = new Date();
+			property.lastUpdatedDate = new Date();
+		} else {
+			property.lastUpdatedDate = new Date();
 		}
 	
 		if(property.details.area.builtUp) {
@@ -280,6 +296,10 @@ angular.module('registerProperty', [])
 .service('RegisterPropertyService',['$http',  'servicesBaseUrl', function($http, servicesBaseUrl) {
     this.registerProperty = function (property) {
         return $http.post(servicesBaseUrl+'/properties', property);
+    };
+	
+	this.updateProperty = function (property) {
+        return $http.post(servicesBaseUrl+'/properties/updateProperty', property);
     };
 }])
 .directive('scroll', function() {
@@ -373,23 +393,29 @@ angular.module('registerProperty', [])
 				info.open(map, marker);
 				google.maps.event.addListener(marker, 'dragend', function(e)
 				{
-					if(!scope.property.location) {
-						scope.property.location = {};
-					}
-					info.setContent('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
-					scope.property.location.lat= e.latLng.lat();
-					scope.property.location.lng= e.latLng.lng();
-					
+					updatePropertyLocation(e.latLng.lat(), e.latLng.lng());
 					google.maps.event.removeListener(centerChangeListener);
 				});
 				
+				var updatePropertyLocation = function(lat, lng) {
+					if(!scope.property.location) {
+						scope.property.location = {};
+					}
+					info.setContent('Latitude : '+ lat +' '+'Longittude : '+ lng);
+					scope.property.location.lat= lat;
+					scope.property.location.lng= lng;
+					
+					google.maps.event.removeListener(centerChangeListener);
+				}
 				
-				var centerChangeListener = google.maps.event.addListener(map, 'center_changed', function() {
+				var centerChangeListener = google.maps.event.addListener(map, 'center_changed', function(e) {
 					if(map.getZoom() < 15) {
 						return;
 					}
 					
-					marker.setPosition(map.getCenter());
+					var center = map.getCenter();
+					updatePropertyLocation(center.lat(), center.lng());
+					marker.setPosition(center);
 				});
 			}
 
