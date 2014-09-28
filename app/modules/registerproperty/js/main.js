@@ -188,7 +188,10 @@ angular.module('registerProperty', [])
 	
 	
 	var adjustProperty = function(property) {
-		property.createdDate = new Date();
+	
+		if(fatHomeAppStateUtil.isRegisterProperty()) {
+			property.createdDate = new Date();
+		}
 	
 		if(property.details.area.builtUp) {
 			property.details.area.builtUp.builtUpInSqft = fatHomeUtil.getSqftMutiplier(property.details.area.builtUp.units)*Number(property.details.area.builtUp.builtUp);
