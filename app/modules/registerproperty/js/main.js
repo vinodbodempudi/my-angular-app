@@ -386,8 +386,7 @@ angular.module('registerProperty', [])
 				});
 
 				var info = new google.maps.InfoWindow({
-					content:''
-
+					content:'Drag me on to property'
 				})
 
 				info.open(map, marker);
@@ -407,7 +406,7 @@ angular.module('registerProperty', [])
 					if(!scope.property.location) {
 						scope.property.location = {};
 					}
-					info.setContent('Latitude : '+ lat +' '+'Longittude : '+ lng);
+					
 					scope.property.location.lat= lat;
 					scope.property.location.lng= lng;
 					
