@@ -397,6 +397,12 @@ angular.module('registerProperty', [])
 					google.maps.event.removeListener(centerChangeListener);
 				});
 				
+				google.maps.event.addListener(map, 'dragend', function(e)
+				{
+					updatePropertyLocation(e.latLng.lat(), e.latLng.lng());
+					//google.maps.event.removeListener(centerChangeListener);
+				});
+				
 				var updatePropertyLocation = function(lat, lng) {
 					if(!scope.property.location) {
 						scope.property.location = {};
@@ -405,7 +411,7 @@ angular.module('registerProperty', [])
 					scope.property.location.lat= lat;
 					scope.property.location.lng= lng;
 					
-					google.maps.event.removeListener(centerChangeListener);
+					//google.maps.event.removeListener(centerChangeListener);
 				}
 				
 				var centerChangeListener = google.maps.event.addListener(map, 'center_changed', function(e) {

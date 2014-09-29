@@ -66,7 +66,7 @@ app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $loc
 		return original.apply($location, [path]);
 	};
 }]);
-app.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
+app.run(['$rootScope', '$location', '$window', 'FatHomeAppStateUtil', function($rootScope, $location, $window, fatHomeAppStateUtil){
 
 	$rootScope.showTabs = {};
 	
@@ -88,7 +88,7 @@ app.run(['$rootScope', '$location', '$window', function($rootScope, $location, $
 		return;
 	}
 	
-	if(!$location.path() || $location.path().match('home') != null) {
+	if(!$location.path() || $location.path().match('home') != null || fatHomeAppStateUtil.isEditProperty()) {
 		var cityFromCache = localStorage.getItem("city");
 		var localityFromCache = localStorage.getItem("locality");
 		if(cityFromCache && localityFromCache) {
@@ -416,7 +416,10 @@ app.directive('formatNumber', ['FatHomeUtil', function(fatHomeUtil) {
   }
 }]);
 app.directive('popOver', ['$compile', 'FatHomeAppStateUtil', '$rootScope', 'PropertiesService', 'FatHomeUtil', function ($compile, fatHomeAppStateUtil, $rootScope, propertiesService, fatHomeUtil) {
-  var itemsTemplate = "<div class='mylist-popover'> <div class='row'><div class='text-center' ng-show='properties.length == 0;'><h4> No results found.</h4> </div><div ng-repeat='property in properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder'> <div class='list-view' style='cursor:pointer;' ng-click='showPropertyDetails(property._id);'> <div class='image' ng-show='!property.urls.coverPhotoUrl.url'> <img ng-src='images/list1.png' alt='' /> </div> <div class='image' ng-show='property.urls.coverPhotoUrl.url'> <img ng-src='{{property.urls.coverPhotoUrl.url}}' alt='' /> </div> <div class='content'> <div class='row '> <div class='col-xs-7'> <h3><a href=''><label title='{{property.details.title}}' class='propertyresultsLabel'>{{property.details.title}}</label></a></h3> </div> <div class='col-xs-5 price' style='text-align:Right;'> <h4 ng-show='property.details.mode===sell'><i class='fa fa-rupee'></i> <span>{{property.details.price.price | currencyFormatter}}</span></h4> <h4 ng-show='property.details.mode===rent'><i class='fa fa-rupee'></i> <span>{{property.details.monthlyRent | currencyFormatter}}</span></h4> </div> </div> <div class='row properresultssqftlabel'> <div class='col-xs-12 price' style='textAlign:Right;'> <h5 style='text-align: right;' ng-show='property.details.mode===sell && property.details.area.perUnitPrice'><span>{{property.details.area.perUnitPrice | currencyFormatter}}/Sq.ft</span></h5> </div> </div> <div class='row firstRow'> <div class='col-xs-3'> <span>{{property.details.bedRooms}}</span> Beds </div> <div class='col-xs-3'> <span>{{property.details.bathRooms}}</span> Baths </div> <div class='col-xs-3'> <span>{{property.details.area.builtUp.builtUp | currencyFormatter}}</span> {{property.details.area.builtUp.units}} </div> </div> <div class='row secondRow'> <div class='col-xs-2'> <span>{{property.details.mode}}</span> </div> <div class='col-xs-5'> <span>{{property.details.propertySubType}}</span> </div> <div class='col-xs-5'> <i class='fa fa-map-marker'></i> <span>{{property.user.locality}}</span> </div> </div> <div class='row thirdRow customsocial' style='z-index:10;'> <div class='col-xs-8 text-center'> <button type='button' class='btn btn-default btn-sm btn-info' ng-click='editProperty($event, property);'>Edit</button> <button type='button' ng-show='false' class='btn btn-default btn-sm' ng-click='deleteProperty(property._id);'>Delete</button> <button type='button' ng-show='false' class='btn btn-default btn-sm'>Sold Out</button> </div> <div class='col-xs-4 dateright'> <div class='text-right'>{{property.createdDate | date:'MMM d, y'}}</div> </div> </div> </div> <div class='clearfix'></div> </div> </div> </div> </div>";
+  var itemsTemplate = "<div class='mylist-popover'><div class='row resutls'><div class='text-center' ng-show='properties.length == 0;'><h4> No results found.</h4> </div><div ng-repeat='property in properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder'> <div class='list-view' style='cursor:pointer;' ng-click='showPropertyDetails(property._id);'> <div class='image' ng-show='!property.urls.coverPhotoUrl.url'> <img ng-src='images/list1.png' alt='' /> </div> <div class='image' ng-show='property.urls.coverPhotoUrl.url'> <img ng-src='{{property.urls.coverPhotoUrl.url}}' alt='' /> </div> <div class='content'> <div class='row '> <div class='col-xs-7'> <h3><a href=''><label title='{{property.details.title}}' class='propertyresultsLabel'>{{property.details.title}}</label></a></h3> </div> <div class='col-xs-5 price' style='text-align:Right;'> <h4 ng-show='property.details.mode===sell'><i class='fa fa-rupee'></i> <span>{{property.details.price.price | currencyFormatter}}</span></h4> <h4 ng-show='property.details.mode===rent'><i class='fa fa-rupee'></i> <span>{{property.details.monthlyRent | currencyFormatter}}</span></h4> </div> </div> <div class='row properresultssqftlabel'> <div class='col-xs-12 price' style='textAlign:Right;'> <h5 style='text-align: right;' ng-show='property.details.mode===sell && property.details.area.perUnitPrice'><span>{{property.details.area.perUnitPrice | currencyFormatter}}/Sq.ft</span></h5> </div> </div> <div class='row firstRow'> <div class='col-xs-3'> <span>{{property.details.bedRooms}}</span> Beds </div> <div class='col-xs-3'> <span>{{property.details.bathRooms}}</span> Baths </div> <div class='col-xs-3'> <span>{{property.details.area.builtUp.builtUp | currencyFormatter}}</span> {{property.details.area.builtUp.units}} </div> </div> <div class='row secondRow'> <div class='col-xs-2'> <span>{{property.details.mode}}</span> </div> <div class='col-xs-5'> <span>{{property.details.propertySubType}}</span> </div> <div class='col-xs-5'> <i class='fa fa-map-marker'></i> <span>{{property.user.locality}}</span> </div> </div> <div class='row thirdRow customsocial' style='z-index:10;'> <div class='col-xs-8 text-center'> <button type='button' class='btn btn-default btn-sm btn-info edit-button' ng-click='editProperty($event, property);'>Edit</button> <button type='button' ng-show='false' class='btn btn-default btn-sm' ng-click='deleteProperty(property._id);'>Delete</button> <button type='button' ng-show='false' class='btn btn-default btn-sm'>Sold Out</button> </div> <div class='col-xs-4 dateright'> <div class='text-right'>{{property.createdDate | date:'MMM d, y'}}</div> </div> </div> </div> <div class='clearfix'></div> </div> </div> </div> </div>";
+  var loading = "<div class='mylist-popover' style='margin: 0px auto; height: 200px;top: 68px; position: relative;'><img style='width:64px;height:64px;' src='images/ajax-loader-small.GIF'></div>";
+  
+  
   return {
     restrict: "A",
     transclude: true,
@@ -425,7 +428,7 @@ app.directive('popOver', ['$compile', 'FatHomeAppStateUtil', '$rootScope', 'Prop
 		scope.sell = 'Sell';
 		scope.rent = 'Rent';
 		scope.predicate = fatHomeUtil.propertySortOptions()[0];
-		scope.properties=null;
+		scope.properties=[];
 		scope.showPropertyDetails = function(propertyId) {
 			hideMyListModal();
 			fatHomeAppStateUtil.showPropertiesHome($rootScope.user.city, $rootScope.user.locality, propertyId, fatHomeAppStateUtil.isRegisterProperty() || fatHomeAppStateUtil.isEditProperty());
@@ -482,7 +485,8 @@ app.directive('popOver', ['$compile', 'FatHomeAppStateUtil', '$rootScope', 'Prop
 				content: $compile(itemsTemplate)(scope),
 				placement: "bottom",
 				html: true,
-				trigger:'manual'
+				trigger:'manual',
+				title: "My List"+ '<div class="pull-right"><a href="javascript:;" id="close" class="glyphicon glyphicon-remove" style="color: #C7C3C3"></a></div>',
 			};
 			$(element).popover(options);
 			showMyListModal();
