@@ -370,15 +370,23 @@ angular.module('registerProperty', [])
 					return;
 				}
 			
+			
+				var center;
+				if(scope.property.location) {
+					center = new google.maps.LatLng(scope.property.location.lat, scope.property.location.lng);
+				} else {
+					center = new google.maps.LatLng(scope.location.lat, scope.location.long);
+				}
+			
 				var mapOptions = {
 									zoom: 15,
-									center: new google.maps.LatLng(scope.location.lat, scope.location.long),
+									center: center,
 									mapTypeId: google.maps.MapTypeId.ROADMAP
 								};
 				var map = new google.maps.Map(el[0], mapOptions);
 				
 				var marker = new google.maps.Marker({
-					position: map.getCenter(),
+					position: center,
 					map: map,
 					animation: google.maps.Animation.BOUNCE,
 					draggable:true
@@ -386,7 +394,7 @@ angular.module('registerProperty', [])
 				});
 
 				var info = new google.maps.InfoWindow({
-					content:'Drag me on to property'
+					content:"<div style='line-height:1.35;overflow:hidden;white-space:nowrap;height:20px;'>Drag me on to property</div>"
 				})
 
 				info.open(map, marker);
@@ -394,6 +402,7 @@ angular.module('registerProperty', [])
 				{
 					updatePropertyLocation(e.latLng.lat(), e.latLng.lng());
 					google.maps.event.removeListener(centerChangeListener);
+					info.close();
 				});
 				
 				google.maps.event.addListener(map, 'dragend', function(e)
