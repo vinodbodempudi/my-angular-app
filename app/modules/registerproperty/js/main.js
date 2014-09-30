@@ -55,7 +55,7 @@ angular.module('registerProperty', [])
 
 	if(isEditProperty) {
 		$scope.property = $rootScope.editProperty;
-		$scope.propertyImages = property.urls.propertyUrls;
+		$scope.propertyImages = $scope.property.urls.propertyUrls;
 	}
 	
 	$scope.$watch("userDetails",
@@ -344,41 +344,6 @@ angular.module('registerProperty', [])
 				});
 				//element.datepicker("setDate", new Date());
 			});
-		}
-	};
-})
-.directive('imageonload', function() {
-    return {
-        restrict: 'A',
-		scope:{
-			image:"="
-		},
-        link: function(scope, element, attrs) {
-            element.bind('load', function(e) {
-                var canvas = document.createElement('CANVAS'), ctx = canvas.getContext('2d'), img = new Image;
-				var dataURL;
-				canvas.height = element.height;
-				canvas.width = element.width;
-				ctx.drawImage(img, 0, 0);
-				dataURL = canvas.toDataURL();
-				scope.image=decodeBase64Image(dataURL);
-				canvas = null; 
-			});
-			
-			function decodeBase64Image(dataString) {
-				var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-				response = {};
-
-				if (matches.length !== 3) {
-					return new Error('Invalid input string');
-				}
-
-				response.baseUrl = matches[0].replace(matches[2], "");
-				response.ext = matches[1].substring(matches[1].indexOf("/")+1);
-				response.data = matches[2];
-
-				return response;
-			}
 		}
 	};
 })

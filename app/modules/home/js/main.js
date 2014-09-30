@@ -283,22 +283,6 @@ angular.module('home', [])
 			lastThree = ',' + lastThree;
 		return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
 	}
-	
-	this.convertImgToBase64 = function (url, callback){
-		var canvas = document.createElement('CANVAS'), ctx = canvas.getContext('2d'), img = new Image;
-		img.crossOrigin = 'Anonymous';
-		img.onload = function(){
-			var dataURL;
-			canvas.height = img.height;
-			canvas.width = img.width;
-			ctx.drawImage(img, 0, 0);
-			dataURL = canvas.toDataURL();
-			callback.call(this, dataURL);
-			canvas = null; 
-		};
-		img.src = url;
-	}
-
 })
 .service('FatHomeAppStateUtil', ['$location', function($location) {
 
