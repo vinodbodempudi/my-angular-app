@@ -404,12 +404,15 @@ app.directive('formatNumber', ['FatHomeUtil', function(fatHomeUtil) {
 			ngModelController.$setValidity('pattern',false);
 			return data;
 		}
-		
-        //convert data from view format to model format
+
 		tempValue = fatHomeUtil.currencyFormater(input);
 		ngModelController.$setViewValue(tempValue);
 		ngModelController.$render();
-        return input; //converted
+        return input; 
+      });
+	  
+	  ngModelController.$formatters.push(function(data) {
+		return fatHomeUtil.currencyFormater(data); //converted
       });
 
     }

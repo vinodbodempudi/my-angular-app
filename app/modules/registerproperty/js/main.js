@@ -27,6 +27,8 @@ angular.module('registerProperty', [])
 	
 	$scope.disableSubmitbtn = false;
 	$scope.propertyImages = [];
+	$scope.removedImages = [];
+	var isEditProperty = fatHomeAppStateUtil.isEditProperty();
 	
 	$scope.city = $scope.newCity = $routeParams.city;
 	$scope.locality = $scope.newLocality = $routeParams.locality;
@@ -50,9 +52,10 @@ angular.module('registerProperty', [])
 	if($rootScope.userDetails) {
 		setUserDetails($rootScope.userDetails);
 	}
-	
-	if(fatHomeAppStateUtil.isEditProperty()) {
+
+	if(isEditProperty) {
 		$scope.property = $rootScope.editProperty;
+		$scope.propertyImages = property.urls.propertyUrls;
 	}
 	
 	$scope.$watch("userDetails",
@@ -157,27 +160,21 @@ angular.module('registerProperty', [])
     $scope.registerProperty = function () {
 	
 		$scope.disableSubmitbtn = true;
-	   
+	   if(isEditProperty) {
+		$scope.removedImages=[];
+	   }
 		var request = {
 			property: adjustProperty($scope.property),
 			images: {
 				userImage:$scope.userImage,
-				propertyImages: $scope.propertyImages
+				propertyImages: $scope.propertyImages,
+				removedImages:$scope.removedImages
 			}
 		}
 	   $rootScope.$broadcast('SHOW_PROGRESS_BAR');
-	   
-	   if(fatHomeAppStateUtil.isRegisterProperty()) {
-			registerPropertyService.registerProperty(angular.toJson(request))
-				.success(savePropertySuccessHandler)
-				.error(savePropertyErrorHandler);
-	   } else {
-			registerPropertyService.updateProperty(angular.toJson(request))
-				.success(savePropertySuccessHandler)
-				.error(savePropertyErrorHandler);
-	   }
-	   
-       
+	   registerPropertyService.registerProperty(angular.toJson(request))
+		.success(savePropertySuccessHandler)
+		.error(savePropertyErrorHandler);
     };
 	
 	var savePropertySuccessHandler = function(data){
@@ -295,11 +292,7 @@ angular.module('registerProperty', [])
 }])
 .service('RegisterPropertyService',['$http',  'servicesBaseUrl', function($http, servicesBaseUrl) {
     this.registerProperty = function (property) {
-        return $http.post(servicesBaseUrl+'/properties', property);
-    };
-	
-	this.updateProperty = function (property) {
-        return $http.post(servicesBaseUrl+'/properties/updateProperty', property);
+        return $http.post(servicesBaseUrl+'/properties/register-property', property);
     };
 }])
 .directive('scroll', function() {
@@ -351,6 +344,41 @@ angular.module('registerProperty', [])
 				});
 				//element.datepicker("setDate", new Date());
 			});
+		}
+	};
+})
+.directive('imageonload', function() {
+    return {
+        restrict: 'A',
+		scope:{
+			image:"="
+		},
+        link: function(scope, element, attrs) {
+            element.bind('load', function(e) {
+                var canvas = document.createElement('CANVAS'), ctx = canvas.getContext('2d'), img = new Image;
+				var dataURL;
+				canvas.height = element.height;
+				canvas.width = element.width;
+				ctx.drawImage(img, 0, 0);
+				dataURL = canvas.toDataURL();
+				scope.image=decodeBase64Image(dataURL);
+				canvas = null; 
+			});
+			
+			function decodeBase64Image(dataString) {
+				var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+				response = {};
+
+				if (matches.length !== 3) {
+					return new Error('Invalid input string');
+				}
+
+				response.baseUrl = matches[0].replace(matches[2], "");
+				response.ext = matches[1].substring(matches[1].indexOf("/")+1);
+				response.data = matches[2];
+
+				return response;
+			}
 		}
 	};
 })
