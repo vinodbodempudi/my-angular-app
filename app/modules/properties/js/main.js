@@ -383,8 +383,8 @@ angular.module('properties', [])
 		}
 		
 		if(field === 'createdDate') {
-			tempa = a[field];
-			tempb = b[field];
+			tempa = a.lastUpdatedDate || a[field];
+			tempb = b.lastUpdatedDate || b[field];
 			return (tempa > tempb ? 1 : -1);
 		}
 
