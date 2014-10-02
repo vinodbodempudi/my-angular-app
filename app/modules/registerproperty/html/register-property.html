@@ -50,7 +50,8 @@
 										<input id="inputImage" type="file"  class="agentphoto" name="file_source" size="40" accept="image/*" image="userImage" />
 									</a>&nbsp;
 									<span class='label label-info' id="upload-file-info"></span>
-									<img ng-show="userImage" ng-src="{{userImage.baseUrl+userImage.data}}" width="100" height="100"/> 
+									<img ng-show="userImage && userImage.data" ng-src="{{userImage.baseUrl+userImage.data}}" width="100" height="100"/> 
+									<img ng-show="userImage && userImage.url" ng-src="{{userImage.baseUrl+userImage.data}}" width="100" height="100"/> 
 								</div>
                                
                             </div>

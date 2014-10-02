@@ -55,7 +55,15 @@ angular.module('registerProperty', [])
 
 	if(isEditProperty) {
 		$scope.property = $rootScope.editProperty;
-		$scope.propertyImages = $scope.property.urls.propertyUrls;
+				
+		angular.forEach($scope.property.urls.propertyUrls, function (image, i) {
+			$scope.propertyImages.push(image);
+		});
+		
+		if($scope.property.urls.userUrl) {
+			$scope.userImage = {url:$scope.property.urls.userUrl}
+		}
+		
 	}
 	
 	$scope.$watch("userDetails",
@@ -159,23 +167,62 @@ angular.module('registerProperty', [])
 	
     $scope.registerProperty = function () {
 	
-		$scope.disableSubmitbtn = true;
-	   if(isEditProperty) {
-		$scope.removedImages=[];
-	   }
 		var request = {
 			property: adjustProperty($scope.property),
 			images: {
 				userImage:$scope.userImage,
-				propertyImages: $scope.propertyImages,
-				removedImages:$scope.removedImages
+				propertyImages: $scope.propertyImages
 			}
 		}
-	   $rootScope.$broadcast('SHOW_PROGRESS_BAR');
-	   registerPropertyService.registerProperty(angular.toJson(request))
-		.success(savePropertySuccessHandler)
-		.error(savePropertyErrorHandler);
+		
+		if(isEditProperty) {
+			request.images.removedImages = $scope.removedImages;
+			
+			removeImagesFromProperty(request);
+			
+			request.images.newImages = getNewImages($scope.propertyImages);
+			request.isEditProperty = isEditProperty;
+			
+			updateCoverPhotoUrl(request);
+		}
+		
+		$scope.disableSubmitbtn = true;
+		$rootScope.$broadcast('SHOW_PROGRESS_BAR');
+		registerPropertyService.registerProperty(angular.toJson(request))
+			.success(savePropertySuccessHandler)
+			.error(savePropertyErrorHandler);
     };
+	
+	var removeImagesFromProperty = function(request) {
+		angular.forEach(request.images.removedImages, function (image, i) {
+			request.property.urls.propertyUrls.splice(request.property.urls.propertyUrls.indexOf(image), 1);
+		});
+	}
+	
+	var updateCoverPhotoUrl = function(request) {
+		if($scope.propertyImages.length == 0 && request.property.urls && request.property.urls.coverPhotoUrl) {
+			request.property.urls.coverPhotoUrl=null;
+		}
+		
+		angular.forEach($scope.propertyImages, function (image, i) {
+			if(image.coverPhoto) {
+				request.property.urls.coverPhotoUrl=image;
+			} 
+		});
+		
+		
+	}
+	
+	var getNewImages = function(propertyImages) {
+		var newImages = [];
+		angular.forEach(propertyImages, function (image, i) {
+			if(image.data) {
+				newImages.push(image);
+			} 
+		});
+		return newImages;
+	}
+	
 	
 	var savePropertySuccessHandler = function(data){
 		var modalInstance = $modal.open({
