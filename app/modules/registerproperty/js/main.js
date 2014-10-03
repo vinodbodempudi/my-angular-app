@@ -241,6 +241,7 @@ angular.module('registerProperty', [])
 	};
 	
 	var savePropertyErrorHandler = function(e){
+		alert(e);
 		$scope.disableSubmitbtn = true;
 		$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 		
