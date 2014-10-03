@@ -55,12 +55,14 @@ angular.module('registerProperty', [])
 
 	if(isEditProperty) {
 		$scope.property = $rootScope.editProperty;
-				
-		angular.forEach($scope.property.urls.propertyUrls, function (image, i) {
-			$scope.propertyImages.push(image);
-		});
+
+		if($scope.property.urls && $scope.property.urls.propertyUrls) {
+			angular.forEach($scope.property.urls.propertyUrls, function (image, i) {
+				$scope.propertyImages.push(image);
+			});
+		}
 		
-		if($scope.property.urls.userUrl) {
+		if($scope.property.urls && $scope.property.urls.userUrl) {
 			$scope.userImage = {url:$scope.property.urls.userUrl}
 		}
 		
