@@ -196,9 +196,11 @@ angular.module('registerProperty', [])
     };
 	
 	var removeImagesFromProperty = function(request) {
-		angular.forEach(request.images.removedImages, function (image, i) {
-			request.property.urls.propertyUrls.splice(request.property.urls.propertyUrls.indexOf(image), 1);
-		});
+		if(request.property.urls && request.property.urls.propertyUrls) {
+			angular.forEach(request.images.removedImages, function (image, i) {
+				request.property.urls.propertyUrls.splice(request.property.urls.propertyUrls.indexOf(image), 1);
+			});
+		}
 	}
 	
 	var updateCoverPhotoUrl = function(request) {
@@ -206,13 +208,13 @@ angular.module('registerProperty', [])
 			request.property.urls.coverPhotoUrl=null;
 		}
 		
-		angular.forEach($scope.propertyImages, function (image, i) {
-			if(image.coverPhoto) {
-				request.property.urls.coverPhotoUrl=image;
-			} 
-		});
-		
-		
+		if(request.property.urls && request.property.urls.propertyUrls) {
+			angular.forEach($scope.propertyImages, function (image, i) {
+				if(image.coverPhoto) {
+					request.property.urls.coverPhotoUrl=image;
+				} 
+			});
+		}
 	}
 	
 	var getNewImages = function(propertyImages) {
@@ -248,7 +250,7 @@ angular.module('registerProperty', [])
 	};
 	
 	var adjustProperty = function(property) {
-	
+		property.active='A';
 		if(fatHomeAppStateUtil.isRegisterProperty()) {
 			property.createdDate = new Date();
 			property.lastUpdatedDate = new Date();

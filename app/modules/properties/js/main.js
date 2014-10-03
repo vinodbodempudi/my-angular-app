@@ -289,6 +289,10 @@ angular.module('properties', [])
 	this.getMyProperties = function (userId, email) {
         return $http.get(servicesBaseUrl+'/properties/my-properties/'+userId+'/'+email);
     };
+	
+	this.updateProperty = function (request) {
+        return $http.post(servicesBaseUrl+'/properties/update-property', request);
+    };
 
 }]).filter('filterPropertiesResults', [function () {
     return function (properties, filterOption) {

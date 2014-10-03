@@ -1033,7 +1033,7 @@ color: #159CEB !important;
 	max-width: 500px;
 }
 
-.mylist-popover .edit-button {
-	width:90px;
+.mylist-popover .my-list-button {
+	width:65px;
 	height:28px;
 }
