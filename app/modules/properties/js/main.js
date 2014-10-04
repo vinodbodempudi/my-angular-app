@@ -689,6 +689,113 @@ angular.module('properties', [])
 				}, true);
 		}
 	};
-});
+})
+.directive('popOver', ['$compile', 'FatHomeAppStateUtil', '$rootScope', 'PropertiesService', 'FatHomeUtil', '$window', function ($compile, fatHomeAppStateUtil, $rootScope, propertiesService, fatHomeUtil, $window) {
+  var itemsTemplate = "<div class='mylist-popover'><div class='row resutls'><div class='text-center' ng-show='properties.length == 0;'><h4> No results found.</h4> </div><div ng-repeat='property in properties=(properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder)'> <div class='list-view' style='cursor:pointer;' ng-click='showPropertyDetails(property._id);'> <div class='image' ng-show='!property.urls.coverPhotoUrl.url'> <img ng-src='images/list1.png' alt='' /> </div> <div class='image' ng-show='property.urls.coverPhotoUrl.url'> <img ng-src='{{property.urls.coverPhotoUrl.url}}' alt='' /> </div> <div class='content'> <div class='row '> <div class='col-xs-7'> <h3><a href=''><label title='{{property.details.title}}' class='propertyresultsLabel'>{{property.details.title}}</label></a></h3> </div> <div class='col-xs-5 price' style='text-align:Right;'> <h4 ng-show='property.details.mode===sell'><i class='fa fa-rupee'></i> <span>{{property.details.price.price | currencyFormatter}}</span></h4> <h4 ng-show='property.details.mode===rent'><i class='fa fa-rupee'></i> <span>{{property.details.monthlyRent | currencyFormatter}}</span></h4> </div> </div> <div class='row properresultssqftlabel'> <div class='col-xs-12 price' style='textAlign:Right;'> <h5 style='text-align: right;' ng-show='property.details.mode===sell && property.details.area.perUnitPrice'><span>{{property.details.area.perUnitPrice | currencyFormatter}}/Sq.ft</span></h5> </div> </div> <div class='row firstRow'> <div class='col-xs-3'> <span>{{property.details.bedRooms}}</span> Beds </div> <div class='col-xs-3'> <span>{{property.details.bathRooms}}</span> Baths </div> <div class='col-xs-3'> <span>{{property.details.area.builtUp.builtUp | currencyFormatter}}</span> {{property.details.area.builtUp.units}} </div> </div> <div class='row secondRow'> <div class='col-xs-2'> <span>{{property.details.mode}}</span> </div> <div class='col-xs-5'> <span>{{property.details.propertySubType}}</span> </div> <div class='col-xs-5'> <i class='fa fa-map-marker'></i> <span>{{property.user.locality}}</span> </div> </div> <div class='row thirdRow customsocial' style='z-index:10;'> <div class='col-xs-8 text-center'> <button type='button' class='btn btn-default btn-sm btn-info my-list-button' ng-click='editProperty($event, property);'>Edit</button> <button type='button' class='btn btn-default btn-sm my-list-button btn-info' ng-click='deleteProperty($event, property._id, $index);'>Delete</button></div> <div class='col-xs-4 dateright'> <div ng-hide='property.lastUpdatedDate' class='text-right'>{{property.createdDate | date:'MMM d, y'}}</div><div ng-show='property.lastUpdatedDate' class='text-right'>{{property.lastUpdatedDate | date:'MMM d, y'}}</div> </div> </div> </div> <div class='clearfix'></div> </div> </div> </div> </div>";
+  var loading = "<div class='mylist-popover' style='margin: 0px auto; height: 200px;top: 68px; position: relative;'><img style='width:64px;height:64px;' src='images/ajax-loader-small.GIF'></div>";
+
+  return {
+    restrict: "A",
+    transclude: true,
+    template: "<div ng-transclude></div>",
+    link: function (scope, element, attrs) {
+		scope.sell = 'Sell';
+		scope.rent = 'Rent';
+		scope.predicate = fatHomeUtil.propertySortOptions()[0];
+		scope.properties=[];
+		scope.showPropertyDetails = function(propertyId) {
+			hideMyListModal();
+			fatHomeAppStateUtil.showPropertiesHome($rootScope.user.city, $rootScope.user.locality, propertyId, fatHomeAppStateUtil.isRegisterProperty() || fatHomeAppStateUtil.isEditProperty());
+		};
+		
+		scope.editProperty = function($event, property) {
+			$event.stopPropagation();
+			propertiesService.getPropertyDetails(property._id)
+			.success(function(data){
+				hideMyListModal();
+				$rootScope.editProperty = data;
+				fatHomeAppStateUtil.showEditProperty(data.user.city, data.user.locality, property._id, true);
+			}).error(function(e){
+
+			});
+		};
+		
+		var showingPopover = false;
+		scope.showMyProperties = function() {
+			if(showingPopover) {
+				showingPopover = false;
+				hideMyListModal();
+				return;
+			}
+			
+			if(!scope.isUserLoggedin) {
+				$rootScope.showMyListPopover = true;
+				hideMyListModal();
+				$rootScope.$broadcast('showLoginModal');
+				
+				scope.$on('showMyListPopOver', function() {
+					showMyProperties();
+				});
+				
+				return;
+			}
+
+			showMyProperties();
+		};
+		
+		var showMyProperties = function() {
+			propertiesService.getMyProperties(scope.userDetails._id, scope.userDetails.email)
+			.success(function(data){
+				preparePopOver(data);
+			}).error(function(e){
+
+			});
+		};
+		
+		
+		var preparePopOver = function(properties) {
+			scope.properties = properties;
+			var options = {
+				content: $compile(itemsTemplate)(scope),
+				placement: "bottom",
+				html: true,
+				trigger:'manual',
+				title: "My List"+ '<div class="pull-right"><a href="javascript:;" id="close" class="glyphicon glyphicon-remove" style="color: #C7C3C3"></a></div>',
+			};
+			$(element).popover(options);
+			showMyListModal();
+		}
+	
+		scope.deleteProperty = function($event, propertyId, $index) {
+			$event.stopPropagation();
+			if (window.confirm('Are you sure you want delete?')) {
+				var request = {_id:propertyId, update:{active:'D'}}
+				propertiesService.updateProperty(request)
+				.success(function(data){
+					scope.properties.splice($index, 1);
+				}).error(function(e){
+
+				});
+			
+				
+			}
+		};
+		
+		var showMyListModal = function() {
+			showingPopover = true;
+			$(element).popover('show');
+			$('html').on('click', function(e) {
+				hideMyListModal();
+			});
+		}
+		
+		var hideMyListModal = function() {
+			$(element).popover('hide');
+			showingPopover = false;
+			$('html').off('click');
+		}
+	}
+  };
+}]);
 
 
