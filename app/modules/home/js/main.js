@@ -273,14 +273,22 @@ angular.module('home', [])
 		}
 	  
 		var temp=value.toString(), index = temp.indexOf(".");
+		var digitsAfterDecimal;
 		if(index > -1) {
-			temp = str.substring(0, index);
+			temp = value.substring(0, index);
+			digitsAfterDecimal = value.substring(index);
 		}
 
 		var lastThree = temp.substring(temp.length-3);
 		var otherNumbers = temp.substring(0,temp.length-3);
-		if(otherNumbers != '')
+		if(otherNumbers != '') {
 			lastThree = ',' + lastThree;
+		}
+		
+		if(digitsAfterDecimal) {
+			lastThree += digitsAfterDecimal;
+		}
+		
 		return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
 	}
 })

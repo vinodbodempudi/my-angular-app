@@ -111,6 +111,9 @@ angular.module('properties', [])
 	}
     var getPropertiesRequest = {city:$routeParams.city, locality:$routeParams.locality};
 
+	$scope.$on('refreshResults', function() {
+		$scope.getProperties($scope.city, $scope.locality);
+	});
 	
 	$scope.getProperties = function(city, locality) {
 		propertiesService.getProperties(city, locality)
@@ -772,7 +775,7 @@ angular.module('properties', [])
 				var request = {_id:propertyId, update:{active:'D'}}
 				propertiesService.updateProperty(request)
 				.success(function(data){
-					scope.properties.splice($index, 1);
+					refreshResults(scope.properties.splice($index, 1)[0]);
 				}).error(function(e){
 
 				});
@@ -780,6 +783,12 @@ angular.module('properties', [])
 				
 			}
 		};
+		
+		var refreshResults = function(removedProperty) {
+			if(fatHomeAppStateUtil.isPropertiesHome() && removedProperty.user.locality == $rootScope.user.locality) {
+				scope.$broadcast('refreshResults');
+			}
+		}
 		
 		var showMyListModal = function() {
 			showingPopover = true;
