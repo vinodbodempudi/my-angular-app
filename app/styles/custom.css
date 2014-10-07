@@ -1037,3 +1037,13 @@ color: #159CEB !important;
 	width:75px;
 	height:28px;
 }
+
+.break-text {
+	word-wrap: break-word;
+}
+
+.schedule_row p {
+	font-size: 13px !important;
+	color: #484848 !important;
+	font-weight: 700;
+}

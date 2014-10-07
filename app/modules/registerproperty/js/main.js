@@ -34,6 +34,10 @@ angular.module('registerProperty', [])
 	$scope.locality = $scope.newLocality = $routeParams.locality;
 	
 	var setUserDetails = function(userDetails) {
+		
+		if(isEditProperty) {
+			return;
+		}
 
 		$scope.property.user.name = userDetails.name;
 		$scope.property.user.primaryEmail = userDetails.email;
