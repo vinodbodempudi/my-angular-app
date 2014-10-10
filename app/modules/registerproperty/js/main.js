@@ -2,7 +2,7 @@
 
 angular.module('registerProperty', [])
 .controller('RegisterPropertyCtrl',['$scope', 'LocationService', 'FatHomeUtil', '$routeParams', 'RegisterPropertyService', '$rootScope',
-	'$modal', '$location', function($scope, locationService, fatHomeUtil, $routeParams, registerPropertyService, $rootScope, $modal, $location) {
+	'$modal', '$location', 'FatHomeAppStateUtil', function($scope, locationService, fatHomeUtil, $routeParams, registerPropertyService, $rootScope, $modal, $location, fatHomeAppStateUtil) {
 	
 	if(!$scope.isUserLoggedin) {
 		$rootScope.$broadcast('showLoginModal');
@@ -27,16 +27,22 @@ angular.module('registerProperty', [])
 	
 	$scope.disableSubmitbtn = false;
 	$scope.propertyImages = [];
+	$scope.removedImages = [];
+	var isEditProperty = fatHomeAppStateUtil.isEditProperty();
 	
 	$scope.city = $scope.newCity = $routeParams.city;
 	$scope.locality = $scope.newLocality = $routeParams.locality;
 	
 	var setUserDetails = function(userDetails) {
+		
+		if(isEditProperty) {
+			return;
+		}
 
 		$scope.property.user.name = userDetails.name;
 		$scope.property.user.primaryEmail = userDetails.email;
 		$scope.property.user.primaryPhoneNumber = userDetails.phoneNumber;
-		$scope.property.user.userId = userDetails.userId;
+		$scope.property.user._id = userDetails._id;
 
 		if(userDetails.type === 'Individual') {
 			$scope.property.user.type = 'Owner';
@@ -49,6 +55,21 @@ angular.module('registerProperty', [])
 	var userDetails = $rootScope.userDetails;
 	if($rootScope.userDetails) {
 		setUserDetails($rootScope.userDetails);
+	}
+
+	if(isEditProperty) {
+		$scope.property = $rootScope.editProperty;
+
+		if($scope.property.urls && $scope.property.urls.propertyUrls) {
+			angular.forEach($scope.property.urls.propertyUrls, function (image, i) {
+				$scope.propertyImages.push(image);
+			});
+		}
+		
+		if($scope.property.urls && $scope.property.urls.userUrl) {
+			$scope.userImage = {url:$scope.property.urls.userUrl}
+		}
+		
 	}
 	
 	$scope.$watch("userDetails",
@@ -152,8 +173,6 @@ angular.module('registerProperty', [])
 	
     $scope.registerProperty = function () {
 	
-		$scope.disableSubmitbtn = true;
-	   
 		var request = {
 			property: adjustProperty($scope.property),
 			images: {
@@ -161,30 +180,87 @@ angular.module('registerProperty', [])
 				propertyImages: $scope.propertyImages
 			}
 		}
-	   $rootScope.$broadcast('SHOW_PROGRESS_BAR');
-       registerPropertyService.registerProperty(angular.toJson(request))
-       	    .success(function(data){
-				var modalInstance = $modal.open({
-				  templateUrl: 'modules/registerproperty/html/register-success.html',
-				  controller: 'ModalInstanceCtrl',
-				  keyboard:false,
-				  backdrop:'static',
-				  windowClass:'sign-modal'
-				});
-				modalInstance.result.then(function (result) {
-					 $location.path('/properties/' + $scope.user.city + '/' + $scope.user.locality);
-				});
-				$rootScope.$broadcast('HIDE_PROGRESS_BAR');
-		    }).error(function(e){
-				$scope.disableSubmitbtn = true;
-				$rootScope.$broadcast('HIDE_PROGRESS_BAR');
-				
-		    });
+		
+		if(isEditProperty) {
+			request.images.removedImages = $scope.removedImages;
+			
+			removeImagesFromProperty(request);
+			
+			request.images.newImages = getNewImages($scope.propertyImages);
+			request.isEditProperty = isEditProperty;
+			
+			updateCoverPhotoUrl(request);
+		}
+		
+		$scope.disableSubmitbtn = true;
+		$rootScope.$broadcast('SHOW_PROGRESS_BAR');
+		registerPropertyService.registerProperty(angular.toJson(request))
+			.success(savePropertySuccessHandler)
+			.error(savePropertyErrorHandler);
     };
 	
+	var removeImagesFromProperty = function(request) {
+		if(request.property.urls && request.property.urls.propertyUrls) {
+			angular.forEach(request.images.removedImages, function (image, i) {
+				request.property.urls.propertyUrls.splice(request.property.urls.propertyUrls.indexOf(image), 1);
+			});
+		}
+	}
+	
+	var updateCoverPhotoUrl = function(request) {
+		if($scope.propertyImages.length == 0 && request.property.urls && request.property.urls.coverPhotoUrl) {
+			request.property.urls.coverPhotoUrl=null;
+		}
+		
+		if(request.property.urls && request.property.urls.propertyUrls) {
+			angular.forEach($scope.propertyImages, function (image, i) {
+				if(image.coverPhoto) {
+					request.property.urls.coverPhotoUrl=image;
+				} 
+			});
+		}
+	}
+	
+	var getNewImages = function(propertyImages) {
+		var newImages = [];
+		angular.forEach(propertyImages, function (image, i) {
+			if(image.data) {
+				newImages.push(image);
+			} 
+		});
+		return newImages;
+	}
+	
+	
+	var savePropertySuccessHandler = function(data){
+		var modalInstance = $modal.open({
+		  templateUrl: 'modules/registerproperty/html/register-success.html',
+		  controller: 'ModalInstanceCtrl',
+		  keyboard:false,
+		  backdrop:'static',
+		  windowClass:'sign-modal'
+		});
+		modalInstance.result.then(function (result) {
+			 $location.path('/properties/' + $scope.property.user.city + '/' + $scope.property.user.locality);
+		});
+		$rootScope.$broadcast('HIDE_PROGRESS_BAR');
+	};
+	
+	var savePropertyErrorHandler = function(e){
+		alert(e);
+		$scope.disableSubmitbtn = true;
+		$rootScope.$broadcast('HIDE_PROGRESS_BAR');
+		
+	};
 	
 	var adjustProperty = function(property) {
-		property.createdDate = new Date();
+		property.active='A';
+		if(fatHomeAppStateUtil.isRegisterProperty()) {
+			property.createdDate = new Date();
+			property.lastUpdatedDate = new Date();
+		} else {
+			property.lastUpdatedDate = new Date();
+		}
 	
 		if(property.details.area.builtUp) {
 			property.details.area.builtUp.builtUpInSqft = fatHomeUtil.getSqftMutiplier(property.details.area.builtUp.units)*Number(property.details.area.builtUp.builtUp);
@@ -272,7 +348,7 @@ angular.module('registerProperty', [])
 }])
 .service('RegisterPropertyService',['$http',  'servicesBaseUrl', function($http, servicesBaseUrl) {
     this.registerProperty = function (property) {
-        return $http.post(servicesBaseUrl+'/properties', property);
+        return $http.post(servicesBaseUrl+'/properties/register-property', property);
     };
 }])
 .directive('scroll', function() {
@@ -343,15 +419,23 @@ angular.module('registerProperty', [])
 					return;
 				}
 			
+			
+				var center;
+				if(scope.property.location) {
+					center = new google.maps.LatLng(scope.property.location.lat, scope.property.location.lng);
+				} else {
+					center = new google.maps.LatLng(scope.location.lat, scope.location.long);
+				}
+			
 				var mapOptions = {
 									zoom: 15,
-									center: new google.maps.LatLng(scope.location.lat, scope.location.long),
+									center: center,
 									mapTypeId: google.maps.MapTypeId.ROADMAP
 								};
 				var map = new google.maps.Map(el[0], mapOptions);
 				
 				var marker = new google.maps.Marker({
-					position: map.getCenter(),
+					position: center,
 					map: map,
 					animation: google.maps.Animation.BOUNCE,
 					draggable:true
@@ -359,30 +443,42 @@ angular.module('registerProperty', [])
 				});
 
 				var info = new google.maps.InfoWindow({
-					content:''
-
+					content:"<div style='line-height:1.35;overflow:hidden;white-space:nowrap;height:20px;'>Drag me on to property</div>"
 				})
 
 				info.open(map, marker);
 				google.maps.event.addListener(marker, 'dragend', function(e)
 				{
+					updatePropertyLocation(e.latLng.lat(), e.latLng.lng());
+					google.maps.event.removeListener(centerChangeListener);
+					info.close();
+				});
+				
+				google.maps.event.addListener(map, 'dragend', function(e)
+				{
+					updatePropertyLocation(e.latLng.lat(), e.latLng.lng());
+					//google.maps.event.removeListener(centerChangeListener);
+				});
+				
+				var updatePropertyLocation = function(lat, lng) {
 					if(!scope.property.location) {
 						scope.property.location = {};
 					}
-					info.setContent('Latitude : '+ e.latLng.lat() +' '+'Longittude : '+ e.latLng.lng());
-					scope.property.location.lat= e.latLng.lat();
-					scope.property.location.lng= e.latLng.lng();
 					
-					google.maps.event.removeListener(centerChangeListener);
-				});
+					scope.property.location.lat= lat;
+					scope.property.location.lng= lng;
+					
+					//google.maps.event.removeListener(centerChangeListener);
+				}
 				
-				
-				var centerChangeListener = google.maps.event.addListener(map, 'center_changed', function() {
+				var centerChangeListener = google.maps.event.addListener(map, 'center_changed', function(e) {
 					if(map.getZoom() < 15) {
 						return;
 					}
 					
-					marker.setPosition(map.getCenter());
+					var center = map.getCenter();
+					updatePropertyLocation(center.lat(), center.lng());
+					marker.setPosition(center);
 				});
 			}
 

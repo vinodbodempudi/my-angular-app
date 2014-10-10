@@ -32,6 +32,10 @@ app.config(function ($routeProvider, $httpProvider) {
         templateUrl: 'modules/registerproperty/html/register-property.html',
         controller: 'RegisterPropertyCtrl'
       })
+	  .when('/editproperty/:city/:locality/:propertyId', {
+        templateUrl: 'modules/registerproperty/html/register-property.html',
+        controller: 'RegisterPropertyCtrl'
+      })
       .when('/home', {
         templateUrl: 'modules/home/html/home.html',
         controller: 'HomeCtrl'
@@ -62,7 +66,7 @@ app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $loc
 		return original.apply($location, [path]);
 	};
 }]);
-app.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
+app.run(['$rootScope', '$location', '$window', 'FatHomeAppStateUtil', function($rootScope, $location, $window, fatHomeAppStateUtil){
 
 	$rootScope.showTabs = {};
 	
@@ -84,7 +88,7 @@ app.run(['$rootScope', '$location', '$window', function($rootScope, $location, $
 		return;
 	}
 	
-	if(!$location.path() || $location.path().match('home') != null) {
+	if(!$location.path() || $location.path().match('home') != null || fatHomeAppStateUtil.isEditProperty()) {
 		var cityFromCache = localStorage.getItem("city");
 		var localityFromCache = localStorage.getItem("locality");
 		if(cityFromCache && localityFromCache) {
@@ -169,19 +173,21 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Locat
 	$scope.logOut = function (loginUser) {
 		$rootScope.userDetails = null;
 		$rootScope.isUserLoggedin = false;
-		
+		localStorage.removeItem("userDetails");
 		var modalInstance;
 		if($location.path().match('registerproperty') != null) {
 			modalInstance = $modal.open({
 			  templateUrl: 'modules/login/html/signout-success.html',
 			  controller: 'ModalInstanceCtrl',
 			  keyboard:false,
-			  backdrop:'static'
+			  backdrop:'static',
+			  windowClass:'modal-window'
 			});
 		} else {
 			modalInstance = $modal.open({
 			  templateUrl: 'modules/login/html/signout-success.html',
-			  controller: 'ModalInstanceCtrl'
+			  controller: 'ModalInstanceCtrl',
+			  windowClass:'modal-window'
 			});
 		}
 	
@@ -195,14 +201,16 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Locat
 	$scope.showFeedbackmodal = function () {
 		var modalInstance = $modal.open({
 			  templateUrl: 'shared/html/feedback.html',
-			  controller: 'FeedBackModalCtrl'
+			  controller: 'FeedBackModalCtrl',
+			  windowClass:'modal-window'
 			});
 	}
 	
 	$scope.showContactmodal = function () {
 		var modalInstance = $modal.open({
 			  templateUrl: 'shared/html/contact.html',
-			  controller :'ModalInstanceCtrl'
+			  controller :'ModalInstanceCtrl',
+			  windowClass:'modal-window'
 			});
 	}
 	
@@ -370,7 +378,8 @@ app.controller('FeedBackModalCtrl', ['$scope', '$modalInstance', 'fatHomeUtilSer
 			$scope.cancel();
 			var modalInstance = $modal.open({
 			  templateUrl: 'shared/html/feedback-success.html',
-			  controller: 'ModalInstanceCtrl'
+			  controller: 'ModalInstanceCtrl',
+			  windowClass:'modal-window'
 			});
 		}).error(function(e){
 			
@@ -395,19 +404,21 @@ app.directive('formatNumber', ['FatHomeUtil', function(fatHomeUtil) {
 			ngModelController.$setValidity('pattern',false);
 			return data;
 		}
-		
-        //convert data from view format to model format
+
 		tempValue = fatHomeUtil.currencyFormater(input);
 		ngModelController.$setViewValue(tempValue);
 		ngModelController.$render();
-        return input; //converted
+        return input; 
+      });
+	  
+	  ngModelController.$formatters.push(function(data) {
+		return fatHomeUtil.currencyFormater(data); //converted
       });
 
     }
   }
 }]);
-  
-  
+ 
 app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
 
 	$scope.ok = function () {

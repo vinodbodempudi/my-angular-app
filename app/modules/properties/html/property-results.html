@@ -40,7 +40,8 @@
 			  </div>
 			  
 			  <div class="row thirdRow dateright">
-				<div class="text-right">{{property.createdDate | date:'MMM d, y'}}</div>
+				<div ng-hide="property.lastUpdatedDate" class="text-right">{{property.createdDate | date:'MMM d, y'}}</div>
+				<div ng-show="property.lastUpdatedDate" class="text-right">{{property.lastUpdatedDate | date:'MMM d, y'}}</div>
 			  </div>
 			  <div class="row customsocial" ng-show="false">
 				<div class="col-xs-8 text-right">
@@ -51,7 +52,8 @@
 				  </div>
 				</div>
 				<div class="col-xs-4 dateright">
-				  <div class="text-right">{{property.createdDate | date:'MMM d, y'}}</div>
+				  <div ng-hide="property.lastUpdatedDate" class="text-right">{{property.createdDate | date:'MMM d, y'}}</div>
+				  <div ng-show="property.lastUpdatedDate" class="text-right">{{property.lastUpdatedDate | date:'MMM d, y'}}</div>
 				</div>
 			  </div>
 			</div>
