@@ -733,31 +733,31 @@ angular.module('properties', [])
 			
 			if(!scope.isUserLoggedin) {
 				$rootScope.showMyListPopover = true;
-				hideMyListModal();
 				$rootScope.$broadcast('showLoginModal');
-				
+
 				scope.$on('showMyListPopOver', function() {
 					showMyProperties();
 				});
 				
 				return;
 			}
-
+			
 			showMyProperties();
 		};
 		
 		var showMyProperties = function() {
 			propertiesService.getMyProperties(scope.userDetails._id, scope.userDetails.email)
 			.success(function(data){
-				preparePopOver(data);
+				scope.properties = data;
+				preparePopOver();
 			}).error(function(e){
 
 			});
 		};
 		
 		
-		var preparePopOver = function(properties) {
-			scope.properties = properties;
+		var preparePopOver = function() {
+			
 			var options = {
 				content: $compile(itemsTemplate)(scope),
 				placement: "bottom",
