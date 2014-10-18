@@ -127,6 +127,7 @@ angular.module('properties', [])
 	};
 	
 	$scope.showSendSmsView = function() {
+		$scope.contactTabScrollBottom = true;
 		$scope.defaultMessage="I am interested in your property posted in fathome.in. Please call me on";
 		var property = $scope.property, smsDetails={toPhoneNumbers:[], message:$scope.defaultMessage};
 
@@ -153,6 +154,7 @@ angular.module('properties', [])
 	
 	$scope.hideSendSmsViewBox = function() {
 		$scope.showSendSmsViewBox=false;
+		$scope.contactTabScrollBottom = false;
 	}
 
 	$scope.sendSms = function(validForm, request) {
@@ -173,6 +175,7 @@ angular.module('properties', [])
 			.success(function(data){
 				$scope.showSendSmsSuccessMessage = true;
 				$scope.showSendSmsViewBox = false;
+				$scope.contactTabScrollBottom = false;
 			}).error(function(e){
 				console.log(e);
 				alert("Send SMS failed. Please try after sometime.");
@@ -755,6 +758,22 @@ angular.module('properties', [])
 				function(newValue, oldValue) {
 					el.scrollTop(0);
 				}, true);
+		}
+	};
+})
+.directive('scrollbottom', function() {
+	var scrollPos;
+	return {
+		restrict: 'EA',
+		scope: {
+			scrollToBottom:"="
+		},
+		link:function(scope, el) {
+			scope.$watch("scrollToBottom", function(newValue, oldValue) {
+				if(newValue) {
+					el.animate({ scrollTop: el[0].scrollHeight}, 1000);
+				}
+			}, true);
 		}
 	};
 })
