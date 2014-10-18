@@ -1047,3 +1047,11 @@ color: #159CEB !important;
 	color: #484848 !important;
 	font-weight: 700;
 }
+
+.drop-shadow {
+-moz-box-shadow: inset 0 0 5px 5px #888;
+-webkit-box-shadow: inset 0 0 5px 5px#888;
+box-shadow: inset 0 0 5px 5px #888;
+border-radius: 5px;
+-moz-border-radius: 5px;
+}

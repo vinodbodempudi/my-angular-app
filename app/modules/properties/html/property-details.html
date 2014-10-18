@@ -594,8 +594,9 @@
 									</div>
 									<div class="right">
 										<label ng-show="property.user.phoneNumber">+91-{{property.user.phoneNumber}}</label>
-										<label ng-show="property.user.primaryPhoneNumber">+91-{{property.user.primaryPhoneNumber}}</label><br>
-										<label ng-show="property.user.secondaryPhoneNumber">+91-{{property.user.secondaryPhoneNumber}}</label>
+										<label ng-show="property.user.primaryPhoneNumber">+91-{{property.user.primaryPhoneNumber | maskNumber:property.user.hidePrimaryPhoneNumber}}</label><br>
+										<label ng-show="property.user.secondaryPhoneNumber">+91-{{property.user.secondaryPhoneNumber | maskNumber:property.user.hideSecondayPhoneNumber}}</label>
+										<button type="submit" class="btn btn-default btn-sm btn-info" ng-click="showSendSmsView();">Send SMS</button>
 									</div>
 									<div class="speaker_image dot">
 										<img src="images/dot.png" alt="">
@@ -616,6 +617,41 @@
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="row" ng-show="showSendSmsViewBox">
+						<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"  style="margin:0 auto;float:none;"> 
+							<div class="panel panel-default drop-shadow">
+							  <div class="panel-body">
+								<form role="form" name="sendSmsForm" novalidate>
+								  <div class="form-group">
+									<button type="button" ng-click="hideSendSmsViewBox();" class="close">&times;</button>
+									<label for="exampleInputEmail1">Message:</label>
+									<textarea type="text" rows="3" maxlength="145" class="form-control" autocomplete="off" name="message" ng-model="smsDetails.message"></textarea>
+									<p ng-show="sendSmsForm.message.$invalid && sendSmsForm.submitted" class="label errorText">enter message</p>
+								  </div>
+								  <div class="form-group">
+									<label for="exampleInputPassword1">Phone number:</label>
+									<div class="input-group">
+									  <div class="input-group-addon">+91</div>
+									  <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" ng-required='true' ng-model="smsDetails.phoneNumber" class="form-control input-sm" placeholder="Phone number">
+									</div>
+									<p ng-show="sendSmsForm.submitted && sendSmsForm.phoneNumber.$error.required" class="label errorText" style="padding-left: 38px;">Enter phone number</p>
+									<p ng-show="sendSmsForm.phoneNumber.$error.pattern" class="errorText label" style="padding-left: 38px;">Enter valid phone number</p>
+								  </div>
+								  <div class="text-center">
+									<button type="submit" class="btn btn-default btn-sm btn-info" ng-click="sendSmsForm.submitted=true;sendSms(sendSmsForm.$valid, smsDetails);">Send SMS</button>
+								  </div>
+								</form>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="text-center" style="padding: 20px;" ng-show="showSendSmsSuccessMessage">
+						<img ng-src="images/success_32.gif"/> 
+						<span class="feedbackSubmitSuccessLabel">SMS send successfully.</span>
+					</div>
+					<div style="padding: 5px;">
+						<span class="changeLocalityLabel"><label>Note: Don't forget to say that you got details from fathome.in</label></span>
 					</div>
 				</div>
 			</accordion-group>

@@ -91,6 +91,7 @@
                                     <p ng-show="form1.submitted && form1.phoneNumber.$error.required" class="label errorText" style="padding-left: 38px;">Enter phone number</p>
 									<p ng-show="form1.phoneNumber.$error.pattern" class="errorText label" style="padding-left: 38px;">Enter valid phone number</p>
                                 </div>
+								<label><input type="checkbox" ng-model="property.user.hidePrimaryPhoneNumber"> hide phone number</label>
                                 <!--<div class="col-sm-2" ng-show="false">
                                     <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i>
                                     </button>
@@ -107,6 +108,7 @@
                                     <p ng-show="form1.submitted && form1.secondaryPhoneNo.$error.required" style="padding-left: 38px;" class="label errorText">Enter phone number</p>
 									<p ng-show="form1.secondaryPhoneNo.$error.pattern" style="padding-left: 38px;" class="errorText label">Enter valid phone number</p>
                                 </div>
+								<label><input type="checkbox" ng-model="property.user.hideSecondayPhoneNumber"> hide phone number</label>
                                 <!--<div class="col-sm-2" ng-show="false">
                                     <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i>
                                     </button>

@@ -11,7 +11,7 @@
     <meta name="description" content="Find a great house or apartment for rent or buy in Hyderabad, India on fathome.in! Find Hyderabad real estate here.">
 	<meta name="robots" content="noodp,noydir" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- 
+  
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-select/bootstrap-select.min.css" media="screen" />
@@ -19,8 +19,8 @@
     
     <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.min.css" media="screen">
     <link href="http://fonts.googleapis.com/css?family=Puritan:400,400italic" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="styles/custom.css" media="screen" />-->
-   <link rel="stylesheet" type="text/css" href="fat-home-min.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="styles/custom.css" media="screen" />
+   <!--<link rel="stylesheet" type="text/css" href="fat-home-min.css" media="screen" />-->
    <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.min.css" media="screen">
    <link href="http://fonts.googleapis.com/css?family=Puritan:400,400italic" rel="stylesheet" type="text/css">
       <!--[if lte IE 8]>
@@ -52,7 +52,7 @@
             <li><a href="#/properties/{{user.city}}/{{user.locality}}"><i class="fa fa-home"></i></a></li>
             <li><a href="" ng-click="showFeedbackmodal();">FEEDBACK</a></li>
             <li><a href="" ng-click="showContactmodal();">CONTACT US</a></li>
-            <li><a href=""  ng-click="showMyProperties();" pop-over >MY LIST</a></li>
+            <li><a href=""  ng-click="showMyProperties($event);" pop-over >MY LIST</a></li>
 			<li ng-controller="LoginCtrl"><a href="" ng-show="!isUserLoggedin" ng-click="showLoginModal();">SIGN IN</a></li>
 			<li><a href="" ng-show="isUserLoggedin" ng-click="logOut();">SIGN OUT</a></li>
             
@@ -83,11 +83,11 @@
        ga('send', 'pageview');
     </script>
 
-    <script src="fat-home-min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+   <!-- <script src="fat-home-min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
 
 
-<!--
+
   <script src="bower_components/jquery/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="bower_components/bootstrap-select/bootstrap-select.min.js"></script>
@@ -106,7 +106,7 @@
 	<script src="modules/login/js/main.js"></script>
 	<script src="modules/home/js/main.js"></script>
 	<script src="lib/nya-bootstrap-select.js"></script>
-	<script src="lib/ui-bootstrap-carousel.js"></script>-->
+	<script src="lib/ui-bootstrap-carousel.js"></script>
 
 </body>
 </html>

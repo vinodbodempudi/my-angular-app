@@ -147,6 +147,14 @@ app.service('LocationService', ['$http', 'servicesBaseUrl', function($http, serv
 
 }]);
 
+app.service('ExternalService', ['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
+
+	this.sendSms = function (request) {
+        return $http.post(servicesBaseUrl+'/send-sms', request);
+    };
+
+}]);
+
 app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'LocationService', '$modal',
 	function($scope, $rootScope, $location, locationService, $modal) {
 	
