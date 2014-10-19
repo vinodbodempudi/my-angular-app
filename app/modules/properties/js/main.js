@@ -205,12 +205,17 @@ angular.module('properties', [])
 			}
 			
 			$scope.isValidMaitenanceFee = isValidAmount(data.details.maintenanceFee);
-			
+			resetPropertyDetailsView();
 		}).error(function(e){
 			$scope.isGetPropertyDetailsServiceInProgress = false;
 		});
 	
 	};
+	
+	var resetPropertyDetailsView = function() {
+		$scope.showSendSmsViewBox=false;
+		$scope.showSendSmsSuccessMessage = false;
+	}
 	
 	var setPropertyDetailsTab = function() {
 		if(!$scope.propertyDetails) {
