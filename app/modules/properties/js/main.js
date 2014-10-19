@@ -147,7 +147,7 @@ angular.module('properties', [])
 			smsDetails.phoneNumber = $rootScope.userDetails.phoneNumber;
 			smsDetails.userId = $rootScope.userDetails._id;
 		}
-		smsDetails.propertyUrl = escape($location.absUrl());
+		smsDetails.propertyUrl = $location.absUrl();
 		$scope.smsDetails = smsDetails;
 		$scope.showSendSmsViewBox = true;
 	};
@@ -168,9 +168,7 @@ angular.module('properties', [])
 			} else {
 				smsDetails.message += $scope.defaultMessage + " +91-"+ smsDetails.phoneNumber;
 			}
-			smsDetails.message = escape(smsDetails.message);
-			
-		
+					
 			externalService.sendSms(angular.toJson(smsDetails))
 			.success(function(data){
 				$scope.showSendSmsSuccessMessage = true;
