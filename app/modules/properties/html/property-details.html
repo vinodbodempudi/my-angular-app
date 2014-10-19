@@ -596,7 +596,7 @@
 										<label ng-show="property.user.phoneNumber">+91-{{property.user.phoneNumber}}</label>
 										<label ng-show="property.user.primaryPhoneNumber">+91-{{property.user.primaryPhoneNumber | maskNumber:property.user.hidePrimaryPhoneNumber}}</label><br>
 										<label ng-show="property.user.secondaryPhoneNumber">+91-{{property.user.secondaryPhoneNumber | maskNumber:property.user.hideSecondayPhoneNumber}}</label>
-										<button type="submit" class="btn btn-default btn-sm btn-primary homebtn" ng-click="showSendSmsView();">Send SMS</button>
+										<button type="submit" class="btn btn-default btn-sm btn-primary" ng-click="showSendSmsView();">Send SMS</button>
 									</div>
 									<div class="speaker_image dot">
 										<img src="images/dot.png" alt="">
@@ -639,7 +639,7 @@
 									<p ng-show="sendSmsForm.phoneNumber.$error.pattern" class="errorText label" style="padding-left: 38px;">Enter valid phone number</p>
 								  </div>
 								  <div class="text-center">
-									<button type="submit" class="btn btn-default btn-sm btn-primary homebtn" ng-click="sendSmsForm.submitted=true;sendSms(sendSmsForm.$valid, smsDetails);">Send SMS</button>
+									<button type="submit" class="btn btn-default btn-sm btn-primary" ng-click="sendSmsForm.submitted=true;sendSms(sendSmsForm.$valid, smsDetails);">Send SMS</button>
 								  </div>
 								</form>
 							  </div>
