@@ -18,7 +18,7 @@
 				  <h3><a href=""><label title="{{property.details.title}}" class="propertyresultsLabel">{{property.details.title}}</label></a></h3>
 				</div>
 				<div class="col-xs-5 price" style="text-align:Right;">
-				  <h4 ng-show="property.details.mode==='Sell'"><i class="fa fa-rupee"></i> <span>{{property.details.price.price | currencyFormatter}}</span></h4>
+				  <h4 ng-show="property.details.mode==='Sell' || property.details.propertySubType === 'Residential Land/Plot'"><i class="fa fa-rupee"></i> <span>{{property.details.price.price | currencyFormatter}}</span></h4>
 				  <h4 ng-show="property.details.mode==='Rent'"><i class="fa fa-rupee"></i> <span>{{property.details.monthlyRent | currencyFormatter}}</span></h4>
 				</div>
 			  </div>
@@ -27,13 +27,13 @@
 				  <h5 style="text-align: right;" ng-show="property.details.mode==='Sell' && property.details.area.perUnitPrice"><span>{{property.details.area.perUnitPrice | currencyFormatter}}/Sq.ft</span></h5>
 				</div>
 			  </div>
-			  <div class="row firstRow">
+			  <div class="row firstRow" ng-if="property.details.propertySubType !== 'Residential Land/Plot'">
 				<div class="col-xs-3"> <span>{{property.details.bedRooms}}</span> Beds </div>
 				<div class="col-xs-3"> <span>{{property.details.bathRooms}}</span> Baths </div>
 				<div class="col-xs-3"> <span>{{property.details.area.builtUp.builtUp | currencyFormatter}}</span> {{property.details.area.builtUp.units}} </div>
 			  </div>
 			  <div class="row secondRow">
-				<div class="col-xs-2"> <span>{{property.details.mode}}</span> </div>
+				<div class="col-xs-2"> <span>{{property.details.mode || 'Sell'}}</span> </div>
 				<div class="col-xs-5"> <span>{{property.details.propertySubType}}</span> </div>
 				<div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>{{property.user.locality}}</span> </div>
 				

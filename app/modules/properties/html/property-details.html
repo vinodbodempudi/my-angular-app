@@ -36,14 +36,14 @@
 							<label class="">is for</label>
 						</div>
 						<div class="right">
-							<label class="">{{property.details.mode}}</label>
+							<label class="">{{property.details.mode || 'Sell'}}</label>
 						</div>
 						<div class="speaker_image dot">
 							<img src="images/dot.png" alt="">
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row">
+					<div class="schedule_row" ng-if="property.details.bedRooms">
 						<div class="left">
 							<label class="">Beds</label>
 						</div>
@@ -55,7 +55,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row">
+					<div class="schedule_row" ng-if="property.details.bathRooms">
 						<div class="left">
 							<label class="">Baths</label>
 						</div>
@@ -67,7 +67,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row">
+					<div class="schedule_row"  ng-if="builtUp.builtUpArea">
 						<div class="left">
 							<label class="">Build-up Area</label>
 						</div>
@@ -108,7 +108,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode==='Sell'">
+					<div class="schedule_row" ng-show="property.details.mode==='Sell' || property.details.propertySubType === 'Residential Land/Plot'">
 						<div class="left">
 							<label class="">plot/land Area</label>
 						</div>
@@ -274,7 +274,7 @@
 					</div>
 				</div>
 			</accordion-group>
-			<accordion-group is-open="propertyDetails.showSpecificationsTab">
+			<accordion-group is-open="propertyDetails.showSpecificationsTab" ng-if="property.details.propertySubType !== 'Residential Land/Plot'">
 				<accordion-heading>
 					Specifications <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showSpecificationsTab, 'glyphicon-chevron-right': !propertyDetails.showSpecificationsTab}"></i>
 				</accordion-heading>
@@ -474,7 +474,7 @@
 				</div>
 
 			</accordion-group>
-			<accordion-group is-open="propertyDetails.showAmenitiesTab">
+			<accordion-group is-open="propertyDetails.showAmenitiesTab" ng-if="property.details.propertySubType !== 'Residential Land/Plot'">
 				<accordion-heading>
 					Amenities <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showAmenitiesTab, 'glyphicon-chevron-right': !propertyDetails.showAmenitiesTab}"></i>
 				</accordion-heading>

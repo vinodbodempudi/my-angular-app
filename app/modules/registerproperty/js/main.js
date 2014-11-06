@@ -132,13 +132,20 @@ angular.module('registerProperty', [])
 		});
 	}
 	
-	$scope.validateFirstForm = function() {
+	$scope.validatePersonalDetailsForm = function() {
 		$scope.form1.submitted=true;
-		$scope.showForm2=$scope.form1.$valid;
-		$scope.showForm1=!$scope.form1.$valid;
 		if(!$scope.form1.$valid) {
 			alert('Please enter all required fields');
+			return;
 		}
+		
+		$scope.showForm1=false;
+		if($scope.property.details.propertySubType === 'Residential Land/Plot') {
+			$scope.showForm3 = true;
+			return;
+		}
+		
+		$scope.showForm2=true;
 	}
 
 	$scope.$watch("propertyImages",
