@@ -310,7 +310,7 @@ angular.module('registerProperty', [])
 	
 		
 	
-		if(property.details.mode === 'Sell') {
+		if(property.details.mode === 'Sell' || property.details.propertySubType === 'Residential Land/Plot') {
 			delete property.details.monthlyRent;
 			delete property.details.maintenanceFee;
 			delete property.details.deposit;
@@ -329,6 +329,11 @@ angular.module('registerProperty', [])
 			if(property.specifications && property.specifications.unitsAvailable) {
 				delete property.specifications.unitsAvailable;
 			}
+		}
+		
+		if(property.details.propertySubType === 'Residential Land/Plot') {
+			delete property.details.propertyStatus;
+			delete property.details.area.builtUp;
 		}
 			
 	}

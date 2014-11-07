@@ -180,7 +180,7 @@
 									<p ng-show="form1.propertyType.$invalid && (!form1.propertyType.$pristine || form1.submitted)" class="label errorText">select property type</p>
                                 </div>
                                 <div class="col-sm-2" >
-                                    <select selectpicker title="" class="selectpicker form-control input-sm" ng-init="propertySubTypes=propertySubTypeMapper['Residential']" ng-options="subType as subType for subType in propertySubTypes" name="houseType" ng-required='true' ng-model="property.details.propertySubType">
+                                    <select selectpicker title="" class="selectpicker form-control input-sm" ng-init="propertySubTypes=propertySubTypeMapper['Residential']" ng-options="subType as subType for subType in propertySubTypes" name="houseType" ng-required='true' ng-model="property.details.propertySubType" ng-change="property.details.mode='';">
 										<option value="" selected></option>
 									</select>
 									<p ng-show="form1.houseType.$invalid && (!form1.houseType.$pristine || form1.submitted)" class="label errorText">select house type</p>
@@ -259,6 +259,7 @@
 									<p ng-show="form1.carpetUnits.$invalid && (!form1.carpetUnits.$pristine || form1.submitted)" class="label errorText">select Carpet units</p>
                                 </div>-->
 								<label class="col-sm-2 control-label" ng-if="property.details.propertySubType === 'Residential Land/Plot'">Area:</label>
+								<label class="col-sm-2 control-label" ng-if="property.details.mode === 'Sell'"></label>
 								<div class="col-sm-2">
                                     <input type="text" format-number class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required="property.details.propertySubType === 'Residential Land/Plot'" placeholder="Plot/Land">
 									<p ng-show="form1.submitted && form1.plotOrLand.$error.required" class="label errorText">Enter Plot/Land</p>
@@ -270,7 +271,11 @@
                                     </select>
 									<p ng-show="form1.plotOrLandUnits.$invalid && (!form1.plotOrLandUnits.$pristine || form1.submitted)" class="label errorText">select Plot/Land units</p>
                                 </div>
-							
+								<div class="col-sm-2" ng-if="property.details.propertySubType === 'Residential Land/Plot'">
+                                    <input type="text" format-number class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required="false" placeholder="Per Sq.ft price">
+									<p ng-show="form1.submitted && form1.perUnitPrice.$error.required" class="label errorText">Enter per unit price</p>
+									<p ng-show="form1.perUnitPrice.$error.pattern" class="label errorText">Enter valid unit price</p>
+                                </div>
 							</div>
                                 <!--<div class="col-sm-2">
                                     <input type="text" format-number class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required='true' placeholder="Plot/Land">
@@ -1042,7 +1047,7 @@
                     </div>
                     <div class="text-right">
 						<label class="register-property-info-text">Share more details to get quality inquiries</label>
-                        <button type="button" class="btn btn-info" ng-click="showForm2=false;showForm1=!showForm2;">Previous</button>
+                        <button type="button" class="btn btn-info" ng-click="form1.submitted=false;showForm2=false;showForm1=!showForm2;">Previous</button>
                         <button type="button" class="btn btn-info" ng-click="form2.submitted=true;showForm3=form2.$valid;showForm2=!form2.$valid;">Next</button>
                     </div>
                 </div>
@@ -1088,7 +1093,7 @@
                     </div>
                     <div class="text-right">
 						<label class="register-property-info-text">Upload property photos and pin property on map to get quality inquiries</label>
-                        <button type="button" class="btn btn-info" ng-click="showForm3=false;showForm2=true;">Previous</button>
+                        <button type="button" class="btn btn-info" ng-click="form2.submitted=false;showForm3=false;showForm2=true;">Previous</button>
                         <button class="btn btn-info" ng-disabled="disableSubmitbtn" ng-click="registerProperty();">Submit</button>
                     </div>
                 </div>
