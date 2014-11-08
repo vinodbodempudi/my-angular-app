@@ -101,14 +101,14 @@
 							<label class="">Per Unit price</label>
 						</div>
 						<div class="right">
-							<label class="">{{property.details.area.perUnitPrice  | currencyFormatter}}/Sq.ft</label>
+							<label class="">{{property.details.area.perUnitPrice  | currencyFormatter}}/{{ property.details.area.perUnitUnits || 'Sq.ft'}}</label>
 						</div>
 						<div class="speaker_image dot">
 							<img src="images/dot.png" alt="">
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode==='Sell' || property.details.propertySubType === 'Residential Land/Plot'">
+					<div class="schedule_row" ng-show="property.details.mode==='Sell' || property.details.propertySubType === 'Land/Plot'">
 						<div class="left">
 							<label class="">plot/land Area</label>
 						</div>
@@ -177,7 +177,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode=='Rent'">
+					<div class="schedule_row" ng-show="property.details.mode === 'Rent'">
 						<div class="left">
 							<label class="">Prefered Tenant</label>
 						</div>
@@ -189,7 +189,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode=='Rent'">
+					<div class="schedule_row" ng-show="property.details.mode === 'Rent'">
 						<div class="left">
 							<label class="">Allow</label>
 						</div>
@@ -203,7 +203,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode=='Rent'">
+					<div class="schedule_row" ng-if="property.details.maintenanceFee">
 						<div class="left">
 							<label class="">Maintainance Fee</label>
 						</div>
@@ -274,7 +274,7 @@
 					</div>
 				</div>
 			</accordion-group>
-			<accordion-group is-open="propertyDetails.showSpecificationsTab" ng-if="property.details.propertySubType !== 'Residential Land/Plot'">
+			<accordion-group is-open="propertyDetails.showSpecificationsTab" ng-if="property.details.propertySubType !== 'Land/Plot'">
 				<accordion-heading>
 					Specifications <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showSpecificationsTab, 'glyphicon-chevron-right': !propertyDetails.showSpecificationsTab}"></i>
 				</accordion-heading>
@@ -474,7 +474,7 @@
 				</div>
 
 			</accordion-group>
-			<accordion-group is-open="propertyDetails.showAmenitiesTab" ng-if="property.details.propertySubType !== 'Residential Land/Plot'">
+			<accordion-group is-open="propertyDetails.showAmenitiesTab" ng-if="property.details.propertySubType !== 'Land/Plot'">
 				<accordion-heading>
 					Amenities <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showAmenitiesTab, 'glyphicon-chevron-right': !propertyDetails.showAmenitiesTab}"></i>
 				</accordion-heading>

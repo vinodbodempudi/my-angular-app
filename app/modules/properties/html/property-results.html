@@ -9,8 +9,7 @@
 	  <div class="row">
 		<div ng-repeat="property in $parent.filteredProperties = (properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search)">
 		  <div class="list-view" style="cursor:pointer;" ng-click="showPropertyDetails(property._id);">
-			<div class="image" ng-show="!property.urls.coverPhotoUrl.url"> <img ng-src="images/list1.png" alt="" /> </div>
-			<div class="image" ng-show="property.urls.coverPhotoUrl.url"> <img ng-src="{{property.urls.coverPhotoUrl.url}}" alt="" /> </div>
+			<div class="image"> <img ng-src="{{property.urls.coverPhotoUrl.url || 'images/list1.png'}}" alt="" /> </div>
 			
 			<div class="content">
 			  <div class="row ">
@@ -18,32 +17,28 @@
 				  <h3><a href=""><label title="{{property.details.title}}" class="propertyresultsLabel">{{property.details.title}}</label></a></h3>
 				</div>
 				<div class="col-xs-5 price" style="text-align:Right;">
-				  <h4 ng-show="property.details.mode==='Sell' || property.details.propertySubType === 'Residential Land/Plot'"><i class="fa fa-rupee"></i> <span>{{property.details.price.price | currencyFormatter}}</span></h4>
-				  <h4 ng-show="property.details.mode==='Rent'"><i class="fa fa-rupee"></i> <span>{{property.details.monthlyRent | currencyFormatter}}</span></h4>
+				  <h4><i class="fa fa-rupee"></i> <span>{{property.details.monthlyRent || property.details.price.price | currencyFormatter}}</span></h4>
 				</div>
 			  </div>
 			  <div class="row properresultssqftlabel">
 				<div class="col-xs-12 price" style="textAlign:Right;">
-				  <h5 style="text-align: right;" ng-show="property.details.mode==='Sell' && property.details.area.perUnitPrice"><span>{{property.details.area.perUnitPrice | currencyFormatter}}/Sq.ft</span></h5>
+				  <h5 style="text-align: right;" ng-if="property.details.area.perUnitPrice"><span>{{property.details.area.perUnitPrice | currencyFormatter}}/{{ property.details.area.perUnitUnits || 'Sq.ft'}}</span></h5>
 				</div>
 			  </div>
-			  <div class="row firstRow" ng-if="property.details.propertySubType !== 'Residential Land/Plot'">
-				<div class="col-xs-3"> <span>{{property.details.bedRooms}}</span> Beds </div>
-				<div class="col-xs-3"> <span>{{property.details.bathRooms}}</span> Baths </div>
-				<div class="col-xs-3"> <span>{{property.details.area.builtUp.builtUp | currencyFormatter}}</span> {{property.details.area.builtUp.units}} </div>
+			  <div class="row firstRow">
+				<div class="col-xs-3" > <span ng-if="property.details.bedRooms">{{property.details.bedRooms}} Beds </span></div>
+				<div class="col-xs-3" > <span ng-if="property.details.bathRooms">{{property.details.bathRooms}} Baths </span></div>
+				<div class="col-xs-3"> <span>{{property.details.area.builtUp.builtUp || property.details.area.plotOrLand.plotOrLand | currencyFormatter}}</span> {{property.details.area.builtUp.units || property.details.area.plotOrLand.units}} </div>
 			  </div>
 			  <div class="row secondRow">
 				<div class="col-xs-2"> <span>{{property.details.mode || 'Sell'}}</span> </div>
 				<div class="col-xs-5"> <span>{{property.details.propertySubType}}</span> </div>
 				<div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>{{property.user.locality}}</span> </div>
-				
 			  </div>
-			  
 			  <div class="row thirdRow dateright">
-				<div ng-hide="property.lastUpdatedDate" class="text-right">{{property.createdDate | date:'MMM d, y'}}</div>
-				<div ng-show="property.lastUpdatedDate" class="text-right">{{property.lastUpdatedDate | date:'MMM d, y'}}</div>
+				<div class="text-right">{{property.lastUpdatedDate || property.createdDate | date:'MMM d, y'}}</div>
 			  </div>
-			  <div class="row customsocial" ng-show="false">
+			  <div class="row customsocial" ng-if="false">
 				<div class="col-xs-8 text-right">
 				 <div class="btn-group">
 					<button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-up"></i> Like</button>
@@ -53,7 +48,7 @@
 				</div>
 				<div class="col-xs-4 dateright">
 				  <div ng-hide="property.lastUpdatedDate" class="text-right">{{property.createdDate | date:'MMM d, y'}}</div>
-				  <div ng-show="property.lastUpdatedDate" class="text-right">{{property.lastUpdatedDate | date:'MMM d, y'}}</div>
+				  <div ng-if="property.lastUpdatedDate" class="text-right">{{property.lastUpdatedDate | date:'MMM d, y'}}</div>
 				</div>
 			  </div>
 			</div>

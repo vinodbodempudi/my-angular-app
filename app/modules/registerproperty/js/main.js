@@ -140,7 +140,7 @@ angular.module('registerProperty', [])
 		}
 		
 		$scope.showForm1=false;
-		if($scope.property.details.propertySubType === 'Residential Land/Plot') {
+		if($scope.property.details.propertySubType === 'Land/Plot') {
 			$scope.showForm3 = true;
 			return;
 		}
@@ -310,7 +310,7 @@ angular.module('registerProperty', [])
 	
 		
 	
-		if(property.details.mode === 'Sell' || property.details.propertySubType === 'Residential Land/Plot') {
+		if(property.details.mode === 'Sell') {
 			delete property.details.monthlyRent;
 			delete property.details.maintenanceFee;
 			delete property.details.deposit;
@@ -331,9 +331,18 @@ angular.module('registerProperty', [])
 			}
 		}
 		
-		if(property.details.propertySubType === 'Residential Land/Plot') {
+		if(property.details.propertySubType === 'Land/Plot') {
 			delete property.details.propertyStatus;
 			delete property.details.area.builtUp;
+			delete property.details.bedRooms;
+			delete property.details.bathRooms;
+			delete property.details.monthlyRent;
+			delete property.details.maintenanceFee;
+			delete property.details.allowNonVeg;
+			delete property.details.allowPets;
+			delete property.details.preferredTenant;
+			delete property.details.commitionInDays;
+			delete property.details.fixedPrice;
 		}
 			
 	}
@@ -351,12 +360,17 @@ angular.module('registerProperty', [])
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
+	$scope.showForm1OrForm2 = function() {
+		$scope.showForm3=false;
+		if($scope.property.details.propertySubType === 'Land/Plot') {
+			$scope.form1.submitted=false;
+			$scope.showForm1=true;
+		} else {
+			$scope.form2.submitted=false;
+			$scope.showForm2=true;
+		}
+	}
+
 }])
 .service('RegisterPropertyService',['$http',  'servicesBaseUrl', function($http, servicesBaseUrl) {
     this.registerProperty = function (property) {
@@ -468,6 +482,10 @@ angular.module('registerProperty', [])
 				
 				google.maps.event.addListener(map, 'dragend', function(e)
 				{
+					if(!e) {
+						return;
+					}
+					
 					updatePropertyLocation(e.latLng.lat(), e.latLng.lng());
 					//google.maps.event.removeListener(centerChangeListener);
 				});

@@ -153,14 +153,14 @@
 								</div>
 						  </div> -->
 						  
-						   <div class="form-group" ng-show="false">
-								<label class="col-sm-2 control-label" ng-show="property.user.type==='Agent'">Agent Company Name:</label>
-								<label class="col-sm-2 control-label" ng-show="property.user.type==='Builder'">Builder Company Name:</label>
+						   <div class="form-group" ng-if="false">
+								<label class="col-sm-2 control-label" ng-if="property.user.type==='Agent'">Agent Company Name:</label>
+								<label class="col-sm-2 control-label" ng-if="property.user.type==='Builder'">Builder Company Name:</label>
 								<div class="col-sm-3">
 								  <input type="text" class="form-control input-sm" ng-model="property.user.companyName" placeholder="Company Name">
 								</div>
-								<label class="col-sm-2 control-label bcompanyadd" ng-show="property.user.type==='Agent'">Agent Company address:</label>
-								<label class="col-sm-2 control-label bcompanyadd" ng-show="property.user.type==='Builder'">Builder Company address:</label>
+								<label class="col-sm-2 control-label bcompanyadd" ng-if="property.user.type==='Agent'">Agent Company address:</label>
+								<label class="col-sm-2 control-label bcompanyadd" ng-if="property.user.type==='Builder'">Builder Company address:</label>
 								<div class="col-sm-3">
 								  <input type="text" class="form-control input-sm" ng-model="property.user.companyAddress" placeholder="Company address">
 								</div>
@@ -192,7 +192,7 @@
 									<label class="hint-text">ex: 2 bed 2 bath apt or Laxmi apartment</label>
                                 </div>
                             </div>
-                            <div class="form-group" ng-if="property.details.propertySubType !== 'Residential Land/Plot'">
+                            <div class="form-group" ng-if="property.details.propertySubType !== 'Land/Plot'">
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-2">
                                     <div class="radio-inline">
@@ -223,7 +223,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group" ng-if="property.details.propertySubType !== 'Residential Land/Plot'">
+                            <div class="form-group" ng-if="property.details.propertySubType !== 'Land/Plot'">
                                 <label class="col-sm-2 control-label mandatory">Area:</label>
                                 <div class="col-sm-2">
                                     <input type="text" format-number class="form-control input-sm" name="builtUp" ng-model="property.details.area.builtUp.builtUp" ng-required='true' placeholder="Built-up">
@@ -237,14 +237,19 @@
                                     </select>
 									<p ng-show="form1.builtUpUnits.$invalid && (!form1.builtUpUnits.$pristine || form1.submitted)" class="label errorText">select Built-up units</p>
                                 </div>
-								<div class="col-sm-2" ng-show="property.details.mode==='Sell'">
-                                    <input type="text" format-number class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required="false" placeholder="Per Sq.ft price">
+								<div class="col-sm-2" ng-if="property.details.mode==='Sell'">
+                                    <input type="text" format-number class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required="false" placeholder="Per Unit Price">
 									<p ng-show="form1.submitted && form1.perUnitPrice.$error.required" class="label errorText">Enter per unit price</p>
 									<p ng-show="form1.perUnitPrice.$error.pattern" class="label errorText">Enter valid unit price</p>
                                 </div>
-                                
+                                <div class="col-sm-2" ng-if="property.details.mode==='Sell'">
+									<select selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" name="perUnitUnits" ng-model="property.details.area.perUnitUnits" ng-required="form1.perUnitPrice.$valid">
+                                        <option value="">Units Drop Down</option>
+                                    </select>
+									<p ng-show="form1.perUnitUnits.$invalid && (!form1.perUnitUnits.$pristine || form1.submitted)" class="label errorText">select per unit units</p>
+                                </div>
 							</div>
-							<div class="form-group" ng-show="property.details.mode==='Sell' || property.details.propertySubType === 'Residential Land/Plot'">
+							<div class="form-group" ng-if="property.details.mode==='Sell' || property.details.propertySubType === 'Land/Plot'">
 								<!--<label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-2">
                                     <input type="text" format-number class="form-control input-sm" name="carpet" ng-model="property.details.area.carpet.carpet" ng-required='false' placeholder="Carpet">
@@ -258,23 +263,29 @@
                                     </select>
 									<p ng-show="form1.carpetUnits.$invalid && (!form1.carpetUnits.$pristine || form1.submitted)" class="label errorText">select Carpet units</p>
                                 </div>-->
-								<label class="col-sm-2 control-label" ng-if="property.details.propertySubType === 'Residential Land/Plot'">Area:</label>
+								<label class="col-sm-2 control-label" ng-if="property.details.propertySubType === 'Land/Plot'">Area:</label>
 								<label class="col-sm-2 control-label" ng-if="property.details.mode === 'Sell'"></label>
 								<div class="col-sm-2">
-                                    <input type="text" format-number class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required="property.details.propertySubType === 'Residential Land/Plot'" placeholder="Plot/Land">
+                                    <input type="text" format-number class="form-control input-sm" name="plotOrLand" ng-model="property.details.area.plotOrLand.plotOrLand" ng-required="property.details.propertySubType === 'Land/Plot'" placeholder="Plot/Land">
 									<p ng-show="form1.submitted && form1.plotOrLand.$error.required" class="label errorText">Enter Plot/Land</p>
 									<p ng-show="form1.plotOrLand.$error.pattern" class="label errorText">Enter valid Plot/Land</p>
                                 </div>
                                 <div class="col-sm-2">
-                                    <select selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" name="plotOrLandUnits" ng-model="property.details.area.plotOrLand.units" ng-required="property.details.propertySubType === 'Residential Land/Plot'">
+                                    <select selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" name="plotOrLandUnits" ng-model="property.details.area.plotOrLand.units" ng-required="property.details.propertySubType === 'Land/Plot'">
                                         <option value="">Units Drop Down</option>
                                     </select>
 									<p ng-show="form1.plotOrLandUnits.$invalid && (!form1.plotOrLandUnits.$pristine || form1.submitted)" class="label errorText">select Plot/Land units</p>
                                 </div>
-								<div class="col-sm-2" ng-if="property.details.propertySubType === 'Residential Land/Plot'">
-                                    <input type="text" format-number class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required="false" placeholder="Per Sq.ft price">
+								<div class="col-sm-2" ng-if="property.details.propertySubType === 'Land/Plot'">
+                                    <input type="text" format-number class="form-control input-sm" name="perUnitPrice" ng-model="property.details.area.perUnitPrice" ng-required="false" placeholder="Per unit price">
 									<p ng-show="form1.submitted && form1.perUnitPrice.$error.required" class="label errorText">Enter per unit price</p>
 									<p ng-show="form1.perUnitPrice.$error.pattern" class="label errorText">Enter valid unit price</p>
+                                </div>
+								<div class="col-sm-2" ng-if="property.details.propertySubType === 'Land/Plot'">
+									<select selectpicker class="form-control input-sm" ng-options="unit.label as unit.label for unit in unitOptions" name="perUnitUnits" ng-model="property.details.area.perUnitUnits" ng-required="form1.perUnitPrice.$valid && !form1.perUnitPrice.$pristine">
+                                        <option value="">Units Drop Down</option>
+                                    </select>
+									<p ng-show="form1.perUnitUnits.$invalid && (!form1.perUnitUnits.$pristine || form1.submitted)" class="label errorText">select units</p>
                                 </div>
 							</div>
                                 <!--<div class="col-sm-2">
@@ -344,24 +355,29 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-sm-2" ng-show="property.details.availability==='Future'">
+                                <div class="col-sm-2" ng-if="property.details.availability==='Future'">
 									<input type="text" date-picker ng-model="property.details.date"  readonly="" style="cursor:text" ng-required="false" class="form-control input-sm" placeholder="Enter Date"/>
 									<p ng-show="form1.date.$invalid && (!form1.date.$pristine || form1.submitted)" class="label errorText">select date</p>
                                 </div>
-                                <label class="col-sm-2 control-label">Age of Property</label>
-								<div class="col-sm-1">
+                                <label class="col-sm-2 control-label" ng-if="property.details.propertySubType !== 'Land/Plot'">Age of Property</label>
+								<div class="col-sm-1" ng-if="property.details.propertySubType !== 'Land/Plot'">
 									<select selectpicker class="form-control input-sm" ng-change="updatePropertyStatus();" ng-options="year as year for year in ageOfPropertyOptions.years"  ng-model="property.details.ageOfProperty.years">
 										<option value="">Y</option>
 									</select>
 								</div>
-								<div class="col-sm-1">
+								<div class="col-sm-1" ng-if="property.details.propertySubType !== 'Land/Plot'">
 									<select selectpicker class="form-control input-sm" ng-change="updatePropertyStatus();" ng-options="month as month for month in ageOfPropertyOptions.months" ng-model="property.details.ageOfProperty.months">
 										<option value="">M</option>
 									</select>
 								</div>
+								<label class="col-sm-1 control-label deposit" ng-if="property.details.propertySubType === 'Land/Plot'">Deposit:</label>
+								<div class="col-sm-2" ng-if="property.details.propertySubType === 'Land/Plot'">
+									<input type="text" format-number class="form-control input-sm" name="deposit" ng-model="property.details.deposit" ng-required="false" placeholder="Deposit">
+									<p ng-show="form1.deposit.$error.pattern" class="label errorText">Enter valid deposit Fee</p>
+								</div>
                             </div>
 							
-							<div ng-if="property.details.mode==='Sell' || property.details.propertySubType === 'Residential Land/Plot'">
+							<div ng-if="property.details.mode==='Sell' || property.details.propertySubType === 'Land/Plot'">
 								<div class="form-group">
 									<label class="col-sm-2 control-label mandatory">Total Price:</label>
 									<div class="col-sm-2">
@@ -382,7 +398,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-group" ng-if="property.details.propertySubType !== 'Residential Land/Plot'">
+								<div class="form-group" ng-if="property.details.propertySubType !== 'Land/Plot'">
 									<label class="col-sm-2 control-label"></label>
 									<div class="col-sm-10">
 										<div class="radio-inline" >
@@ -462,7 +478,7 @@
 										</select>
 										<p ng-show="form1.commitionInDays.$invalid && (!form1.commitionInDays.$pristine || form1.submitted)" class="label errorText">select commition in days</p>
 									</div>
-									<div class="col-sm-2" ng-show="property.details.commitionInDays==='Others'">
+									<div class="col-sm-2" ng-if="property.details.commitionInDays==='Others'">
 										<input type="text" format-number name="fixedPrice" class="form-control input-sm" ng-model="property.details.fixedPrice" placeholder="Fixed Price">
 										<p ng-show="form1.fixedPrice.$error.pattern" class="label errorText">Enter valid fixed price</p>
 									</div>
@@ -635,7 +651,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="form-group" ng-show="property.details.mode==='Sell'">
+							<div class="form-group" ng-if="property.details.mode==='Sell'">
 								<label class="col-sm-2 control-label">No of Units Available</label>
 								<div class="col-sm-1">
 									<select selectpicker title="" class="form-control input-sm" ng-options="unit as unit for unit in noOfUnits" ng-model="property.specifications.unitsAvailable">
@@ -1093,7 +1109,7 @@
                     </div>
                     <div class="text-right">
 						<label class="register-property-info-text">Upload property photos and pin property on map to get quality inquiries</label>
-                        <button type="button" class="btn btn-info" ng-click="form2.submitted=false;showForm3=false;showForm2=true;">Previous</button>
+                        <button type="button" class="btn btn-info" ng-click="showForm1OrForm2();">Previous</button>
                         <button class="btn btn-info" ng-disabled="disableSubmitbtn" ng-click="registerProperty();">Submit</button>
                     </div>
                 </div>

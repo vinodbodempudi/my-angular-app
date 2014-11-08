@@ -192,11 +192,11 @@ angular.module('home', [])
 		return {
 			"Residential": [
 				"Apartment",
-				"Individual House/Villa",
-				"Residential Land/Plot",
 				"Builder Floor",
-				"Pent House",
 				"Farm House",
+				"Individual House/Villa",
+				"Pent House",
+				"Land/Plot",
 				"Service Apartment",
 				"Studio Apartment"
 			],
