@@ -282,8 +282,7 @@ angular.module('registerProperty', [])
 		}
 	
 		property.details.title = fatHomeUtil.convertToCamelCase(property.details.title);
-		
-		
+
 		if(property.details.availability === "Ready to Move" && property.details.date) {
 			delete property.details.date;
 		}
@@ -370,6 +369,16 @@ angular.module('registerProperty', [])
 			$scope.showForm2=true;
 		}
 	}
+	
+	$scope.changePropertySubTypeHandler = function() {
+		if($scope.property.details.propertySubType === 'Land/Plot') {
+			$scope.property.details.mode = 'Sell';
+			return;
+		}
+	
+		$scope.property.details.mode= '';
+	}
+	
 
 }])
 .service('RegisterPropertyService',['$http',  'servicesBaseUrl', function($http, servicesBaseUrl) {

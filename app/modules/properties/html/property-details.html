@@ -36,7 +36,7 @@
 							<label class="">is for</label>
 						</div>
 						<div class="right">
-							<label class="">{{property.details.mode || 'Sell'}}</label>
+							<label class="">{{property.details.mode}}</label>
 						</div>
 						<div class="speaker_image dot">
 							<img src="images/dot.png" alt="">
@@ -108,9 +108,9 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode==='Sell' || property.details.propertySubType === 'Land/Plot'">
+					<div class="schedule_row" ng-show="property.details.mode === 'Sell'">
 						<div class="left">
-							<label class="">plot/land Area</label>
+							<label class="">Plot/Land Area</label>
 						</div>
 						<div class="right">
 							<label ng-show="!plotOrLand.plotOrLandArea || !plotOrLand.plotOrLandArea.plotOrLand"></label>
@@ -151,7 +151,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode=='Rent'">
+					<div class="schedule_row" ng-show="property.details.mode === 'Rent'">
 						<div class="left">
 							<label class="">Monthly rent</label>
 						</div>
@@ -217,13 +217,13 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode=='Rent' && property.user.type === 'Agent'">
+					<div class="schedule_row" ng-show="property.details.mode === 'Rent' && property.user.type === 'Agent'">
 						<div class="left">
 							<label class="">Agent Commision</label>
 						</div>
 						<div class="right">
 							<label ng-show="!property.details.commitionInDays && !property.details.fixedPrice"></label>
-							<div ng-show="property.details.mode=='Rent' && property.user.type === 'Agent' && property.details.commitionInDays">
+							<div ng-show="property.details.mode === 'Rent' && property.user.type === 'Agent' && property.details.commitionInDays">
 								<label ng-show="!property.details.fixedPrice">{{property.details.commitionInDays}}</label>
 								<label ng-show="property.details.fixedPrice" class="fa fa-rupee"></label>
 								<label ng-show="property.details.fixedPrice"> {{property.details.fixedPrice | currencyFormatter}}</label>
@@ -356,7 +356,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode=='Sell'">
+					<div class="schedule_row" ng-show="property.specifications.unitsAvailable">
 						<div class="left">
 							<label class="">No of Units Available</label>
 						</div>
@@ -368,7 +368,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-show="property.details.mode=='Sell'">
+					<div class="schedule_row" ng-show="property.specifications.ownershipType">
 						<div class="left">
 							<label class="">Ownership Type</label>
 						</div>

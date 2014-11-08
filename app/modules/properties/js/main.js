@@ -550,30 +550,40 @@ angular.module('properties', [])
 		  });
 		  
 		  var getPropertyPrice = function(property) {
-				if(property.details.mode==='Sell') {
-					 return property.details.price.price;
-				}
-				
-				return property.details.monthlyRent;
+				return property.details.monthlyRent || property.details.price.price;
 			}
-		  
-		  var areaSize, areaUnits;
-		  if(property.details.area.builtUp) {
-			areaSize = property.details.area.builtUp.builtUp;
-			areaUnits = property.details.area.builtUp.units;
-		  } else {
-			areaSize = property.details.area.plotOrLand.plotOrLand;
-			areaUnits = property.details.area.plotOrLand.units;
+
+		  var getInfoWindowContent = function(property) {
+			var content = "<div class='scroll-fix'>";
+			
+			if(property.details.title) {
+				content += "Title : "+property.details.title+"<br>";
+			}
+			
+			if(property.details.bedRooms) {
+				content += "Bedrooms : "+property.details.bedRooms+"<br>";
+			}
+     		
+			var areaSize, areaUnits;
+			if(property.details.area.builtUp) {
+				areaSize = property.details.area.builtUp.builtUp;
+				areaUnits = property.details.area.builtUp.units;
+			} else {
+				areaSize = property.details.area.plotOrLand.plotOrLand;
+				areaUnits = property.details.area.plotOrLand.units;
+			}
+			
+			content += "Area : "+areaSize+" "+areaUnits+"<br>";
+			content += "Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(getPropertyPrice(property))+"</label>";
+			content += "</div>";
+			
+			return content;
 		  }
 		  
 		  var chInfoWindow = new google.maps.InfoWindow({
-			content: "<div class='scroll-fix'>"
-						+"Title : "+property.details.title+"<br>"
-						+"Bedrooms : "+property.details.bedRooms+"<br>"
-						+"Area : "+areaSize+" "+areaUnits+"<br>"
-						+"Price : <label class='fa fa-rupee'> "+fatHomeUtil.currencyFormater(getPropertyPrice(property))+"</label>"
-					+"</div>"
+			content: getInfoWindowContent(property)
 		  });
+		  
 		  
 		  
 		  
@@ -790,7 +800,7 @@ angular.module('properties', [])
 	};
 })
 .directive('popOver', ['$compile', 'FatHomeAppStateUtil', '$rootScope', 'PropertiesService', 'FatHomeUtil', '$window', function ($compile, fatHomeAppStateUtil, $rootScope, propertiesService, fatHomeUtil, $window) {
-  var propertiesTemplate = "<div class='mylist-popover'><img ng-show='getMyListServiceCallInprogress' style='width:64px;height:64px;margin: 0 auto;display: inherit;' src='images/ajax-loader-small.GIF'><div class='row resutls' ng-show='!getMyListServiceCallInprogress'><div class='text-center' ng-show='properties.length == 0;'><h4> No results found.</h4> </div><div ng-repeat='property in properties=(properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder)'> <div class='list-view' style='cursor:pointer;' ng-click='showPropertyDetails(property._id);'> <div class='image' ng-show='!property.urls.coverPhotoUrl.url'> <img ng-src='images/list1.png' alt='' /> </div> <div class='image' ng-show='property.urls.coverPhotoUrl.url'> <img ng-src='{{property.urls.coverPhotoUrl.url}}' alt='' /> </div> <div class='content'> <div class='row '> <div class='col-xs-7'> <h3><a href=''><label title='{{property.details.title}}' class='propertyresultsLabel'>{{property.details.title}}</label></a></h3> </div> <div class='col-xs-5 price' style='text-align:Right;'> <h4><i class='fa fa-rupee'></i> <span>{{property.details.monthlyRent || property.details.price.price | currencyFormatter}}</span></h4> </div> </div> <div class='row properresultssqftlabel'> <div class='col-xs-12 price' style='textAlign:Right;'> <h5 style='text-align: right;' ng-if='property.details.area.perUnitPrice'><span>{{property.details.area.perUnitPrice | currencyFormatter}}/{{ property.details.area.perUnitUnits || 'Sq.ft'}}</span></h5> </div> </div> <div class='row firstRow'><div class='col-xs-3' > <span ng-if='property.details.bedRooms'>{{property.details.bedRooms}} Beds </span></div>				<div class='col-xs-3' > <span ng-if='property.details.bathRooms'>{{property.details.bathRooms}} Baths </span></div>				<div class='col-xs-3'> <span>{{property.details.area.builtUp.builtUp || property.details.area.plotOrLand.plotOrLand | currencyFormatter}}</span> {{property.details.area.builtUp.units || property.details.area.plotOrLand.units}} </div>			  </div> <div class='row secondRow'> <div class='col-xs-2'> <span>{{property.details.mode || 'Sell'}}</span> </div> <div class='col-xs-5'> <span>{{property.details.propertySubType}}</span> </div> <div class='col-xs-5'> <i class='fa fa-map-marker'></i> <span>{{property.user.locality}}</span> </div> </div> <div class='row thirdRow customsocial' style='z-index:10;'> <div class='col-xs-8 text-center'> <button type='button' class='btn btn-default btn-sm btn-info my-list-button' ng-click='editProperty($event, property);'>Edit</button> <button type='button' class='btn btn-default btn-sm my-list-button btn-info' ng-click='deleteProperty($event, property._id, $index);'>Delete</button></div> <div class='col-xs-4 dateright'> <div class='text-right'>{{property.lastUpdatedDate || property.createdDate | date:'MMM d, y'}}</div> </div> </div> </div> <div class='clearfix'></div> </div> </div> </div> </div>";
+  var propertiesTemplate = "<div class='mylist-popover'><img ng-show='getMyListServiceCallInprogress' style='width:64px;height:64px;margin: 0 auto;display: inherit;' src='images/ajax-loader-small.GIF'><div class='row resutls' ng-show='!getMyListServiceCallInprogress'><div class='text-center' ng-show='properties.length == 0;'><h4> No results found.</h4> </div><div ng-repeat='property in properties=(properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder)'> <div class='list-view' style='cursor:pointer;' ng-click='showPropertyDetails(property._id);'> <div class='image' ng-show='!property.urls.coverPhotoUrl.url'> <img ng-src='images/list1.png' alt='' /> </div> <div class='image' ng-show='property.urls.coverPhotoUrl.url'> <img ng-src='{{property.urls.coverPhotoUrl.url}}' alt='' /> </div> <div class='content'> <div class='row '> <div class='col-xs-7'> <h3><a href=''><label title='{{property.details.title}}' class='propertyresultsLabel'>{{property.details.title}}</label></a></h3> </div> <div class='col-xs-5 price' style='text-align:Right;'> <h4><i class='fa fa-rupee'></i> <span>{{property.details.monthlyRent || property.details.price.price | currencyFormatter}}</span></h4> </div> </div> <div class='row properresultssqftlabel'> <div class='col-xs-12 price' style='textAlign:Right;'> <h5 style='text-align: right;' ng-if='property.details.area.perUnitPrice'><span>{{property.details.area.perUnitPrice | currencyFormatter}}/{{ property.details.area.perUnitUnits || 'Sq.ft'}}</span></h5> </div> </div> <div class='row firstRow'><div class='col-xs-3' > <span ng-if='property.details.bedRooms'>{{property.details.bedRooms}} Beds </span></div>				<div class='col-xs-3' ng-if='property.details.bathRooms'> <span >{{property.details.bathRooms}} Baths </span></div><div class='col-xs-3' ng-if='isLandOrPlot(property.details.propertySubType)'> <span>{{property.details.mode}}</span> </div>				<div class='col-xs-3'> <span>{{property.details.area.builtUp.builtUp || property.details.area.plotOrLand.plotOrLand | currencyFormatter}}</span> {{property.details.area.builtUp.units || property.details.area.plotOrLand.units}} </div>			  </div> <div class='row secondRow'> <div class='col-xs-2'> <span ng-if='!isLandOrPlot(property.details.propertySubType);'>{{property.details.mode}}</span> </div> <div class='col-xs-5'> <span>{{property.details.propertySubType}}</span> </div> <div class='col-xs-5'> <i class='fa fa-map-marker'></i> <span>{{property.user.locality}}</span> </div> </div> <div class='row thirdRow customsocial' style='z-index:10;'> <div class='col-xs-8 text-center'> <button type='button' class='btn btn-default btn-sm btn-info my-list-button' ng-click='editProperty($event, property);'>Edit</button> <button type='button' class='btn btn-default btn-sm my-list-button btn-info' ng-click='deleteProperty($event, property._id, $index);'>Delete</button></div> <div class='col-xs-4 dateright'> <div class='text-right'>{{property.lastUpdatedDate || property.createdDate | date:'MMM d, y'}}</div> </div> </div> </div> <div class='clearfix'></div> </div> </div> </div> </div>";
   return {
     restrict: "A",
     transclude: true,
@@ -814,6 +824,11 @@ angular.module('properties', [])
 			hideMyListModal();
 			fatHomeAppStateUtil.showPropertiesHome($rootScope.user.city, $rootScope.user.locality, propertyId, fatHomeAppStateUtil.isRegisterProperty() || fatHomeAppStateUtil.isEditProperty());
 		};
+		
+		scope.isLandOrPlot = function(propertySubType) {
+			return propertySubType === 'Land/Plot';
+		};
+		
 		
 		scope.editProperty = function($event, property) {
 			$event.stopPropagation();
