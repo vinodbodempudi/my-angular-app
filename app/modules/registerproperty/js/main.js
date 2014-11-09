@@ -307,29 +307,6 @@ angular.module('registerProperty', [])
 	
 	var removeNonQualifiedProperties = function(property) {
 	
-		
-	
-		if(property.details.mode === 'Sell') {
-			delete property.details.monthlyRent;
-			delete property.details.maintenanceFee;
-			delete property.details.deposit;
-			delete property.details.allowNonVeg;
-			delete property.details.allowPets;
-			delete property.details.preferredTenant;
-			delete property.details.commitionInDays;
-			delete property.details.fixedPrice;
-		}
-
-		if(property.details.mode === 'Rent') {
-			delete property.details.area.perUnitPrice;
-			delete property.details.area.plotOrLand;
-			delete property.details.price;
-			delete property.details.propertyStatus;
-			if(property.specifications && property.specifications.unitsAvailable) {
-				delete property.specifications.unitsAvailable;
-			}
-		}
-		
 		if(property.details.propertySubType === 'Land/Plot') {
 			delete property.details.propertyStatus;
 			delete property.details.area.builtUp;
@@ -342,8 +319,33 @@ angular.module('registerProperty', [])
 			delete property.details.preferredTenant;
 			delete property.details.commitionInDays;
 			delete property.details.fixedPrice;
+			delete property.details.ageOfProperty;
+			return;
 		}
+	
+		if(property.details.mode === 'Sell') {
+			delete property.details.monthlyRent;
+			delete property.details.maintenanceFee;
+			delete property.details.deposit;
+			delete property.details.allowNonVeg;
+			delete property.details.allowPets;
+			delete property.details.preferredTenant;
+			delete property.details.commitionInDays;
+			delete property.details.fixedPrice;
 			
+			return;
+		}
+
+		if(property.details.mode === 'Rent') {
+			delete property.details.area.perUnitPrice;
+			delete property.details.area.plotOrLand;
+			delete property.details.price;
+			delete property.details.propertyStatus;
+			if(property.specifications && property.specifications.unitsAvailable) {
+				delete property.specifications.unitsAvailable;
+			}
+		}
+
 	}
 	
 	$scope.validateFloors = function(totalFloors, floorNumber) {

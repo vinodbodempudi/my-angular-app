@@ -362,38 +362,26 @@ angular.module('properties', [])
     return function (properties, filterOption) {
 		
         if (!angular.isUndefined(properties) && !angular.isUndefined(filterOption)) {
-            var tempProperties = [], property, propertyPrice;
+            var tempProperties = [], property, propertyPrice, sqftValue;
 			for (var i = 0; i < properties.length; i++) { 
 				property = properties[i];
 				if(filterOption.propertType && filterOption.propertType !== property.details.propertySubType) {
 					continue;
 				}
 				
-				if(filterOption.beds && Number(filterOption.beds) !== Number(property.details.bedRooms)) {
+				if(filterOption.beds && property.details.bedRooms && Number(filterOption.beds) !== Number(property.details.bedRooms)) {
 					continue;
 				}
 				
 				if(filterOption.minPrice) {
-				
-					if(property.details.mode==='Sell') {
-						propertyPrice = property.details.price.price;
-					} else {
-						propertyPrice = property.details.monthlyRent;
-					}
-				
+					propertyPrice = property.details.monthlyRent || property.details.price.price;
 					if(Number(filterOption.minPrice) > Number(propertyPrice)) {
 						continue;
 					}
 				}
 				
 				if(filterOption.maxPrice) {
-				
-					if(property.details.mode==='Sell') {
-						propertyPrice = property.details.price.price;
-					} else {
-						propertyPrice = property.details.monthlyRent;
-					}
-				
+					propertyPrice = property.details.monthlyRent || property.details.price.price;
 					if(Number(filterOption.maxPrice) < Number(propertyPrice)) {
 						continue;
 					}
@@ -407,12 +395,28 @@ angular.module('properties', [])
 					continue;
 				}
 								
-				if(filterOption.minSft && Number(filterOption.minSft) > Number(property.details.area.builtUp.builtUpInSqft)) {
-					continue;
+				if(filterOption.minSft) {
+					if(property.details.area.builtUp) {
+						sqftValue = property.details.area.builtUp.builtUpInSqft;
+					} else {
+						sqftValue = property.details.area.plotOrLand.plotOrLandInSqft;
+					}
+					
+					if(Number(filterOption.minSft) > Number(sqftValue)) {
+						continue;
+					}
 				}
 				
-				if(filterOption.maxSft && Number(filterOption.maxSft) < Number(property.details.area.builtUp.builtUpInSqft)) {
-					continue;
+				if(filterOption.maxSft) {
+					if(property.details.area.builtUp) {
+						sqftValue = property.details.area.builtUp.builtUpInSqft;
+					} else {
+						sqftValue = property.details.area.plotOrLand.plotOrLandInSqft;
+					}
+					
+					if(Number(filterOption.maxSft) > Number(sqftValue)) {
+						continue;
+					}
 				}
 			
 				tempProperties.push(property);
@@ -432,22 +436,22 @@ angular.module('properties', [])
 		var tempa, tempb;
 		
 		if(field === 'price') {
-			if(a.details.mode==='Sell') {
-				 tempa = a.details.price.price;
-			} else {
-				tempa = a.details.monthlyRent;
-			}
-			
-			if(b.details.mode==='Sell') {
-				 tempb = b.details.price.price;
-			} else {
-				tempb = b.details.monthlyRent;
-			}
+			tempa = a.details.monthlyRent || a.details.price.price;
+			tempb = b.details.monthlyRent || b.details.price.price;
 		}
 
 		if(field === 'size') {
-			tempa = a.details.area.builtUp.builtUpInSqft;
-			tempb = b.details.area.builtUp.builtUpInSqft;
+			if(a.details.area.builtUp) {
+				tempa = a.details.area.builtUp.builtUpInSqft+"";
+			} else {
+				tempa = a.details.area.plotOrLand.plotOrLandInSqft+"";
+			}
+			
+			if(b.details.area.builtUp) {
+				tempb = b.details.area.builtUp.builtUpInSqft+"";
+			} else {
+				tempb = b.details.area.plotOrLand.plotOrLandInSqft+"";
+			}
 		}
 		
 		if(field === 'createdDate') {
@@ -455,8 +459,7 @@ angular.module('properties', [])
 			tempb = b.lastUpdatedDate || b[field];
 			return (tempa > tempb ? 1 : -1);
 		}
-
-		return (Number(tempa) > Number(tempb) ? 1 : -1);
+		return (Number(tempa.replace(/,/g, "")) > Number(tempb.replace(/,/g, "")) ? 1 : -1);
     });
     if(reverse) filtered.reverse();
     return filtered;
