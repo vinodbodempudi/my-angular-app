@@ -414,7 +414,7 @@ angular.module('properties', [])
 						sqftValue = property.details.area.plotOrLand.plotOrLandInSqft;
 					}
 					
-					if(Number(filterOption.maxSft) > Number(sqftValue)) {
+					if(Number(filterOption.maxSft) < Number(sqftValue)) {
 						continue;
 					}
 				}
@@ -471,7 +471,6 @@ angular.module('properties', [])
 }]).directive('propertyResults', function() {
 	return {
 		replace:true,
-		scope:false,
 		restrict: 'EA',
 		templateUrl: 'modules/properties/html/property-results.html'
 	};

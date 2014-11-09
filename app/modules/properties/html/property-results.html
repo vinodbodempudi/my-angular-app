@@ -1,13 +1,13 @@
   <div class="list  full-height">
 	<div class="moveright property-results-count-block">
 		<div class="input-group filter "> <span class="input-group-addon text-info">{{$parent.filteredProperties.length}} Results</span> <span class="input-group-addon">Sort by:</span>
-		  <select nya-selectpicker title="" ng-options="sortOption.lable for sortOption in sortOptions" class="form-control selectpicker selectsort" ng-model="$parent.predicate">
+		  <select nya-selectpicker title="" ng-options="sortOption.lable for sortOption in sortOptions" class="form-control selectpicker selectsort" ng-model="predicate">
 		  </select>
 		</div>
 	</div>
 	<div class="lists-view" id="propertyResults" scroll>
 	  <div class="row">
-		<div ng-repeat="property in $parent.filteredProperties = (properties | sortPropertyResults:$parent.predicate.dataField:$parent.predicate.reverseOrder | filterPropertiesResults:search)">
+		<div ng-repeat="property in $parent.filteredProperties = (properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search)">
 		  <div class="list-view" style="cursor:pointer;" ng-click="showPropertyDetails(property._id);">
 			<div class="image"> <img ng-src="{{property.urls.coverPhotoUrl.url || 'images/list1.png'}}" alt="" /> </div>
 			
