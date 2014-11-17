@@ -193,8 +193,10 @@ angular.module('properties', [])
 
 		$scope.isGetPropertyDetailsServiceInProgress = true;
 		$scope.slides = [{"url":"images/ajax-loader-small.GIF"}];
+		$rootScope.$broadcast('SHOW_PROGRESS_BAR');
 		propertiesService.getPropertyDetails(propertyId)
 		.success(function(data){
+			$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 			$scope.isGetPropertyDetailsServiceInProgress = false;
 			$scope.showPage = 'propertyDetails';
 			
@@ -209,6 +211,7 @@ angular.module('properties', [])
 			$scope.isValidMaitenanceFee = isValidAmount(data.details.maintenanceFee);
 			resetPropertyDetailsView();
 		}).error(function(e){
+			$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 			$scope.isGetPropertyDetailsServiceInProgress = false;
 		});
 	
