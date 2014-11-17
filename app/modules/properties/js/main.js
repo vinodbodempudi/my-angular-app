@@ -116,13 +116,15 @@ angular.module('properties', [])
 	});
 	
 	$scope.getProperties = function(city, locality) {
+		$rootScope.$broadcast('SHOW_PROGRESS_BAR');
 		propertiesService.getProperties(city, locality)
 		.success(function(data){
+			$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 			$scope.showPage = 'propertyResults';
 			$scope.properties = data;
 			$scope.predicate = $scope.sortOptions[0];
 		}).error(function(e){
-			
+			$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 		});
 	};
 	
@@ -308,14 +310,16 @@ angular.module('properties', [])
         var propertyId = $routeParams.propertyId;
 	
 		if(propertyId) {
+			$rootScope.$broadcast('SHOW_PROGRESS_BAR');
 			propertiesService.getProperties($scope.city, $scope.locality)
 				.success(function(data){
+					$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 					$scope.predicate = $scope.sortOptions[0];
 					$scope.showPage = 'propertyDetails';
 					$scope.properties = data;
 					$scope.getPropertyDetails(propertyId);
 				}).error(function(e){
-					
+					$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 				});
 			
 			return;

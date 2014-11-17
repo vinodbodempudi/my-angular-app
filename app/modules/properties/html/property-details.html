@@ -43,7 +43,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-if="property.details.bedRooms">
+					<div class="schedule_row" ng-if="property.details.propertySubType !== 'Land/Plot'">
 						<div class="left">
 							<label class="">Beds</label>
 						</div>
@@ -55,7 +55,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-if="property.details.bathRooms">
+					<div class="schedule_row" ng-if="property.details.propertySubType !== 'Land/Plot'">
 						<div class="left">
 							<label class="">Baths</label>
 						</div>
@@ -67,7 +67,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row"  ng-if="builtUp.builtUpArea">
+					<div class="schedule_row"  ng-show="builtUp.builtUpArea">
 						<div class="left">
 							<label class="">Build-up Area</label>
 						</div>

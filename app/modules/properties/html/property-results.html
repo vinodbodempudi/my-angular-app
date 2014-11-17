@@ -26,8 +26,8 @@
 				</div>
 			  </div>
 			  <div class="row firstRow">
-				<div class="col-xs-3" > <span ng-if="property.details.bedRooms">{{property.details.bedRooms}} Beds </span></div>
-				<div class="col-xs-3" ng-if="property.details.bathRooms"> <span>{{property.details.bathRooms}} Baths </span></div>
+				<div class="col-xs-3" > <span ng-if="property.details.propertySubType !== 'Land/Plot'">{{property.details.bedRooms}} Beds </span></div>
+				<div class="col-xs-3" ng-if="property.details.propertySubType !== 'Land/Plot'"> <span>{{property.details.bathRooms}} Baths </span></div>
 				<div class="col-xs-3" ng-if="property.details.propertySubType === 'Land/Plot'"> <span>{{property.details.mode}}</span> </div>
 				<div class="col-xs-3"> <span>{{property.details.area.builtUp.builtUp || property.details.area.plotOrLand.plotOrLand | currencyFormatter}}</span> {{property.details.area.builtUp.units || property.details.area.plotOrLand.units}} </div>
 			  </div>
