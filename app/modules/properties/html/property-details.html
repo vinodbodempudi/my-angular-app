@@ -224,9 +224,9 @@
 						<div class="right">
 							<label ng-show="!property.details.commitionInDays && !property.details.fixedPrice"></label>
 							<div ng-show="property.details.mode === 'Rent' && property.user.type === 'Agent' && property.details.commitionInDays">
-								<label ng-show="!property.details.fixedPrice">{{property.details.commitionInDays}}</label>
-								<label ng-show="property.details.fixedPrice" class="fa fa-rupee"></label>
-								<label ng-show="property.details.fixedPrice"> {{property.details.fixedPrice | currencyFormatter}}</label>
+								<label ng-show="property.details.commitionInDays">{{property.details.commitionInDays}}</label>
+								<label ng-show="property.details.commitionInDays === 'Others'" class="fa fa-rupee"></label>
+								<label ng-show="property.details.commitionInDays === 'Others'"> {{property.details.fixedPrice | currencyFormatter}}</label>
 							</div>
 						</div>
 						<div class="speaker_image dot">
