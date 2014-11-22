@@ -344,6 +344,9 @@ angular.module('registerProperty', [])
 			if(property.specifications && property.specifications.unitsAvailable) {
 				delete property.specifications.unitsAvailable;
 			}
+			if(property.details.commitionInDays !== 'Others') {
+				delete property.details.fixedPrice;
+			}
 		}
 
 	}
