@@ -11,7 +11,7 @@
     <meta name="description" content="Find a great house or apartment for rent or buy in Hyderabad, India on fathome.in! Find Hyderabad real estate here.">
 	<meta name="robots" content="noodp,noydir" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--
+
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-select/bootstrap-select.min.css" media="screen" />
@@ -19,9 +19,9 @@
     
     <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.min.css" media="screen">
     <link href="http://fonts.googleapis.com/css?family=Puritan:400,400italic" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="styles/custom.css" media="screen" />-->
-   <link rel="stylesheet" type="text/css" href="fat-home-min.css" media="screen" />
-   <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.min.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="styles/custom.css" media="screen" />
+   <!--<link rel="stylesheet" type="text/css" href="fat-home-min.css" media="screen" />
+   <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.min.css" media="screen">-->
    <link href="http://fonts.googleapis.com/css?family=Puritan:400,400italic" rel="stylesheet" type="text/css">
       <!--[if lte IE 8]>
         <script>
@@ -41,10 +41,9 @@
 	
   </head>
   <body ng-controller="fatHomeController" class="main full-height" ng-cloak>
-   
     <div class="navbar navbar-inverse">
-      <div style="width: 98%;" ng-disabled="true" >
-        <div class="navbar-header" style="padding-left: 15px;">
+      <div ng-disabled="true" >
+        <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="fa fa-bars"></span></button>
           <a class="navbar-brand" href="#">FATHOME</a></div>
         <div class="collapse navbar-collapse" >
@@ -59,8 +58,7 @@
             <li><a href="" ng-click="postProperty();" style="background-color: #2aabd2;" class="btn btn-info btn-xm navbar-btn"><span>POST PROPERTY
            <!-- <i class="fa fa-caret-right"></i>-->
             </span></a></li>
-            <li><a href="https://www.facebook.com/pages/fathomein/327105184080870" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a></li>
-            <li ><a href="https://plus.google.com/103303197094088619907/about?hl=en" style="padding-left:0px;" target="_blank"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
+            <li class="social"><a href="https://www.facebook.com/pages/fathomein/327105184080870" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a> <a href="https://plus.google.com/103303197094088619907/about?hl=en" target="_blank"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
           </ul>
         </div>
         <!--/.nav-collapse -->
@@ -84,12 +82,12 @@
 
     </script>
 
-   <script src="fat-home-min.js"></script>
-   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+   <!-- <script src="fat-home-min.js"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>-->
 
 
-  <!--
-  <script src="bower_components/jquery/jquery.min.js"></script>
+ 
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="bower_components/bootstrap-select/bootstrap-select.min.js"></script>
 	<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -107,7 +105,7 @@
 	<script src="modules/login/js/main.js"></script>
 	<script src="modules/home/js/main.js"></script>
 	<script src="lib/nya-bootstrap-select.js"></script>
-	<script src="lib/ui-bootstrap-carousel.js"></script>-->
+	<script src="lib/ui-bootstrap-carousel.js"></script>
 
 </body>
 </html>
