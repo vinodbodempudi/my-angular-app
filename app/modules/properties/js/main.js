@@ -17,6 +17,7 @@ angular.module('properties', [])
 	$scope.predicate = {};
 	$scope.search = {};
 	$scope.slides  = [];
+	$scope.propertyResultsToShow =10;
 	
 	var addsImages = fatHomeUtil.getAddsImages();
 	
@@ -51,6 +52,13 @@ angular.module('properties', [])
 	$scope.$watch("search",
 		function(newValue, oldValue) {
 			$scope.showPage = 'propertyResults';
+			$scope.propertyResultsToShow = 10;
+		}, true
+	);
+	
+	$scope.$watch("predicate",
+		function(newValue, oldValue) {
+			$scope.propertyResultsToShow = 10;
 		}, true
 	);
 	
@@ -127,6 +135,12 @@ angular.module('properties', [])
 			$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 		});
 	};
+	
+	
+	$scope.loadMoreProperties = function() {
+		$scope.propertyResultsToShow +=10;
+	
+	}
 	
 	$scope.showSendSmsView = function() {
 		$scope.contactTabScrollBottom = true;
@@ -351,6 +365,7 @@ angular.module('properties', [])
 
     this.getProperties = function (city, locality) {
         return $http.get(servicesBaseUrl+'/properties/'+city+'/'+locality);
+		//return $http.get('/data/propertyresults.json');
     };
 	
 	this.getPropertyDetails = function (propertyId) {
@@ -791,6 +806,17 @@ angular.module('properties', [])
 				}, true);
 		}
 	};
+})
+.directive('whenScrolled', function() {
+    return function(scope, elm, attr) {
+        var raw = elm[0];
+        
+        elm.bind('scroll', function() {
+            if (raw.scrollTop + raw.offsetHeight + 150 >= raw.scrollHeight) {
+                scope.$apply(attr.whenScrolled);
+            }
+        });
+    };
 })
 .directive('scrollbottom', function() {
 	var scrollPos;
