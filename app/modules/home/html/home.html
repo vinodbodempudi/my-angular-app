@@ -37,16 +37,16 @@
         
       </div>
     </div>
-	<div class="row" style="margin-left: 0;padding-top: 10px;font-size: 13px;font-weight: bold;">
-		<div class="col-xs-4">
+	<div class="row" ng-if="propertiesCounts" style="margin-left: 12px;padding-top: 10px;font-size: 17px;font-weight: bold;color: #1573BB;">
+		<div class="col-xs-4" style="padding-left: 0;padding-right: 0;">
 			{{propertiesCounts.totalSellProps}}
 			<p> Houses for Sale</p>
 		</div>
-		<div class="col-xs-4">
+		<div class="col-xs-4" style="padding-left: 0;padding-right: 0;">
 			{{propertiesCounts.totalRentProps}}
 			<p> Houses for Rent</p>
 		</div>
-		<div class="col-xs-4">
+		<div class="col-xs-4" style="padding-left: 0;padding-right: 0;">
 			{{propertiesCounts.totalPlotOrLandProps}}
 			<p> Land/Plot for Sale</p>
 		</div>
