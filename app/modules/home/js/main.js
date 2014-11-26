@@ -2,10 +2,10 @@
 
 angular.module('home', [])
 
-.controller('HomeCtrl',['$scope', 'LocationService', '$location', '$rootScope', function($scope, locationService, $location, $rootScope) {
+.controller('HomeCtrl',['$scope', 'LocationService', '$location', '$rootScope', 'HomeService', function($scope, locationService, $location, $rootScope, homeService) {
     
 	$scope.backgroundImages = ["images/a1.jpg", "images/a2.jpg", "images/a3.jpg"];
-	
+	$scope.city = "Hyderabad";
 	$scope.showProperties = function(city, locality) {
 		$scope.form1.submitted=true;
 		
@@ -17,11 +17,23 @@ angular.module('home', [])
 			$rootScope.showTabs.showTabs = true;
 		}
 	}
+	
+	var getPropertiesCounts = function (city) {
+		homeService.getPropertiesCounts(city)
+			.success(function(data){
+				$scope.propertiesCounts = data;
+			}).error(function(e){
+				
+			});
+	
+	}
 
 	locationService.getCities()
 		.success(function(data){
 			$scope.cities = data;
 			$scope.fatHome.cities = data;
+			$scope.city = data[0];
+			getPropertiesCounts($scope.city);
 		}).error(function(e){
 			
 		});
@@ -43,8 +55,11 @@ angular.module('home', [])
 			});
 	}
 	
-}]).service('HomeService',['$http',  function($http) {
-
+}]).service('HomeService',['$http', 'servicesBaseUrl', function($http, servicesBaseUrl) {
+	
+	this.getPropertiesCounts = function (city) {
+		return $http.get(servicesBaseUrl+'/properties/properties-counts/'+city, {cache:false});
+	};
 	
 }])
 .service('FatHomeUtil',function() {
