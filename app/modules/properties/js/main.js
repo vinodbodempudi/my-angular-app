@@ -52,13 +52,13 @@ angular.module('properties', [])
 	$scope.$watch("search",
 		function(newValue, oldValue) {
 			$scope.showPage = 'propertyResults';
-			$scope.propertyResultsToShow = 10;
+			$scope.resetPropertyResultsCount();
 		}, true
 	);
 	
 	$scope.$watch("predicate",
 		function(newValue, oldValue) {
-			$scope.propertyResultsToShow = 10;
+			$scope.resetPropertyResultsCount();
 		}, true
 	);
 	
@@ -131,11 +131,17 @@ angular.module('properties', [])
 			$scope.showPage = 'propertyResults';
 			$scope.properties = data;
 			$scope.predicate = $scope.sortOptions[0];
+			$scope.resetPropertyResultsCount();
 		}).error(function(e){
 			$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 		});
 	};
 	
+	
+	
+	$scope.resetPropertyResultsCount = function() {
+		$scope.propertyResultsToShow = 10;
+	}
 	
 	$scope.loadMoreProperties = function() {
 		$scope.propertyResultsToShow +=10;
