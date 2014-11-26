@@ -5,7 +5,6 @@ angular.module('home', [])
 .controller('HomeCtrl',['$scope', 'LocationService', '$location', '$rootScope', 'HomeService', function($scope, locationService, $location, $rootScope, homeService) {
     
 	$scope.backgroundImages = ["images/a1.jpg", "images/a2.jpg", "images/a3.jpg"];
-	$scope.city = "Hyderabad";
 	$scope.showProperties = function(city, locality) {
 		$scope.form1.submitted=true;
 		
