@@ -33,6 +33,7 @@ angular.module('home', [])
 			$scope.fatHome.cities = data;
 			$scope.city = data[0];
 			getPropertiesCounts($scope.city);
+			$scope.getLocalities($scope.city);
 		}).error(function(e){
 			
 		});
