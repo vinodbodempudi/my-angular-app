@@ -5,7 +5,7 @@
 		  </select>
 		</div>
 	</div>
-	<div class="lists-view" id="propertyResults" scroll>
+	<div class="lists-view" id="propertyResults" scroll tillbottom>
 	  <div>
 		<div ng-repeat="property in $parent.filteredProperties = (properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search)">
 		  <div class="list-view" style="cursor:pointer;" ng-click="showPropertyDetails(property._id);">
@@ -16,13 +16,13 @@
 				<div class="col-xs-7">
 				  <h3><a href=""><label title="{{property.details.title}}" class="propertyresultsLabel">{{property.details.title}}</label></a></h3>
 				</div>
-				<div class="col-xs-5 price" style="text-align:Right;">
+				<div class="col-xs-5 price">
 				  <h4><i class="fa fa-rupee"></i> <span>{{property.details.monthlyRent || property.details.price.price | currencyFormatter}}</span></h4>
 				</div>
 			  </div>
 			  <div class="row properresultssqftlabel">
-				<div class="col-xs-12 price" style="textAlign:Right;">
-				  <h5 style="text-align: right;" ng-if="property.details.area.perUnitPrice"><span>{{property.details.area.perUnitPrice | currencyFormatter}}/{{ property.details.area.perUnitUnits || 'Sq.ft'}}</span></h5>
+				<div class="col-xs-12 price">
+				  <h5 ng-if="property.details.area.perUnitPrice"><span>{{property.details.area.perUnitPrice | currencyFormatter}}/{{ property.details.area.perUnitUnits || 'Sq.ft'}}</span></h5>
 				</div>
 			  </div>
 			  <div class="row firstRow">
@@ -36,8 +36,7 @@
 				<div class="col-xs-5"> <span>{{property.details.propertySubType}}</span> </div>
 				<div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>{{property.user.locality}}</span> </div>
 			  </div>
-			  <div class="row thirdRow dateright">
-				<div class="text-right">{{property.lastUpdatedDate || property.createdDate | date:'MMM d, y'}}</div>
+			  <div class="row thirdRow dateright"><div class="col-xs-12">{{property.lastUpdatedDate || property.createdDate | date:'MMM d, y'}}</div>
 			  </div>
 			  <div class="row customsocial" ng-if="false">
 				<div class="col-xs-8 text-right">
