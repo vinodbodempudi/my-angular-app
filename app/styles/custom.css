@@ -145,7 +145,7 @@ margin-bottom: 8px;}
  }
 .list-view .image img{ width:100%; height:100%;}
 .list-view .content{ margin-left:110px; overflow:hidden}
-.list-view .content h3{ float:left; color:#1885f0; margin:0; font-size:21px;}
+.list-view .content h3{ color:#1885f0; margin:0; font-size:21px;}
 
 .list-view .dateright{text-align:right;}
 /*.list-view .price{ float:right; color:#28b779; padding-right:0px;}*/
@@ -766,7 +766,7 @@ line-height: 2.3 !important;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
-	width: 205px;
+	width: 80%;
 	font-weight:100;
 	cursor: pointer;
 }
@@ -1040,4 +1040,5 @@ border-radius: 5px;
 	.list-view .image{margin-right:30px;}
 	.list-view .content .row{float:none;}
 	.list-view .content .price h4{margin-bottom:15px;}
+	.selectsort {min-width:100%}
 }
