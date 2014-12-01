@@ -7,11 +7,15 @@ button::-moz-focus-inner{border: 0;}
 .navbar-brand { background:url(../images/fathome.png) no-repeat center; width:124px; height:42px; text-indent:-9999px;padding-top:11px;padding-bottom:11px}
 .navbar > .container .navbar-brand{ margin-left:0px;}
 .navbar { min-height:42px; box-shadow:0px 2px 2px rgba(0,0,0,0.4); border-radius:inherit; margin-bottom:0;z-index: 1052;}
+.navbar>div{margin:0 15px;}
 .navbar-nav>li>a {padding-top:11px;padding-bottom:11px}
+.navbar-nav>li.social{padding-left:10px;}
+.navbar-nav>li.social>a {padding:11px 2px; display:inline-block;}
 .nav li div a{ color:#fff;}
 .nav li div a:hover,.nav li div a:active,.nav li div a:visited{ text-decoration:none}
 .home-modal{ display:block; position:absolute; overflow:initial}
 .home-modal .modal-dialog{ margin-top:10%; width: 438px; height: auto;}
+.locationDisplay .input-sm{padding-right:0px; padding-left:0px;}
 .modal-content{ 
  -webkit-border-radius: 10px; 
  -moz-border-radius: 10px; 
@@ -71,12 +75,8 @@ footer{ text-align:center; padding-bottom:0px;}
 .add{ height:132px; background:#CCC}
 .addBlock{ 
 margin-top: 8px;
-margin-bottom: 8px;
-margin-left: 12px;
-margin-right: 8px;
-max-width:98%}
+margin-bottom: 8px;}
 
-.searchForm{ padding:5px;}
 
 .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]){ width:100%}
 .bootstrap-select.btn-group, .bootstrap-select.btn-group[class*="span"]{ margin-bottom:0;}
@@ -114,7 +114,6 @@ max-width:98%}
 .hidemap .btn-info{border-radius:0px 0px 4px 0px}
 .results{ 
 	margin:10px auto;
-	position: absolute;
 	height: auto;
 	width:100%;
 	bottom: 0;
@@ -129,7 +128,6 @@ max-width:98%}
 .results .col-md-5{ padding-left:15px;}
 .detail .col-md-6{ padding-left:15px; padding-right:15px;}
 }
-.list{ border:1px solid #ccc; min-height:350px; /*box-shadow:-2px 0 2px #ccc; */padding:4px;}
 .list .scroll{max-height:325px; overflow-y:auto;}
 .col-md-5 .list{ border-left:none;}
 .list .filter{ margin-bottom:4px;}
@@ -147,13 +145,13 @@ max-width:98%}
  }
 .list-view .image img{ width:100%; height:100%;}
 .list-view .content{ margin-left:110px; overflow:hidden}
-.list-view .content h3{ float:left; color:#1885f0; margin:0; font-size:21px;}
+.list-view .content h3{ color:#1885f0; margin:0; font-size:21px;}
 
-
+.list-view .dateright{text-align:right;}
 /*.list-view .price{ float:right; color:#28b779; padding-right:0px;}*/
 
 /* change the color of 234/sqft under price in results change the color:#444444;*/
-.list-view .price{ float:right; color:#444444; padding-right:0px;}
+.list-view .price{ float:right; color:#444444; padding-right:0px; text-align:right}
 /* end */
 
 .list-view .content .price h4{ float:none; color:#444444;font-family:arial; margin:0; }
@@ -191,16 +189,7 @@ max-width:98%}
 .list-view .thirdRow{margin-top:7px;}
 .list-view .content .btn-group{ margin-top:6px; visibility:hidden}
 .list-view:hover .content .btn-group{ visibility:visible}
-.lists-view {
-    min-height: 258px;
-    overflow-x: hidden;
-    bottom: 0;
-    clear: both;
-    height: 100%;
-    overflow-y: auto;
-    position: absolute;
-    top: 0;
-}
+
 .details-view{ overflow:hidden; overflow-y:auto; min-height:222px;position: relative;}
 #signin,#account,#contact,#feedback,#changeLocality,#registerPropertySuccessModal{ z-index:99999;}
 #signin .modal-dialog,#account .modal-dialog{ width:500px;}
@@ -220,7 +209,7 @@ max-width:98%}
 .detail-images li{ display:inline-block; width:40px; height:40px; margin:0px 2px;}
 .detail-images li img{ width:100%; height:100%; cursor:pointer;}
 /*.detail-view h3{ color:#159CEB; margin:10px 10px 0; } */
-.detail-view{overflow-y: auto;}
+.detail-view{overflow: hidden;}
 .detail-view h3{ color:#159CEB;  padding:5px 10px 0px; margin-top:10px;}
 .detail-images i{ color:#39F;}
 #headertabs .tabs{ margin:0px; padding-left:247px;}
@@ -289,15 +278,11 @@ color:#da4834;
 /* end */
 
 .selectsort{min-width:145px;}
-.list .moveright{margin-left:120px;}
 .property-results-count-block {
-	float:right;
 	position: relative;
-	top: -39px;
-	right: -6px;
+	top: -44px;
 }
-.maprow{margin-right: -10px;}
-.maprow .searchresults{padding-left:0px;padding-right: 0px;}
+.maprow .searchresults{padding-left:0px;}
 .maprow .mapresults{padding-right:0px;overflow-y: auto;}
 .availability{
     text-align: left !important; 
@@ -618,21 +603,6 @@ display: inline;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* padding-right: 15px; *
 
 /* Details page end*/
@@ -741,15 +711,13 @@ text-align: center;
 height: 100%;
 position: relative;
 top: 40px;
-left: -10px;
 }
 
 .locationDisplay{ 
 	position: relative;
-left: -62px;
-top: 8px;
+	top:20px
 }
-
+.locationDisplay .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){width:100%;}
 .changeLocalityImage {
 	width: 24px;
 	height: 24px;
@@ -766,35 +734,8 @@ top: 8px;
 }
 
 
-.searchForm .filtersdiv {
-width: 5%;
-}
-
-.searchForm .propertyfilter {
-width: 16%;
-
-}
-
 .searchForm .bootstrap-select {
 	margin-bottom: 0px !important;
-}
-
-.searchForm .pricefilter {
-width: 24%;
-
-}
-.searchForm .propetyTypefilter{
-width: 20%;
-min-width:190px;
-
-}
-.searchForm .sizefilter  {
-width: 25%;
-
-}
-
-.searchForm .bedsfilter {
-width: 10%;
 }
 
 .searchForm .filtersLabel {
@@ -825,7 +766,7 @@ line-height: 2.3 !important;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
-	width: 205px;
+	width: 80%;
 	font-weight:100;
 	cursor: pointer;
 }
@@ -902,7 +843,6 @@ line-height: 2.3 !important;
 	padding-top: 5px;
 	padding-left: 6px;
 	padding-bottom: 0px;
-	border-radius: 10px;
 	width:77px;
 }
 
@@ -994,9 +934,6 @@ line-height: 2.3 !important;
 .fa-refresh:before{content:none !important}
 .fa-refresh{background: url("../images/ajax-loader.GIF") no-repeat scroll ;  height:128px; width:128px;}
 
-.full-height {
-	height:100%;
-}
 .property-form-invalid {color: #a94442;font-weight: bold;font-size: 13px;}
 
 .scroll-fix  {
@@ -1005,7 +942,16 @@ line-height: 2.3 !important;
     overflow: hidden  !important;
     white-space: nowrap;
 }
-
+.map{min-height:300px;}
+.lists-view {
+    bottom: 0;
+	position:relative;
+    margin-top: -38px;
+	border:1px solid #ccc; 
+	border-left-width:0px; 
+	overflow-y: auto;
+	min-height:300px;
+}
 .modal-window, .sign-modal { z-index: 99999 !important;}
 .sign-modal .modal-dialog { width: 450px;}
 .sign-modal .modal-content { background-color: darkgray; }
@@ -1020,7 +966,8 @@ line-height: 2.3 !important;
 .label-wrape {
 	display:inline !important;
 }
-
+.navbar-inverse .navbar-toggle{color:#fff}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus{color:#fff}
 .mylist-popover  .row{
 	margin-right:0;
 }
@@ -1054,4 +1001,44 @@ color: #159CEB !important;
 box-shadow: inset 0 0 5px 5px #888;
 border-radius: 5px;
 -moz-border-radius: 5px;
+}
+
+
+/* Large devices (large desktops, 1200px and below) */
+@media (max-width: 1200px) {
+	.searchForm .row div:first-child .row{margin-bottom:15px;}
+}
+
+/* Medium devices (desktops, 992px and below) */
+@media (max-width: 992px) {
+	.results{margin-top:44px;}
+	.searchForm .row .row{margin-bottom:15px;}
+	.maprow .searchresults{padding-left:15px;}
+	.maprow .mapresults{padding-right:15px;}
+	.lists-view{margin-bottom:15px;	border-left-width:1px; }
+}
+.tab-scroll {min-height:260px; overflow-x:hidden; overflow-y:auto;}
+/* Small devices (tablets, 768px and below) */
+@media (max-width: 768px){
+	.addBlock .col-sm-9{display:none;}
+	.searchForm .row .row{margin-bottom:0px;}
+	.searchForm .row .row > div{margin-bottom:15px;}
+	.searchForm .row div:first-child .row{margin-bottom:0px;}
+	.locationDisplay{top:0;}
+	.changeLocalityDiv{top:20px;}
+}
+
+/* Small devices (tablets, 768px and below) */
+@media (max-width: 500px){
+	.list-view .row > div{display:block; width:100%;}
+	.list-view .dateright{text-align:left;}
+	.list-view .price{float:none; text-align:left}
+	.list-view .secondRow{margin-top:0px;}
+	.list-view .content .price h5{padding-left:0;}
+	.list-view {line-height:20px;}
+	.list-view .content h3{float:none;}
+	.list-view .image{margin-right:30px;}
+	.list-view .content .row{float:none;}
+	.list-view .content .price h4{margin-bottom:15px;}
+	.selectsort {min-width:100%}
 }

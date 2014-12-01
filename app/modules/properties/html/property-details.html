@@ -1,5 +1,5 @@
-  <div class="list detail-view full-height">
-	<div class="row" style="margin-right:0px;">
+  <div class="list detail-view">
+	<div class="row">
 	  <div class="col-sm-2">
 		<img src="images/icon_back.jpg" title="Back to List" style="cursor:pointer;" ng-click="showPropertyResults();"/>
 	  </div>
@@ -10,6 +10,7 @@
 	<div class="text-right" ng-if="property.totalViews">
 	  <label style="padding-right: 15px;margin: 0; font-size: 15px;color: #AC6299;font-weight: bold;">{{property.totalViews}} views</label>
 	</div>
+	<div class="tab-scroll" tillbottompd>
 	<div class="tabs">
 	 
 	  <div class="tab-content details-view">
@@ -661,6 +662,7 @@
 
 		
 	  </div>
+	</div>
 	</div>
 	<div class="row" ng-show="false" style="height:80px;">
 	  <div class="col-sm-4">

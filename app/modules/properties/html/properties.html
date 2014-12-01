@@ -1,5 +1,5 @@
-<div class="addBlock">
-  <div class="row" style="margin-right: -13px;height:132px;">
+<div class="addBlock container-fluid">
+  <div class="row">
     <div class="col-sm-9">
       <div class="row">
         <div class="col-sm-4">
@@ -38,82 +38,85 @@
       </div>
     </div>
     <div class="col-sm-3">
-		<div class="row" style="margin-right: -6px;">
-		  <div class="col-sm-5 changeLocalityDiv">
+		<div class="row">
+		  <div class="col-xs-5 changeLocalityDiv">
 			<img class="changeLocalityImage" ng-src="/images/next_blue.png"/> 
 			<span class="changeLocalityLabel">change <br>
 			locality here<span>
 		  </div>
-		  <div class="col-sm-7 locationDisplay">
-				<div >
+		  <div class="col-xs-7 locationDisplay">
 				  <select class="input-sm" nya-selectpicker name="city" ng-required='true' ng-options="city as city for city in fatHome.cities | orderBy:'toString()'" name="city" ng-change="getLocalities(city)"  ng-model="newCity">
 				   </select>
-				</div>
-				<div >
 					<select class="input-sm" nya-selectpicker ng-change="showProperties(newCity, newLocality);" name="locality" ng-required='true' ng-options="locality.locality as locality.locality for locality in fatHome.localities | orderBy:'locality'" name="locality" ng-model="newLocality">
 					</select>
-				</div>
 		  </div>
+		  <div class="clear-fix"></div>
 		</div>
     </div>
   </div>
 </div>
-<div class="addBlock">
+<div class="addBlock container-fluid">
   <div class="">
   <div class="row">
-	<form name="filterForm"class="col-sm-9 searchForm" role="form" novalidate>
-	  <div class="col-md-1 filtersdiv">
-        <span class="filtersLabel">Filters</span>
-      </div>
-      <div class="col-md-2 propertyfilter">
+  <div class="col-md-8">
+	<form name="filterForm"class="searchForm" role="form" novalidate>
+	<div class="row">
+	<div class="col-lg-7">
+		<div class="row">
+      <div class="col-sm-4 propertyfilter">
 	    <select class="form-control selectpicker" nya-selectpicker ng-options="subType as subType for subType in propertySubTypeMapper['Residential']" ng-model="search.propertType">
           <option value="">Property type</option>
         </select>
       </div>
-      <div class="col-md-1 bedsfilter">
+      <div class="col-sm-3 bedsfilter">
         <select class="form-control selectpicker" nya-selectpicker ng-options="value as value for value in bedRoomsDropDownValues" ng-model="search.beds">
           <option value="" selected>Beds</option>
         </select>
       </div>
-      <div class="col-md-3 pricefilter">
+	   <div class="col-sm-5 propetyTypefilter">
+	  <div class="btn-group btn-group-justified" role="group">
+			<label class="btn btn-default btn-sm rent-buy-input" style="padding-left: 0px;"><input type="checkbox" checkbox checked="checked" ng-init="search.buy = true" ng-model="search.buy"><span class="rent-buy-input-label">BUY</span></label>
+			<label class="btn btn-default btn-sm rent-buy-input"><input type="checkbox" checkbox checked="checked" ng-init="search.rent = true" ng-model="search.rent"><span class="rent-buy-input-label">RENT</span></label>
+			</div>
+      </div>
+	 </div>
+	</div>
+	<div class="col-lg-5">
+		<div class="row">
+      <div class="col-sm-6 pricefilter">
         <div class="input-group price"> <span class="input-group-addon"><i class="fa fa-rupee"></i></span>
           <input type="text" name="minPrice" class="form-control pull-left" ng-pattern=/^[0-9]+$/ placeholder="Min" ng-model="search.minPrice">
           <input type="text" name="maxPrice" class="form-control" placeholder="Max" ng-pattern=/^[0-9]+$/ ng-model="search.maxPrice">
 		  <p ng-show="filterForm.minPrice.$error.pattern || filterForm.maxPrice.$error.pattern" class="label errorText">Enter valid min or max price</p>
         </div>
       </div>
-      <div class="col-md-2 propetyTypefilter">
-			<label class="btn btn-default btn-sm rent-buy-input" style="padding-left: 0px;"><input type="checkbox" checkbox checked="checked" ng-init="search.buy = true" ng-model="search.buy"><span class="rent-buy-input-label">BUY</span></label>
-			<label class="btn btn-default btn-sm rent-buy-input" style="left: 8px;position: relative;"><input type="checkbox" checkbox checked="checked" ng-init="search.rent = true" ng-model="search.rent"><span class="rent-buy-input-label">RENT</span></label>
-      </div>
-      <div class="col-md-3 sizefilter">
+     
+      <div class="col-sm-6 sizefilter">
         <div class="input-group price "> <span class="input-group-addon input-group-addon_custom">SQFT</span>
           <input type="text" name="minSft" ng-pattern=/^[0-9]+$/ class="form-control pull-left" placeholder="Min" ng-model="search.minSft">
           <input type="text" name="maxSft" ng-pattern=/^[0-9]+$/ class="form-control" placeholder="Max" ng-model="search.maxSft">
 		  <p ng-show="filterForm.minSft.$error.pattern || filterForm.maxSft.$error.pattern" class="label errorText">Enter valid min or max SQFT</p>
         </div>
-      </div>
+      </div></div></div></div>
 	  </form>
+    </div>
     </div>
   </div>
 </div>
-
-
-
 <div class="container-fluid results">
-  <div class="row maprow full-height"> 
-    <div class="col-md-4 col-md-push-8 searchresults full-height">
-		<div class="full-height">
+  <div class="row maprow"> 
+    <div class="col-md-4 col-md-push-8 searchresults">
+		<div>
 			<div property-results ng-show="showPage === 'propertyResults'" ></div>
 			<div property-details ng-show="showPage === 'propertyDetails'" scrollbottom scroll-to-bottom="contactTabScrollBottom"></div>
 		</div>
     </div>
-    <div class="col-md-8 col-md-pull-4 mapresults full-height">
-      <div class="mapContent full-height">    
+    <div class="col-md-8 col-md-pull-4 mapresults">
+      <div class="mapContent">    
       <div class="hidemap">
       <button type="button" class="btn btn-info btn-xs" ng-show="false"><span>Hide Map</span> <i class="fa fa-map-marker"></i></button>
       </div>
-        <div class="map full-height" map> </div>
+        <div class="map" map tillbottom> </div>
       </div>
     </div>
   </div>

@@ -438,4 +438,37 @@ app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', function ($scop
 	};
 }]);
 	
+app.directive('tillbottom',['$window', '$timeout', function ($window, $timeout) {
+	return {
+		link: function (scope, element, attrs) {
+			var topPos = function(){
+				var elementtop=$(element[0]).offset().top, winHeight = $window.innerHeight;
+				if(elementtop < winHeight){
+					$(element[0]).height(winHeight-(elementtop+10));
+				}
+			};
+			$timeout(function(){topPos()}, 200);
+			$($window).resize(function(){
+				topPos();
+			});
+		}
+	};
+}]);
+
+app.directive('tillbottompd',['$window', '$timeout', function ($window, $timeout) {
+	return {
+		link: function (scope, element, attrs) {
+			var topPos = function(){
+				var elementtop=$(element[0]).offset().top, winHeight = $window.innerHeight;
+				if(elementtop < winHeight){
+					$(element[0]).height(winHeight-(elementtop+10));
+				}
+			};
+			scope.$watch('propertyDetails',function(){topPos()});
+			$($window).resize(function(){
+				topPos();
+			});
+		}
+	};
+}]);
 	
