@@ -596,9 +596,9 @@
 										<label class="">Phone No</label>
 									</div>
 									<div class="right">
-										<label ng-show="property.user.phoneNumber">+91-{{property.user.phoneNumber}}</label>
-										<label ng-show="property.user.primaryPhoneNumber">+91-{{property.user.primaryPhoneNumber | maskNumber:property.user.hidePrimaryPhoneNumber}}</label><br>
-										<label ng-show="property.user.secondaryPhoneNumber">+91-{{property.user.secondaryPhoneNumber | maskNumber:property.user.hideSecondayPhoneNumber}}</label>
+										<label ng-show="property.user.phoneNumber">{{property.user.phoneNumber}}</label>
+										<label ng-show="property.user.primaryPhoneNumber">{{property.user.primaryPhoneNumber | maskNumber:property.user.hidePrimaryPhoneNumber}}</label><br>
+										<label ng-show="property.user.secondaryPhoneNumber">{{property.user.secondaryPhoneNumber | maskNumber:property.user.hideSecondayPhoneNumber}}</label>
 										<button type="submit" class="btn btn-default btn-sm btn-info" ng-click="showSendSmsView();">Send SMS</button>
 									</div>
 									<div class="speaker_image dot">
