@@ -558,7 +558,7 @@
 					Contact <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showContactTab, 'glyphicon-chevron-right': !propertyDetails.showContactTab}"></i>
 				</accordion-heading>
 				 <div class="tab-pane active" id="tab4" style="overflow-y: auto;">
-					<div class="row " id="contactdetails" style="margin-top: 30px;">
+					<div class="row" id="contactdetails" ng-if="showContactInfo" style="margin-top: 30px;">
 						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 							<img ng-show="property.urls.userUrl" ng-src="{{property.urls.userUrl}}" width="100px" height="100px" />
 							<img ng-show="!property.urls.userUrl" ng-src="images/blank_person.jpg" width="100px" height="100px" />
@@ -621,7 +621,78 @@
 							</div>
 						</div>
 					</div>
-					<div class="row" ng-show="showSendSmsViewBox">
+					<div class="row" ng-if="!showContactInfo" style="margin-top: 30px;margin-left:0;margin-right:0;">
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+						</div>
+						<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 property-contact-info"> 
+							<div class="schedule no-names locked-contact-details">
+								<div class="schedule_row">
+									<div class="left">
+										<label class="">Name</label>
+									</div>
+									<div class="right">
+										<label>Nullam dapibus quam</label>
+									</div>
+									<div class="speaker_image dot">
+										<img src="images/dot.png" alt="">
+									</div>
+									<div class="push"></div>
+								</div>
+								<div class="schedule_row">
+									<div class="left">
+										<label class="">E-mail</label>
+									</div>
+									<div class="right">
+										<label>Nullam quam dapibus quam</label>
+									</div>
+									<div class="speaker_image dot">
+										<img src="images/dot.png" alt="">
+									</div>
+									<div class="push"></div>
+								</div>
+								<div class="schedule_row">
+									<div class="left">
+										<label class="">Phone No</label>
+									</div>
+									<div class="right">
+										<label>0000000000000</label>
+									</div>
+									<div class="speaker_image dot">
+										<img src="images/dot.png" alt="">
+									</div>
+									<div class="push"></div>
+								</div>
+								<div class="schedule_row">
+									<div class="left">
+										<label class="">Seller</label>
+									</div>
+									<div class="right">
+										<label>Nullam</label>
+									</div>
+									<div class="speaker_image dot">
+										<img src="images/dot.png" alt="">
+									</div>
+									<div class="push"></div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-10 col-xs-offset-1 locked-contact-details-view">
+								<form role="form" name="gatherContactInfoForm" novalidate>
+								  <p class="text-center"> Best phone number to reach you at</p>
+								  <div class="form-group text-center phone-number">
+										<input type="tel" autofocus ng-pattern=/^(\+[\d]{1,3}|0|[\d]{1,3})?[7-9]\d{9}$/ name="phoneNumber" ng-required='true' ng-model="userContactInfo.phoneNumber" class="form-control input-sm" placeholder="Your phone number">
+										<p ng-show="gatherContactInfoForm.submitted && gatherContactInfoForm.phoneNumber.$error.required" class="label errorText">Enter phone number</p>
+										<p ng-show="gatherContactInfoForm.phoneNumber.$error.pattern" class="errorText label">Enter valid phone number</p>
+								  </div>
+								  <div class="text-center">
+									<button type="submit" class="btn btn-default btn-sm btn-info" ng-click="gatherContactInfoForm.submitted=true; gatherContactInfoForm.$valid && showPropertyContactDetails(userContactInfo.phoneNumber);">Submit</button>
+								  </div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="row" ng-if="showSendSmsViewBox">
 						<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"  style="margin:0 auto;float:none;"> 
 							<div class="panel panel-default drop-shadow">
 							  <div class="panel-body">

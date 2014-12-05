@@ -378,6 +378,11 @@ table.table-borderless td{font-size:12px;}
 	border:2px solid #8BC54D;
 }
 
+#contactdetails {
+	margin-top: 30px;
+	margin-right: 0;
+}
+
 #contactdetails label.move{padding-left:18px;}
 #contactdetails i{padding-right:8px;}
 
@@ -996,13 +1001,55 @@ color: #159CEB !important;
 }
 
 .drop-shadow {
--moz-box-shadow: inset 0 0 5px 5px #888;
--webkit-box-shadow: inset 0 0 5px 5px#888;
-box-shadow: inset 0 0 5px 5px #888;
-border-radius: 5px;
--moz-border-radius: 5px;
+	-moz-box-shadow: inset 0 0 5px 5px #888;
+	-webkit-box-shadow: inset 0 0 5px 5px#888;
+	box-shadow: inset 0 0 5px 5px #888;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
 }
 
+.locked-contact-details-view  {
+	position: absolute;
+	background-color: #fff;
+	padding: 20px ;
+} 
+
+
+.locked-contact-details-view  {
+	position: absolute;
+	background-color: #fff;
+	padding: 20px ;
+	color: #00978e;
+	border-color: #f2f0da;
+	box-shadow: 2px 2px 2px 2px rgba(50,50,50, 0.3);
+} 
+
+.locked-contact-details-view  .phone-number{
+	margin: 0 auto;
+	padding-bottom: 8px;
+}
+
+.locked-contact-details-view  .phone-number input{
+	width: 168px;
+	margin: 0 auto;
+}
+
+
+
+.locked-contact-details-view .form-group {
+ margin-bottom: 0px; 
+}
+
+
+.locked-contact-details, .locked-contact-details  * {
+	color: transparent;
+	cursor: default;
+	text-shadow: 0 0 20px rgba(0,0,0,0.5);
+	opacity: 0.5;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	}
 
 /* Large devices (large desktops, 1200px and below) */
 @media (max-width: 1200px) {

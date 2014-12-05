@@ -25,8 +25,10 @@ angular.module('properties', [])
 	$scope.secondBlockAdds = addsImages.slice(3, 6);
 	$scope.thirdBlockAdds = addsImages.slice(6, 9);
 	
-	
-	
+	if(localStorage.showContactInfo) {
+		$scope.showContactInfo = true;
+	}
+
 	$scope.$on('locationChangeSuccess', function (event, path) {
 		if(path && path.match('properties')) {
 			var arr = path.split("/");
@@ -203,6 +205,22 @@ angular.module('properties', [])
 			
 		}
 	};
+	
+	$scope.showPropertyContactDetails = function(phoneNumber) {
+		externalService.sendUserDetails
+		
+		var request =  {lead:phoneNumber, propertyUrl:$location.absUrl()}
+
+		externalService.sendUserDetails(angular.toJson(request))
+			.success(function(data){
+				
+			}).error(function(e){
+				
+			});
+		
+		$scope.showContactInfo = true;
+		localStorage.showContactInfo = true;
+	}
 	
 	$scope.isGetPropertyDetailsServiceInProgress = false;
 	$scope.getPropertyDetails = function(propertyId) {
