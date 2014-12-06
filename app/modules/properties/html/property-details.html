@@ -683,7 +683,7 @@
 								  <div class="form-group text-center phone-number">
 										<input type="tel" autofocus ng-pattern=/^(\+[\d]{1,3}|0|[\d]{1,3})?[7-9]\d{9}$/ name="phoneNumber" ng-required='true' ng-model="userContactInfo.phoneNumber" class="form-control input-sm" placeholder="Your phone number">
 										<p ng-show="gatherContactInfoForm.submitted && gatherContactInfoForm.phoneNumber.$error.required" class="label errorText">Enter phone number</p>
-										<p ng-show="gatherContactInfoForm.phoneNumber.$error.pattern" class="errorText label">Enter valid phone number</p>
+										<p ng-show="gatherContactInfoForm.phoneNumber.$error.pattern && !gatherContactInfoForm.phoneNumber.$pristine" class="errorText label">Enter valid phone number</p>
 								  </div>
 								  <div class="text-center">
 									<button type="submit" class="btn btn-default btn-sm btn-info" ng-click="gatherContactInfoForm.submitted=true; gatherContactInfoForm.$valid && showPropertyContactDetails(userContactInfo.phoneNumber);">Submit</button>

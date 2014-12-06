@@ -24,10 +24,6 @@ angular.module('properties', [])
 	$scope.firstBlockAdds = addsImages.slice(0, 3);
 	$scope.secondBlockAdds = addsImages.slice(3, 6);
 	$scope.thirdBlockAdds = addsImages.slice(6, 9);
-	
-	if(localStorage.showContactInfo) {
-		$scope.showContactInfo = true;
-	}
 
 	$scope.$on('locationChangeSuccess', function (event, path) {
 		if(path && path.match('properties')) {
@@ -206,8 +202,31 @@ angular.module('properties', [])
 		}
 	};
 	
+	$scope.$watch("propertyDetails.showContactTab",
+		function(newValue) {
+			if(newValue && localStorage.showContactInfo) {
+				$scope.showContactInfo = true;
+				sendContactDetails(localStorage.userContactNumber);
+				return;
+			}
+			
+			if(!$scope.showContactInfo && $rootScope.isUserLoggedin) {
+				$scope.userContactInfo = {phoneNumber:$rootScope.userDetails.phoneNumber};
+			}
+			
+		}, true
+	);
+
 	$scope.showPropertyContactDetails = function(phoneNumber) {
-		externalService.sendUserDetails
+		
+		sendContactDetails(phoneNumber);
+		
+		$scope.showContactInfo = true;
+		localStorage.showContactInfo = true;
+		localStorage.userContactNumber = phoneNumber;
+	}
+	
+	var sendContactDetails = function(phoneNumber) {
 		
 		var request =  {lead:phoneNumber, propertyUrl:$location.absUrl()}
 
@@ -217,9 +236,7 @@ angular.module('properties', [])
 			}).error(function(e){
 				
 			});
-		
-		$scope.showContactInfo = true;
-		localStorage.showContactInfo = true;
+
 	}
 	
 	$scope.isGetPropertyDetailsServiceInProgress = false;
