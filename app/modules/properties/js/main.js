@@ -227,6 +227,9 @@ angular.module('properties', [])
 	}
 	
 	var sendContactDetails = function(phoneNumber) {
+		if(!phoneNumber) {
+			return;
+		}
 		
 		var request =  {lead:phoneNumber, propertyUrl:$location.absUrl()}
 
@@ -261,6 +264,10 @@ angular.module('properties', [])
 			
 			if($scope.propertyDetails.showPhotosTab) {
 				setPropertyImages();
+			}
+			
+			if($scope.propertyDetails.showContactTab) {
+				sendContactDetails(localStorage.userContactNumber);
 			}
 			
 			$scope.isValidMaitenanceFee = isValidAmount(data.details.maintenanceFee);
