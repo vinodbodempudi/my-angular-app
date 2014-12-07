@@ -681,7 +681,7 @@
 								<form role="form" name="gatherContactInfoForm" novalidate>
 								  <p class="text-center"> Best phone number to reach you at</p>
 								  <div class="form-group text-center phone-number">
-										<input type="tel" autofocus ng-pattern=/^(\+[\d]{1,3}|0|[\d]{1,3})?[7-9]\d{9}$/ name="phoneNumber" ng-required='true' ng-model="userContactInfo.phoneNumber" class="form-control input-sm" placeholder="Your phone number">
+										<input type="tel" maxlength="13" autofocus ng-pattern=/^(\+91|0|91)?[7-9]\d{9,9}$/ name="phoneNumber" ng-required='true' ng-model="userContactInfo.phoneNumber" class="form-control input-sm" placeholder="Your phone number">
 										<p ng-show="gatherContactInfoForm.submitted && gatherContactInfoForm.phoneNumber.$error.required" class="label errorText">Enter phone number</p>
 										<p ng-show="gatherContactInfoForm.phoneNumber.$error.pattern && !gatherContactInfoForm.phoneNumber.$pristine" class="errorText label">Enter valid phone number</p>
 								  </div>
@@ -707,7 +707,7 @@
 									<label for="exampleInputPassword1">Your phone number:</label>
 									<div class="input-group">
 									  <div class="input-group-addon">+91</div>
-									  <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" ng-required='true' ng-model="smsDetails.phoneNumber" class="form-control input-sm" placeholder="Phone number">
+									  <input type="tel" maxlength="13" ng-pattern=/^(\+91|0|91)?[7-9]\d{9,9}$/ name="phoneNumber" ng-required='true' ng-model="smsDetails.phoneNumber" class="form-control input-sm" placeholder="Phone number">
 									</div>
 									<p ng-show="sendSmsForm.submitted && sendSmsForm.phoneNumber.$error.required" class="label errorText" style="padding-left: 38px;">Enter phone number</p>
 									<p ng-show="sendSmsForm.phoneNumber.$error.pattern" class="errorText label" style="padding-left: 38px;">Enter valid phone number</p>

@@ -84,7 +84,7 @@
                             <div class="form-group" ng-class="{'has-error':form1.phoneNumber.$invalid && !form1.phoneNumber.$pristine}">
                                 <label class="col-sm-2 control-label mandatory">Phone:</label>
                                 <div class="col-sm-3">
-									<input type="tel" ng-pattern=/^(\+[\d]{1,3}|0|[\d]{1,3})?[7-9]\d{9}$/ name="phoneNumber" ng-required='true' ng-model="property.user.primaryPhoneNumber" class="form-control input-sm" placeholder="Primary Phone">
+									<input type="tel" maxlength="13" ng-pattern=/^(\+91|0|91)?[7-9]\d{9,9}$/ name="phoneNumber" ng-required='true' ng-model="property.user.primaryPhoneNumber" class="form-control input-sm" placeholder="Primary Phone">
                                     <p ng-show="form1.submitted && form1.phoneNumber.$error.required" class="label errorText">Enter phone number</p>
 									<p ng-show="form1.phoneNumber.$error.pattern && form1.phoneNumber.$dirty" class="errorText label">Enter valid phone number</p>
                                 </div>
@@ -98,7 +98,7 @@
 							<div class="form-group" >
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-3">
-									<input type="tel" ng-pattern=/^(\+[\d]{1,3}|0|[\d]{1,3})?[7-9]\d{9}$/ name="secondaryPhoneNo" ng-required='form1.secondaryPhoneNo.$dirty && property.user.secondaryPhoneNumber' ng-model="property.user.secondaryPhoneNumber" class="form-control input-sm" placeholder="Secondary Phone">
+									<input type="tel" maxlength="13" ng-pattern=/^(\+91|0|91)?[7-9]\d{9,9}$/ name="secondaryPhoneNo" ng-required='form1.secondaryPhoneNo.$dirty && property.user.secondaryPhoneNumber' ng-model="property.user.secondaryPhoneNumber" class="form-control input-sm" placeholder="Secondary Phone">
                                     <p ng-show="form1.submitted && form1.secondaryPhoneNo.$error.required" class="label errorText">Enter phone number</p>
 									<p ng-show="form1.secondaryPhoneNo.$error.pattern" class="errorText label">Enter valid phone number</p>
                                 </div>

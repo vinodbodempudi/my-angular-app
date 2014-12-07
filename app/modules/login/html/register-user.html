@@ -30,7 +30,7 @@
 			<p ng-show="invalidConfirmPassword" class="label errorText">Password should match</p>
           </div>
           <div class="form-group">
-			 <input type="tel" class="form-control" ng-pattern=/^(\+[\d]{1,3}|0|[\d]{1,3})?[7-9]\d{9}$/ ng-model="newUser.phoneNumber" name="phoneNumber" required id="inputPassword3" placeholder="Phone">
+			 <input type="tel" class="form-control" maxlength="13" ng-pattern=/^(\+91|0|91)?[7-9]\d{9,9}$/ ng-model="newUser.phoneNumber" name="phoneNumber" required id="inputPassword3" placeholder="Phone">
              <p ng-show="registerUserForm.submitted && registerUserForm.phoneNumber.$error.required" class="label errorText">Enter phone number</p>
 			 <p ng-show="registerUserForm.phoneNumber.$error.pattern" class="errorText label">Enter valid phone number</p>
           </div>
