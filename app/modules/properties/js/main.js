@@ -17,6 +17,7 @@ angular.module('properties', [])
 	$scope.predicate = {};
 	$scope.search = {};
 	$scope.slides  = [];
+	$scope.propertyResultsToShow =10;
 	
 	var addsImages = fatHomeUtil.getAddsImages();
 	
@@ -51,6 +52,13 @@ angular.module('properties', [])
 	$scope.$watch("search",
 		function(newValue, oldValue) {
 			$scope.showPage = 'propertyResults';
+			$scope.resetPropertyResultsCount();
+		}, true
+	);
+	
+	$scope.$watch("predicate",
+		function(newValue, oldValue) {
+			$scope.resetPropertyResultsCount();
 		}, true
 	);
 	
@@ -116,15 +124,29 @@ angular.module('properties', [])
 	});
 	
 	$scope.getProperties = function(city, locality) {
+		$rootScope.$broadcast('SHOW_PROGRESS_BAR');
 		propertiesService.getProperties(city, locality)
 		.success(function(data){
+			$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 			$scope.showPage = 'propertyResults';
 			$scope.properties = data;
 			$scope.predicate = $scope.sortOptions[0];
+			$scope.resetPropertyResultsCount();
 		}).error(function(e){
-			
+			$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 		});
 	};
+	
+	
+	
+	$scope.resetPropertyResultsCount = function() {
+		$scope.propertyResultsToShow = 10;
+	}
+	
+	$scope.loadMoreProperties = function() {
+		$scope.propertyResultsToShow +=10;
+	
+	}
 	
 	$scope.showSendSmsView = function() {
 		$scope.contactTabScrollBottom = true;
@@ -191,8 +213,10 @@ angular.module('properties', [])
 
 		$scope.isGetPropertyDetailsServiceInProgress = true;
 		$scope.slides = [{"url":"images/ajax-loader-small.GIF"}];
+		$rootScope.$broadcast('SHOW_PROGRESS_BAR');
 		propertiesService.getPropertyDetails(propertyId)
 		.success(function(data){
+			$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 			$scope.isGetPropertyDetailsServiceInProgress = false;
 			$scope.showPage = 'propertyDetails';
 			
@@ -207,6 +231,7 @@ angular.module('properties', [])
 			$scope.isValidMaitenanceFee = isValidAmount(data.details.maintenanceFee);
 			resetPropertyDetailsView();
 		}).error(function(e){
+			$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 			$scope.isGetPropertyDetailsServiceInProgress = false;
 		});
 	
@@ -308,14 +333,16 @@ angular.module('properties', [])
         var propertyId = $routeParams.propertyId;
 	
 		if(propertyId) {
+			$rootScope.$broadcast('SHOW_PROGRESS_BAR');
 			propertiesService.getProperties($scope.city, $scope.locality)
 				.success(function(data){
+					$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 					$scope.predicate = $scope.sortOptions[0];
 					$scope.showPage = 'propertyDetails';
 					$scope.properties = data;
 					$scope.getPropertyDetails(propertyId);
 				}).error(function(e){
-					
+					$rootScope.$broadcast('HIDE_PROGRESS_BAR');
 				});
 			
 			return;
@@ -344,6 +371,7 @@ angular.module('properties', [])
 
     this.getProperties = function (city, locality) {
         return $http.get(servicesBaseUrl+'/properties/'+city+'/'+locality);
+		//return $http.get('/data/propertyresults.json');
     };
 	
 	this.getPropertyDetails = function (propertyId) {
@@ -369,7 +397,7 @@ angular.module('properties', [])
 					continue;
 				}
 				
-				if(filterOption.beds && property.details.bedRooms && Number(filterOption.beds) !== Number(property.details.bedRooms)) {
+				if(filterOption.beds && Number(filterOption.beds) !== Number(property.details.bedRooms || 0)) {
 					continue;
 				}
 				
@@ -785,6 +813,17 @@ angular.module('properties', [])
 		}
 	};
 })
+.directive('whenScrolled', function() {
+    return function(scope, elm, attr) {
+        var raw = elm[0];
+        
+        elm.bind('scroll', function() {
+            if (raw.scrollTop + raw.offsetHeight + 150 >= raw.scrollHeight) {
+                scope.$apply(attr.whenScrolled);
+            }
+        });
+    };
+})
 .directive('scrollbottom', function() {
 	var scrollPos;
 	return {
@@ -802,7 +841,7 @@ angular.module('properties', [])
 	};
 })
 .directive('popOver', ['$compile', 'FatHomeAppStateUtil', '$rootScope', 'PropertiesService', 'FatHomeUtil', '$window', function ($compile, fatHomeAppStateUtil, $rootScope, propertiesService, fatHomeUtil, $window) {
-  var propertiesTemplate = "<div class='mylist-popover'><img ng-show='getMyListServiceCallInprogress' style='width:64px;height:64px;margin: 0 auto;display: inherit;' src='images/ajax-loader-small.GIF'><div class='row resutls' ng-show='!getMyListServiceCallInprogress'><div class='text-center' ng-show='properties.length == 0;'><h4> No results found.</h4> </div><div ng-repeat='property in properties=(properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder)'> <div class='list-view' style='cursor:pointer;' ng-click='showPropertyDetails(property._id);'> <div class='image' ng-show='!property.urls.coverPhotoUrl.url'> <img ng-src='images/list1.png' alt='' /> </div> <div class='image' ng-show='property.urls.coverPhotoUrl.url'> <img ng-src='{{property.urls.coverPhotoUrl.url}}' alt='' /> </div> <div class='content'> <div class='row '> <div class='col-xs-7'> <h3><a href=''><label title='{{property.details.title}}' class='propertyresultsLabel'>{{property.details.title}}</label></a></h3> </div> <div class='col-xs-5 price' style='text-align:Right;'> <h4><i class='fa fa-rupee'></i> <span>{{property.details.monthlyRent || property.details.price.price | currencyFormatter}}</span></h4> </div> </div> <div class='row properresultssqftlabel'> <div class='col-xs-12 price' style='textAlign:Right;'> <h5 style='text-align: right;' ng-if='property.details.area.perUnitPrice'><span>{{property.details.area.perUnitPrice | currencyFormatter}}/{{ property.details.area.perUnitUnits || 'Sq.ft'}}</span></h5> </div> </div> <div class='row firstRow'><div class='col-xs-3' > <span ng-if='property.details.bedRooms'>{{property.details.bedRooms}} Beds </span></div>				<div class='col-xs-3' ng-if='property.details.bathRooms'> <span >{{property.details.bathRooms}} Baths </span></div><div class='col-xs-3' ng-if='isLandOrPlot(property.details.propertySubType)'> <span>{{property.details.mode}}</span> </div>				<div class='col-xs-3'> <span>{{property.details.area.builtUp.builtUp || property.details.area.plotOrLand.plotOrLand | currencyFormatter}}</span> {{property.details.area.builtUp.units || property.details.area.plotOrLand.units}} </div>			  </div> <div class='row secondRow'> <div class='col-xs-2'> <span ng-if='!isLandOrPlot(property.details.propertySubType);'>{{property.details.mode}}</span> </div> <div class='col-xs-5'> <span>{{property.details.propertySubType}}</span> </div> <div class='col-xs-5'> <i class='fa fa-map-marker'></i> <span>{{property.user.locality}}</span> </div> </div> <div class='row thirdRow customsocial' style='z-index:10;'> <div class='col-xs-8 text-center'> <button type='button' class='btn btn-default btn-sm btn-info my-list-button' ng-click='editProperty($event, property);'>Edit</button> <button type='button' class='btn btn-default btn-sm my-list-button btn-info' ng-click='deleteProperty($event, property._id, $index);'>Delete</button></div> <div class='col-xs-4 dateright'> <div class='text-right'>{{property.lastUpdatedDate || property.createdDate | date:'MMM d, y'}}</div> </div> </div> </div> <div class='clearfix'></div> </div> </div> </div> </div>";
+  var propertiesTemplate = "<div class='mylist-popover'><img ng-show='getMyListServiceCallInprogress' style='width:64px;height:64px;margin: 0 auto;display: inherit;' src='images/ajax-loader-small.GIF'><div class='row resutls' ng-show='!getMyListServiceCallInprogress'><div class='text-center' ng-show='properties.length == 0;'><h4> No results found.</h4> </div><div ng-repeat='property in properties=(properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder)'> <div class='list-view' style='cursor:pointer;' ng-click='showPropertyDetails(property._id);'> <div class='image' ng-show='!property.urls.coverPhotoUrl.url'> <img ng-src='images/list1.png' alt='' /> </div> <div class='image' ng-show='property.urls.coverPhotoUrl.url'> <img ng-src='{{property.urls.coverPhotoUrl.url}}' alt='' /> </div> <div class='content'> <div class='row '> <div class='col-xs-7'> <h3><a href=''><label title='{{property.details.title}}' class='propertyresultsLabel'>{{property.details.title}}</label></a></h3> </div> <div class='col-xs-5 price' style='text-align:Right;'> <h4><i class='fa fa-rupee'></i> <span>{{property.details.monthlyRent || property.details.price.price | currencyFormatter}}</span></h4> </div> </div> <div class='row properresultssqftlabel'> <div class='col-xs-12 price' style='textAlign:Right;'> <h5 style='text-align: right;' ng-if='property.details.area.perUnitPrice'><span>{{property.details.area.perUnitPrice | currencyFormatter}}/{{ property.details.area.perUnitUnits || 'Sq.ft'}}</span></h5> </div> </div> <div class='row firstRow'><div class='col-xs-3' > <span ng-if='!isLandOrPlot(property.details.propertySubType)'>{{property.details.bedRooms}} Beds </span></div>				<div class='col-xs-3' ng-if='!isLandOrPlot(property.details.propertySubType)'> <span >{{property.details.bathRooms}} Baths </span></div><div class='col-xs-3' ng-if='isLandOrPlot(property.details.propertySubType)'> <span>{{property.details.mode}}</span> </div>				<div class='col-xs-3'> <span>{{property.details.area.builtUp.builtUp || property.details.area.plotOrLand.plotOrLand | currencyFormatter}}</span> {{property.details.area.builtUp.units || property.details.area.plotOrLand.units}} </div>			  </div> <div class='row secondRow'> <div class='col-xs-2'> <span ng-if='!isLandOrPlot(property.details.propertySubType);'>{{property.details.mode}}</span> </div> <div class='col-xs-5'> <span>{{property.details.propertySubType}}</span> </div> <div class='col-xs-5'> <i class='fa fa-map-marker'></i> <span>{{property.user.locality}}</span> </div> </div> <div class='row thirdRow customsocial' style='z-index:10;'> <div class='col-xs-8 text-center'> <button type='button' class='btn btn-default btn-sm btn-info my-list-button' ng-click='editProperty($event, property);'>Edit</button> <button type='button' class='btn btn-default btn-sm my-list-button btn-info' ng-click='deleteProperty($event, property._id, $index);'>Delete</button></div> <div class='col-xs-4 dateright'> <div class='text-right'>{{property.lastUpdatedDate || property.createdDate | date:'MMM d, y'}}</div> </div> </div> </div> <div class='clearfix'></div> </div> </div> </div> </div>";
   return {
     restrict: "A",
     transclude: true,

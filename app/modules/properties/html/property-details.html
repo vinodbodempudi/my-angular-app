@@ -7,6 +7,9 @@
 		<h4 class="break-text">{{property.details.title}}</h4>
 	  </div>
 	</div>
+	<div class="text-right" ng-if="property.totalViews">
+	  <label style="padding-right: 15px;margin: 0; font-size: 15px;color: #AC6299;font-weight: bold;">{{property.totalViews}} views</label>
+	</div>
 	<div class="tab-scroll" tillbottompd>
 	<div class="tabs">
 	 
@@ -43,7 +46,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-if="property.details.bedRooms">
+					<div class="schedule_row" ng-if="property.details.propertySubType !== 'Land/Plot'">
 						<div class="left">
 							<label class="">Beds</label>
 						</div>
@@ -55,7 +58,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row" ng-if="property.details.bathRooms">
+					<div class="schedule_row" ng-if="property.details.propertySubType !== 'Land/Plot'">
 						<div class="left">
 							<label class="">Baths</label>
 						</div>
@@ -67,7 +70,7 @@
 						</div>
 						<div class="push"></div>
 					</div>
-					<div class="schedule_row"  ng-if="builtUp.builtUpArea">
+					<div class="schedule_row"  ng-show="builtUp.builtUpArea">
 						<div class="left">
 							<label class="">Build-up Area</label>
 						</div>
@@ -224,9 +227,9 @@
 						<div class="right">
 							<label ng-show="!property.details.commitionInDays && !property.details.fixedPrice"></label>
 							<div ng-show="property.details.mode === 'Rent' && property.user.type === 'Agent' && property.details.commitionInDays">
-								<label ng-show="!property.details.fixedPrice">{{property.details.commitionInDays}}</label>
-								<label ng-show="property.details.fixedPrice" class="fa fa-rupee"></label>
-								<label ng-show="property.details.fixedPrice"> {{property.details.fixedPrice | currencyFormatter}}</label>
+								<label ng-show="property.details.commitionInDays">{{property.details.commitionInDays}}</label>
+								<label ng-show="property.details.commitionInDays === 'Others'" class="fa fa-rupee"></label>
+								<label ng-show="property.details.commitionInDays === 'Others'"> {{property.details.fixedPrice | currencyFormatter}}</label>
 							</div>
 						</div>
 						<div class="speaker_image dot">
