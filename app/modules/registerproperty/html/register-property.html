@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group" ng-class="{'has-error':form1.email.$invalid && !form1.email.$pristine}">
                                 <label class="col-sm-2 control-label mandatory">Email:</label>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <input type="email" ng-model="property.user.primaryEmail" name="email" ng-required='true' class="form-control input-sm" placeholder="Primary Email">
                                     <p class="label errorText" ng-show="form1.submitted && form1.email.$error.required && !form1.email.$dirty">Enter email</p>
                                     <p ng-show="form1.email.$invalid && form1.email.$dirty" class="label errorText">Enter valid email</p>
@@ -70,7 +70,7 @@
                             </div>
 							<div class="form-group" ng-class="{'has-error':form1.secondaryEmail.$invalid && !form1.secondaryEmail.$pristine}">
                                 <label class="col-sm-2 control-label"></label>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <input type="email" ng-model="property.user.secondaryEmail" name="secondaryEmail" ng-required="form1.secondaryEmail.$dirty && property.user.secondaryEmail" class="form-control input-sm" placeholder="Secondary Email">
                                     <p class="label errorText" ng-show="form1.submitted && form1.secondaryEmail.$error.required && !form1.secondaryEmail.$dirty">Enter email</p>
                                     <p ng-show="form1.secondaryEmail.$invalid && form1.secondaryEmail.$dirty" class="label errorText">Enter valid email</p>
@@ -84,12 +84,9 @@
                             <div class="form-group" ng-class="{'has-error':form1.phoneNumber.$invalid && !form1.phoneNumber.$pristine}">
                                 <label class="col-sm-2 control-label mandatory">Phone:</label>
                                 <div class="col-sm-3">
-									<div class="input-group">
-									  <div class="input-group-addon">+91</div>
-									  <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="phoneNumber" ng-required='true' ng-model="property.user.primaryPhoneNumber" class="form-control input-sm" placeholder="Primary Phone">
-									</div>
-                                    <p ng-show="form1.submitted && form1.phoneNumber.$error.required" class="label errorText" style="padding-left: 38px;">Enter phone number</p>
-									<p ng-show="form1.phoneNumber.$error.pattern" class="errorText label" style="padding-left: 38px;">Enter valid phone number</p>
+									<input type="tel" maxlength="13" ng-pattern=/^(\+91|0|91)?[7-9]\d{9,9}$/ name="phoneNumber" ng-required='true' ng-model="property.user.primaryPhoneNumber" class="form-control input-sm" placeholder="Primary Phone">
+                                    <p ng-show="form1.submitted && form1.phoneNumber.$error.required" class="label errorText">Enter phone number</p>
+									<p ng-show="form1.phoneNumber.$error.pattern && form1.phoneNumber.$dirty" class="errorText label">Enter valid phone number</p>
                                 </div>
 								<label><input type="checkbox" ng-model="property.user.hidePrimaryPhoneNumber"> hide phone number</label>
                                 <!--<div class="col-sm-2" ng-show="false">
@@ -101,12 +98,9 @@
 							<div class="form-group" >
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-3">
-									<div class="input-group">
-										  <div class="input-group-addon">+91</div>
-										  <input type="tel" maxlength="10" ng-pattern=/[0-9]{10,10}/ name="secondaryPhoneNo" ng-required='form1.secondaryPhoneNo.$dirty && property.user.secondaryPhoneNumber' ng-model="property.user.secondaryPhoneNumber" class="form-control input-sm" placeholder="Secondary Phone">
-									</div>
-                                    <p ng-show="form1.submitted && form1.secondaryPhoneNo.$error.required" style="padding-left: 38px;" class="label errorText">Enter phone number</p>
-									<p ng-show="form1.secondaryPhoneNo.$error.pattern" style="padding-left: 38px;" class="errorText label">Enter valid phone number</p>
+									<input type="tel" maxlength="13" ng-pattern=/^(\+91|0|91)?[7-9]\d{9,9}$/ name="secondaryPhoneNo" ng-required='form1.secondaryPhoneNo.$dirty && property.user.secondaryPhoneNumber' ng-model="property.user.secondaryPhoneNumber" class="form-control input-sm" placeholder="Secondary Phone">
+                                    <p ng-show="form1.submitted && form1.secondaryPhoneNo.$error.required" class="label errorText">Enter phone number</p>
+									<p ng-show="form1.secondaryPhoneNo.$error.pattern" class="errorText label">Enter valid phone number</p>
                                 </div>
 								<label><input type="checkbox" ng-model="property.user.hideSecondayPhoneNumber"> hide phone number</label>
                                 <!--<div class="col-sm-2" ng-show="false">

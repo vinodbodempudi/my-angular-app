@@ -152,6 +152,10 @@ app.service('ExternalService', ['$http', 'servicesBaseUrl', function($http, serv
 	this.sendSms = function (request) {
         return $http.post(servicesBaseUrl+'/send-sms', request);
     };
+	
+	this.sendUserDetails = function (request) {
+        return $http.post(servicesBaseUrl+'/user-details', request);
+    };
 
 }]);
 
@@ -381,6 +385,7 @@ app.controller('FeedBackModalCtrl', ['$scope', '$modalInstance', 'fatHomeUtilSer
 		feedback.city = $scope.user.city;
 		feedback.locality = $scope.user.locality;
 		feedback.user = $scope.userDetails;
+		feedback.time = new Date();
 		fatHomeUtilService.sendFeedback(feedback)
 		.success(function(data){
 			$scope.cancel();

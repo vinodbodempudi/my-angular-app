@@ -24,9 +24,7 @@ angular.module('properties', [])
 	$scope.firstBlockAdds = addsImages.slice(0, 3);
 	$scope.secondBlockAdds = addsImages.slice(3, 6);
 	$scope.thirdBlockAdds = addsImages.slice(6, 9);
-	
-	
-	
+
 	$scope.$on('locationChangeSuccess', function (event, path) {
 		if(path && path.match('properties')) {
 			var arr = path.split("/");
@@ -204,6 +202,46 @@ angular.module('properties', [])
 		}
 	};
 	
+	$scope.$watch("propertyDetails.showContactTab",
+		function(newValue) {
+			if(newValue && localStorage.showContactInfo) {
+				$scope.showContactInfo = true;
+				sendContactDetails(localStorage.userContactNumber);
+				return;
+			}
+			
+			if(!$scope.showContactInfo && $rootScope.isUserLoggedin) {
+				$scope.userContactInfo = {phoneNumber:$rootScope.userDetails.phoneNumber};
+			}
+			
+		}, true
+	);
+
+	$scope.showPropertyContactDetails = function(phoneNumber) {
+		
+		sendContactDetails(phoneNumber);
+		
+		$scope.showContactInfo = true;
+		localStorage.showContactInfo = true;
+		localStorage.userContactNumber = phoneNumber;
+	}
+	
+	var sendContactDetails = function(phoneNumber) {
+		if(!phoneNumber) {
+			return;
+		}
+		
+		var request =  {lead:phoneNumber, propertyUrl:$location.absUrl()}
+
+		externalService.sendUserDetails(angular.toJson(request))
+			.success(function(data){
+				
+			}).error(function(e){
+				
+			});
+
+	}
+	
 	$scope.isGetPropertyDetailsServiceInProgress = false;
 	$scope.getPropertyDetails = function(propertyId) {
 	
@@ -226,6 +264,10 @@ angular.module('properties', [])
 			
 			if($scope.propertyDetails.showPhotosTab) {
 				setPropertyImages();
+			}
+			
+			if($scope.propertyDetails.showContactTab) {
+				sendContactDetails(localStorage.userContactNumber);
 			}
 			
 			$scope.isValidMaitenanceFee = isValidAmount(data.details.maintenanceFee);
