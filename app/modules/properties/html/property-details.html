@@ -554,13 +554,13 @@
 				<accordion-heading>
 					Contact <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showContactTab, 'glyphicon-chevron-right': !propertyDetails.showContactTab}"></i>
 				</accordion-heading>
-				 <div class="tab-pane active" id="tab4" style="overflow-y: auto;">
-					<div class="row " id="contactdetails" style="margin-top: 30px;">
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				 <div class="tab-pane active" id="tab4">
+					<div class="row" id="contactdetails" style="margin-bottom: 10px;">
+						<div class="col-sm-3 col-md-3 col-lg-3 text-center">
 							<img ng-show="property.urls.userUrl" ng-src="{{property.urls.userUrl}}" width="100px" height="100px" />
 							<img ng-show="!property.urls.userUrl" ng-src="images/blank_person.jpg" width="100px" height="100px" />
 						</div>
-						<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 property-contact-info"> 
+						<div class="col-sm-9 col-md-9 col-lg-9 property-contact-info"> 
 							<div class="schedule no-names">
 								<div class="schedule_row">
 									<div class="left">

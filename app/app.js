@@ -461,7 +461,11 @@ app.directive('tillbottompd',['$window', '$timeout', function ($window, $timeout
 			var topPos = function(){
 				var elementtop=$(element[0]).offset().top, winHeight = $window.innerHeight;
 				if(elementtop < winHeight){
-					$(element[0]).height(winHeight-(elementtop+10));
+					if($window.innerWidth > 992){
+						$(element[0]).height(winHeight-(elementtop+10));
+					}else{
+						$(element[0]).height('auto');
+					}
 				}
 			};
 			scope.$watch('propertyDetails',function(){topPos()});
