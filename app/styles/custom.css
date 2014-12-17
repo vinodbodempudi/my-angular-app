@@ -54,7 +54,17 @@ img {
 .home-modal .modal-header{ border-bottom:none; text-align:center; padding-bottom:0;}
 .home-modal .modal-header img{ display:inline-block; vertical-align:top}
 .home-modal .modal-header h2{ display:inline-block; text-transform:uppercase; text-align:left; line-height:30px; margin-top:5px;}
-.home-modal .modal-header h2 span{ color:#ffcc00; display:block}
+.home-modal .modal-header h2 span{ color:#ffcc00;}
+
+.home-modal .modal-header h4 { position: absolute;top: 45px;left: 154px;
+/*color: #64d448;#349B40;#9a130d;#7bb101;#1c94c6*/
+
+color: #7bb101;
+font-family: cursive;
+
+}
+
+
 .home-modal .modal-body { padding-bottom:0;}
 @media (min-width: 200px) and (max-width: 480px) {
 	.home-modal .modal-dialog{ margin-top:50px; width: 100%; height:auto;}
