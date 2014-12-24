@@ -284,6 +284,19 @@
 				<div class="schedule no-names">
 					<div class="schedule_row">
 						<div class="left">
+							<label class="">Date</label>
+						</div>
+						<div class="right">
+							<label ng-hide="property.lastUpdatedDate">{{property.createdDate | date:'MMM d, y'}}</label>
+							<label ng-if="property.lastUpdatedDate">{{property.lastUpdatedDate | date:'MMM d, y'}}</label>
+						</div>
+						<div class="speaker_image dot">
+							<img src="images/dot.png" alt="">
+						</div>
+						<div class="push"></div>
+					</div>
+					<div class="schedule_row">
+						<div class="left">
 							<label class="">Balconies</label>
 						</div>
 						<div class="right">
