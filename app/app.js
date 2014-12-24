@@ -431,7 +431,19 @@ app.directive('formatNumber', ['FatHomeUtil', function(fatHomeUtil) {
     }
   }
 }]);
- 
+app.directive('toLower', function(){
+   return {
+     require: 'ngModel',
+     link: function(scope, element, attrs, modelCtrl) {
+       modelCtrl.$parsers.push(function (inputValue) {
+         if (!inputValue) {
+           return inputValue;
+         }         
+         return inputValue.toLowerCase();         
+       });
+     }
+   };
+});
 app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
 
 	$scope.ok = function () {
