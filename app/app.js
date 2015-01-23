@@ -218,6 +218,10 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Locat
 			});
 	}
 	
+	$rootScope.$on('showFeedbackForm', function() {
+		$scope.showFeedbackmodal();
+	});
+	
 	$scope.showContactmodal = function () {
 		var modalInstance = $modal.open({
 			  templateUrl: 'shared/html/contact.html',
