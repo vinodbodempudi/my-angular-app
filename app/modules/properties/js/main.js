@@ -204,6 +204,12 @@ angular.module('properties', [])
 	
 	$scope.$watch("propertyDetails.showContactTab",
 		function(newValue) {
+		
+			if($scope.property && $rootScope.userDetails._id === $scope.property.user._id) {
+				$scope.showContactInfo = true;
+				return;
+			}
+		
 			if(newValue && localStorage.showContactInfo) {
 				$scope.showContactInfo = true;
 				sendContactDetails(localStorage.userContactNumber);
@@ -227,6 +233,12 @@ angular.module('properties', [])
 	}
 	
 	var sendContactDetails = function(phoneNumber) {
+	
+		if($scope.property && $rootScope.userDetails._id === $scope.property.user._id) {
+			$scope.showContactInfo = true;
+			return;
+		}
+	
 		if(!phoneNumber) {
 			return;
 		}
@@ -266,6 +278,7 @@ angular.module('properties', [])
 				setPropertyImages();
 			}
 			
+			$scope.showContactInfo = false;
 			if($scope.propertyDetails.showContactTab) {
 				sendContactDetails(localStorage.userContactNumber);
 			}
