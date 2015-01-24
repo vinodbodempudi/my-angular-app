@@ -236,7 +236,7 @@ angular.module('login', [])
 	$scope.accountVerificationInProgress = false;
 	$scope.otpResendInProgress = false;
 	$scope.otpSent = false;
-	
+	$scope.userDetails = userDetails;
 	
 	
 	$scope.ok = function () {
