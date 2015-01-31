@@ -258,7 +258,13 @@ angular.module('login', [])
 				
 			});
 	}
-		
+
+	$scope.skipOTP = function () {
+		$scope.cancel();
+		accountVerificationSuccess(userDetails);
+	}
+	
+	
 	$scope.verifyOTP = function (oneTimePassword) {
 		
 	

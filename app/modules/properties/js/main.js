@@ -218,6 +218,7 @@ angular.module('properties', [])
 		if($rootScope.isUserLoggedin) {
 			$scope.showContactInfo = true;
 			$scope.showPropertyContactDetails($rootScope.userDetails.phoneNumber);
+			return;
 		}
 		
 		if(!$scope.showContactInfo && $rootScope.isUserLoggedin) {
