@@ -23,16 +23,10 @@
 				</div>
 				<label ng-show="otpSent" style="color:green" >One time password sent.</label>
 			</form>
-			<div class="row">
-				<div class="col-sm-6" style="text-align: left;position: relative;top: 25px;font-size: 12px;}">
-					<a href="" ng-click="skipOTP()">Skip OTP</a>
-				</div>
-				<div class="col-sm-6" style="text-align:right;">
-					<button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-					<button type="submit" ng-disabled="accountVerificationInProgress" class="btn btn-primary homebtn" ng-click="accountVerificationForm.submitted=true; accountVerificationForm.$valid && verifyOTP(oneTimePassword) && (accountVerificationForm.submitted=false);">Submit</button>
-					<img ng-show="accountVerificationInProgress" ng-src="images/ajax-loader-32x32.gif"/> 
-				</div>
+			<div style="text-align:right;">
+				<a href="" ng-click="skipOTP()" style="position: relative;top: 10px;font-size: 12px;right: 10px;color: #555;opacity: 0.5;}">skip</a>
+				<button type="submit" ng-disabled="accountVerificationInProgress" class="btn btn-primary homebtn" ng-click="accountVerificationForm.submitted=true; accountVerificationForm.$valid && verifyOTP(oneTimePassword) && (accountVerificationForm.submitted=false);">Submit</button>
+				<img ng-show="accountVerificationInProgress" ng-src="images/ajax-loader-32x32.gif"/> 
 			</div>
-			
 		</div>
 	</div>
