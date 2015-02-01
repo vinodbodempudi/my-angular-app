@@ -34,10 +34,10 @@
 				<div class="col-xs-5"> <i class="fa fa-map-marker"></i> <span>{{property.user.locality}}</span> </div>
 			  </div>
 			  <div class="row thirdRow dateright">
-				<div class="col-xs-4" ng-show="property.totalViews">
-				  <span style="font-size: 14px;color: #AC6299;font-weight: bold;">{{property.totalViews}} views</span>
+				<div class="col-xs-6 text-left">
+				  <span style="font-size: 14px;color: #AC6299;font-weight: bold;" ng-show="property.totalViews">{{property.totalViews}} views</span>
 				</div>
-				<div class="col-xs-8">{{property.lastUpdatedDate || property.createdDate | date:'MMM d, y'}}</div>
+				<div class="col-xs-6 text-right">{{property.lastUpdatedDate || property.createdDate | date:'MMM d, y'}}</div>
 			  </div>
 			  <div class="row customsocial" ng-if="false">
 				<div class="col-xs-8 text-right">

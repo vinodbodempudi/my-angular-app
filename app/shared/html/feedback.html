@@ -23,7 +23,7 @@
 				<div class="controls">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-						<input type="text" class="form-control" maxlength="10" ng-model="feedback.phoneNumber" ng-pattern=/[0-9]{10,10}/ name="phonenumber" placeholder="phone" ng-required="feedbackform.phonenumber.$dirty && feedback.phoneNumber">
+						<input type="text" class="form-control" maxlength="13" ng-pattern=/^(\+91|0|91)?[7-9]\d{9,9}$/ ng-model="feedback.phoneNumber" name="phonenumber" placeholder="phone" ng-required="feedbackform.phonenumber.$dirty && feedback.phoneNumber">
 						<p ng-show="feedbackform.phonenumber.$error.pattern" class="errorText label">Enter valid phone number</p>
 					</div>
 					<span class="optional">optional</span>
