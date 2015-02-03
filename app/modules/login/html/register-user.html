@@ -16,7 +16,7 @@
             <p ng-show="registerUserForm.userName.$invalid && (!registerUserForm.userName.$pristine || registerUserForm.submitted)" class="label errorText">enter name</p>
           </div>
 		  <div class="form-group">
-            <input type="email" class="form-control" ng-model="newUser.email" name="email" required id="inputEmail3" placeholder="Email">
+            <input type="email" to-lower class="form-control" ng-model="newUser.email" name="email" required id="inputEmail3" placeholder="Email">
 			<p class="label errorText" ng-show="registerUserForm.submitted && registerUserForm.email.$error.required && !registerUserForm.email.$dirty">Enter email</p>
             <p ng-show="registerUserForm.email.$invalid && registerUserForm.email.$dirty" class="label errorText">Enter valid email</p>
           </div>

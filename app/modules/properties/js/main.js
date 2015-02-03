@@ -201,21 +201,32 @@ angular.module('properties', [])
 			
 		}
 	};
+
+	var showContactDetails = function(contactTabClicked) {
+		if($scope.property && $rootScope.userDetails 
+			&& $rootScope.userDetails._id === $scope.property.user._id) {
+			$scope.showContactInfo = true;
+			return;
+		}
 	
-	$scope.$watch("propertyDetails.showContactTab",
-		function(newValue) {
-			if(newValue && localStorage.showContactInfo) {
-				$scope.showContactInfo = true;
-				sendContactDetails(localStorage.userContactNumber);
-				return;
-			}
-			
-			if(!$scope.showContactInfo && $rootScope.isUserLoggedin) {
-				$scope.userContactInfo = {phoneNumber:$rootScope.userDetails.phoneNumber};
-			}
-			
-		}, true
-	);
+		if(contactTabClicked && localStorage.showContactInfo) {
+			$scope.showContactInfo = true;
+			$scope.showPropertyContactDetails(localStorage.userContactNumber);
+			return;
+		}
+		
+		if($rootScope.isUserLoggedin) {
+			$scope.showContactInfo = true;
+			$scope.showPropertyContactDetails($rootScope.userDetails.phoneNumber);
+			return;
+		}
+		
+		if(!$scope.showContactInfo && $rootScope.isUserLoggedin) {
+			$scope.userContactInfo = {phoneNumber:$rootScope.userDetails.phoneNumber};
+		}
+	}
+	
+	$scope.$watch("propertyDetails.showContactTab", showContactDetails, true);
 
 	$scope.showPropertyContactDetails = function(phoneNumber) {
 		
@@ -227,6 +238,7 @@ angular.module('properties', [])
 	}
 	
 	var sendContactDetails = function(phoneNumber) {
+	
 		if(!phoneNumber) {
 			return;
 		}
@@ -239,7 +251,6 @@ angular.module('properties', [])
 			}).error(function(e){
 				
 			});
-
 	}
 	
 	$scope.isGetPropertyDetailsServiceInProgress = false;
@@ -266,8 +277,9 @@ angular.module('properties', [])
 				setPropertyImages();
 			}
 			
+			$scope.showContactInfo = false;
 			if($scope.propertyDetails.showContactTab) {
-				sendContactDetails(localStorage.userContactNumber);
+				showContactDetails($scope.propertyDetails.showContactTab);
 			}
 			
 			$scope.isValidMaitenanceFee = isValidAmount(data.details.maintenanceFee);

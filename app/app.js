@@ -218,6 +218,10 @@ app.controller('fatHomeController', ['$scope', '$rootScope', '$location', 'Locat
 			});
 	}
 	
+	$rootScope.$on('showFeedbackForm', function() {
+		$scope.showFeedbackmodal();
+	});
+	
 	$scope.showContactmodal = function () {
 		var modalInstance = $modal.open({
 			  templateUrl: 'shared/html/contact.html',
@@ -431,7 +435,19 @@ app.directive('formatNumber', ['FatHomeUtil', function(fatHomeUtil) {
     }
   }
 }]);
- 
+app.directive('toLower', function(){
+   return {
+     require: 'ngModel',
+     link: function(scope, element, attrs, modelCtrl) {
+       modelCtrl.$parsers.push(function (inputValue) {
+         if (!inputValue) {
+           return inputValue;
+         }         
+         return inputValue.toLowerCase();         
+       });
+     }
+   };
+});
 app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
 
 	$scope.ok = function () {

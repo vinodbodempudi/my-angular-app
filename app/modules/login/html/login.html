@@ -17,7 +17,7 @@
 			
 			<!-- form -->
 			  <div class="form-group">
-				<input type="email" class="form-control" id="inputEmail3" name="email" placeholder="Email" ng-model="loginUser.email" required>
+				<input type="email" to-lower class="form-control" id="inputEmail3" name="email" placeholder="Email" ng-model="loginUser.email" required>
 				 <p class="label errorText" ng-show="loginForm.submitted && loginForm.email.$error.required && !loginForm.email.$dirty">Enter email</p>
 				 <p ng-show="loginForm.email.$invalid && loginForm.email.$dirty" class="label errorText">Enter valid email</p>
 			  </div>

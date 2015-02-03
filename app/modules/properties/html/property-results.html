@@ -7,7 +7,7 @@
 	</div>
 	<div class="lists-view" id="propertyResults" scroll tillbottom when-scrolled="loadMoreProperties()">
 	  <div>
-		<div ng-repeat="property in $parent.filteredProperties = (properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search) | limitTo:propertyResultsToShow;">
+		<div title="click for details" ng-repeat="property in $parent.filteredProperties = (properties | sortPropertyResults:predicate.dataField:predicate.reverseOrder | filterPropertiesResults:search) | limitTo:propertyResultsToShow;">
 		  <div class="list-view" style="cursor:pointer;" ng-click="showPropertyDetails(property._id);">
 			<div class="image"> <img ng-src="{{property.urls.coverPhotoUrl.url || 'images/list1.png'}}" alt="" /> </div>
 			

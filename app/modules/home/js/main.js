@@ -62,19 +62,19 @@ angular.module('home', [])
 	};
 	
 }])
-.service('FatHomeUtil',function() {
+.service('FatHomeUtil', ['$rootScope', function($rootScope) {
 
 	this.getAddsImages = function () {
         return [
-			{imageUrl:"images/add1.jpg", action:""},
-			{imageUrl:"images/add2.jpg", action:""},
-			{imageUrl:"images/add3.jpg", action:""},
-			{imageUrl:"images/add4.jpg", action:""},
-			{imageUrl:"images/add5.jpg", action:""},
-			{imageUrl:"images/add6.jpg", action:""},
-			{imageUrl:"images/add7.jpg", action:""},
-			{imageUrl:"images/add8.jpg", action:""},
-			{imageUrl:"images/add9.jpg", action:""}
+			{imageUrl:"images/add1.jpg", action:function(){ window.open("https://www.facebook.com/pages/fathomein/327105184080870", "_blank"); }},
+			{imageUrl:"images/add2.jpg", action:function(){  }},
+			{imageUrl:"images/add3.jpg", action:function(){  }},
+			{imageUrl:"images/add4.jpg", action:function(){  }},
+			{imageUrl:"images/add5.jpg", action:function(){  }},
+			{imageUrl:"images/add6.jpg", action:function(){  }},
+			{imageUrl:"images/add7.jpg", action:function(){  }},
+			{imageUrl:"images/add8.jpg", action:function(){  }},
+			{imageUrl:"images/add9.jpg", action:function(){ $rootScope.$broadcast('showFeedbackForm'); }}
 		];
     };
 
@@ -306,7 +306,7 @@ angular.module('home', [])
 		
 		return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
 	}
-})
+}])
 .service('FatHomeAppStateUtil', ['$location', function($location) {
 
 	this.isRegisterProperty = function () {

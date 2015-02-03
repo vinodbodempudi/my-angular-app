@@ -35,6 +35,17 @@ angular.module('login', [])
 		//return $http.get('data/login.json');
     };
 	
+	this.verifyOTP = function (request) {
+        return $http.post(servicesBaseUrl+'/users/account-verification', angular.toJson(request));
+		//return $http.get('data/login.json');
+    };
+	
+	this.resendOTP = function (userId) {
+        return $http.get(servicesBaseUrl+'/users/'+userId+'/resend-otp');
+		//return $http.get('data/login.json');
+    };
+	
+	
 	this.register = function (newUser) {
         return $http.post(servicesBaseUrl+'/users', angular.toJson(newUser));
 		//console.log(angular.toJson(newUser));
@@ -85,38 +96,55 @@ angular.module('login', [])
 		loginService.authenticate(userDetails)
 			.success(function(data){
 				$scope.loginInProgress = false;
-				$rootScope.userDetails = data;
-				$rootScope.isUserLoggedin = true;
-				
-				localStorage.setItem("userDetails", angular.toJson(data));
-				
-				if(userDetails.rememberMe) {
-					localStorage.userName = userDetails.email;
-					localStorage.password =  userDetails.password;
-					localStorage.rememberMe = userDetails.rememberMe;
-				} else {
-					localStorage.removeItem("userName");
-					localStorage.removeItem("password");
-					localStorage.removeItem("rememberMe");
-				}
-				
-				if($rootScope.showPostProperty) {
-					$rootScope.showPostProperty = false;
-					$location.path('/registerproperty/' + $scope.user.city + '/' + $scope.user.locality);
-				}
-				
-				if($rootScope.showMyListPopover) {
-					$rootScope.showMyListPopover = false;
-					$rootScope.$broadcast('showMyListPopOver');
-				}
-				
-				
 				$scope.cancel();
+				if(!data.hasOwnProperty('verified') || data.verified) {
+					loginSuccess(data);
+					return;
+				}
+				showOTPModal(data);
 			}).error(function(e){
 				$scope.loginInProgress = false;
 				$scope.loginFailed = true;
 			});
 	};
+	
+	function showOTPModal(data) {
+	 var modalInstance = $modal.open({
+		  templateUrl: 'modules/login/html/account-verification.html',
+		  controller: 'AccountVerificationModalCtrl',
+		  windowClass:'sign-modal',
+		  resolve: {
+			userDetails: function () { return data; }
+		  }
+		});
+	}
+	
+	function loginSuccess(userDetails) {
+		$rootScope.userDetails = userDetails;
+		$rootScope.isUserLoggedin = true;
+		
+		localStorage.setItem("userDetails", angular.toJson(userDetails));
+		
+		if(userDetails.rememberMe) {
+			localStorage.userName = userDetails.email;
+			localStorage.password =  userDetails.password;
+			localStorage.rememberMe = userDetails.rememberMe;
+		} else {
+			localStorage.removeItem("userName");
+			localStorage.removeItem("password");
+			localStorage.removeItem("rememberMe");
+		}
+		
+		if($rootScope.showPostProperty) {
+			$rootScope.showPostProperty = false;
+			$location.path('/registerproperty/' + $scope.user.city + '/' + $scope.user.locality);
+		}
+		
+		if($rootScope.showMyListPopover) {
+			$rootScope.showMyListPopover = false;
+			$rootScope.$broadcast('showMyListPopOver');
+		}
+	}
 
 }])
 .controller('RegisterUserModalCtrl', ['$scope', '$modalInstance', 'LoginService', '$modal', '$rootScope', '$location',
@@ -176,7 +204,7 @@ angular.module('login', [])
 				});
 				
 				modalInstance.result.then(function (result) {
-					 $scope.showLoginModal();
+					 $scope.showOTPModal(data);
 				});
 			}).error(function(response, status){
 				$scope.registerInProgress = false;
@@ -189,6 +217,103 @@ angular.module('login', [])
 	
 	};
 	
+	$scope.showOTPModal = function(data) {
+		 var modalInstance = $modal.open({
+			  templateUrl: 'modules/login/html/account-verification.html',
+			  controller: 'AccountVerificationModalCtrl',
+			  windowClass:'sign-modal',
+			  resolve: {
+				userDetails: function () { return data; }
+			  }
+			});
+	}
+
+	
+}])
+.controller('AccountVerificationModalCtrl', ['$scope', '$modalInstance', 'LoginService', '$rootScope', '$location', 'userDetails', 
+	function ($scope, $modalInstance, loginService, $rootScope, $location, userDetails) {
+
+	$scope.accountVerificationInProgress = false;
+	$scope.otpResendInProgress = false;
+	$scope.otpSent = false;
+	$scope.userDetails = userDetails;
+	
+	
+	$scope.ok = function () {
+		$modalInstance.close();
+	};
+
+	$scope.cancel = function () {
+		$modalInstance.dismiss('cancel');
+		
+	};
+
+	$scope.resendOTP = function () {
+		$scope.otpResendInProgress = true;
+		loginService.resendOTP(userDetails._id)
+			.success(function(data){
+				$scope.otpResendInProgress = false;
+				$scope.otpSent = true;
+			}).error(function(response, status){
+				
+			});
+	}
+
+	$scope.skipOTP = function () {
+		$scope.cancel();
+		accountVerificationSuccess(userDetails);
+	}
+	
+	
+	$scope.verifyOTP = function (oneTimePassword) {
+		
+	
+		$scope.accountVerificationInProgress = true;
+		
+		var request = {userId:userDetails._id, verificationCode:oneTimePassword};
+		
+		loginService.verifyOTP(request)
+			.success(function(data){
+				$scope.accountVerificationInProgress = false;
+				$scope.cancel();
+				accountVerificationSuccess(data);
+			}).error(function(response, status){
+				$scope.accountVerificationInProgress = false;
+								
+				if(status === 401) {
+					$scope.otpFailed = true;
+				}
+				
+			});
+	
+	};
+	
+	function accountVerificationSuccess(userDetails) {
+		$rootScope.userDetails = userDetails;
+		$rootScope.isUserLoggedin = true;
+		
+		localStorage.setItem("userDetails", angular.toJson(userDetails));
+		
+		if(userDetails.rememberMe) {
+			localStorage.userName = userDetails.email;
+			localStorage.password =  userDetails.password;
+			localStorage.rememberMe = userDetails.rememberMe;
+		} else {
+			localStorage.removeItem("userName");
+			localStorage.removeItem("password");
+			localStorage.removeItem("rememberMe");
+		}
+		
+		if($rootScope.showPostProperty) {
+			$rootScope.showPostProperty = false;
+			$location.path('/registerproperty/' + $scope.user.city + '/' + $scope.user.locality);
+		}
+		
+		if($rootScope.showMyListPopover) {
+			$rootScope.showMyListPopover = false;
+			$rootScope.$broadcast('showMyListPopOver');
+		}
+	}
 
 	
 }]);
