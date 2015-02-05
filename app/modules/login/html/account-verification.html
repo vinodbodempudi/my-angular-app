@@ -10,7 +10,7 @@
 			<form class="form-horizontal" role="form" name="accountVerificationForm" novalidate>
 			
 			<!-- form -->
-			<p>OTP sent to <strong>{{userDetails.phoneNumber}}</strong> mobile number.<br>please enter the OTP below and press continue</p>
+			<p>OTP sent to <strong>{{userDetails.phoneNumber}}</strong> mobile number.<br>please enter the OTP below and press Submit button</p>
 			  <div class="form-group">
 				<input type="tel" maxlength="6" ng-pattern=/[0-9]/ name="otp" ng-required='true' ng-model="oneTimePassword" class="form-control input-sm" placeholder="One Time Password">
 				<p ng-show="accountVerificationForm.submitted && accountVerificationForm.otp.$error.required" class="label errorText">Enter one time password</p>
