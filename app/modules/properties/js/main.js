@@ -227,6 +227,7 @@ angular.module('properties', [])
 	}
 	
 	$scope.$watch("propertyDetails.showContactTab", showContactDetails, true);
+	$scope.$watch("propertyDetails.showDetailsTab", showContactDetails, true);
 
 	$scope.showPropertyContactDetails = function(phoneNumber) {
 		
@@ -534,6 +535,10 @@ angular.module('properties', [])
 			} else {
 				tempb = b.details.area.plotOrLand.plotOrLandInSqft+"";
 			}
+		}
+		
+		if(a.paidProperty === 'Y' || b.paidProperty === 'Y') {
+			return 1;
 		}
 		
 		if(field === 'createdDate') {

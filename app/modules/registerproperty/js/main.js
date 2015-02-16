@@ -262,6 +262,7 @@ angular.module('registerProperty', [])
 	
 	var adjustProperty = function(property) {
 		property.active='A';
+		property.paidProperty = 'N';
 		if(fatHomeAppStateUtil.isRegisterProperty()) {
 			property.createdDate = new Date();
 			property.lastUpdatedDate = new Date();
