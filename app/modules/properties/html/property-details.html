@@ -21,7 +21,7 @@
 					Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': propertyDetails.showDetailsTab, 'glyphicon-chevron-right': !propertyDetails.showDetailsTab}"></i>
 				</accordion-heading>
 			
-				<div class="schedule no-names">
+				<div class="schedule no-names" ng-if="showActualPropertyDetails">
 					<div class="schedule_row">
 						<div class="left">
 							<label class="">Property Type</label>
@@ -287,6 +287,74 @@
 							<img src="images/dot.png" alt="">
 						</div>
 						<div class="push"></div>
+					</div>
+				</div>
+				<div class="row" ng-if="!showActualPropertyDetails">
+					<div class="schedule no-names locked-contact-details">
+						<div class="schedule_row">
+							<div class="left">
+								<label class="">Name</label>
+							</div>
+							<div class="right">
+								<label>Nullam dapibus quam</label>
+							</div>
+							<div class="speaker_image dot">
+								<img src="images/dot.png" alt="">
+							</div>
+							<div class="push"></div>
+						</div>
+						<div class="schedule_row">
+							<div class="left">
+								<label class="">E-mail</label>
+							</div>
+							<div class="right">
+								<label>Nullam quam dapibus quam</label>
+							</div>
+							<div class="speaker_image dot">
+								<img src="images/dot.png" alt="">
+							</div>
+							<div class="push"></div>
+						</div>
+						<div class="schedule_row">
+							<div class="left">
+								<label class="">Phone No</label>
+							</div>
+							<div class="right">
+								<label>0000000000000</label>
+							</div>
+							<div class="speaker_image dot">
+								<img src="images/dot.png" alt="">
+							</div>
+							<div class="push"></div>
+						</div>
+						<div class="schedule_row">
+							<div class="left">
+								<label class="">Seller</label>
+							</div>
+							<div class="right">
+								<label>Nullam</label>
+							</div>
+							<div class="speaker_image dot">
+								<img src="images/dot.png" alt="">
+							</div>
+							<div class="push"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset-1 locked-contact-details-view" style="top:85px;">
+							<form role="form" name="gatherContactInfoForm" novalidate>
+							  <p class="text-center"> Best phone number to reach you at</p>
+							  <div class="form-group text-center phone-number">
+									<input type="tel" maxlength="13" autofocus ng-pattern=/^(\+91|0|91)?[7-9]\d{9,9}$/ name="phoneNumber" ng-required='true' ng-model="userContactInfo.phoneNumber" class="form-control input-sm" placeholder="Your phone number">
+									<p ng-show="gatherContactInfoForm.submitted && gatherContactInfoForm.phoneNumber.$error.required" class="label errorText">Enter phone number</p>
+									<p ng-show="gatherContactInfoForm.phoneNumber.$error.pattern && !gatherContactInfoForm.phoneNumber.$pristine" class="errorText label">Enter valid phone number</p>
+							  </div>
+							  <div class="text-center">
+								<a href="" ng-click="skipGatherContactInfo();" style="opacity: 0.8;font-weight: 400;">skip<i class="fa fa-angle-double-right"></i></a>
+								<button type="submit" class="btn btn-default btn-sm btn-info" ng-click="gatherContactInfoForm.submitted=true; gatherContactInfoForm.$valid && showActualPropertyDetailsView(userContactInfo.phoneNumber);">Submit</button>
+							  </div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</accordion-group>

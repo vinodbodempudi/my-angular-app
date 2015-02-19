@@ -203,13 +203,18 @@ angular.module('properties', [])
 	};
 
 	var showContactDetails = function(contactTabClicked) {
+		
+		if(!contactTabClicked) {
+			return;
+		}
+	
 		if($scope.property && $rootScope.userDetails 
 			&& $rootScope.userDetails._id === $scope.property.user._id) {
 			$scope.showContactInfo = true;
 			return;
 		}
 	
-		if(contactTabClicked && localStorage.showContactInfo) {
+		if(localStorage.userContactNumber) {
 			$scope.showContactInfo = true;
 			$scope.showPropertyContactDetails(localStorage.userContactNumber);
 			return;
@@ -220,15 +225,51 @@ angular.module('properties', [])
 			$scope.showPropertyContactDetails($rootScope.userDetails.phoneNumber);
 			return;
 		}
-		
-		if(!$scope.showContactInfo && $rootScope.isUserLoggedin) {
-			$scope.userContactInfo = {phoneNumber:$rootScope.userDetails.phoneNumber};
-		}
 	}
 	
-	$scope.$watch("propertyDetails.showContactTab", showContactDetails, true);
-	$scope.$watch("propertyDetails.showDetailsTab", showContactDetails, true);
+	var showActualPropertyDetails = function(detailsTabClicked) {
+	
+		if(!detailsTabClicked) {
+			return;
+		}
+	
+		if($scope.property && $rootScope.userDetails 
+			&& $rootScope.userDetails._id === $scope.property.user._id) {
+			$scope.showActualPropertyDetails = true;
+			return;
+		}
+	
+		if(localStorage.userContactNumber) {
+			$scope.showActualPropertyDetails = true;
+			$scope.showActualPropertyDetailsView(localStorage.userContactNumber);
+			return;
+		}
+		
+		if($rootScope.isUserLoggedin) {
+			$scope.showActualPropertyDetails = true;
+			$scope.showActualPropertyDetailsView($rootScope.userDetails.phoneNumber);
+			return;
+		}
 
+	}
+	
+	$scope.skipGatherContactInfo = function() {
+		$scope.showActualPropertyDetails = true;
+	}
+	
+	
+	$scope.$watch("propertyDetails.showContactTab", showContactDetails, true);
+	$scope.$watch("propertyDetails.showDetailsTab", showActualPropertyDetails, true);
+
+	$scope.showActualPropertyDetailsView = function(phoneNumber) {
+		
+		sendContactDetails(phoneNumber);
+		
+		$scope.showActualPropertyDetails = true;
+		localStorage.showActualPropertyDetails = true;
+		localStorage.userContactNumber = phoneNumber;
+	}
+	
 	$scope.showPropertyContactDetails = function(phoneNumber) {
 		
 		sendContactDetails(phoneNumber);
@@ -281,6 +322,11 @@ angular.module('properties', [])
 			$scope.showContactInfo = false;
 			if($scope.propertyDetails.showContactTab) {
 				showContactDetails($scope.propertyDetails.showContactTab);
+			}
+			
+			$scope.showActualPropertyDetails = false;
+			if($scope.propertyDetails.showDetailsTab) {
+				showActualPropertyDetails($scope.propertyDetails.showDetailsTab);
 			}
 			
 			$scope.isValidMaitenanceFee = isValidAmount(data.details.maintenanceFee);
