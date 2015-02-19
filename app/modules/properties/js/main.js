@@ -281,7 +281,7 @@ angular.module('properties', [])
 	
 	var sendContactDetails = function(phoneNumber) {
 	
-		if(!phoneNumber) {
+		if(!phoneNumber || !$scope.property) {
 			return;
 		}
 		
