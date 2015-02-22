@@ -250,16 +250,112 @@ angular.module('properties', [])
 			$scope.showActualPropertyDetailsView($rootScope.userDetails.phoneNumber);
 			return;
 		}
+	}
+	
+	var showActualPropertySpecifications = function(specificationTabClicked) {
+	
+		if(!specificationTabClicked) {
+			return;
+		}
+	
+		if($scope.property && $rootScope.userDetails 
+			&& $rootScope.userDetails._id === $scope.property.user._id) {
+			$scope.showActualPropertySpecifications = true;
+			return;
+		}
+	
+		if(localStorage.userContactNumber) {
+			$scope.showActualPropertySpecificationsView(localStorage.userContactNumber);
+			return;
+		}
+		
+		if($rootScope.isUserLoggedin) {
+			$scope.showActualPropertySpecificationsView($rootScope.userDetails.phoneNumber);
+			return;
+		}
 
+	}
+	
+	var showActualPropertyAmenities = function(amenitiesTabClicked) {
+	
+		if(!amenitiesTabClicked) {
+			return;
+		}
+	
+		if($scope.property && $rootScope.userDetails 
+			&& $rootScope.userDetails._id === $scope.property.user._id) {
+			$scope.showActualPropertyAmenities = true;
+		}
+	
+		if(localStorage.userContactNumber) {
+			$scope.showActualPropertyAmenitiesView(localStorage.userContactNumber);
+		}
+		
+		if($rootScope.isUserLoggedin) {
+			$scope.showActualPropertyAmenitiesView($rootScope.userDetails.phoneNumber);
+		}
+	}
+	
+	var showActualPropertyPhotos = function(photosTabClicked) {
+	
+		if(!photosTabClicked) {
+			return;
+		}
+	
+		if($scope.property && $rootScope.userDetails 
+			&& $rootScope.userDetails._id === $scope.property.user._id) {
+			$scope.showActualPropertyPhotos = true;
+		}
+	
+		if(localStorage.userContactNumber) {
+			$scope.showActualPropertyPhotosView(localStorage.userContactNumber);
+		}
+		
+		if($rootScope.isUserLoggedin) {
+			$scope.showActualPropertyPhotosView($rootScope.userDetails.phoneNumber);
+		}
 	}
 	
 	$scope.skipGatherContactInfo = function() {
 		$scope.showActualPropertyDetails = true;
+		$scope.showActualPropertySpecifications = true;
+		$scope.showActualPropertyAmenities = true;
+		$scope.showActualPropertyPhotos = true;
 	}
 	
-	
+	var hidePropertyDetails = function() {
+		$scope.showContactInfo = false;
+		$scope.showActualPropertyDetails = false;
+		$scope.showActualPropertySpecifications = false;
+		$scope.showActualPropertyAmenities = false;
+		$scope.showActualPropertyPhotos = false;
+		
+		if($scope.propertyDetails.showContactTab) {
+			showContactDetails($scope.propertyDetails.showContactTab);
+		}
+
+		if($scope.propertyDetails.showDetailsTab) {
+			showActualPropertyDetails($scope.propertyDetails.showDetailsTab);
+		}
+		
+		if($scope.propertyDetails.showSpecificationsTab) {
+			showActualPropertySpecifications($scope.propertyDetails.showSpecificationsTab);
+		}
+		
+		if($scope.propertyDetails.showAmenitiesTab) {
+			showActualPropertyAmenities($scope.propertyDetails.showAmenitiesTab);
+		}
+		
+		if($scope.propertyDetails.showPhotosTab) {
+			showActualPropertyPhotos($scope.propertyDetails.showPhotosTab);
+		}
+	}
+
 	$scope.$watch("propertyDetails.showContactTab", showContactDetails, true);
 	$scope.$watch("propertyDetails.showDetailsTab", showActualPropertyDetails, true);
+	$scope.$watch("propertyDetails.showSpecificationsTab", showActualPropertySpecifications, true);
+	$scope.$watch("propertyDetails.showAmenitiesTab", showActualPropertyAmenities, true);
+	$scope.$watch("propertyDetails.showPhotosTab", showActualPropertyPhotos, true);
 
 	$scope.showActualPropertyDetailsView = function(phoneNumber) {
 		
@@ -267,6 +363,33 @@ angular.module('properties', [])
 		
 		$scope.showActualPropertyDetails = true;
 		localStorage.showActualPropertyDetails = true;
+		localStorage.userContactNumber = phoneNumber;
+	}
+	
+	$scope.showActualPropertyPhotosView = function(phoneNumber) {
+		
+		sendContactDetails(phoneNumber);
+		
+		$scope.showActualPropertyPhotos = true;
+		localStorage.showActualPropertyPhotos = true;
+		localStorage.userContactNumber = phoneNumber;
+	}
+	
+	$scope.showActualPropertyAmenitiesView = function(phoneNumber) {
+		
+		sendContactDetails(phoneNumber);
+		
+		$scope.showActualPropertyAmenities = true;
+		localStorage.showActualPropertyAmenities = true;
+		localStorage.userContactNumber = phoneNumber;
+	}
+	
+	$scope.showActualPropertySpecificationsView = function(phoneNumber) {
+		
+		sendContactDetails(phoneNumber);
+		
+		$scope.showActualPropertySpecifications = true;
+		localStorage.showActualPropertySpecifications = true;
 		localStorage.userContactNumber = phoneNumber;
 	}
 	
@@ -279,12 +402,14 @@ angular.module('properties', [])
 		localStorage.userContactNumber = phoneNumber;
 	}
 	
+	var propertyContactDetailsCache = {};
 	var sendContactDetails = function(phoneNumber) {
 	
-		if(!phoneNumber || !$scope.property) {
+		if(!phoneNumber || !$scope.property || propertyContactDetailsCache.hasOwnProperty($scope.property._id)) {
 			return;
 		}
 		
+		propertyContactDetailsCache[$scope.property._id] = $scope.property._id;
 		var request =  {lead:phoneNumber, propertyUrl:$location.absUrl()}
 
 		externalService.sendUserDetails(angular.toJson(request))
@@ -319,15 +444,7 @@ angular.module('properties', [])
 				setPropertyImages();
 			}
 			
-			$scope.showContactInfo = false;
-			if($scope.propertyDetails.showContactTab) {
-				showContactDetails($scope.propertyDetails.showContactTab);
-			}
-			
-			$scope.showActualPropertyDetails = false;
-			if($scope.propertyDetails.showDetailsTab) {
-				showActualPropertyDetails($scope.propertyDetails.showDetailsTab);
-			}
+			hidePropertyDetails();
 			
 			$scope.isValidMaitenanceFee = isValidAmount(data.details.maintenanceFee);
 			resetPropertyDetailsView();
