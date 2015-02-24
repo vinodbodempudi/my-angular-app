@@ -188,7 +188,7 @@ margin-bottom: 8px;}
 /* end */
 
 
-.list-view .content .price h5{ margin:0;font-family:arial}
+.list-view .content .price h5{ margin:0; padding-left:10px;font-family:arial}
 .list-view .content .row{white-space: nowrap; width: 100%; float:left;}
 
 /*.list-view .firstRow{ font-weight:bold; margin-top:5px;}*/
@@ -284,7 +284,7 @@ color:#da4834;
 
 
 /* covered uncovered gap */
-.coveredun .radio-inline,.coveredun .checkbox-inline {padding-left: 41px;}
+.coveredun .radio-inline, .checkbox-inline {padding-left: 41px;}
 /* end */
 
 .selectsort{min-width:145px;}
@@ -649,15 +649,14 @@ input.from{text-align:left !important;}
 .ampm{text-align:right !important; width:2.2% !important; padding-left:0px;}
 .bcompanyadd{text-align:left !important; width:18%;}
 
-@media (min-width: 768px){
-.maintenancefee{text-align:left !important; width:12.2% !important; padding-left:0px;}
-.deposit{text-align:left !important; width:6.2% !important; }
-.mainfee{padding-left:0px !important; width:15%;}
 .flooring {text-align:left !important; width:4.2% !important; padding-left:0px;}
 .security{text-align:left !important; width:12.2% !important; }
 .bcompanyadd{text-align:left !important; width:18%;}
 
-}
+.maintenancefee{text-align:left !important; width:12.2% !important; padding-left:0px;}
+.deposit{text-align:left !important; width:6.2% !important; }
+.mainfee{padding-left:0px !important; width:15%;}
+
 
 .register-success-modal{ margin-top:100px; width: 438px; height: auto;}
 
@@ -816,7 +815,8 @@ line-height: 2.3 !important;
 	padding-left: 0px;
 	text-align: left;
 	position: relative;
-	top: 10px;
+	left: -27px;
+	top: -13px;
 } 
 
 .homebtn {
@@ -1104,6 +1104,7 @@ color: #159CEB !important;
 	.list-view .content h3{float:none;}
 	.list-view .image{margin-right:30px;}
 	.list-view .content .row{float:none;}
+	.list-view .content .price h4{margin-bottom:15px;}
 	/*.selectsort {min-width:100%}*/
 }
 @media (max-width: 1200px) and (min-width:992px) {

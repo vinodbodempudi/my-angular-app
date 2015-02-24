@@ -18,10 +18,13 @@
 				</div>
 				<div class="col-sm-5 price">
 				  <h4><i class="fa fa-rupee"></i> <span>{{property.details.monthlyRent || property.details.price.price | currencyFormatter}}</span></h4>
+				</div>
+			  </div>
+			  <div class="row properresultssqftlabel">
+				<div class="col-xs-12 price">
 				  <h5 ng-if="property.details.area.perUnitPrice"><span>{{property.details.area.perUnitPrice | currencyFormatter}}/{{ property.details.area.perUnitUnits || 'Sq.ft'}}</span></h5>
 				</div>
 			  </div>
-			  
 			  <div class="row firstRow">
 				<div class="col-xs-3" > <span ng-if="property.details.propertySubType !== 'Land/Plot'">{{property.details.bedRooms}} Beds </span></div>
 				<div class="col-xs-3" ng-if="property.details.propertySubType !== 'Land/Plot'"> <span>{{property.details.bathRooms}} Baths </span></div>
