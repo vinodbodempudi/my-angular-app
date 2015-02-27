@@ -214,17 +214,19 @@ angular.module('properties', [])
 			return;
 		}
 	
+		if($rootScope.isUserLoggedin) {
+			$scope.showContactInfo = true;
+			$scope.showPropertyContactDetails($rootScope.userDetails.phoneNumber);
+			return;
+		}
+		
 		if(localStorage.userContactNumber) {
 			$scope.showContactInfo = true;
 			$scope.showPropertyContactDetails(localStorage.userContactNumber);
 			return;
 		}
 		
-		if($rootScope.isUserLoggedin) {
-			$scope.showContactInfo = true;
-			$scope.showPropertyContactDetails($rootScope.userDetails.phoneNumber);
-			return;
-		}
+		
 	}
 	
 	var showActualPropertyDetails = function(detailsTabClicked) {
@@ -239,17 +241,19 @@ angular.module('properties', [])
 			return;
 		}
 	
+		if($rootScope.isUserLoggedin) {
+			$scope.showActualPropertyDetails = true;
+			$scope.showActualPropertyDetailsView($rootScope.userDetails.phoneNumber);
+			return;
+		}
+	
 		if(localStorage.userContactNumber) {
 			$scope.showActualPropertyDetails = true;
 			$scope.showActualPropertyDetailsView(localStorage.userContactNumber);
 			return;
 		}
 		
-		if($rootScope.isUserLoggedin) {
-			$scope.showActualPropertyDetails = true;
-			$scope.showActualPropertyDetailsView($rootScope.userDetails.phoneNumber);
-			return;
-		}
+		
 	}
 	
 	var showActualPropertySpecifications = function(specificationTabClicked) {
@@ -264,16 +268,15 @@ angular.module('properties', [])
 			return;
 		}
 	
-		if(localStorage.userContactNumber) {
-			$scope.showActualPropertySpecificationsView(localStorage.userContactNumber);
-			return;
-		}
-		
 		if($rootScope.isUserLoggedin) {
 			$scope.showActualPropertySpecificationsView($rootScope.userDetails.phoneNumber);
 			return;
 		}
-
+	
+		if(localStorage.userContactNumber) {
+			$scope.showActualPropertySpecificationsView(localStorage.userContactNumber);
+			return;
+		}
 	}
 	
 	var showActualPropertyAmenities = function(amenitiesTabClicked) {
@@ -287,13 +290,14 @@ angular.module('properties', [])
 			$scope.showActualPropertyAmenities = true;
 		}
 	
-		if(localStorage.userContactNumber) {
-			$scope.showActualPropertyAmenitiesView(localStorage.userContactNumber);
-		}
-		
 		if($rootScope.isUserLoggedin) {
 			$scope.showActualPropertyAmenitiesView($rootScope.userDetails.phoneNumber);
 		}
+	
+		if(localStorage.userContactNumber) {
+			$scope.showActualPropertyAmenitiesView(localStorage.userContactNumber);
+		}
+
 	}
 	
 	var showActualPropertyPhotos = function(photosTabClicked) {
@@ -307,13 +311,14 @@ angular.module('properties', [])
 			$scope.showActualPropertyPhotos = true;
 		}
 	
-		if(localStorage.userContactNumber) {
-			$scope.showActualPropertyPhotosView(localStorage.userContactNumber);
-		}
-		
 		if($rootScope.isUserLoggedin) {
 			$scope.showActualPropertyPhotosView($rootScope.userDetails.phoneNumber);
 		}
+	
+		if(localStorage.userContactNumber) {
+			$scope.showActualPropertyPhotosView(localStorage.userContactNumber);
+		}
+
 	}
 	
 	$scope.skipGatherContactInfo = function() {
