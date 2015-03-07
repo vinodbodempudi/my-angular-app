@@ -223,7 +223,6 @@ angular.module('properties', [])
 		if(localStorage.userContactNumber) {
 			$scope.showContactInfo = true;
 			$scope.showPropertyContactDetails(localStorage.userContactNumber);
-			return;
 		}
 		
 		
@@ -250,7 +249,6 @@ angular.module('properties', [])
 		if(localStorage.userContactNumber) {
 			$scope.showActualPropertyDetails = true;
 			$scope.showActualPropertyDetailsView(localStorage.userContactNumber);
-			return;
 		}
 		
 		
@@ -275,7 +273,6 @@ angular.module('properties', [])
 	
 		if(localStorage.userContactNumber) {
 			$scope.showActualPropertySpecificationsView(localStorage.userContactNumber);
-			return;
 		}
 	}
 	
@@ -288,10 +285,12 @@ angular.module('properties', [])
 		if($scope.property && $rootScope.userDetails 
 			&& $rootScope.userDetails._id === $scope.property.user._id) {
 			$scope.showActualPropertyAmenities = true;
+			return;
 		}
 	
 		if($rootScope.isUserLoggedin) {
 			$scope.showActualPropertyAmenitiesView($rootScope.userDetails.phoneNumber);
+			return;
 		}
 	
 		if(localStorage.userContactNumber) {
@@ -309,10 +308,12 @@ angular.module('properties', [])
 		if($scope.property && $rootScope.userDetails 
 			&& $rootScope.userDetails._id === $scope.property.user._id) {
 			$scope.showActualPropertyPhotos = true;
+			return;
 		}
 	
 		if($rootScope.isUserLoggedin) {
 			$scope.showActualPropertyPhotosView($rootScope.userDetails.phoneNumber);
+			return;
 		}
 	
 		if(localStorage.userContactNumber) {
