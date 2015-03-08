@@ -40,6 +40,16 @@ angular.module('login', [])
 		//return $http.get('data/login.json');
     };
 	
+	this.sendTemporaryPassword = function (email) {
+        return $http.get(servicesBaseUrl+'/users/'+email+'/send-temporary-password');
+		//return $http.get('data/login.json');
+    };
+	
+	this.resetPassword = function (email, request) {
+        return $http.post(servicesBaseUrl+'/users/'+email+'/reset-password', angular.toJson(request));
+		//return $http.get('data/login.json');
+    };
+	
 	this.resendOTP = function (userId) {
         return $http.get(servicesBaseUrl+'/users/'+userId+'/resend-otp');
 		//return $http.get('data/login.json');
@@ -74,6 +84,16 @@ angular.module('login', [])
 		var modalInstance = $modal.open({
 			  templateUrl: 'modules/login/html/register-user.html',
 			  controller: 'RegisterUserModalCtrl',
+			  windowClass:'sign-modal'
+			});
+	
+	}
+	
+	$scope.showForgotPasswordModal = function() {
+		$scope.cancel(true);
+		var modalInstance = $modal.open({
+			  templateUrl: 'modules/login/html/forgot-password.html',
+			  controller: 'ForgotPasswordModalCtrl',
 			  windowClass:'sign-modal'
 			});
 	
@@ -146,6 +166,109 @@ angular.module('login', [])
 		}
 	}
 
+}])
+.controller('ForgotPasswordModalCtrl', ['$scope', '$modalInstance', 'LoginService', '$modal', '$rootScope', '$location',
+	function ($scope, $modalInstance, loginService, $modal, $rootScope, $location) {
+
+	$scope.sendTemporaryPasswordInProgress = false;
+	$scope.newUser = {city:$scope.user.city, locality:$scope.user.locality};
+	$scope.ok = function () {
+		$modalInstance.close();
+	};
+
+	$scope.cancel = function () {
+		$modalInstance.dismiss('cancel');
+	};
+	
+	$scope.sendTemporaryPassword = function (email) {
+		$scope.emailNotRegistered = false;
+		$scope.email = 	email;
+		$scope.sendTemporaryPasswordInProgress = true;
+		loginService.sendTemporaryPassword(email)
+			.success(function(data){
+				$scope.sendTemporaryPasswordInProgress = false;
+				$scope.cancel();
+				showResetPasswordModal();
+			}).error(function(response, status){
+				$scope.sendTemporaryPasswordInProgress = false;
+								
+				if(status === 404) {
+					$scope.emailNotRegistered = true;
+				}
+				
+			});
+	
+	};
+	
+	var showResetPasswordModal = function(data) {
+		 var modalInstance = $modal.open({
+		  templateUrl: 'modules/login/html/reset-password.html',
+		  controller: 'ResetPasswordModalCtrl',
+		  windowClass:'sign-modal',
+		  resolve: {
+			email: function () { return $scope.email; }
+		  }
+		});
+	}
+
+	
+}])
+.controller('ResetPasswordModalCtrl', ['$scope', '$modalInstance', 'LoginService', '$modal', '$rootScope', '$location', 'email',
+	function ($scope, $modalInstance, loginService, $modal, $rootScope, $location, email) {
+
+	$scope.resetPasswordInProgress = false;
+	$scope.ok = function () {
+		$modalInstance.close();
+	};
+
+	$scope.cancel = function () {
+		$modalInstance.dismiss('cancel');
+	};
+	
+	$scope.validatePassword = function(password, confirmPassword) {
+		
+		$scope.invalidConfirmPassword = false;
+		if(!password || !confirmPassword) {
+			return;
+		}
+
+		if(confirmPassword && password != confirmPassword) {
+			$scope.invalidConfirmPassword = true;
+		}
+	}
+	
+	$scope.resetUserPassword = function (resetPassword) {
+	
+		if($scope.invalidConfirmPassword) {
+			return;
+		}
+	
+		$scope.invalidTempPasswd = false;
+			
+		$scope.resetPasswordInProgress = true;
+		loginService.resetPassword(email, resetPassword)
+			.success(function(data){
+				$scope.resetPasswordInProgress = false;
+				$scope.cancel();
+				showLoginModal();
+			}).error(function(response, status){
+				$scope.resetPasswordInProgress = false;
+								
+				if(status === 401) {
+					$scope.invalidTempPasswd = true;
+				}
+			});
+	};
+	
+	var showLoginModal = function() {
+		 var modalInstance = $modal.open({
+			  templateUrl: 'modules/login/html/login.html',
+			  controller: 'LoginModalCtrl',
+			  windowClass:'sign-modal'
+			});
+	};
+
+	
 }])
 .controller('RegisterUserModalCtrl', ['$scope', '$modalInstance', 'LoginService', '$modal', '$rootScope', '$location',
 	function ($scope, $modalInstance, loginService, $modal, $rootScope, $location) {
