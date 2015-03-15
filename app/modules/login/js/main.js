@@ -41,7 +41,7 @@ angular.module('login', [])
     };
 	
 	this.sendTemporaryPassword = function (email) {
-        return $http.get(servicesBaseUrl+'/users/'+email+'/send-temporary-password');
+        return $http.post(servicesBaseUrl+'/users/'+email+'/send-temporary-password');
 		//return $http.get('data/login.json');
     };
 	
