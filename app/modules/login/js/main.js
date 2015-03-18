@@ -89,12 +89,15 @@ angular.module('login', [])
 	
 	}
 	
-	$scope.showForgotPasswordModal = function() {
+	$scope.showForgotPasswordModal = function(userDetails) {
 		$scope.cancel(true);
 		var modalInstance = $modal.open({
-			  templateUrl: 'modules/login/html/forgot-password.html',
-			  controller: 'ForgotPasswordModalCtrl',
-			  windowClass:'sign-modal'
+				templateUrl: 'modules/login/html/forgot-password.html',
+				controller: 'ForgotPasswordModalCtrl',
+				windowClass:'sign-modal',
+				resolve: {
+				email: function () { if(userDetails && userDetails.email) {return userDetails.email}return "";}
+			  }
 			});
 	
 	}
@@ -167,9 +170,10 @@ angular.module('login', [])
 	}
 
 }])
-.controller('ForgotPasswordModalCtrl', ['$scope', '$modalInstance', 'LoginService', '$modal', '$rootScope', '$location',
-	function ($scope, $modalInstance, loginService, $modal, $rootScope, $location) {
+.controller('ForgotPasswordModalCtrl', ['$scope', '$modalInstance', 'LoginService', '$modal', '$rootScope', '$location', 'email',
+	function ($scope, $modalInstance, loginService, $modal, $rootScope, $location, email) {
 
+	$scope.email = email;
 	$scope.sendTemporaryPasswordInProgress = false;
 	$scope.newUser = {city:$scope.user.city, locality:$scope.user.locality};
 	$scope.ok = function () {
@@ -192,7 +196,7 @@ angular.module('login', [])
 			}).error(function(response, status){
 				$scope.sendTemporaryPasswordInProgress = false;
 								
-				if(status === 404) {
+				if(status === 401) {
 					$scope.emailNotRegistered = true;
 				}
 				
